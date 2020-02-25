@@ -1,0 +1,168 @@
+﻿using RageKnight;
+using RageKnight.GameState;
+using System;
+
+public class Gameplay_Combat : GameplayState_Base<GameplayState>
+{
+    private const int NEXT_STATE_COUNT_DOWN = 2;
+    private bool startCountDown = false;
+    private int countDownTimer = NEXT_STATE_COUNT_DOWN;
+    private Action onStateEndAction = null;
+    GameUIManager Controls = null;
+
+    public Gameplay_Combat(GameManager manager, RageKnight_InGame handler) : base(GameplayState.COMBAT, manager, handler)
+    {
+    }
+
+    private GameplayState nextState = GameplayState.ADVENTURE;
+
+    public override void GameGoToNextState()
+    {
+        Handler.SwitchState(nextState);
+    }
+
+    public override bool GameAllowTransition(GameplayState nextState)
+    {
+        return (nextState == GameplayState.ADVENTURE || 
+            nextState == GameplayState.RESULT);
+    }
+
+    public override void GameStart()
+    {
+        Controls = Manager.GameUIManager;
+        Controls.UpdateControlMode(State);
+        Controls.UpdateMiddleUIModle(State);
+
+        startCountDown = false;
+        countDownTimer = NEXT_STATE_COUNT_DOWN;
+    }
+
+    public override void GameEnd()
+    {
+        if (Manager?.EnemyHandler?.IsAlive == false)
+        {
+            Manager.EnemyHandler.UnSetEnemy();
+            Manager.PlayerHandler.ResetPassiveBenifits();
+            IncrementStage(false);
+        }
+    }
+
+    public override void GameUpdate()
+    {
+        if (startCountDown == false && Manager != null)
+        {
+            CheckPlayerAction();
+            CheckEnemyAction();
+        }
+    }
+
+    public override void GameTimerUpdate()
+    {
+        if (startCountDown == true)
+        {
+            UnityEngine.Debug.Log("Is countdown started? " + startCountDown);
+            if (countDownTimer <= 0)
+            {
+                countDownTimer = NEXT_STATE_COUNT_DOWN;
+                GameGoToNextState();
+            }
+            else
+            {
+                countDownTimer--;
+            }
+        }
+
+        else if (startCountDown == false && Manager != null)
+        {
+            CheckPlayerCooldown();
+        }
+    }
+
+    private void CheckPlayerAction()
+    {
+        if (Controls != null)
+        {
+            if (Manager.PlayerHandler?.IsAlive == false)
+            {
+                nextState = GameplayState.RESULT;
+                startCountDown = true;
+                return;
+            }
+
+            Manager.PlayerHandler?.UpdateActionGuage();
+            bool canAttack = (bool)Manager.PlayerHandler?.IsActionGuageFull;
+
+            if (Controls.buttonEvents == BasicMovements.Attack && canAttack)
+            {
+                Manager.PlayerHandler?.PlayerAttack(Manager);
+                Manager.PlayerHandler?.CheckHitTiming();
+                Manager.PlayerHandler?.UseActionGauge();
+            }
+            else if (Controls.buttonEvents == BasicMovements.Idle)
+            {
+                Manager.PlayerHandler?.PlayerResetAnimation();
+            }
+
+            if (Controls.skillEvents == SkillMovements.Rage)
+            {
+                Manager.PlayerHandler?.PlayerRageActivate();
+            }
+            else if (Controls.skillEvents == SkillMovements.Heal)
+            {
+                Manager.PlayerHandler?.PlayerUseItem();
+            }
+
+            Controls.buttonEvents = BasicMovements.None;
+            Controls.skillEvents = SkillMovements.None;
+
+            if (Manager.EnemyHandler.IsAlive == false)
+            {
+                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.IsAlive);
+                Controls.UpdateScore(10);
+                nextState = GameplayState.ADVENTURE;
+                startCountDown = true;
+            }
+        }
+    }
+    
+    private void CheckEnemyAction()
+    {
+        if(Manager.EnemyHandler != null)
+        {
+            Manager.EnemyHandler.EnemyActionChecker(Manager);
+        }
+    }
+
+    private void CheckPlayerCooldown()
+    {
+        if(Manager.PlayerHandler != null)
+        {
+            Manager.PlayerHandler.CheckRageModeDuration();
+        }
+    }
+
+    public void IncrementStage(bool isBossBattle)
+    {
+        //so it keeps looping at almost final stage that's why is 2
+        int stageOffSet = isBossBattle ? 1 : 2;
+        int stageTracker = Manager.StageTracker;
+        int stageCount = Manager.StageCount;
+
+        if (stageTracker == stageCount - 2 && !isBossBattle)
+        {
+            Controls.BossButtonActive(true);
+            Controls.ProgressbarHandler.ResetCurrentStageState();
+        }
+        else
+        {
+            Controls.BossButtonActive(false);
+        }
+
+        if ((Manager.StageTracker + stageOffSet) < Manager.StageCount)
+        {
+            stageTracker = stageTracker + 1;
+            Manager.StageTracker = stageTracker;
+            Controls.ProgressbarHandler.UpdateStage(stageTracker);
+        }
+    }
+}
