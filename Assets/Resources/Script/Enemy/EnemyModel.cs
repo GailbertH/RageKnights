@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public class EnemyModel
 {
-    public int HealthPoints;
-    public int BaseHealth;
+    public float HealthPoints;
+    public float BaseHealth;
     public int AttackPower;
     public int DefensePower;
     public int AttackCoolDownLength;

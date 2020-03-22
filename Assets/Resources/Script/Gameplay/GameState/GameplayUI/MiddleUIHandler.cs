@@ -33,7 +33,7 @@ public class MiddleUIHandler : MonoBehaviour
         float playerCurrentHP = playerData.HealthPoints;
         float playerMaxAG = playerData.MaxActionGaugePoints;
         float playerMaxRage = playerData.MaxRagePoints;
-        int enemyCurrentHP = inst.EnemyHandler.GetEnemyData.HealthPoints;
+        float enemyCurrentHP = inst.EnemyHandler.GetEnemyData.HealthPoints;
 
         healthbarHandler.Initialize(playerBaseHP, enemyCurrentHP, playerMaxAG, playerMaxRage, 150, false);
         healthbarHandler.UpdatePlayerHealth(playerCurrentHP);

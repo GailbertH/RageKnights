@@ -22,8 +22,11 @@ public class PlayerModel
     public int HealthStatBonus { get; set; } //DEFENSE
     public int ArmorStatBonus { get; set; } //HEALTH
 
+    public float AttackRageMultiplier { get; set; }
+
     //Must be moved somewhere
     public float BaseHealthPoints { get; set; }
     public float MaxRagePoints { get; set; }
     public float MaxActionGaugePoints { get; set; }
+    public int MaxItemCount { get; set; }
 }

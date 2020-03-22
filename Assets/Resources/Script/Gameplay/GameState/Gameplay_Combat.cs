@@ -35,6 +35,9 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
         startCountDown = false;
         countDownTimer = NEXT_STATE_COUNT_DOWN;
+
+        Manager.PlayerHandler.UpdateItemCount();
+        Manager.PlayerHandler.PlayerResetAnimation();
     }
 
     public override void GameEnd()
@@ -43,7 +46,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         {
             Manager.EnemyHandler.UnSetEnemy();
             Manager.PlayerHandler.ResetPassiveBenifits();
-            IncrementStage(false);
+            Manager.IncrementStage(false);
         }
     }
 
@@ -138,31 +141,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         if(Manager.PlayerHandler != null)
         {
             Manager.PlayerHandler.CheckRageModeDuration();
-        }
-    }
-
-    public void IncrementStage(bool isBossBattle)
-    {
-        //so it keeps looping at almost final stage that's why is 2
-        int stageOffSet = isBossBattle ? 1 : 2;
-        int stageTracker = Manager.StageTracker;
-        int stageCount = Manager.StageCount;
-
-        if (stageTracker == stageCount - 2 && !isBossBattle)
-        {
-            Controls.BossButtonActive(true);
-            Controls.ProgressbarHandler.ResetCurrentStageState();
-        }
-        else
-        {
-            Controls.BossButtonActive(false);
-        }
-
-        if ((Manager.StageTracker + stageOffSet) < Manager.StageCount)
-        {
-            stageTracker = stageTracker + 1;
-            Manager.StageTracker = stageTracker;
-            Controls.ProgressbarHandler.UpdateStage(stageTracker);
         }
     }
 }

@@ -36,6 +36,10 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button rageButton;
     [SerializeField] private Button bossButton;
 
+    [SerializeField] private Text itemButtonText;
+
+    [SerializeField] private Transform playerRageMeter;
+
     [SerializeField] private Animation animAttackButton;
     private const string ANIM_TIMING_NOTIF = "LB-AttackBtn-TimingNotif";
     private const string ANIM_TIMING_HIT = "LB-AttackBtn-TimingHit";
@@ -100,6 +104,7 @@ public class GameUIManager : MonoBehaviour
     public void BossButton()
     {
         Debug.Log("Boss Button Click");
+        GameManager.Instance.IncrementStage(true);
     }
     public void BossButtonActive(bool activate)
     {
@@ -187,5 +192,25 @@ public class GameUIManager : MonoBehaviour
     public void UpdateMiddleUIModle(GameplayState currentState)
     {
         MiddleUIHandler.SetMiddleGround(currentState);
+    }
+
+    public void UpdateItemButtonText(int itemCount)
+    {
+        itemButtonText.text = "Heal x" + itemCount;
+    }
+
+    public void ItemButtonStatus(bool isActive)
+    {
+        itemButton.interactable = isActive;
+    }
+
+    public void UpdateRageMeter(float currentValue, float maxValue)
+    {
+        float actionGaugePercent = currentValue / maxValue;
+        if (actionGaugePercent < 0 || actionGaugePercent > 1)
+        {
+            actionGaugePercent = actionGaugePercent < 0 ? 0 : 1;
+        }
+        playerRageMeter.localScale = new Vector3(actionGaugePercent, 1, 1);
     }
 }

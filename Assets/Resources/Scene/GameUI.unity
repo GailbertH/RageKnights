@@ -126,6 +126,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8264850108177985535}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &206929428 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5154105084140191986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &229786878 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
@@ -226,6 +232,8 @@ MonoBehaviour:
   itemButton: {fileID: 1186505990}
   rageButton: {fileID: 1598940705}
   bossButton: {fileID: 229786878}
+  itemButtonText: {fileID: 1081622262}
+  playerRageMeter: {fileID: 206929428}
   animAttackButton: {fileID: 1572585362}
   buttonEvents: 0
   skillEvents: 0
@@ -276,6 +284,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589294215}
   m_CullTransparentMesh: 0
+--- !u!114 &1081622262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5154105083699918754, guid: 765637d316c051c4fbd3fbaca386770d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5154105084140191986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1186505990 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5154105084568200132, guid: 765637d316c051c4fbd3fbaca386770d,
@@ -847,42 +867,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5154105084140191986}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1918843566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918843565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1918843567
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918843565}
-  m_CullTransparentMesh: 0
 --- !u!1 &1921081912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1270,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 537385095}
+    - target: {fileID: 5154105083311441366, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8411184
+      objectReference: {fileID: 0}
     - target: {fileID: 4210810983049190050, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1390,6 +1379,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154105083311441360, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Name
+      value: RageBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154105083790320818, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Name
+      value: RageBtnTxt
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154105083790320816, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Text
+      value: Rage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 765637d316c051c4fbd3fbaca386770d, type: 3}
@@ -1649,6 +1668,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 537385095}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BossButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 242fb670806562e41bd5fcfc9309c189, type: 3}
