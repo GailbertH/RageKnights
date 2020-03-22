@@ -126,6 +126,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8264850108177985535}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &206929428 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5154105084140191986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &229786878 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8264850108298671506, guid: 242fb670806562e41bd5fcfc9309c189,
@@ -227,6 +233,7 @@ MonoBehaviour:
   rageButton: {fileID: 1598940705}
   bossButton: {fileID: 229786878}
   itemButtonText: {fileID: 1081622262}
+  playerRageMeter: {fileID: 206929428}
   animAttackButton: {fileID: 1572585362}
   buttonEvents: 0
   skillEvents: 0
@@ -1263,6 +1270,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 537385095}
+    - target: {fileID: 5154105083311441366, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8411184
+      objectReference: {fileID: 0}
     - target: {fileID: 4210810983049190050, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1368,45 +1380,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
+    - target: {fileID: 5154105083311441360, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
+      propertyPath: m_Name
+      value: RageBtn
       objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
+    - target: {fileID: 5154105083790320818, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
-      propertyPath: m_Pivot.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7237510046185212767, guid: 765637d316c051c4fbd3fbaca386770d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
+      propertyPath: m_Name
+      value: RageBtnTxt
       objectReference: {fileID: 0}
     - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
         type: 3}
-      propertyPath: m_Type
+      propertyPath: m_Color.g
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1849434119362311870, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154105083790320816, guid: 765637d316c051c4fbd3fbaca386770d,
+        type: 3}
+      propertyPath: m_Text
+      value: Rage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 765637d316c051c4fbd3fbaca386770d, type: 3}
