@@ -57,7 +57,7 @@ public class EnemyHandler : MonoBehaviour
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
     }
 
-    public void DamagedEnemy(int damage)
+    public void DamagedEnemy(float damage)
     {
         if (enemy != null)
         {

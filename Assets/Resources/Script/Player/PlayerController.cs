@@ -11,10 +11,22 @@ public class PlayerController : MonoBehaviour
     private PlayerModel modifiedPlayerData = null;
     private PlayerModel basePlayerData = null;
     private float actionGaugeModifier = 0;
+    private bool isRageMode = false;
 
     public PlayerModel GetPlayerData
     {
         get { return currentPlayerData; }
+    }
+
+    public float TotalAttackDamage
+    {
+        get
+        {
+            if (isRageMode)
+                return currentPlayerData.AttackPower * currentPlayerData.AttackRageMultiplier;
+            else
+                return currentPlayerData.AttackPower;
+        }
     }
 
     public bool isActionGaugeFull
@@ -33,6 +45,11 @@ public class PlayerController : MonoBehaviour
         set { actionGaugeModifier = value; }
     }
 
+    public int ItemCount
+    {
+        get { return currentPlayerData.ItemCount; }
+    }
+
     public void Init()
     {
         currentPlayerData = new PlayerModel
@@ -41,41 +58,34 @@ public class PlayerController : MonoBehaviour
             DefensePower = 2,
             HealthPower = 2,
             RagePower = 2,
-            RageIncrement = 0.2f,
+            RageIncrement = 0.5f,
             ActionGaugeIncrement = 1f,
             HealthPoints = 10f,
             ActionGaugePoints = 10f,
             RagePoints = 0,
-            ItemCount = 0,
+            ItemCount = 5,
             WeapomStatBonus = 0,
             HealthStatBonus = 0,
             ArmorStatBonus = 0,
             BaseHealthPoints = 10f,
-            MaxRagePoints = 0,
-            MaxActionGaugePoints = 100f
+            MaxRagePoints = 100f,
+            MaxActionGaugePoints = 100f,
+            MaxItemCount = 10,
+            AttackRageMultiplier = 2
         };
-
-        basePlayerData = currentPlayerData;
         ResetAnimation();
     }
 
     public void RevertBackToNormal()
     {
-        currentPlayerData = basePlayerData;
+        isRageMode = false;
+        Debug.Log("NORMAL!!");
     }
 
     public void RageModifier()
     {
-        modifiedPlayerData = new PlayerModel
-        {
-            AttackPower = basePlayerData.AttackPower * 2,
-            HealthPoints = 10,
-            BaseHealthPoints = 10f,
-            ItemCount = 0,
-            RagePoints = 0,
-        };
-
-        currentPlayerData = modifiedPlayerData;
+        isRageMode = true;
+        Debug.Log("RAGE!!");
     }
 
     public void PlayerDamaged(int damage)
@@ -89,23 +99,27 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerHeal()
     {
-        if (currentPlayerData.HealthPoints > 0)
+        if (currentPlayerData.ItemCount > 0 && currentPlayerData.HealthPoints > 0)
         {
-            Debug.Log("Change Health to float someday");
+            currentPlayerData.ItemCount--;
             currentPlayerData.HealthPoints += (int)((float)currentPlayerData.BaseHealthPoints * HEAL_PERCENTAGE);
             if (currentPlayerData.HealthPoints > currentPlayerData.BaseHealthPoints)
             {
                 currentPlayerData.HealthPoints = currentPlayerData.BaseHealthPoints;
             }
+            Debug.Log(currentPlayerData.ItemCount);
         }
     }
 
     public void PlayerActionGauge(float incremnent)
     {
-        Debug.Log(currentPlayerData.MaxActionGaugePoints  + " <= " + currentPlayerData.ActionGaugePoints + " inc " + incremnent);
+        //Debug.Log(currentPlayerData.MaxActionGaugePoints  + " <= " + currentPlayerData.ActionGaugePoints + " inc " + incremnent);
         if (CurrentMaxAGPoints > currentPlayerData.ActionGaugePoints)
         {
-            currentPlayerData.ActionGaugePoints += incremnent;
+            if(isRageMode)
+                currentPlayerData.ActionGaugePoints += incremnent * 2;
+            else
+                currentPlayerData.ActionGaugePoints += incremnent;
         }
     }
 
@@ -119,6 +133,16 @@ public class PlayerController : MonoBehaviour
         if (currentPlayerData.MaxRagePoints > currentPlayerData.RagePoints)
         {
             currentPlayerData.RagePoints += incremnent;
+        }
+    }
+
+    public void PlayerUseRageMode()
+    {
+        Debug.Log(currentPlayerData.RagePoints + " >= " + currentPlayerData.MaxRagePoints);
+        if (currentPlayerData.RagePoints >= currentPlayerData.MaxRagePoints)
+        {
+            currentPlayerData.RagePoints = 0;
+            RageModifier();
         }
     }
 

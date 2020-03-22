@@ -15,7 +15,7 @@ public class HealthbarHandler : MonoBehaviour
     private float playerMaxActionGagugePoints;
     private float playerMaxRagePoints;
     private float enemyMaxActionGaugePoints;
-    private int enemyBaseHealth;
+    private float enemyBaseHealth;
     private bool isBoss = false;
 
     public void SetUIActive(bool isActive)
@@ -23,7 +23,7 @@ public class HealthbarHandler : MonoBehaviour
         this.gameObject.SetActive(isActive);
     }
 
-    public void Initialize(float playerBaseHealth, int enemyBaseHealth, float playerMaxActionPoints, float playerMaxRagePoints, float enemyMaxActionPoints, bool isBoss = false)
+    public void Initialize(float playerBaseHealth, float enemyBaseHealth, float playerMaxActionPoints, float playerMaxRagePoints, float enemyMaxActionPoints, bool isBoss = false)
     {
         this.playerBaseHealth = playerBaseHealth;
         this.enemyBaseHealth = enemyBaseHealth;
@@ -61,7 +61,7 @@ public class HealthbarHandler : MonoBehaviour
         playerHealth.localScale = new Vector3(healthPercent, 1, 1);
     }
 
-    public void UpdateEnemyHealth(int enemyCurrentHealth)
+    public void UpdateEnemyHealth(float enemyCurrentHealth)
     {
         float healthPercent = (float)enemyCurrentHealth / (float)enemyBaseHealth;
         if (healthPercent < 0 || healthPercent > 1)
@@ -85,7 +85,6 @@ public class HealthbarHandler : MonoBehaviour
         {
             actionGaugePercent = actionGaugePercent < 0 ? 0 : 1;
         }
-        Debug.Log(actionGaugePercent);
         playerActionGauge.localScale = new Vector3(actionGaugePercent, 1, 1);
     }
 

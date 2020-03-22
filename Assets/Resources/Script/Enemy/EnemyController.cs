@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    public virtual bool Damaged(int damageReceive)
+    public virtual bool Damaged(float damageReceive)
     {
         bool isAlive = true;
         enemyData.HealthPoints -= damageReceive;

@@ -16,9 +16,12 @@ namespace RageKnight.Player
         [SerializeField] private PlayerController player;
         private PlayerState currentPlayerState = PlayerState.IDLE;
         private bool isInRageMode = false;
+        private bool isItemOnCoolDown = false;
         private bool isActionGaugeFull = false;
         private float rageDuration = 10f;
+        private float healCooldown = 5f;
         private const float BASE_RAGE_DURATION = 10f;
+        private const float BASE_ITEM_COOLDOWN = 5f;
 
         public PlayerState GetPlayerState
         {
@@ -35,7 +38,7 @@ namespace RageKnight.Player
         {
             get
             {
-                return player?.GetPlayerData.HealthPoints > 0;
+                return player?.GetPlayerData?.HealthPoints > 0;
             }
         }
 
@@ -62,8 +65,15 @@ namespace RageKnight.Player
             Debug.Log("Player Initialize");
         }
 
-        public void UpdateRageGauge(float value)
+        public void UpdateItemCount()
         {
+            GameManager.Instance.GameUIManager.UpdateItemButtonText(player.ItemCount);
+        }
+
+        public void UpdateRageGauge()
+        {
+            player?.PlayerRagePoints(GetPlayerData.RagePower * GetPlayerData.RageIncrement);
+            GameManager.Instance.GameUIManager.UpdateRageMeter(GetPlayerData.RagePoints, GetPlayerData.MaxRagePoints);
         }
 
         public void UpdateActionGuage()
@@ -73,7 +83,7 @@ namespace RageKnight.Player
                 return;
             }
 
-            PlayerModel playerData = player?.GetPlayerData;
+            PlayerModel playerData = GetPlayerData;
             float value = (float)playerData?.ActionGaugeIncrement;
             player?.PlayerActionGauge(value);
             isActionGaugeFull = (bool)player?.isActionGaugeFull;
@@ -111,17 +121,19 @@ namespace RageKnight.Player
 
         public void UpdateHealthGauge()
         {
-            float playerHP = player?.GetPlayerData != null ? player.GetPlayerData.HealthPoints : 0f;
+            float playerHP = GetPlayerData != null ? GetPlayerData.HealthPoints : 0f;
             GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
-            Debug.Log("Heal Current Life " + playerHP);
         }
 
         public void PlayerRageActivate()
         {
-            isInRageMode = true;
-            rageDuration = BASE_RAGE_DURATION;
-            player?.RageModifier();
-            Debug.Log("Player Rage Mode");
+            if (GetPlayerData.RagePoints >= GetPlayerData.MaxRagePoints)
+            {
+                isInRageMode = true;
+                rageDuration = BASE_RAGE_DURATION;
+                player?.PlayerUseRageMode();
+                Debug.Log("Player Rage Mode");
+            }
         }
 
         public void PlayerRageDeactivate()
@@ -131,11 +143,23 @@ namespace RageKnight.Player
             Debug.Log("Player Normal Mode");
         }
 
+        private void PlayerItemCoolDown(bool isOnCoolDown)
+        {
+            isItemOnCoolDown = isOnCoolDown;
+            healCooldown = BASE_ITEM_COOLDOWN;
+            GameManager.Instance.GameUIManager.ItemButtonStatus(!isOnCoolDown && GetPlayerData.ItemCount > 0);
+        }
+
         public void PlayerUseItem()
         {
-            player?.PlayerHeal();
-            UpdateHealthGauge();
-            Debug.Log("Player Use Item");
+            if (isItemOnCoolDown == false)
+            {
+                PlayerItemCoolDown(true);
+                player?.PlayerHeal();
+                UpdateHealthGauge();
+                GameManager.Instance.GameUIManager.UpdateItemButtonText(player.ItemCount);
+                Debug.Log("Player Use Item");
+            }
         }
 
         public void PlayerDamaged(int damage)
@@ -148,8 +172,9 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.ATTACKING;
             player?.PlayAttackAnimation();
-            int attackDamage = player?.GetPlayerData != null ? player.GetPlayerData.AttackPower : 0;
+            float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
             manager?.EnemyHandler?.DamagedEnemy(attackDamage);
+            UpdateRageGauge();
         }
 
         public void PlayerResetAnimation()
@@ -182,13 +207,21 @@ namespace RageKnight.Player
 
         public void CheckRageModeDuration()
         {
-            if (isInRageMode == false)
-                return;
-
-            rageDuration--;
-            if (rageDuration <= 0)
+            if (isInRageMode == true)
             {
-                PlayerRageDeactivate();
+                rageDuration--;
+                if (rageDuration <= 0)
+                {
+                    PlayerRageDeactivate();
+                }
+            }
+            if (isItemOnCoolDown == true)
+            {
+                healCooldown--;
+                if (healCooldown <= 0)
+                {
+                    PlayerItemCoolDown(false);
+                }
             }
         }
 
