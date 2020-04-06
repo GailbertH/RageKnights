@@ -14,6 +14,7 @@ public class PopupList
 
 public class PopupHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject OverlayFull;
     [SerializeField] private GameObject Overlay;
     [SerializeField] private List<GameObject> PopupList;
     private List<string> currentOpenPopups = new List<string>();
@@ -57,13 +58,13 @@ public class PopupHandler : MonoBehaviour
     {
         currentOpenPopups.Add(popupName);
         GameManager.Instance.PauseGame(true);
-        Overlay.SetActive(true);
+        OverlayFull.SetActive(true);
     }
 
     private void OnPopupClose(string popupName)
     {
         currentOpenPopups.Remove(popupName);
         GameManager.Instance.PauseGame(false);
-        Overlay.SetActive(false);
+        OverlayFull.SetActive(false);
     }
 }

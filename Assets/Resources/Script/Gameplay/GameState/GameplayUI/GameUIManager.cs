@@ -133,12 +133,12 @@ public class GameUIManager : MonoBehaviour
 
     public void StoreButton()
     {
-        OpenPopup(PopupList.STORE_UI);
+        OpenPopup(PopupList.STORE_UI, false);
     }
 
     public void PreparationButton()
     {
-        OpenPopup(PopupList.UPGRADE_UI);
+        OpenPopup(PopupList.UPGRADE_UI, false);
     }
 
     public void RetireAdventureButton()
@@ -158,7 +158,7 @@ public class GameUIManager : MonoBehaviour
 
     #endregion
 
-    public void OpenPopup(string popupName)
+    public void OpenPopup(string popupName, bool fullHide = true)
     {
         popupHandler.OpenPopup(popupName);
     }

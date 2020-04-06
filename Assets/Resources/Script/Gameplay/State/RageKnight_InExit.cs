@@ -12,6 +12,13 @@ namespace RageKnight.GameState
 			
 		public override void Start ()
 		{
+            //TODO IMPROVE THIS SHIT
+            PlayerModel currentPlayerData = GameManager.Instance.PlayerHandler.GetPlayerData;
+            PlayerModel newPlayerData = AccountManager.Instance.PlayerData;
+            newPlayerData.ItemCount = currentPlayerData.ItemCount;
+
+            AccountManager.Instance.PlayerData = newPlayerData;
+
             //START UNLOADING
             if (LoadingManager.Instance != null)
             {
@@ -21,8 +28,8 @@ namespace RageKnight.GameState
             }
 		}
 		public override void End () 
-		{ 
-			//END EVERYTHING
-		}
+		{
+            Manager.ExitingGame();
+        }
 	}
 }
