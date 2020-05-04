@@ -133,12 +133,17 @@ public class GameUIManager : MonoBehaviour
 
     public void StoreButton()
     {
-        OpenPopup(PopupList.STORE_UI);
+        OpenPopup(PopupList.STORE_UI, false);
     }
 
     public void PreparationButton()
     {
-        OpenPopup(PopupList.UPGRADE_UI);
+        OpenPopup(PopupList.UPGRADE_UI, false);
+    }
+
+    public void DebugButton()
+    {
+        OpenPopup(PopupList.DATA_DEBUG_UI);
     }
 
     public void RetireAdventureButton()
@@ -158,7 +163,7 @@ public class GameUIManager : MonoBehaviour
 
     #endregion
 
-    public void OpenPopup(string popupName)
+    public void OpenPopup(string popupName, bool fullHide = true)
     {
         popupHandler.OpenPopup(popupName);
     }
@@ -176,11 +181,9 @@ public class GameUIManager : MonoBehaviour
         BossButtonActive(false);
     }
 
-    public void UpdateScore(long earnedGold)
+    public void UpdateGold(long currentGold)
     {
-        long currentGold = 0;
-        long.TryParse(coinsHeld.text, out currentGold);
-        coinsHeld.text = (currentGold + earnedGold).ToString();
+        coinsHeld.text = currentGold.ToString();
     }
 
     public void UpdateControlMode(GameplayState currentState)

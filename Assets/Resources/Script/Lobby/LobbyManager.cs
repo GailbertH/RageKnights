@@ -8,7 +8,6 @@ public class LobbyManager : MonoBehaviour
 
 	public void PlayButtonClick()
 	{
-        Debug.Log("Hello World");
         if(LoadingManager.Instance != null)
         {
             LoadingManager.Instance.SetSceneToUnload (SceneNames.LOBBY_SCENE);

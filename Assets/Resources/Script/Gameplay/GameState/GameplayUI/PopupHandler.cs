@@ -10,10 +10,12 @@ public class PopupList
     public const string UPGRADE_UI = "UpgradeUI";
     public const string STORE_UI = "StoreUI";
     public const string RESULT_UI = "ResultUI";
+    public const string DATA_DEBUG_UI = "DataDebuggerUI";
 }
 
 public class PopupHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject OverlayFull;
     [SerializeField] private GameObject Overlay;
     [SerializeField] private List<GameObject> PopupList;
     private List<string> currentOpenPopups = new List<string>();
@@ -56,14 +58,14 @@ public class PopupHandler : MonoBehaviour
     private void OnPopupOpen(string popupName)
     {
         currentOpenPopups.Add(popupName);
-        GameManager.Instance.PauseGame(true);
-        Overlay.SetActive(true);
+        GameManager.Instance?.PauseGame(true);
+        OverlayFull.SetActive(true);
     }
 
     private void OnPopupClose(string popupName)
     {
         currentOpenPopups.Remove(popupName);
         GameManager.Instance.PauseGame(false);
-        Overlay.SetActive(false);
+        OverlayFull.SetActive(false);
     }
 }

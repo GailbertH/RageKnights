@@ -29,11 +29,14 @@ public class LoadingManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    private void SetUpLoadingMeter()
+    private void SetUpLoadingMeter(bool autoLoadDone = true)
 	{
 		mainCamera.gameObject.SetActive (true);
-		loadingMeter.OnLoadMeterChange (this.OnLoadBarChange);
-		loadingMeter.OnLoadDone (this.OnLoadBarFull);
+        loadingMeter.OnLoadMeterChange (this.OnLoadBarChange);
+        if (autoLoadDone == true)
+        {
+            loadingMeter.OnLoadDone(this.OnLoadBarFull);
+        }
 	}
 
 	private void OnLoadBarChange(float value)
@@ -41,7 +44,7 @@ public class LoadingManager : MonoBehaviour
 		Debug.Log("LoadBar " + value);
 	}
 
-	private void OnLoadBarFull()
+	public void OnLoadBarFull()
 	{
 		Debug.Log("Load Bar Full ");
 
@@ -77,7 +80,7 @@ public class LoadingManager : MonoBehaviour
 
 		this.SetUpLoadingMeter ();
 		loadingMeter.Reset ();
-		loadingRoutine = StartCoroutine (LoadAsynceScene(false));
+		loadingRoutine = StartCoroutine (LoadAsynceScene(true));
 	}
 
 	public void LoadGameScene()

@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Resources\Script\Account\AccountManager.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyHandler.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyModel.cs" />
@@ -76,15 +77,19 @@
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Exit.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Resut.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayState.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\DataDebugPopup.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\GameJoyStick.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\GameUIManager.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\HealthbarHandler.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\MenuPopup.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\MiddleUIHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\PopupBase.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\PopupHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\ProgressBarController.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\ProgressBarHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\ResultPopup.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\StoreItems.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayUI\StorePopup.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnight_InExit.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnight_InGame.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnight_Loading.cs" />
