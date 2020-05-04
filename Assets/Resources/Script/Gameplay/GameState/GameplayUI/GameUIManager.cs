@@ -141,6 +141,11 @@ public class GameUIManager : MonoBehaviour
         OpenPopup(PopupList.UPGRADE_UI, false);
     }
 
+    public void DebugButton()
+    {
+        OpenPopup(PopupList.DATA_DEBUG_UI);
+    }
+
     public void RetireAdventureButton()
     {
         Debug.Log("REtire Button");
@@ -176,11 +181,9 @@ public class GameUIManager : MonoBehaviour
         BossButtonActive(false);
     }
 
-    public void UpdateScore(long earnedGold)
+    public void UpdateGold(long currentGold)
     {
-        long currentGold = 0;
-        long.TryParse(coinsHeld.text, out currentGold);
-        coinsHeld.text = (currentGold + earnedGold).ToString();
+        coinsHeld.text = currentGold.ToString();
     }
 
     public void UpdateControlMode(GameplayState currentState)

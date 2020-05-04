@@ -121,7 +121,9 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             if (Manager.EnemyHandler.IsAlive == false)
             {
                 UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.IsAlive);
-                Controls.UpdateScore(10);
+                //TODO Improve this someday
+                long goldEarned = 10;
+                Manager.UpdateGold(goldEarned);
                 nextState = GameplayState.ADVENTURE;
                 startCountDown = true;
             }

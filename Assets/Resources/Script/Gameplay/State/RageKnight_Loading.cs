@@ -83,10 +83,11 @@ namespace RageKnight.GameState
 #endif
             if (playerData == null)
             {
-                playerData = AccountManager.Instance.PlayerData;
+                playerData = AccountManager.Instance.AccountData.CurrentCharacterData;
             }
+            long gold = AccountManager.Instance.AccountData.Gold;
 
-            Manager.PlayerHandler.PlayerInitialize(playerData);
+            Manager.AccountDataInit(playerData, gold);
         }
     }
 }

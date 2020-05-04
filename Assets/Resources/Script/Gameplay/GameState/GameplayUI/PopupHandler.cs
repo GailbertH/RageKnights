@@ -10,6 +10,7 @@ public class PopupList
     public const string UPGRADE_UI = "UpgradeUI";
     public const string STORE_UI = "StoreUI";
     public const string RESULT_UI = "ResultUI";
+    public const string DATA_DEBUG_UI = "DataDebuggerUI";
 }
 
 public class PopupHandler : MonoBehaviour
@@ -57,7 +58,7 @@ public class PopupHandler : MonoBehaviour
     private void OnPopupOpen(string popupName)
     {
         currentOpenPopups.Add(popupName);
-        GameManager.Instance.PauseGame(true);
+        GameManager.Instance?.PauseGame(true);
         OverlayFull.SetActive(true);
     }
 

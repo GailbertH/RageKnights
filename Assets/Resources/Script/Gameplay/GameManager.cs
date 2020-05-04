@@ -18,6 +18,7 @@ namespace RageKnight
         private bool isStateActive = false;
         private bool isGamePaused = false;
         private int stageTracker = 0;
+        public int stage = 1;
 
         [SerializeField] private EnemyHandler enemyHandler;
         [SerializeField] private PlayerHandler playerHandler;
@@ -58,6 +59,12 @@ namespace RageKnight
 		{
 			get { return this.stateMachine; }
 		}
+
+        private long stageGold;
+        public long StageGold
+        {
+            get { return this.stageGold; }
+        }
 
         public int StageCount
         {
@@ -112,6 +119,19 @@ namespace RageKnight
             }
         }
 
+        public void AccountDataInit(PlayerModel playerData, long goldAmount)
+        {
+            //TODO improvement needed goes ahead of init of UI
+            PlayerHandler.PlayerInitialize(playerData);
+            UpdateGold(goldAmount);
+        }
+
+        public void UpdateGold(long goldToAdd)
+        {
+            stageGold += goldToAdd;
+            this.GameUIManager?.UpdateGold(StageGold);
+        }
+
         public void PauseGame(bool isPause)
         {
             isGamePaused = isPause;
@@ -143,6 +163,8 @@ namespace RageKnight
                 StageTracker = stageTracker;
                 GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
             }
+            Debug.Log(stage + " | " + stageTracker);
+            AccountManager.Instance.UpdateStageProgress(stage, StageTracker);
         }
 
         public void ExitingGame()

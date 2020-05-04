@@ -14,10 +14,11 @@ namespace RageKnight.GameState
 		{
             //TODO IMPROVE THIS SHIT
             PlayerModel currentPlayerData = GameManager.Instance.PlayerHandler.GetPlayerData;
-            PlayerModel newPlayerData = AccountManager.Instance.PlayerData;
+            PlayerModel newPlayerData = AccountManager.Instance.AccountData.CurrentCharacterData;
             newPlayerData.ItemCount = currentPlayerData.ItemCount;
 
-            AccountManager.Instance.PlayerData = newPlayerData;
+            AccountManager.Instance.AccountData.Gold = Manager.StageGold;
+            AccountManager.Instance.AccountData.CurrentCharacterData = newPlayerData;
 
             //START UNLOADING
             if (LoadingManager.Instance != null)
