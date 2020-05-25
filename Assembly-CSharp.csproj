@@ -96,6 +96,7 @@
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnightState.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnightStateMachine.cs" />
     <Compile Include="Assets\Resources\Script\Lobby\LobbyManager.cs" />
+    <Compile Include="Assets\Resources\Script\Lobby\LobbyOptionHandler.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerHandler.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerModel.cs" />
