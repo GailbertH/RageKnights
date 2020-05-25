@@ -99,6 +99,7 @@
     <Compile Include="Assets\Resources\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerHandler.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerModel.cs" />
+    <Compile Include="Assets\Resources\Script\Splash\SplashHandler.cs" />
     <Compile Include="Assets\Resources\Script\Utility\LoadingManager.cs" />
     <Compile Include="Assets\Resources\Script\Utility\LoadingMeter.cs" />
     <Compile Include="Assets\Resources\Script\Utility\SceneName.cs" />

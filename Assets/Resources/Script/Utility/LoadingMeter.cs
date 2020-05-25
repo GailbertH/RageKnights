@@ -14,8 +14,6 @@ public class LoadingMeter : MonoBehaviour {
 	void Start () 
 	{
 		this.Reset ();
-        LoadingManager.Instance.SetSceneToLoad(SceneNames.DATA_SCENE + "," + SceneNames.LOBBY_SCENE);
-        LoadingManager.Instance.LoadMainMenuScene ();
 	}
 
 	public void Reset()

@@ -27,6 +27,11 @@ public class LoadingManager : MonoBehaviour
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+
+        if (canvas != null)
+        {
+            canvas.SetActive(false);
+        }
     }
 
     private void SetUpLoadingMeter(bool autoLoadDone = true)
@@ -73,17 +78,33 @@ public class LoadingManager : MonoBehaviour
 		sceneToUnload = sceneName;
 	}
 
-	public void LoadMainMenuScene()
-	{
-		if (canvas != null)
-			canvas.SetActive (true);
+    /// <summary>
+    /// Neeeds to call SetSceneToLoad first
+    /// </summary>
+    public void LoadScene()
+    {
+        loadingRoutine = StartCoroutine(LoadAsynceScene(true));
+    }
 
-		this.SetUpLoadingMeter ();
-		loadingMeter.Reset ();
-		loadingRoutine = StartCoroutine (LoadAsynceScene(true));
-	}
+    /// <summary>
+    /// Neeeds to call SetSceneToLoad first this is background load version set is not visible first
+    /// </summary>
+    public void SilentLoadScene()
+    {
+        loadingRoutine = StartCoroutine(LoadAsynceScene(false));
+    }
 
-	public void LoadGameScene()
+    public void ActivateSilentLoadedScene()
+    {
+        asyncLoading.allowSceneActivation = true;
+    }
+
+    public void UnloadScene()
+    {
+        unloadingRoutine = StartCoroutine(UnLoadAsyncScene());
+    }
+
+    public void LoadGameScene()
 	{
 		if (canvas != null)
 			canvas.SetActive (true);
