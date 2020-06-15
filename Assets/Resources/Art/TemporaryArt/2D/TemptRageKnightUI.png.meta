@@ -362,10 +362,10 @@ TextureImporter:
       name: TemptRageKnightUI_8
       rect:
         serializedVersion: 2
-        x: 177
-        y: 505
-        width: 85
-        height: 83
+        x: 179
+        y: 508
+        width: 80
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 35, y: 36, z: 37, w: 36}
@@ -383,10 +383,10 @@ TextureImporter:
       name: TemptRageKnightUI_9
       rect:
         serializedVersion: 2
-        x: 263
-        y: 507
-        width: 81
-        height: 79
+        x: 266
+        y: 510
+        width: 76
+        height: 73
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 33, y: 35, z: 32, w: 36}
@@ -467,13 +467,13 @@ TextureImporter:
       name: TemptRageKnightUI_14
       rect:
         serializedVersion: 2
-        x: 177
-        y: 419
-        width: 85
-        height: 81
+        x: 179
+        y: 421
+        width: 80
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 13, y: 14, z: 16, w: 13}
+      border: {x: 12, y: 12, z: 12, w: 12}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -488,13 +488,13 @@ TextureImporter:
       name: TemptRageKnightUI_15
       rect:
         serializedVersion: 2
-        x: 265
-        y: 419
-        width: 85
-        height: 81
+        x: 268
+        y: 421
+        width: 80
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 35, y: 34, z: 36, w: 34}
+      border: {x: 35, y: 35, z: 35, w: 35}
       outline: []
       physicsShape: []
       tessellationDetail: 0

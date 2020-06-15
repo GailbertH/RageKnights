@@ -11,6 +11,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject ShopContent;
     [SerializeField] private GameObject SettingContent; //Not official just place holder
     [SerializeField] private LobbyOptionHandler OptionHandler;
+    [SerializeField] private PopupHandler popupHandler;
 
     [SerializeField] GameObject genericPopup;
     private GameObject currentContentShowing = null;
@@ -24,7 +25,13 @@ public class LobbyManager : MonoBehaviour
         OptionHandler.Initialize();
     }
 
-    public void PlayButtonClick()
+    public void PressPlayButton()
+    {
+        popupHandler.OpenPopup(LobbyPopupList.STAGE_SELECT_UI);
+    }
+
+
+    public void SetupGameScene(int Stage, string characterID)
 	{
         if(LoadingManager.Instance != null)
         {
@@ -37,6 +44,10 @@ public class LobbyManager : MonoBehaviour
             Debug.LogError("Loading Manager is missing");
         }
 	}
+
+
+
+    //Better Optimize these shits.
 
     private void HideCurrentContent()
     {

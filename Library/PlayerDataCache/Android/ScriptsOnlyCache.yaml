@@ -27,6 +27,7 @@ ScriptsOnlyBuild:
     - RageKnight.Player.PlayerHandler
     - ResultPopup
     - SplashHandler
+    - StageSelectPopup
     - StoreItems
     - StorePopup
     Unity.2D.Tilemap.Editor.dll:
@@ -46,6 +47,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -63,6 +65,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
     com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Resources/Scene/DataManagerScene.unity:
@@ -265,6 +268,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
@@ -303,6 +308,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10948}
     - Class: 114
+      Script: {instanceID: 11026}
+    - Class: 114
       Script: {instanceID: 11204}
     - Class: 114
       Script: {instanceID: 11522}
@@ -310,6 +317,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11906}
     - Class: 114
       Script: {instanceID: 11986}
+    - Class: 114
+      Script: {instanceID: 19548}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -443,6 +452,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11982}
     - Class: 114
       Script: {instanceID: 11986}
+    - Class: 114
+      Script: {instanceID: 19548}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -608,18 +619,6 @@ ScriptsOnlyBuild:
     className: NetworkTransform
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements
-    className: CallbackExecutor
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements.Editor
-    className: Placeholder
-  - hash:
-      serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -728,7 +727,7 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
-      Hash: 17e87bacf49b115da096df27b267eb8f
+      Hash: 9614dbf38e68d9065dd79bcad8edcf03
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LobbyManager
@@ -884,7 +883,7 @@ ScriptsOnlyBuild:
     className: AccountManager
   - hash:
       serializedVersion: 2
-      Hash: 7dafc2e08c05bd139dd76a6b79d5f068
+      Hash: ada570299b6f0f3525259cd4a227e241
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PopupHandler
@@ -1040,7 +1039,7 @@ ScriptsOnlyBuild:
     className: SplashHandler
   - hash:
       serializedVersion: 2
-      Hash: 7c971fc32b6fb3ec108d5e66ecf758df
+      Hash: 2482e9d27f7da61851766cc0ad5e3425
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthbarHandler
@@ -1200,6 +1199,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StageSelectPopup
   platform: 13
   scenePathNames:
   - Assets/Resources/Scene/SplashScene.unity
@@ -1208,4 +1213,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scene/LobbyScene.unity
   - Assets/Resources/Scene/GameScene.unity
   - Assets/Resources/Scene/GameUI.unity
-  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.1.5a.apk
+  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.2.0a.apk
