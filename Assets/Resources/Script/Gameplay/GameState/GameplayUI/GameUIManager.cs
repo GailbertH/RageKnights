@@ -199,7 +199,7 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateItemButtonText(int itemCount)
     {
-        itemButtonText.text = "Heal x" + itemCount;
+        itemButtonText.text = "x " + itemCount;
     }
 
     public void ItemButtonStatus(bool isActive)
