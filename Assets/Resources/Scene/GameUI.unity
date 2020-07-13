@@ -989,6 +989,7 @@ MonoBehaviour:
   - {fileID: 420142466562471834, guid: e1f1f8e35f7bd1d438453a8279b00d13, type: 3}
   - {fileID: 3172868663958909329, guid: dee99e5dce74ab84998be0350c764a97, type: 3}
   - {fileID: 7377583268483913173, guid: 6ef941bc6086b62448aba2f26a9d73be, type: 3}
+  isLobby: 0
 --- !u!1 &1918843565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 102266390293363702, guid: 765637d316c051c4fbd3fbaca386770d,
