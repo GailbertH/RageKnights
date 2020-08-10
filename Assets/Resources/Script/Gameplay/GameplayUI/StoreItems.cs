@@ -12,6 +12,7 @@ public class StoreItems : MonoBehaviour
     [SerializeField] GameObject availability;
     [SerializeField] Image itemIcon;
 
+    private int stockCounter;
     private StoreItemData storeItemData;
     private Action<StoreItemData> onPurchaseAction = null;
 
@@ -20,20 +21,32 @@ public class StoreItems : MonoBehaviour
         storeItemData = itemData;
         if (storeItemData != null)
         {
+            stockCounter = itemData.stockCount;
+            stockCount.text = stockCounter > 0 ? "Stock:" + stockCounter.ToString() : "Out of stock";
+
             itemDisplayName.text = storeItemData.name;
-            purchaseButton.enabled = storeItemData.inStock;
+            purchaseButton.enabled = stockCounter > 0;
             availability.SetActive(!storeItemData.inStock);
             onPurchaseAction = onPurchase;
-            stockCount.text = itemData.stockCount > 0 ? "Stock:" + itemData.stockCount.ToString() : "Out of stock";
             itemIcon.sprite = itemData.icon;
         }
         else
             this.gameObject.SetActive(false);
     }
 
+    public void UpdateInfo()
+    {
+        bool isAvailable = stockCounter > 0;
+        stockCount.text = isAvailable ? "Stock:" + stockCounter.ToString() : "Out of stock";
+        purchaseButton.enabled = isAvailable;
+        availability.SetActive(!isAvailable);
+    }
+
     public void OnPurchase()
     {
         //popup show to determine quanity ? 
+        stockCounter--;
+        UpdateInfo();
         onPurchaseAction.Invoke(storeItemData);
     }
 }

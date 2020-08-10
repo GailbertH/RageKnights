@@ -52,6 +52,7 @@ namespace RageKnight.GameState
             GoToNextState();
         }
 
+        //TODO use proper data
         private void LoadAccountData()
         {
             PlayerModel playerData = null;

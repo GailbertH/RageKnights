@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RageKnight;
+using RageKnight.Database;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +36,7 @@ public class StorePopup : PopupBase
     private void OnPurchase(StoreItemData purchaseItemData)
     {
         RageKnight.GameManager.Instance.AddPotion(1);
+        GameManager.Instance.UpdateGold(purchaseItemData.price * -1);
         Debug.Log("Buying item " + purchaseItemData.name);
     }
 
@@ -65,7 +68,7 @@ public class StorePopup : PopupBase
 public class StoreItemData
 {
     public string id;
-    public float price;
+    public long price;
     public string name;
     public int stockCount;
     public bool inStock;

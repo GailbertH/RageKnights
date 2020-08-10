@@ -36,6 +36,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button rageButton;
     [SerializeField] private Button bossButton;
 
+    [SerializeField] private Image itemButtonIcon;
     [SerializeField] private Text itemButtonText;
 
     [SerializeField] private Transform playerRageMeter;

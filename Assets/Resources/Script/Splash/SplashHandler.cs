@@ -82,6 +82,8 @@ public class SplashHandler : MonoBehaviour
 
     IEnumerator FakeLoadBalancer()
     {
+
+#if UNITY_EDITOR == false
         SetupText.text = "Retrieving Data...";
         yield return new WaitForSeconds(1f);
         SetupText.text = "Populating Data...";
@@ -95,10 +97,12 @@ public class SplashHandler : MonoBehaviour
         SetupText.text = "Gail so awesome <3";
         yield return new WaitForSeconds(1.5f);
         SetupText.text = "Almost There..";
+#endif
         while (!isMenuReady)
         {
             yield return null;
         }
+
         SetupComplete();
     }
 }

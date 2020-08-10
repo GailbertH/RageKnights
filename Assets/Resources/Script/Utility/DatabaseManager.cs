@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using RageKnight.Database;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;

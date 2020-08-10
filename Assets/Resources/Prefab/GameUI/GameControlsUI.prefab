@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 5154105083699918755}
   - component: {fileID: 5154105084140191992}
   m_Layer: 5
-  m_Name: HealBtnTxt
+  m_Name: HealBtnIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

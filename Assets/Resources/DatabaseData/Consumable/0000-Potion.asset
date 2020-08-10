@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Consumable
   id: 0001
   name: Moderate Potion
-  description: Restores 40% of users health.
+  description: Heals the user for 40% of health.
   cost: 7
   icon: {fileID: -7944627243110838330, guid: b50e3436187baaa4cbcce6ae150a6c2d, type: 3}
   potency: 40

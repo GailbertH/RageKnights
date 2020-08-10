@@ -29,6 +29,10 @@ public class AccountManager : MonoBehaviour
             HealthPoints = 10f,
             ActionGaugePoints = 10f,
             RagePoints = 0,
+            currentItemInUse = new ConsumableModel {
+                id = "0000",
+                quantity = 5
+            },
             ItemCount = 5,
             WeapomStatBonus = 0,
             HealthStatBonus = 0,
