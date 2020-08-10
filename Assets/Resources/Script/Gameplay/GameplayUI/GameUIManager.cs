@@ -36,6 +36,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Button rageButton;
     [SerializeField] private Button bossButton;
 
+    [SerializeField] private Image itemButtonIcon;
     [SerializeField] private Text itemButtonText;
 
     [SerializeField] private Transform playerRageMeter;
@@ -199,7 +200,7 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateItemButtonText(int itemCount)
     {
-        itemButtonText.text = "Heal x" + itemCount;
+        itemButtonText.text = "x " + itemCount;
     }
 
     public void ItemButtonStatus(bool isActive)

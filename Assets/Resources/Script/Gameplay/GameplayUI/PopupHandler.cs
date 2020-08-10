@@ -13,11 +13,20 @@ public class PopupList
     public const string DATA_DEBUG_UI = "DataDebuggerUI";
 }
 
+
+public class LobbyPopupList
+{
+    public const string STAGE_SELECT_UI = "StageSelectUI";
+}
+
+
 public class PopupHandler : MonoBehaviour
 {
     [SerializeField] private GameObject OverlayFull;
     [SerializeField] private GameObject Overlay;
     [SerializeField] private List<GameObject> PopupList;
+    [SerializeField] private bool isLobby;
+
     private List<string> currentOpenPopups = new List<string>();
     public void OpenPopup(string PopupName)
     {
@@ -65,7 +74,7 @@ public class PopupHandler : MonoBehaviour
     private void OnPopupClose(string popupName)
     {
         currentOpenPopups.Remove(popupName);
-        GameManager.Instance.PauseGame(false);
+        GameManager.Instance?.PauseGame(false);
         OverlayFull.SetActive(false);
     }
 }

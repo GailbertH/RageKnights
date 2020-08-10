@@ -11,6 +11,10 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private Transform enemyActionGauge;
     [SerializeField] private Transform bossActionGauge;
 
+    [SerializeField] private GameObject playerBarHolder;
+    [SerializeField] private GameObject enemyBarHolder;
+    [SerializeField] private GameObject bossBarHolder;
+
     private float playerBaseHealth;
     private float playerMaxActionGagugePoints;
     private float playerMaxRagePoints;
@@ -35,20 +39,16 @@ public class HealthbarHandler : MonoBehaviour
 
     public void ShowHealthBar()
     {
-        playerHealth.gameObject.SetActive(true);
-        playerActionGauge.gameObject.SetActive(true);
-        enemyHealthBar.gameObject.SetActive(!isBoss);
-        enemyActionGauge.gameObject.SetActive(!isBoss);
-        bossHealthBar.gameObject.SetActive(isBoss);
+        playerBarHolder.SetActive(true);
+        enemyBarHolder.SetActive(!isBoss);
+        bossBarHolder.SetActive(isBoss);
     }
 
     public void HideHealthBar()
     {
-        playerHealth.gameObject.SetActive(false);
-        playerActionGauge.gameObject.SetActive(false);
-        enemyHealthBar.gameObject.SetActive(false);
-        enemyActionGauge.gameObject.SetActive(false);
-        bossHealthBar.gameObject.SetActive(false);
+        playerBarHolder.SetActive(false);
+        enemyBarHolder.SetActive(false);
+        bossBarHolder.SetActive(false);
     }
 
     public void UpdatePlayerHealth(float playerCurrentHealth)

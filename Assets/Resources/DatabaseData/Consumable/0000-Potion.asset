@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 0001-ModeratePotion
+  m_EditorClassIdentifier: Assembly-CSharp::Consumable
+  id: 0001
+  name: Moderate Potion
+  description: Heals the user for 40% of health.
+  cost: 7
+  icon: {fileID: -7944627243110838330, guid: b50e3436187baaa4cbcce6ae150a6c2d, type: 3}
+  potency: 40
+  baseStockCount: 10
+  ItemEffectType: 0

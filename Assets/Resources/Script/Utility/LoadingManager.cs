@@ -7,7 +7,8 @@ public class LoadingManager : MonoBehaviour
 {
 	[SerializeField] private LoadingMeter loadingMeter;
 	[SerializeField] GameObject canvas;
-	[SerializeField] Camera mainCamera;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] Camera mainCamera;
     [SerializeField] int gameSpeed = 60;
 
 	private AsyncOperation asyncLoading;
@@ -27,6 +28,8 @@ public class LoadingManager : MonoBehaviour
 
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+
+        CanvasVisible(false);
     }
 
     private void SetUpLoadingMeter(bool autoLoadDone = true)
@@ -56,10 +59,7 @@ public class LoadingManager : MonoBehaviour
 		if(unloadingRoutine != null)
 			StopCoroutine (unloadingRoutine);
 
-        if (canvas != null)
-            canvas.SetActive(false);
-
-        mainCamera.gameObject.SetActive(false);
+        StartCoroutine(FadeOutCoroutine());
     }
 
 	#region SceneManagement
@@ -73,26 +73,46 @@ public class LoadingManager : MonoBehaviour
 		sceneToUnload = sceneName;
 	}
 
-	public void LoadMainMenuScene()
+    /// <summary>
+    /// Neeeds to call SetSceneToLoad first
+    /// </summary>
+    public void LoadScene()
+    {
+        loadingRoutine = StartCoroutine(LoadAsynceScene(true));
+    }
+
+    /// <summary>
+    /// Neeeds to call SetSceneToLoad first this is background load version set is not visible first
+    /// </summary>
+    public void SilentLoadScene()
+    {
+        loadingRoutine = StartCoroutine(LoadAsynceScene(false));
+    }
+
+    public void ActivateSilentLoadedScene()
+    {
+        asyncLoading.allowSceneActivation = true;
+    }
+
+    public void UnloadScene()
+    {
+        unloadingRoutine = StartCoroutine(UnLoadAsyncScene());
+    }
+
+    public void LoadGameScene()
 	{
-		if (canvas != null)
-			canvas.SetActive (true);
-
-		this.SetUpLoadingMeter ();
-		loadingMeter.Reset ();
-		loadingRoutine = StartCoroutine (LoadAsynceScene(true));
-	}
-
-	public void LoadGameScene()
-	{
-		if (canvas != null)
-			canvas.SetActive (true);
-
-		this.SetUpLoadingMeter ();
+        CanvasVisible(true);
+        this.SetUpLoadingMeter ();
 		loadingMeter.Reset ();
 		unloadingRoutine = StartCoroutine (UnLoadAsyncScene ());
 		loadingRoutine = StartCoroutine (LoadAsynceScene(true));
 	}
+
+    private void CanvasVisible(bool toShow)
+    {
+        canvasGroup.alpha = toShow ? 1 : 0;
+        canvas.SetActive(toShow);
+    }
 
 	private IEnumerator LoadAsynceScene(bool allowActivation)
 	{
@@ -133,5 +153,19 @@ public class LoadingManager : MonoBehaviour
 			sceneToUnload = "";
 		}
 	}
-	#endregion
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        float time = 0.5f;
+        while (canvasGroup.alpha > 0)
+        {
+            canvasGroup.alpha -= Time.deltaTime / time;
+            yield return null;
+        }
+
+        CanvasVisible(false);
+        mainCamera.gameObject.SetActive(false);
+    }
+    #endregion
 }
