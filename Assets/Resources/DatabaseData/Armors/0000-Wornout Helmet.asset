@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 0000-Helmet
+  m_Name: 0000-Wornout Helmet
   m_EditorClassIdentifier: Assembly-CSharp::Armor
-  id: 
-  name: 
-  description: 
-  cost: 0
+  id: 0000
+  name: Worn Out Helmet
+  description: A very old and worned out helmet, doesn't do much protection, and seems
+    itchy to wear.
   icon: {fileID: 0}
-  defense: 0
-  level: 0
+  defense: 5
+  level: 1
   defenseScalingPerLevel: []
   maxLevel: 0
   elementType: 0

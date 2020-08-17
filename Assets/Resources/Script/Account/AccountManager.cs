@@ -33,14 +33,12 @@ public class AccountManager : MonoBehaviour
                 id = "0000",
                 quantity = 5
             },
-            ItemCount = 5,
             WeapomStatBonus = 0,
             HealthStatBonus = 0,
             ArmorStatBonus = 0,
             BaseHealthPoints = 10f,
             MaxRagePoints = 100f,
             MaxActionGaugePoints = 100f,
-            MaxItemCount = 10,
             AttackRageMultiplier = 2
         };
 
