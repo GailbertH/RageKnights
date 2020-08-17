@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
         if (currentPlayerData.ItemCount > 0 && currentPlayerData.HealthPoints > 0)
         {
             currentPlayerData.ItemCount--;
+            currentPlayerData.currentItemInUse.quantity--;
             currentPlayerData.HealthPoints += (int)((float)currentPlayerData.BaseHealthPoints * HEAL_PERCENTAGE);
             if (currentPlayerData.HealthPoints > currentPlayerData.BaseHealthPoints)
             {
@@ -93,7 +94,10 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerAddItem(int addItemCount)
     {
-        currentPlayerData.ItemCount += addItemCount;
+        int curMaxItemCount = currentPlayerData.MaxItemCount;
+        int newCurItemCount = currentPlayerData.ItemCount + addItemCount;
+        currentPlayerData.currentItemInUse.quantity += addItemCount;
+        currentPlayerData.ItemCount = newCurItemCount > curMaxItemCount ? curMaxItemCount : newCurItemCount;
     }
 
     public void PlayerActionGauge(float incremnent)

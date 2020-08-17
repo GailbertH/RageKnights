@@ -232,6 +232,7 @@ MonoBehaviour:
   itemButton: {fileID: 1186505990}
   rageButton: {fileID: 1598940705}
   bossButton: {fileID: 229786878}
+  itemButtonIcon: {fileID: 5154105084140191987}
   itemButtonText: {fileID: 1168921652}
   playerRageMeter: {fileID: 206929428}
   animAttackButton: {fileID: 1572585362}
@@ -1746,6 +1747,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 765637d316c051c4fbd3fbaca386770d, type: 3}
+--- !u!114 &5154105084140191987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5154105084140191992, guid: 765637d316c051c4fbd3fbaca386770d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5154105084140191986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8031180154961078497
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +31,7 @@ namespace RageKnight.Database
         public Sprite icon;
     }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "New Consumable Item", menuName = "Assets/Database_Item/Consumable")]
     public class Consumable : DatabaseItem
     {
@@ -39,6 +40,7 @@ namespace RageKnight.Database
         public ItemEffectType ItemEffectType;
     }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "New Weapon Item", menuName = "Assets/Database_Item/Weapon")]
     public class Weapon : DatabaseItem
     {
@@ -49,6 +51,7 @@ namespace RageKnight.Database
         public ElementType elementType;
     }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "New Armor Item", menuName = "Assets/Database_Item/Armor")]
     public class Armor : DatabaseItem
     {
@@ -59,6 +62,7 @@ namespace RageKnight.Database
         public ElementType elementType;
     }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "New Helmet Item", menuName = "Assets/Database_Item/helmet")]
     public class helmet : DatabaseItem
     {
