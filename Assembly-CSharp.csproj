@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Resources\EditorTools\ToolLocalDatabaseManager.cs" />
     <Compile Include="Assets\Resources\Script\Account\AccountManager.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyHandler.cs" />
