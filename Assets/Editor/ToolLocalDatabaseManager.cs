@@ -1,6 +1,7 @@
 ﻿using RageKnight.Database;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -78,7 +79,8 @@ namespace RageKnight.Tools
 
     public class ToolLocalDatabaseEditor : EditorWindow
     {
-        string _conDBitemPath = "DatabaseData/Consumable/";
+        private const string _path = "Assets/Resources/";
+        private const string _conDBitemPath = "DatabaseData/Consumable/";
         private DatabaseType _currentViewType = DatabaseType.Consumable;
         List<Consumable> _consumableData = null;
         public static ToolLocalDatabaseEditor Instance
@@ -118,6 +120,18 @@ namespace RageKnight.Tools
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
             GUILayout.Label(_currentViewType.ToString());
+            GUILayout.FlexibleSpace();
+
+            GUI.color = Color.cyan;
+            LoadJsonButton();
+            GUI.color = Color.yellow;
+            SaveJsonButton();
+            GUI.color = Color.green;
+            AddButton();
+            GUI.color = Color.magenta;
+            FinalizeDataButton();
+            GUI.color = Color.white;
+
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(3f);
             ShowConsumableField();
@@ -127,7 +141,7 @@ namespace RageKnight.Tools
         {
             float labelWidth = 250f;
             this.scroll = GUILayout.BeginScrollView(this.scroll);
-
+            List<string> idsToRemove = new List<string>();
             foreach (Consumable conDb in _consumableData)
             {
                 GUILayout.BeginHorizontal();
@@ -135,7 +149,13 @@ namespace RageKnight.Tools
                 titleStyle.fontSize = 14;
 
                 GUILayout.Label(" File Name:  " + (conDb.id + "-" + conDb.name).ToString(), titleStyle, GUILayout.Width(labelWidth));
-                GUILayout.Label("ID:  " + conDb.id.ToString(), titleStyle, GUILayout.Width(labelWidth));
+                GUILayout.Label("ID:  " + conDb.id, titleStyle, GUILayout.Width(labelWidth - 100));
+                GUI.color = Color.red;
+                if (GUILayout.Button("REMOVE", GUILayout.Width(100)))
+                {
+                    idsToRemove.Add(conDb.id);
+                }
+                GUI.color = Color.white;
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();
@@ -164,7 +184,87 @@ namespace RageKnight.Tools
                 GUILayout.EndHorizontal();
             }
 
+            foreach (string badIds in idsToRemove)
+            {
+                _consumableData.Remove(_consumableData.Find(x => x.id == badIds));
+            }
             GUILayout.EndScrollView();
+        }
+
+        private void LoadJsonButton()
+        {
+            if (GUILayout.Button("LOAD JSON", EditorStyles.toolbarButton))
+            {
+                Debug.Log("Something");
+            }
+        }
+
+        private void SaveJsonButton()
+        {
+            if (GUILayout.Button("SAVE JSON", EditorStyles.toolbarButton))
+            {
+                Debug.Log("Something");
+            }
+        }
+
+        private void AddButton()
+        {
+            if (GUILayout.Button("ADD", EditorStyles.toolbarButton))
+            {
+                if (_consumableData == null)
+                {
+                    _consumableData = new List<Consumable>();
+                }
+
+                int newId = 0;
+                if (_consumableData.Count > 0)
+                {
+                    int.TryParse(_consumableData[_consumableData.Count() - 1].id, out newId);
+                    newId += 1;
+                }
+                Consumable newAdd = ScriptableObject.CreateInstance<Consumable>();
+                newAdd.id = String.Format("{0:D4}", newId);
+                _consumableData.Add(newAdd);
+            }
+        }
+
+        private void FinalizeDataButton()
+        {
+            if (GUILayout.Button("Finalize Data", EditorStyles.toolbarButton))
+            {
+                var files = Directory.GetFiles(_path + _conDBitemPath);
+                var newContainer = _consumableData.Select(x => new Consumable{
+                    id = x.id,
+                    name = x.name,
+                    description = x.description,
+                    cost = x.cost,
+                    potency = x.potency,
+                    icon = x.icon,
+                    baseStockCount = x.baseStockCount,
+                    ItemEffectType = x.ItemEffectType
+                }).ToList();
+
+
+                for (int i = 0; i < files.Length; i++)
+                {
+                    AssetDatabase.DeleteAsset(files[i]);
+                }
+                AssetDatabase.SaveAssets();
+
+                foreach (Consumable conDb in newContainer)
+                {
+                    Consumable asset = ScriptableObject.CreateInstance<Consumable>();
+                    asset.PopulateData(conDb);
+                    string fileName = asset.id + "-" + asset.name;
+                    if (asset != null)
+                    {
+                        AssetDatabase.RemoveObjectFromAsset(asset);
+                    }
+                    AssetDatabase.CreateAsset(asset, "Assets/Resources/DatabaseData/Consumable/" + fileName + ".asset");
+                    //AssetDatabase.AddObjectToAsset(asset, "Assets/Resources/DatabaseData/Consumable/" + fileName + ".asset");
+                }
+                AssetDatabase.SaveAssets();
+            }
         }
     }
 }
