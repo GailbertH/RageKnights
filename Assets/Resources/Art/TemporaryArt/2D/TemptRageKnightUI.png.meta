@@ -1,0 +1,943 @@
+fileFormatVersion: 2
+guid: b50e3436187baaa4cbcce6ae150a6c2d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2051210348322766029
+    second: TemptRageKnightUI_0
+  - first:
+      213: 1230238264860104163
+    second: TemptRageKnightUI_1
+  - first:
+      213: -4701541887613283488
+    second: TemptRageKnightUI_2
+  - first:
+      213: -5937568915400385921
+    second: TemptRageKnightUI_3
+  - first:
+      213: -4963757957709128321
+    second: TemptRageKnightUI_4
+  - first:
+      213: -6448626244071464357
+    second: TemptRageKnightUI_5
+  - first:
+      213: 9209317662245558501
+    second: TemptRageKnightUI_7
+  - first:
+      213: 4060627309249463132
+    second: TemptRageKnightUI_8
+  - first:
+      213: 1857587683530286558
+    second: TemptRageKnightUI_9
+  - first:
+      213: 421759606182732642
+    second: TemptRageKnightUI_10
+  - first:
+      213: 6094285753235377364
+    second: TemptRageKnightUI_12
+  - first:
+      213: 5218888650282653964
+    second: TemptRageKnightUI_13
+  - first:
+      213: -8135460898169301270
+    second: TemptRageKnightUI_14
+  - first:
+      213: -7519701452858471602
+    second: TemptRageKnightUI_15
+  - first:
+      213: 3541302599449560637
+    second: TemptRageKnightUI_18
+  - first:
+      213: 8849259331005944387
+    second: TemptRageKnightUI_19
+  - first:
+      213: -2163572228672396145
+    second: TemptRageKnightUI_20
+  - first:
+      213: -686522150947456840
+    second: TemptRageKnightUI_21
+  - first:
+      213: 4599764569585579437
+    second: TemptRageKnightUI_22
+  - first:
+      213: -7944627243110838330
+    second: TemptRageKnightUI_23
+  - first:
+      213: -8832610221686385030
+    second: TemptRageKnightUI_24
+  - first:
+      213: 5992221410510237237
+    second: TemptRageKnightUI_26
+  - first:
+      213: 1494851665939174533
+    second: TemptRageKnightUI_27
+  - first:
+      213: -2435286438103346324
+    second: TemptRageKnightUI_28
+  - first:
+      213: 7676800059252100625
+    second: TemptRageKnightUI_31
+  - first:
+      213: 1017998754272111393
+    second: TemptRageKnightUI_32
+  - first:
+      213: 7750172098569060007
+    second: TemptRageKnightUI_33
+  - first:
+      213: 5829605675977304444
+    second: TemptRageKnightUI_34
+  - first:
+      213: 6703173151716735759
+    second: TemptRageKnightUI_35
+  - first:
+      213: -7254580972493982819
+    second: TemptRageKnightUI_36
+  - first:
+      213: -4164908995626284569
+    second: TemptRageKnightUI_37
+  - first:
+      213: 998348192920003215
+    second: TemptRageKnightUI_38
+  - first:
+      213: -6182176221537837527
+    second: TemptRageKnightUI_40
+  - first:
+      213: -3730400706357331975
+    second: TemptRageKnightUI_41
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TemptRageKnightUI_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 786
+        width: 123
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 11, z: 12, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daf5eb2ed3ca49a46bce1e5d308b3ec3
+      internalID: -2051210348322766029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 755
+        width: 118
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 12, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09497715b8893f84387402241d0f8bef
+      internalID: 1230238264860104163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 732
+        width: 117
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 11, z: 12, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23f0ca0701a483f4fb125df48712413e
+      internalID: -4701541887613283488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 708
+        width: 118
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 12, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eb761165381ac8478846cca78d4f6cb
+      internalID: -5937568915400385921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_4
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 685
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 12, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a428064d9c5b44a43a45f5310a7f3206
+      internalID: -4963757957709128321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 661
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 12, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b177e309464bc94db29cb428374b782
+      internalID: -6448626244071464357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_7
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 513
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 34, y: 35, z: 36, w: 34}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1becc9a40355d974c8884fa18a3ef7e3
+      internalID: 9209317662245558501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_8
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 508
+        width: 80
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 35, y: 36, z: 37, w: 36}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbed2178092d8b479f9f4a67d4fc939
+      internalID: 4060627309249463132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_9
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 510
+        width: 76
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 33, y: 35, z: 32, w: 36}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 792e89671a6e2194893a9fed635bd944
+      internalID: 1857587683530286558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_10
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 508
+        width: 80
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 14, y: 14, z: 14, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbaef472e8c6b2748a6eba27d9967165
+      internalID: 421759606182732642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_12
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 533
+        width: 39
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d4f0ad54006aa4d873899167da7d50
+      internalID: 6094285753235377364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_13
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 498
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8733967de1991142a2aa718ff76c670
+      internalID: 5218888650282653964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_14
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 421
+        width: 80
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96523b9d2b8c0cf4286c12ba2b8304f1
+      internalID: -8135460898169301270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_15
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 421
+        width: 80
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 35, y: 35, z: 35, w: 35}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc29b7bcff6af74bb37a7282ea2f2f0
+      internalID: -7519701452858471602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_18
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 447
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca002f854d049648914a9e19e5c93e9
+      internalID: 3541302599449560637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_19
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 419
+        width: 79
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 34, y: 32, z: 33, w: 32}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa32f480d28a264383a9a4721bc0fc6
+      internalID: 8849259331005944387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_20
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 408
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d1631863c694824981ea09e60cab9d7
+      internalID: -2163572228672396145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_21
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 295
+        width: 76
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c96bf7437e26565438229ca91dfbd4d4
+      internalID: -686522150947456840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_22
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 300
+        width: 120
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89533f6df4d693f41af22451aa8ca176
+      internalID: 4599764569585579437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_23
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 305
+        width: 134
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be55b50794565a4f9993544d60cfded
+      internalID: -7944627243110838330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_24
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 325
+        width: 63
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85b01e56351c17f41acc242d21602688
+      internalID: -8832610221686385030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_26
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 280
+        width: 129
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76d80a647b87c146b1c8824567054dc
+      internalID: 5992221410510237237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_27
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 346
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23dec6cd7dbee7d4780418622dfdb1c8
+      internalID: 1494851665939174533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_28
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 337
+        width: 55
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad261848f52a8f74c83e3c949cf05c3c
+      internalID: -2435286438103346324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_31
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 292
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f4c9a14f32af74c817bb32e7e0008a
+      internalID: 7676800059252100625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_32
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 293
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da5b58ef34afedc43b99301193fa0b9d
+      internalID: 1017998754272111393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_33
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 7
+        width: 199
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8fcc9584af7f4a47bc5c691f6f05d8b
+      internalID: 7750172098569060007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_34
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 289
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1b58661661a2924690e257e03cbbeef
+      internalID: 5829605675977304444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_35
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 280
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d60777c8eb3e1d4f9ad311b8b688a34
+      internalID: 6703173151716735759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_36
+      rect:
+        serializedVersion: 2
+        x: 1060
+        y: 46
+        width: 237
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45e7a6750d238343bd48b98230b34e8
+      internalID: -7254580972493982819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_37
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 45
+        width: 254
+        height: 216
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e383119979187f4b846256a5497f014
+      internalID: -4164908995626284569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_38
+      rect:
+        serializedVersion: 2
+        x: 1632
+        y: 48
+        width: 246
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae6cbc5ad12d80468ab832cf3f85b1c
+      internalID: 998348192920003215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_40
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 67
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be2c0b1ad5f26644fa8ed268a02d0882
+      internalID: -6182176221537837527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TemptRageKnightUI_41
+      rect:
+        serializedVersion: 2
+        x: 1872
+        y: 47
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28430420f747e314fa29766c19a2ba99
+      internalID: -3730400706357331975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9f8e83fd214d00047b34f4c712b49ef7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

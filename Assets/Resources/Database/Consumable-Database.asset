@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eec9be64b2f21948bcaccc52e828a0a, type: 3}
+  m_Name: Consumable-Database
+  m_EditorClassIdentifier: Assembly-CSharp:RageKnight.Database:DatabaseConsumable
+  id: 
+  Consumables:
+  - {fileID: 11400000, guid: c6dde08b8d940214c8146ede69d24798, type: 2}
+  - {fileID: 11400000, guid: a5cf9b568811c794d85974e3b48e6156, type: 2}
+  - {fileID: 11400000, guid: 6c5c89f8b6d43804c8860caab2848034, type: 2}

@@ -58,10 +58,10 @@ namespace RageKnight.Player
             }
         }
 
-        public void PlayerInitialize()
+        public void PlayerInitialize(PlayerModel playerData)
         {
             isInRageMode = false;
-            player?.Init();
+            player?.Init(playerData);
             Debug.Log("Player Initialize");
         }
 
@@ -148,6 +148,12 @@ namespace RageKnight.Player
             isItemOnCoolDown = isOnCoolDown;
             healCooldown = BASE_ITEM_COOLDOWN;
             GameManager.Instance.GameUIManager.ItemButtonStatus(!isOnCoolDown && GetPlayerData.ItemCount > 0);
+        }
+
+        public void PlayerAddItem(int itemCount)
+        {
+            player?.PlayerAddItem(itemCount);
+            UpdateItemCount();
         }
 
         public void PlayerUseItem()

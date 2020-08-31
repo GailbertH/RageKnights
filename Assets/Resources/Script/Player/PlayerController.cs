@@ -50,29 +50,9 @@ public class PlayerController : MonoBehaviour
         get { return currentPlayerData.ItemCount; }
     }
 
-    public void Init()
+    public void Init(PlayerModel playerData)
     {
-        currentPlayerData = new PlayerModel
-        {
-            AttackPower = 2,
-            DefensePower = 2,
-            HealthPower = 2,
-            RagePower = 2,
-            RageIncrement = 0.5f,
-            ActionGaugeIncrement = 1f,
-            HealthPoints = 10f,
-            ActionGaugePoints = 10f,
-            RagePoints = 0,
-            ItemCount = 5,
-            WeapomStatBonus = 0,
-            HealthStatBonus = 0,
-            ArmorStatBonus = 0,
-            BaseHealthPoints = 10f,
-            MaxRagePoints = 100f,
-            MaxActionGaugePoints = 100f,
-            MaxItemCount = 10,
-            AttackRageMultiplier = 2
-        };
+        currentPlayerData = playerData;
         ResetAnimation();
     }
 
@@ -102,6 +82,7 @@ public class PlayerController : MonoBehaviour
         if (currentPlayerData.ItemCount > 0 && currentPlayerData.HealthPoints > 0)
         {
             currentPlayerData.ItemCount--;
+            currentPlayerData.currentItemInUse.quantity--;
             currentPlayerData.HealthPoints += (int)((float)currentPlayerData.BaseHealthPoints * HEAL_PERCENTAGE);
             if (currentPlayerData.HealthPoints > currentPlayerData.BaseHealthPoints)
             {
@@ -109,6 +90,14 @@ public class PlayerController : MonoBehaviour
             }
             Debug.Log(currentPlayerData.ItemCount);
         }
+    }
+
+    public void PlayerAddItem(int addItemCount)
+    {
+        int curMaxItemCount = currentPlayerData.MaxItemCount;
+        int newCurItemCount = currentPlayerData.ItemCount + addItemCount;
+        currentPlayerData.currentItemInUse.quantity += addItemCount;
+        currentPlayerData.ItemCount = newCurItemCount > curMaxItemCount ? curMaxItemCount : newCurItemCount;
     }
 
     public void PlayerActionGauge(float incremnent)
