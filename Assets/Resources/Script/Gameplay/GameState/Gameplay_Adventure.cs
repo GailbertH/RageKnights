@@ -29,7 +29,7 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
         GameUIManager Controls = Manager.GameUIManager;
         Controls?.UpdateControlMode(State);
         Controls?.UpdateMiddleUIModle(State);
-        Manager.UpdateGold(0);
+        Manager.AddGold(0);
 
         HasEnemySpawn = false;
     }

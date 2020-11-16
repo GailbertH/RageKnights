@@ -95,9 +95,8 @@ namespace RageKnight.GameState
                 playerData.MaxItemCount = maxItem;
                 playerData.ItemCount = itemCount > maxItem ? maxItem : itemCount;
             }
-            long gold = AccountManager.Instance.AccountData.Gold;
 
-            Manager.AccountDataInit(playerData, gold);
+            Manager.AccountDataInit(playerData);
         }
     }
 }

@@ -123,7 +123,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
                 UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.IsAlive);
                 //TODO Improve this someday
                 long goldEarned = 10;
-                Manager.UpdateGold(goldEarned);
+                Manager.AddGold(goldEarned);
                 nextState = GameplayState.ADVENTURE;
                 startCountDown = true;
             }

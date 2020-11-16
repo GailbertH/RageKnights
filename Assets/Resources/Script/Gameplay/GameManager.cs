@@ -119,16 +119,16 @@ namespace RageKnight
             }
         }
 
-        public void AccountDataInit(PlayerModel playerData, long goldAmount)
+        public void AccountDataInit(PlayerModel playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
-            UpdateGold(goldAmount);
+            AddGold(0);
         }
 
-        public void UpdateGold(long goldToAdd)
+        public void AddGold(long goldToAdd)
         {
-            stageGold += goldToAdd;
+            stageGold = AccountManager.Instance.AddGold(goldToAdd);
             this.GameUIManager?.UpdateGold(StageGold);
         }
 
