@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4de133c741ea2c944841ed36aed155dd
+guid: 5451ac3e3a4b22f47a6a11a7809bbfbf
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -67,9 +67,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -78,9 +78,10 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -89,9 +90,10 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,9 +102,10 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -111,6 +114,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -119,9 +123,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 813
-        width: 682
-        height: 400
+        y: 1500
+        width: 1440
+        height: 1060
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,7 +133,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e7488571363cf749b0da28021109109
+      spriteID: 5422bf0ae1bd75d47b27f9978bd343fe
       internalID: -174587682884905140
       vertices: []
       indices: 
@@ -139,10 +143,10 @@ TextureImporter:
       name: Deepground_1
       rect:
         serializedVersion: 2
-        x: 682
-        y: 813
-        width: 682
-        height: 400
+        x: 1440
+        y: 1500
+        width: 1440
+        height: 1060
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b9a2d2004535a4980b5be7100e01e7
+      spriteID: b52d4864799333443b0243e28e0d4fbb
       internalID: 8790151720720756088
       vertices: []
       indices: 
@@ -160,10 +164,10 @@ TextureImporter:
       name: Deepground_2
       rect:
         serializedVersion: 2
-        x: 1364
-        y: 813
-        width: 682
-        height: 400
+        x: 2880
+        y: 1500
+        width: 1440
+        height: 1060
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb736a64616e594458a6557ce05ce53d
+      spriteID: e4910880ed050c840ab986a26ebf5590
       internalID: 5284732055956726772
       vertices: []
       indices: 
@@ -180,7 +184,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 52062a2550e626542a313dc6b049c4f9
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -191,5 +195,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: background_forest_01
+  assetBundleName: 
   assetBundleVariant: 

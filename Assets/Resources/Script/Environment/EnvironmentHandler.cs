@@ -10,7 +10,6 @@ namespace RageKnight.Environment
         [SerializeField] private BackgroundController maingroundController;
         [SerializeField] private BackgroundController backgroundController;
         [SerializeField] private BackgroundController deepgroundController;
-        [SerializeField] private PlanegroundController planegroundController;
         [SerializeField] private List<Sprite> backgroundSprites;
         [SerializeField] private List<Sprite> planegroundSprites;
 
@@ -20,7 +19,6 @@ namespace RageKnight.Environment
             maingroundController?.MoveBackground(speed);
             backgroundController?.MoveBackground(speed + 0.05f);
             deepgroundController?.MoveBackground(speed + 0.07f);
-            planegroundController.MovePlaneground(speed);
         }
     }
 }
