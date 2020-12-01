@@ -87,6 +87,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         {
             if (Manager.PlayerHandler?.IsAlive == false)
             {
+                Manager.GameOverReset();
                 nextState = GameplayState.RESULT;
                 startCountDown = true;
                 return;

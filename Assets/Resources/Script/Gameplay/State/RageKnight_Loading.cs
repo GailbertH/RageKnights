@@ -89,13 +89,17 @@ namespace RageKnight.GameState
 #endif
             if (playerData == null)
             {
+                if (AccountManager.Instance.AccountData.HasCurrentActiveGame == false)
+                {
+                    AccountManager.Instance.ResetPlayerStatus();
+                }
+                AccountManager.Instance.SetActiveGame(true, true);
                 playerData = AccountManager.Instance.AccountData.CurrentCharacterData;
                 int maxItem = playerData.currentItemInUse.effectType == ItemEffectType.HEALING ? 10 : 5;
                 int itemCount = playerData.currentItemInUse.quantity;
                 playerData.MaxItemCount = maxItem;
                 playerData.ItemCount = itemCount > maxItem ? maxItem : itemCount;
             }
-
             Manager.AccountDataInit(playerData);
         }
     }

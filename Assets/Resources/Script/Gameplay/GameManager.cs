@@ -164,7 +164,12 @@ namespace RageKnight
                 GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
             }
             Debug.Log(stage + " | " + stageTracker);
-            AccountManager.Instance.UpdateStageProgress(stage, StageTracker);
+            AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
+        }
+
+        public void GameOverReset()
+        {
+            AccountManager.Instance.UpdateStageProgress(stage, 0, false);
         }
 
         public void ExitingGame()

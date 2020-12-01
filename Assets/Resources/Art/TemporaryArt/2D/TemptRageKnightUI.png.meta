@@ -215,9 +215,9 @@ TextureImporter:
       name: TemptRageKnightUI_0
       rect:
         serializedVersion: 2
-        x: 35
+        x: 37
         y: 786
-        width: 123
+        width: 120
         height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -236,9 +236,9 @@ TextureImporter:
       name: TemptRageKnightUI_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 41
         y: 755
-        width: 118
+        width: 112
         height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -257,9 +257,9 @@ TextureImporter:
       name: TemptRageKnightUI_2
       rect:
         serializedVersion: 2
-        x: 38
+        x: 41
         y: 732
-        width: 117
+        width: 112
         height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -278,9 +278,9 @@ TextureImporter:
       name: TemptRageKnightUI_3
       rect:
         serializedVersion: 2
-        x: 38
+        x: 41
         y: 708
-        width: 118
+        width: 112
         height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -299,9 +299,9 @@ TextureImporter:
       name: TemptRageKnightUI_4
       rect:
         serializedVersion: 2
-        x: 38
+        x: 41
         y: 685
-        width: 117
+        width: 112
         height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -320,9 +320,9 @@ TextureImporter:
       name: TemptRageKnightUI_5
       rect:
         serializedVersion: 2
-        x: 38
+        x: 41
         y: 661
-        width: 117
+        width: 112
         height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

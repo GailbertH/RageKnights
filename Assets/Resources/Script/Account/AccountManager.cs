@@ -40,7 +40,7 @@ public class AccountManager : MonoBehaviour
             RageIncrement = 0.5f,
             ActionGaugeIncrement = 1f,
             HealthPoints = 10f,
-            ActionGaugePoints = 10f,
+            ActionGaugePoints = 0f,
             RagePoints = 0,
             currentItemInUse = new ConsumableModel
             {
@@ -60,13 +60,13 @@ public class AccountManager : MonoBehaviour
 
         ProgressTrackerModel currentProgress = new ProgressTrackerModel
         {
-            CurrentRound = 0,
+            CurrentRound = 5,
             CurrentStage = 1,
         };
 
         ProgressTrackerModel TotalProgress = new ProgressTrackerModel
         {
-            CurrentRound = 0,
+            CurrentRound = 5,
             CurrentStage = 1
         };
         
@@ -83,7 +83,7 @@ public class AccountManager : MonoBehaviour
         SaveData();
     }
 
-    public void UpdateStageProgress(int stage, int round)
+    public void UpdateStageProgress(int stage, int round, bool hasActiveGame)
     {
         ProgressTrackerModel currProgress = AccountData.CurrentProgress;
         currProgress.CurrentStage = stage;
@@ -101,25 +101,27 @@ public class AccountManager : MonoBehaviour
 
         accountData.CurrentProgress = currProgress;
         accountData.ProgressTracker = overallProgress;
+        AccountData.HasCurrentActiveGame = hasActiveGame;
         SaveData();
     }
 
-    public long AddGold(long goldToAdd)
+    public long AddGold(long goldToAdd, bool noSave = false)
     {
         accountData.Gold += goldToAdd;
-        SaveData();
+        if(noSave == false)
+            SaveData();
         return accountData.Gold;
     }
 
-    //TODO at the end of the stage it saves twice, and we don't want that. D:
-    public void SaveData()
+    //TODO at the end of each stage it saves twice, and we don't want that. D:
+    private void SaveData()
     {
         string jsonAccountData = JsonUtility.ToJson(AccountData);
         Debug.Log("SAVE DATA : " + jsonAccountData);
         PlayerPrefs.SetString("TempAccountData", jsonAccountData);
     }
 
-    public void LoadData()
+    private void LoadData()
     {
         string jsonAccountData = PlayerPrefs.GetString("TempAccountData");
         Debug.Log("LOAD DATA : " + jsonAccountData);
@@ -134,6 +136,20 @@ public class AccountManager : MonoBehaviour
             GenerateAccount(); 
         }
     }
+
+    public void SetActiveGame(bool hasActiveGame, bool noSave = false)
+    {
+        AccountData.HasCurrentActiveGame = hasActiveGame;
+        if (noSave == true)
+            SaveData();
+    }
+
+    public void ResetPlayerStatus()
+    {
+        AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.BaseHealthPoints;
+        AccountData.CurrentCharacterData.ActionGaugePoints = 0;
+        AccountData.CurrentCharacterData.RagePoints = 0;
+    }
 }
 
 [Serializable]
@@ -142,6 +158,7 @@ public class AccountData
     public string AccountId;
     public string AccountName;
     public long Gold;
+    public bool HasCurrentActiveGame;
     public PlayerModel CurrentCharacterData; //Selected Character
     public PlayerModel[] CharacterData;
     public ProgressTrackerModel CurrentProgress;
