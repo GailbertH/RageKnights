@@ -142,7 +142,8 @@ public class PlayerController : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
-        PlayNormal("Attack");
+        //PlayNormal("Attack");
+        PlayAttack();
     }
 
     public void PlayDeathAnimation()
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetAnimation()
     {
-        PlayNormal("Idle");
+        PlayNormal("Forward");
     }
 
     private void PlayNormal(string animationName)
@@ -161,9 +162,27 @@ public class PlayerController : MonoBehaviour
             return;
 
         if (playerAnim.isPlaying)
+        {
             playerAnim.Stop();
-
+        }
         playerAnim.Play(animationName);
+    }
+
+    public bool IsAttackPlaying()
+    {
+        return playerAnim.IsPlaying("Attack");
+    }
+
+    private void PlayAttack()
+    {
+        if (playerAnim == null)
+            return;
+
+        if (IsAttackPlaying() == false)
+        {
+            playerAnim["Attack"].speed = 5.0f;
+            playerAnim.Play("Attack");
+        }
     }
 
     private void PlayNoRepeat(string animationName)

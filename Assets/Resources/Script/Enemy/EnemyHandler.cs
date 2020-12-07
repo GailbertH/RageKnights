@@ -10,7 +10,7 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField] private GameObject spawnSpot;
     public const float DEFAULT_SPAWN_TIMER = 5f;
     private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
-    private float enemySpawnCD = 5f;
+    private float enemySpawnCD = 1f;
     private float enemyActionGauge = 0f;
     private float maxEnemyActionGauge = 170f;
     private int enemyAttackDamage = 1;
@@ -73,7 +73,7 @@ public class EnemyHandler : MonoBehaviour
 
     private bool IsEnemyInPosition
     {
-        get { return (enemy.Position.x <= 2); }
+        get { return (enemy.Position.x <= 1.3); }
     }
 
     public bool IsEnemySpawn()

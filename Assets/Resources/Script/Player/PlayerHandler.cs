@@ -177,10 +177,13 @@ namespace RageKnight.Player
         public void PlayerAttack(GameManager manager)
         {
             currentPlayerState = PlayerState.ATTACKING;
-            player?.PlayAttackAnimation();
-            float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
-            manager?.EnemyHandler?.DamagedEnemy(attackDamage);
-            UpdateRageGauge();
+            if (player?.IsAttackPlaying() == false)
+            {
+                player?.PlayAttackAnimation();
+                float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
+                manager?.EnemyHandler?.DamagedEnemy(attackDamage);
+                UpdateRageGauge();
+            }
         }
 
         public void PlayerResetAnimation()
@@ -194,6 +197,7 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.IDLE;
             player.PlayMoveAnimation();
+            Debug.Log("Player Forward");
         }
 
         public void CheckHitTiming()
