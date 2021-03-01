@@ -39,7 +39,6 @@ public class MiddleUIHandler : MonoBehaviour
         healthbarHandler.UpdatePlayerHealth(playerCurrentHP);
         healthbarHandler.UpdateEnemyHealth(enemyCurrentHP);
         healthbarHandler.UpdatePlayerActionGauge(0);
-        healthbarHandler.UpdateEnemyActionGauge(0);
         healthbarHandler.ShowHealthBar();
     }
 

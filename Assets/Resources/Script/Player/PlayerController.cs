@@ -112,9 +112,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ResetActionGauge()
+    public void ReduceActionPoints(int reduction)
     {
-        currentPlayerData.ActionGaugePoints = 0;
+        currentPlayerData.ActionGaugePoints -= reduction;
     }
 
     public void PlayerRagePoints(float incremnent)
@@ -142,8 +142,14 @@ public class PlayerController : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
-        //PlayNormal("Attack");
-        PlayAttack();
+        if (playerAnim == null)
+            return;
+
+        if (IsAttackPlaying() == false)
+        {
+            playerAnim["Attack"].speed = 5.0f;
+            playerAnim.Play("Attack");
+        }
     }
 
     public void PlayDeathAnimation()
@@ -153,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetAnimation()
     {
-        PlayNormal("Forward");
+        PlayNormal("Idle");
     }
 
     private void PlayNormal(string animationName)
@@ -171,18 +177,6 @@ public class PlayerController : MonoBehaviour
     public bool IsAttackPlaying()
     {
         return playerAnim.IsPlaying("Attack");
-    }
-
-    private void PlayAttack()
-    {
-        if (playerAnim == null)
-            return;
-
-        if (IsAttackPlaying() == false)
-        {
-            playerAnim["Attack"].speed = 5.0f;
-            playerAnim.Play("Attack");
-        }
     }
 
     private void PlayNoRepeat(string animationName)

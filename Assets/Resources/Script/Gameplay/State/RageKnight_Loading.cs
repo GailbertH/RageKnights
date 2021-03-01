@@ -67,13 +67,13 @@ namespace RageKnight.GameState
                     HealthPower = 2,
                     RagePower = 2,
                     RageIncrement = 0.5f,
-                    ActionGaugeIncrement = 1f,
+                    ActionGaugeIncrement = 0.2f,
                     HealthPoints = 10f,
                     ActionGaugePoints = 10f,
                     RagePoints = 0,
                     currentItemInUse = new ConsumableModel {
                         id = "0000",
-                        quantity = 5
+                        quantity = defaultItemCount
                     },
                     ItemCount = 5,
                     WeapomStatBonus = 0,

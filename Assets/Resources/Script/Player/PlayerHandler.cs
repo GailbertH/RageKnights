@@ -85,6 +85,7 @@ namespace RageKnight.Player
 
             PlayerModel playerData = GetPlayerData;
             float value = (float)playerData?.ActionGaugeIncrement;
+            Debug.Log(value);
             player?.PlayerActionGauge(value);
             isActionGaugeFull = (bool)player?.isActionGaugeFull;
             float playerAGP = (float)playerData?.ActionGaugePoints;
@@ -113,7 +114,7 @@ namespace RageKnight.Player
         public void UseActionGauge()
         {
             PlayerModel playerData = player?.GetPlayerData;
-            player?.ResetActionGauge();
+            player?.ReduceActionPoints(10);
             isActionGaugeFull = (bool)player?.isActionGaugeFull;
             float playerAGP = (float)playerData?.ActionGaugePoints;
             GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerActionGauge(playerAGP);

@@ -38,9 +38,9 @@ public class AccountManager : MonoBehaviour
             HealthPower = 2,
             RagePower = 2,
             RageIncrement = 0.5f,
-            ActionGaugeIncrement = 1f,
+            ActionGaugeIncrement = 0.2f,
             HealthPoints = 10f,
-            ActionGaugePoints = 0f,
+            ActionGaugePoints = 10f,
             RagePoints = 0,
             currentItemInUse = new ConsumableModel
             {
@@ -127,7 +127,8 @@ public class AccountManager : MonoBehaviour
         Debug.Log("LOAD DATA : " + jsonAccountData);
         try
         {
-            AccountData = JsonUtility.FromJson<AccountData>(jsonAccountData);
+            GenerateAccount();
+            //AccountData = JsonUtility.FromJson<AccountData>(jsonAccountData);
             SaveData();
         }
         catch
@@ -147,7 +148,7 @@ public class AccountManager : MonoBehaviour
     public void ResetPlayerStatus()
     {
         AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.BaseHealthPoints;
-        AccountData.CurrentCharacterData.ActionGaugePoints = 0;
+        AccountData.CurrentCharacterData.ActionGaugePoints = AccountData.CurrentCharacterData.ActionGaugePoints;
         AccountData.CurrentCharacterData.RagePoints = 0;
     }
 }

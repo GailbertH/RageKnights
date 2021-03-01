@@ -141,7 +141,6 @@ public class EnemyHandler : MonoBehaviour
             manager.PlayerHandler.PlayerDamaged(enemy.GetEnemyData.AttackPower);
             enemyActionGauge = 0;
         }
-        manager.GameUIManager.MiddleUIHandler.HealthbarHandler.UpdateEnemyActionGauge(enemyActionGauge);
     }
 
     public void UnSetEnemy()

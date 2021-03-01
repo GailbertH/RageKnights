@@ -56,10 +56,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             CheckPlayerAction();
             //CheckEnemyAction();
         }
-        if (Manager.PlayerHandler.GetPlayerState == RageKnight.Player.PlayerState.ATTACKING)
-        {
-            MoveEnvironment(WALK_SPEED);
-        }
     }
 
     public override void GameTimerUpdate()
@@ -89,7 +85,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             }
 
             Manager.PlayerHandler?.UpdateActionGuage();
-            bool canAttack = true;//(bool)Manager.PlayerHandler?.IsActionGuageFull;
+            bool canAttack = Manager.PlayerHandler?.GetPlayerData.ActionGaugePoints >= 10;
 
             if (Controls.buttonEvents == BasicMovements.Attack && canAttack)
             {

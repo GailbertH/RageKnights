@@ -16,8 +16,6 @@ ScriptsOnlyBuild:
     - LobbyOptionHandler
     - MenuPopup
     - MiddleUIHandler
-    - PlanegroundController
-    - PlanegroundItem
     - PlayerController
     - PopupBase
     - PopupHandler
@@ -128,11 +126,7 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9706}
-    - Class: 114
       Script: {instanceID: 9824}
-    - Class: 114
-      Script: {instanceID: 10584}
     - Class: 114
       Script: {instanceID: 11274}
     - Class: 114
@@ -390,8 +384,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9706}
-    - Class: 114
       Script: {instanceID: 9710}
     - Class: 114
       Script: {instanceID: 9758}
@@ -421,8 +413,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10316}
     - Class: 114
       Script: {instanceID: 10466}
-    - Class: 114
-      Script: {instanceID: 10584}
     - Class: 114
       Script: {instanceID: 10676}
     - Class: 114
@@ -588,7 +578,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 62976b367e735b83187c4608ed40f31b
+      Hash: 7536ba91f7f645a0700019ccaf51f842
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LoadingManager
@@ -766,12 +756,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: EventSystem
-  - hash:
-      serializedVersion: 2
-      Hash: cd0ecdca0166232906c6f2df9dddc3d3
-    assemblyName: Assembly-CSharp-Editor.dll
-    namespaceName: RageKnight.Tools
-    className: ToolLocalDatabaseManager
   - hash:
       serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
@@ -1038,7 +1022,7 @@ ScriptsOnlyBuild:
     className: PlayerHandler
   - hash:
       serializedVersion: 2
-      Hash: 36d569017cf1067a50dcbde554fe1e7d
+      Hash: b30aeadcc5c33f3e318bece35b746866
     assemblyName: Assembly-CSharp.dll
     namespaceName: RageKnight.Environment
     className: EnvironmentHandler
@@ -1116,7 +1100,7 @@ ScriptsOnlyBuild:
     className: SplashHandler
   - hash:
       serializedVersion: 2
-      Hash: 2482e9d27f7da61851766cc0ad5e3425
+      Hash: 6143da659d6a2f4757b2e2a017be5b83
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthbarHandler
@@ -1296,4 +1280,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scene/LobbyScene.unity
   - Assets/Resources/Scene/GameScene.unity
   - Assets/Resources/Scene/GameUI.unity
-  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.2.1a.apk
+  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.2.2a.apk
