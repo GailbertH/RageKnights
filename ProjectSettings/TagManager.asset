@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Background
-  - Mainground
-  - Foreground
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -41,8 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: 3D Shadows
-    uniqueID: 3739847785
+  - name: Deepground
+    uniqueID: 2326154285
+    locked: 0
+  - name: Background
+    uniqueID: 1266456537
+    locked: 0
+  - name: Mainground
+    uniqueID: 1773488951
+    locked: 0
+  - name: CombatLane
+    uniqueID: 216116045
     locked: 0
   - name: Foreground
     uniqueID: 3068324985
