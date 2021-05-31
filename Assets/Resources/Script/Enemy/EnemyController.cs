@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Animation enemyAnimation;
-    [SerializeField] private Transform enemyPosition;
     [SerializeField] private EnemyModel enemyData = null;
     private bool enemyIsDead = false;
 
@@ -13,22 +12,9 @@ public class EnemyController : MonoBehaviour
         get { return enemyData; }
     }
 
-    public virtual Vector3 Position
-    {
-        get{ return enemyPosition.transform.position; }
-    }
-
     public void Init()
     {
        
-    }
-
-    public virtual void Move(float moveLocation)
-    {
-        Vector3 newPosition = enemyPosition.transform.position;
-        enemyPosition.transform.position = new Vector3((float)Math.Round(
-            newPosition.x - moveLocation, 2),
-            newPosition.y, newPosition.z);
     }
 
     public virtual void Initialize()
@@ -64,6 +50,11 @@ public class EnemyController : MonoBehaviour
     }
 
     public virtual void Attack()
+    {
+
+    }
+
+    public virtual void LoadEnemy()
     {
 
     }

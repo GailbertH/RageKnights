@@ -8,9 +8,10 @@ public class EnemyHandler : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private GameObject spawnSpot;
+    [SerializeField] private Animation spawnAnition;
     public const float DEFAULT_SPAWN_TIMER = 5f;
     private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
-    private float enemySpawnCD = 1f;
+    private float enemySpawnCD = 3f;
     private float enemyActionGauge = 0f;
     private float maxEnemyActionGauge = 170f;
     private int enemyAttackDamage = 1;
@@ -61,19 +62,10 @@ public class EnemyHandler : MonoBehaviour
     {
         if (enemy != null)
         {
+            Debug.Log("Damages" + damage);
             isEnemyAlive = enemy.Damaged(damage);
             GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(enemy.GetEnemyData.HealthPoints);
         }
-    }
-
-    private void MoveEnemy(float speed)
-    {
-        enemy.Move(speed);
-    }
-
-    private bool IsEnemyInPosition
-    {
-        get { return (enemy.Position.x <= 1.3); }
     }
 
     public bool IsEnemySpawn()
@@ -104,16 +96,10 @@ public class EnemyHandler : MonoBehaviour
 
         if (enemy != null)
         {
-            if (IsEnemyInPosition == false)
-            {
-                MoveEnemy((enemyMovement * (-1)));
-            }
-            else
-            {
-                enemySpawnCD = DEFAULT_SPAWN_TIMER;
-                hasPresentMonster = false;
-                return true;
-            }
+            Debug.Log("Enemy !null");
+            enemySpawnCD = DEFAULT_SPAWN_TIMER;
+            hasPresentMonster = false;
+            return true;
         }
         return false;
     }
@@ -123,12 +109,14 @@ public class EnemyHandler : MonoBehaviour
         Debug.Log("SPAWN");
         isEnemyAlive = true;
         hasPresentMonster = true;
+        //need to reset everything for safety cause of animation
         GameObject enemyObject = Instantiate<GameObject>(enemyList[0],
-            spawnSpot.transform.position,
-            spawnSpot.transform.rotation, 
-            this.transform
+            enemyList[0].transform.position,
+            enemyList[0].transform.rotation,
+            spawnSpot.transform
             ) as GameObject;
         enemy = enemyObject.GetComponent<EnemyController>();
+        spawnAnition.Play();
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
     }
