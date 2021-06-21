@@ -48,7 +48,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -66,7 +65,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.VerticalLayoutGroup
     com.unity.multiplayer-hlapi.Runtime.dll:
-    - UnityEngine.Networking.NetworkCallbacks
     - UnityEngine.Networking.NetworkIdentity
   sceneClasses:
     Assets/Resources/Scene/DataManagerScene.unity:
@@ -107,17 +105,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
     - Class: 48
-      Script: {instanceID: 0}
-    - Class: 64
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
@@ -142,8 +132,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12002}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 137
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -363,8 +351,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 64
-      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 74
@@ -389,8 +375,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9758}
     - Class: 114
       Script: {instanceID: 9788}
-    - Class: 114
-      Script: {instanceID: 9824}
     - Class: 114
       Script: {instanceID: 9858}
     - Class: 114
@@ -461,8 +445,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11614}
     - Class: 114
       Script: {instanceID: 11716}
-    - Class: 114
-      Script: {instanceID: 11876}
     - Class: 114
       Script: {instanceID: 11924}
     - Class: 114
@@ -542,7 +524,7 @@ ScriptsOnlyBuild:
     className: StoreItems
   - hash:
       serializedVersion: 2
-      Hash: 77a40f0e0527720c92ec09471a9f42a0
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -636,6 +618,18 @@ ScriptsOnlyBuild:
     assemblyName: com.unity.multiplayer-hlapi.Runtime.dll
     namespaceName: UnityEngine.Networking
     className: NetworkTransform
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements
+    className: CallbackExecutor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: UnityEngine.Advertisements.dll
+    namespaceName: UnityEngine.Advertisements.Editor
+    className: Placeholder
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -1088,7 +1082,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: dc2e875dc43a287577fe718e728d84ee
+      Hash: da0a7bf4a30de1e1f3b84cd0a4410ceb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyHandler
@@ -1100,7 +1094,7 @@ ScriptsOnlyBuild:
     className: SplashHandler
   - hash:
       serializedVersion: 2
-      Hash: 6143da659d6a2f4757b2e2a017be5b83
+      Hash: 3b7e094e7414bc96e1eabf21405e7a91
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthbarHandler
@@ -1166,7 +1160,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: bb6341664a81b7ff633721ed4a83b627
+      Hash: 290329ebd7d331a4474216b32ae531ec
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyController
@@ -1280,4 +1274,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scene/LobbyScene.unity
   - Assets/Resources/Scene/GameScene.unity
   - Assets/Resources/Scene/GameUI.unity
-  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.2.2a.apk
+  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.3.0a.apk
