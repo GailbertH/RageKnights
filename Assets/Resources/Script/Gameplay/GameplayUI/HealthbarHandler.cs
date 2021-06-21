@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthbarHandler : MonoBehaviour
 {
@@ -12,24 +13,33 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private GameObject playerBarHolder;
     [SerializeField] private GameObject enemyBarHolder;
 
+    [SerializeField] private Text enemyArmyNameLabel;
+    [SerializeField] private Text enemyArmyCountLabel;
+
     private float playerBaseHealth;
     private float playerMaxActionGagugePoints;
     private float playerMaxRagePoints;
     private float enemyMaxActionGaugePoints;
     private float enemyBaseHealth;
+    private float enemyArmyCount;
 
     public void SetUIActive(bool isActive)
     {
         this.gameObject.SetActive(isActive);
     }
 
-    public void Initialize(float playerBaseHealth, float enemyBaseHealth, float playerMaxActionPoints, float playerMaxRagePoints, float enemyMaxActionPoints, bool isBoss = false)
+    public void Initialize(float playerBaseHealth, float enemyBaseHealth, float playerMaxActionPoints, float playerMaxRagePoints, 
+        float enemyMaxActionPoints, string enemyArmyName = "Blompy Army", int enemyArmyCount = 50, bool isBoss = false)
     {
         this.playerBaseHealth = playerBaseHealth;
         this.enemyBaseHealth = enemyBaseHealth;
         this.playerMaxActionGagugePoints = playerMaxActionPoints;
         this.playerMaxRagePoints = playerMaxRagePoints;
         this.enemyMaxActionGaugePoints = enemyMaxActionPoints;
+        this.enemyArmyCount = enemyArmyCount;
+
+        this.enemyArmyNameLabel.text = enemyArmyName;
+        this.enemyArmyCountLabel.text = enemyArmyCount.ToString();
     }
 
     public void ShowHealthBar()
@@ -81,5 +91,10 @@ public class HealthbarHandler : MonoBehaviour
     {
         if(this.playerMaxActionGagugePoints != current)
             this.playerMaxActionGagugePoints = current;
+    }
+
+    public void UpdateEnemyArmyCount(int armyCount)
+    {
+        this.enemyArmyCountLabel.text = armyCount.ToString();
     }
 }

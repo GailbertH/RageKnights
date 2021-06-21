@@ -1,10 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
+public enum CombatPlacement
+{
+    MID = 0,
+    TOP = 1,
+    BOT = 2
+}
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Animation enemyAnimation;
     [SerializeField] private EnemyModel enemyData = null;
+    [SerializeField] private CombatPlacement combatPlacement;
+
     private bool enemyIsDead = false;
 
     public EnemyModel GetEnemyData
@@ -12,14 +20,16 @@ public class EnemyController : MonoBehaviour
         get { return enemyData; }
     }
 
-    public void Init()
+    //TODO fix this someday
+    public CombatPlacement GetCombatPlacement
     {
-       
+        get { return combatPlacement; }
     }
 
-    public virtual void Initialize()
+    public virtual void Initialize(CombatPlacement placementValue)
     {
-
+        this.enemyAnimation = enemyAnimation;
+        this.combatPlacement = placementValue;
     }
 
     public virtual void CheckAction()

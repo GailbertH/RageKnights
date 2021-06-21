@@ -197,7 +197,7 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.IDLE;
             player.PlayMoveAnimation();
-            Debug.Log("Player Forward");
+            //Debug.Log("Player Forward");
         }
 
         public void CheckHitTiming()

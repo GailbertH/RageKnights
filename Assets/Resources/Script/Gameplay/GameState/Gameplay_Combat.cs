@@ -29,20 +29,20 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         Controls = Manager.GameUIManager;
-        Controls.UpdateControlMode(State);
-        Controls.UpdateMiddleUIModle(State);
-
         startCountDown = false;
 
         Manager.PlayerHandler.UpdateItemCount();
         Manager.PlayerHandler.PlayerResetAnimation();
+
+        Controls.UpdateControlMode(State);
+        Controls.UpdateMiddleUIModle(State);
     }
 
     public override void GameEnd()
     {
-        if (Manager?.EnemyHandler?.IsAlive == false)
+        if (Manager?.EnemyHandler?.HasSoldiers == false)
         {
-            Manager.EnemyHandler.UnSetEnemy();
+            Manager.EnemyHandler.UnSetAllEnemy();
             Manager.PlayerHandler.ResetPassiveBenifits();
             Manager.IncrementStage(false);
         }
@@ -50,7 +50,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
     public override void GameUpdate()
     {
-        UnityEngine.Debug.Log(Manager.PlayerHandler.GetPlayerState);
+        //UnityEngine.Debug.Log(Manager.PlayerHandler.GetPlayerState);
         if (startCountDown == false && Manager != null)
         {
             CheckPlayerAction();
@@ -85,7 +85,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             }
 
             Manager.PlayerHandler?.UpdateActionGuage();
-            bool canAttack = Manager.PlayerHandler?.GetPlayerData.ActionGaugePoints >= 10;
+            bool canAttack = true; //Manager.PlayerHandler?.GetPlayerData.ActionGaugePoints >= 10;
 
             if (Controls.buttonEvents == BasicMovements.Attack && canAttack)
             {
@@ -110,9 +110,9 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             Controls.buttonEvents = BasicMovements.None;
             Controls.skillEvents = SkillMovements.None;
 
-            if (Manager.EnemyHandler.IsAlive == false)
+            if (Manager.EnemyHandler.HasSoldiers == false)
             {
-                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.IsAlive);
+                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.HasSoldiers);
                 //TODO Improve this someday
                 long goldEarned = 10;
                 Manager.AddGold(goldEarned);
