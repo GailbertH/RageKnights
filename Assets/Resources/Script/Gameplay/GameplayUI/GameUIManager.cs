@@ -25,16 +25,15 @@ public class GameUIManager : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Text coinsHeld;
-    [SerializeField] private GameObject BattleControls;
-    [SerializeField] private GameObject AdventureControls;
+    [SerializeField] private GameObject battleControlOverlay;
     [SerializeField] private PopupHandler popupHandler;
     [SerializeField] private MiddleUIHandler middleUIHandler;
 
+    [SerializeField] private GameObject sloppy;
     //------  Game Action Button --------
     [SerializeField] private Button attackButton;
     [SerializeField] private Button itemButton;
     [SerializeField] private Button rageButton;
-    [SerializeField] private Button bossButton;
 
     [SerializeField] private Image itemButtonIcon;
     [SerializeField] private Text itemButtonText;
@@ -102,16 +101,6 @@ public class GameUIManager : MonoBehaviour
         skillEvents = SkillMovements.Heal;
     }
 
-    public void BossButton()
-    {
-        Debug.Log("Boss Button Click");
-        GameManager.Instance.IncrementStage(true);
-    }
-    public void BossButtonActive(bool activate)
-    {
-        bossButton.gameObject.SetActive(activate);
-    }
-
     public bool IsTimingPlaying()
     {
         return animAttackButton.IsPlaying(ANIM_TIMING_NOTIF);
@@ -130,16 +119,6 @@ public class GameUIManager : MonoBehaviour
     public void MenuButton()
     {
         OpenPopup(PopupList.MENU_UI);
-    }
-
-    public void StoreButton()
-    {
-        OpenPopup(PopupList.STORE_UI, false);
-    }
-
-    public void PreparationButton()
-    {
-        OpenPopup(PopupList.UPGRADE_UI, false);
     }
 
     public void DebugButton()
@@ -179,7 +158,6 @@ public class GameUIManager : MonoBehaviour
         yield return new WaitUntil(() => GameManager.Instance != null);
         GameManager.Instance.GameUIManager = this;
         MiddleUIHandler.Initialize();
-        BossButtonActive(false);
     }
 
     public void UpdateGold(long currentGold)
@@ -189,8 +167,7 @@ public class GameUIManager : MonoBehaviour
 
     public void UpdateControlMode(GameplayState currentState)
     {
-        BattleControls.SetActive(currentState == GameplayState.COMBAT);
-        AdventureControls.SetActive(currentState == GameplayState.ADVENTURE);
+        battleControlOverlay.SetActive(currentState != GameplayState.COMBAT);
     }
 
     public void UpdateMiddleUIModle(GameplayState currentState)
@@ -216,5 +193,10 @@ public class GameUIManager : MonoBehaviour
             actionGaugePercent = actionGaugePercent < 0 ? 0 : 1;
         }
         playerRageMeter.localScale = new Vector3(actionGaugePercent, 1, 1);
+    }
+
+    public void ShowRageImage()
+    {
+        sloppy.GetComponent<Animation>().Play();
     }
 }

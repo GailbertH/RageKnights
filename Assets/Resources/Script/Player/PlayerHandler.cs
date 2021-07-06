@@ -14,6 +14,10 @@ namespace RageKnight.Player
     public class PlayerHandler : MonoBehaviour
     {
         [SerializeField] private PlayerController player;
+
+        [SerializeField] private GameObject soldierHolder;
+        [SerializeField] private Animation soldierAnim;
+
         private PlayerState currentPlayerState = PlayerState.IDLE;
         private bool isInRageMode = false;
         private bool isItemOnCoolDown = false;
@@ -243,6 +247,27 @@ namespace RageKnight.Player
         public void ResetPassiveBenifits()
         {
             player.ActionGagugeModifier = 0;
+        }
+
+        //RAGE TEMP
+
+
+        public void SetupRageMode()
+        {
+            soldierHolder.SetActive(true);
+            soldierAnim.Play("Temp_Charge");
+            player.GetComponent<Transform>().localPosition = new Vector3(0f, 1f, 1f);
+        }
+
+        public void EndRageMode()
+        {
+            player.GetComponent<Transform>().localPosition = new Vector3(-1.25f, 1f, 1f);
+            soldierAnim.Play("Temp_Fade_In_Battle");
+        }
+
+        public void HideRageSoldier()
+        {
+            soldierHolder.SetActive(false);
         }
     }
 }

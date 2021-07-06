@@ -12,6 +12,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animation enemyAnimation;
     [SerializeField] private EnemyModel enemyData = null;
     [SerializeField] private CombatPlacement combatPlacement;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [SerializeField] string idleAnimName;
+    [SerializeField] string damagedAnimName;
 
     private bool enemyIsDead = false;
 
@@ -26,10 +30,27 @@ public class EnemyController : MonoBehaviour
         get { return combatPlacement; }
     }
 
+    public int GetOrderInLayer
+    {
+        get {
+            if (combatPlacement == CombatPlacement.BOT)
+            {
+                return 20;
+            }
+            else if (combatPlacement == CombatPlacement.MID)
+            {
+                return 10;
+            }
+            //Top returns 0
+            return 0;
+        }
+    }
+
     public virtual void Initialize(CombatPlacement placementValue)
     {
-        this.enemyAnimation = enemyAnimation;
         this.combatPlacement = placementValue;
+        spriteRenderer.sortingOrder = GetOrderInLayer;
+        Idle();
     }
 
     public virtual void CheckAction()
@@ -37,9 +58,15 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public virtual void Idle()
+    {
+        enemyAnimation.Play(idleAnimName);
+    }
+
     public virtual bool Damaged(float damageReceive)
     {
         bool isAlive = true;
+        enemyAnimation.Play(damagedAnimName);
         enemyData.HealthPoints -= damageReceive;
         if (enemyData.HealthPoints <= 0)
         {
@@ -67,5 +94,12 @@ public class EnemyController : MonoBehaviour
     public virtual void LoadEnemy()
     {
 
+    }
+
+    public virtual void ShowOrHide(bool isShow = true)
+    {
+        this.gameObject.SetActive(isShow);
+        if(isShow)
+            Idle();
     }
 }

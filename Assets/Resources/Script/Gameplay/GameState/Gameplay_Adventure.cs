@@ -26,6 +26,7 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
 
     public override void GameStart()
     {
+        base.GameStart();
         GameUIManager Controls = Manager.GameUIManager;
         Controls?.UpdateControlMode(State);
         Controls?.UpdateMiddleUIModle(State);

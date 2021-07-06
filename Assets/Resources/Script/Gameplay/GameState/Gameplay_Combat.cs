@@ -23,11 +23,13 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     public override bool GameAllowTransition(GameplayState nextState)
     {
         return (nextState == GameplayState.ADVENTURE || 
+            nextState == GameplayState.RAGE ||
             nextState == GameplayState.RESULT);
     }
 
     public override void GameStart()
     {
+        base.GameStart();
         Controls = Manager.GameUIManager;
         startCountDown = false;
 
@@ -44,7 +46,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         {
             Manager.EnemyHandler.UnSetAllEnemy();
             Manager.PlayerHandler.ResetPassiveBenifits();
-            Manager.IncrementStage(false);
+            Manager.IncrementStage();
         }
     }
 
@@ -100,7 +102,10 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
             if (Controls.skillEvents == SkillMovements.Rage)
             {
+                UnityEngine.Debug.Log("Switching to Rage Mode");
                 Manager.PlayerHandler?.PlayerRageActivate();
+                nextState = GameplayState.RAGE;
+                startCountDown = true;
             }
             else if (Controls.skillEvents == SkillMovements.Heal)
             {

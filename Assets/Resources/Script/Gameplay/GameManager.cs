@@ -142,19 +142,14 @@ namespace RageKnight
             playerHandler.PlayerAddItem(count);
         }
 
-        public void IncrementStage(bool isBossBattle)
+        public void IncrementStage()
         {
             //so it keeps looping at almost final stage that's why is 2
-            int stageOffSet = isBossBattle ? 1 : 2;
+            int stageOffSet = 2;
 
-            if (StageTracker == StageCount - 2 && !isBossBattle)
+            if (StageTracker == StageCount - 2)
             {
-                GameUIManager.BossButtonActive(true);
                 GameUIManager.ProgressbarHandler.ResetCurrentStageState();
-            }
-            else
-            {
-                GameUIManager.BossButtonActive(false);
             }
 
             if ((StageTracker + stageOffSet) < StageCount)

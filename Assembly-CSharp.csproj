@@ -66,6 +66,7 @@
     <Compile Include="Assets\Resources\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyHandler.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyModel.cs" />
+    <Compile Include="Assets\Resources\Script\Enemy\EnemySoldierController.cs" />
     <Compile Include="Assets\Resources\Script\Environment\BackgroundController.cs" />
     <Compile Include="Assets\Resources\Script\Environment\BackgroundItem.cs" />
     <Compile Include="Assets\Resources\Script\Environment\EnvironmentHandler.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Adventure.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Combat.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Exit.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Rage.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Resut.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\GameplayState.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnight_InExit.cs" />

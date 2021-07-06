@@ -13,6 +13,7 @@ public class EnemyHandler : MonoBehaviour
 
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Animation spawnAnition;
+    [SerializeField] private EnemySoldierController enemySoldierController;
 
     [SerializeField] private List<GameObject> spawnSpotHolders;
 
@@ -54,7 +55,7 @@ public class EnemyHandler : MonoBehaviour
     {
         Debug.Log("init");
         //Not the best idea but it will do for now.
-        armyCount = UnityEngine.Random.Range(1 , 11);
+        armyCount = UnityEngine.Random.Range(20 , 50);
         enemies = new List<EnemyController>();
         enemies.Add(null);
         enemies.Add(null);
@@ -66,6 +67,10 @@ public class EnemyHandler : MonoBehaviour
     public void DamagedEnemy(float damage)
     {
         var values = enemies.Where(x => x != null).Select(x => (int)x.GetCombatPlacement).ToList();
+
+        if (values.Count <= 0)
+            return;
+
         int eCPId = values[random.Next(values.Count)];
 
         string listContent = "";
@@ -194,5 +199,32 @@ public class EnemyHandler : MonoBehaviour
             enemies[i] = null;
         }
         hasPresentMonster = false;
+    }
+
+    public void ShowOrHideEnemy(bool isShow = true)
+    {
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].ShowOrHide(isShow);
+        }
+    }
+
+
+    //Rage Mode
+    public void SetupRageMode()
+    {
+        enemySoldierController.ShowUnits();
+        ShowOrHideEnemy(false);
+    }
+
+    public void EndRageMode()
+    {
+        enemySoldierController.ShowUnits(false);
+        ShowOrHideEnemy(true);
+    }
+
+    public void MoveUnits(float speed)
+    {
+        enemySoldierController.MoveUnits(speed);
     }
 }

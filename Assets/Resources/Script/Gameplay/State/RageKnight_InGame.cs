@@ -19,11 +19,13 @@ namespace RageKnight.GameState
 
             Gameplay_Adventure adventure = new Gameplay_Adventure(Manager, this);
             Gameplay_Combat combat = new Gameplay_Combat(Manager, this);
+            Gameplay_Rage rage = new Gameplay_Rage(Manager, this);
             Gameplay_Resut result = new Gameplay_Resut(Manager, this);
             Gameplay_Exit exit = new Gameplay_Exit(Manager, this);
 
             states.Add(adventure.State, (GameplayState_Base<GameplayState>)adventure);
             states.Add(combat.State, (GameplayState_Base<GameplayState>)combat);
+            states.Add(rage.State, (GameplayState_Base<GameplayState>)rage);
             states.Add(result.State, (GameplayState_Base<GameplayState>)result);
             states.Add(exit.State, (GameplayState_Base<GameplayState>)exit);
 
@@ -79,7 +81,6 @@ namespace RageKnight.GameState
         public bool SwitchState(GameplayState newState)
         {
             bool switchSuccess = false;
-            Debug.Log(newState);
             if (states != null && states.ContainsKey(newState))
             {
                 if (currentState == null)

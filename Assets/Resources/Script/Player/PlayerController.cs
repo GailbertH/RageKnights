@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public const float HEAL_PERCENTAGE = 0.30f;
 
-    //[SerializeField] private Animation playerAnim;
     private PlayerModel currentPlayerData = null;
     private PlayerModel modifiedPlayerData = null;
     private PlayerModel basePlayerData = null;
