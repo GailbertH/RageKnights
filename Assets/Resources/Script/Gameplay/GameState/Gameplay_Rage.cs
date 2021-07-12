@@ -28,6 +28,7 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
         Manager.GameUIManager.ShowRageImage();
         Manager.PlayerHandler.SetupRageMode();
         Manager.EnemyHandler.SetupRageMode();
+        Manager.PlayerHandler?.PlayerRageActivate();
         stateSwitch_TEst = 5;
 
         Manager.GameUIManager.UpdateControlMode(State);
@@ -42,6 +43,7 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
             Manager.PlayerHandler.PlayerMoveForward();
             MoveEnvironment(WALK_SPEED);
             Manager.EnemyHandler.MoveUnits(WALK_SPEED_ENEMY);
+            Manager.PlayerHandler?.PlayerArmyAttack(Manager);
         }
     }
 
@@ -64,6 +66,7 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
 
     public override void GameEnd()
     {
+        Manager.GameUIManager.ShowRageImage();
         Manager.PlayerHandler.EndRageMode();
         Manager.EnemyHandler.EndRageMode();
     }

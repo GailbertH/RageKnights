@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - DatabaseManager
     - EnemyController
     - EnemyHandler
+    - EnemySoldierController
     - GameUIManager
     - HealthbarHandler
     - LoadingManager
@@ -43,10 +44,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -123,19 +122,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9824}
     - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11170}
     - Class: 114
       Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11278}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11876}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11880}
     - Class: 114
-      Script: {instanceID: 12002}
+      Script: {instanceID: 11966}
+    - Class: 114
+      Script: {instanceID: 12006}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -198,25 +199,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 11190}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11234}
+      Script: {instanceID: 11236}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11614}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -259,9 +260,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -316,15 +317,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11042}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11970}
+      Script: {instanceID: 11974}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -425,43 +426,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 11190}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11234}
-    - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11236}
     - Class: 114
       Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11350}
+      Script: {instanceID: 11278}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11352}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11584}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11614}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11970}
+      Script: {instanceID: 11966}
     - Class: 114
-      Script: {instanceID: 12002}
+      Script: {instanceID: 11974}
     - Class: 114
       Script: {instanceID: 12006}
+    - Class: 114
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -951,6 +952,12 @@ ScriptsOnlyBuild:
     className: NetworkStartPosition
   - hash:
       serializedVersion: 2
+      Hash: 5971c369d557fd508a60ae9bc7192392
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemySoldierController
+  - hash:
+      serializedVersion: 2
       Hash: 86fd032401d4f436e0a8db369409371b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1077,7 +1084,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: da0a7bf4a30de1e1f3b84cd0a4410ceb
+      Hash: fcc2098cacef2dd577b6dcd07dc71556
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyHandler
@@ -1155,7 +1162,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: ad416c0e06006d3173b0af3687e90adb
+      Hash: 3d8b7ff750d06357483278e23a472c5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyController
@@ -1269,4 +1276,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scene/LobbyScene.unity
   - Assets/Resources/Scene/GameScene.unity
   - Assets/Resources/Scene/GameUI.unity
-  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.3.1a.apk
+  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.3.2a.apk

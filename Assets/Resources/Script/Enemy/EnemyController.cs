@@ -16,6 +16,9 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] string idleAnimName;
     [SerializeField] string damagedAnimName;
+    [SerializeField] string deathAnimName;
+
+    [SerializeField] public bool testMode = false;
 
     private bool enemyIsDead = false;
 
@@ -66,6 +69,12 @@ public class EnemyController : MonoBehaviour
     public virtual bool Damaged(float damageReceive)
     {
         bool isAlive = true;
+        if (enemyIsDead == true)
+        {
+            isAlive = false;
+            return isAlive;
+        }
+
         enemyAnimation.Play(damagedAnimName);
         enemyData.HealthPoints -= damageReceive;
         if (enemyData.HealthPoints <= 0)
@@ -78,7 +87,10 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Death()
     {
+        enemyAnimation.Play(deathAnimName);
         enemyIsDead = true;
+        //Change this tp something that checks when enemy is dead then remove
+        Invoke("DestroyEnemy", 0.5f);
     }
 
     public virtual void DestroyEnemy()

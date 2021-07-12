@@ -103,7 +103,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             if (Controls.skillEvents == SkillMovements.Rage)
             {
                 UnityEngine.Debug.Log("Switching to Rage Mode");
-                Manager.PlayerHandler?.PlayerRageActivate();
                 nextState = GameplayState.RAGE;
                 startCountDown = true;
             }

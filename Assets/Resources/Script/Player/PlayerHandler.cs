@@ -190,6 +190,17 @@ namespace RageKnight.Player
             }
         }
 
+        public void PlayerArmyAttack(GameManager manager)
+        {
+            currentPlayerState = PlayerState.ATTACKING;
+            if (player?.IsAttackPlaying() == false)
+            {
+                player?.PlayAttackAnimation();
+                float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
+                manager?.EnemyHandler?.DamageEnemyArmy(attackDamage);
+            }
+        }
+
         public void PlayerResetAnimation()
         {
             player?.ResetAnimation();

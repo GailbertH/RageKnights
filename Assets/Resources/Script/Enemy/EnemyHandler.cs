@@ -187,7 +187,7 @@ public class EnemyHandler : MonoBehaviour
 
     public void UnSetEnemy(int enemyPlacement)
     {
-        enemies[enemyPlacement]?.DestroyEnemy();
+        enemies[enemyPlacement]?.Death();
         enemies[enemyPlacement] = null;
     }
 
@@ -213,6 +213,7 @@ public class EnemyHandler : MonoBehaviour
     //Rage Mode
     public void SetupRageMode()
     {
+        enemySoldierController.Init(armyCount, enemyList);
         enemySoldierController.ShowUnits();
         ShowOrHideEnemy(false);
     }
@@ -220,11 +221,17 @@ public class EnemyHandler : MonoBehaviour
     public void EndRageMode()
     {
         enemySoldierController.ShowUnits(false);
+        enemySoldierController.End();
         ShowOrHideEnemy(true);
     }
 
     public void MoveUnits(float speed)
     {
         enemySoldierController.MoveUnits(speed);
+    }
+
+    public void DamageEnemyArmy(float damage)
+    {
+        enemySoldierController.DamageArmy(damage);
     }
 }
