@@ -19,6 +19,7 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
     public override bool GameAllowTransition(GameplayState nextState)
     {
         return (nextState == GameplayState.COMBAT ||
+             nextState == GameplayState.ADVENTURE ||
             nextState == GameplayState.RESULT);
     }
 
@@ -60,6 +61,7 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
         stateSwitch_TEst--;
         if (stateSwitch_TEst <= 0)
         {
+            nextState = Manager.EnemyHandler.GetArmyCount <= 0 ? nextState = GameplayState.ADVENTURE : nextState = GameplayState.COMBAT;
             Handler.SwitchState(nextState);
         }
     }

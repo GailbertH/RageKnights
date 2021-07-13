@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] public bool testMode = false;
 
+    private EnemyHandler enemyHandler = null;
     private bool enemyIsDead = false;
 
     public EnemyModel GetEnemyData
@@ -49,8 +50,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(CombatPlacement placementValue)
+    public virtual void Initialize(CombatPlacement placementValue, EnemyHandler handler)
     {
+        enemyHandler = handler;
         this.combatPlacement = placementValue;
         spriteRenderer.sortingOrder = GetOrderInLayer;
         Idle();
@@ -87,6 +89,7 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Death()
     {
+        enemyHandler.DeductArmyCount();
         enemyAnimation.Play(deathAnimName);
         enemyIsDead = true;
         //Change this tp something that checks when enemy is dead then remove

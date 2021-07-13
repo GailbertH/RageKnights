@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292a0ce9f1c7e4540a6eccf535e73b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHandler: {fileID: 0}
+  enemyHandler: {fileID: 1155827795}
 --- !u!111 &498821413
 Animation:
   m_ObjectHideFlags: 0
@@ -1579,8 +1579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAnimation: {fileID: 2011531636}
   enemyData:
-    HealthPoints: 5
-    BaseHealth: 5
+    HealthPoints: 50
+    BaseHealth: 50
     AttackPower: 5
     DefensePower: 5
     AttackCoolDownLength: 5

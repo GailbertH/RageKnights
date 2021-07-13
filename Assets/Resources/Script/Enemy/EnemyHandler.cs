@@ -93,12 +93,9 @@ public class EnemyHandler : MonoBehaviour
 
     public void OnEnemySlain(int enemyPlacement)
     {
-        armyCount--;
         Debug.Log("Enemy slain : " + enemyPlacement);
         UnSetEnemy(enemyPlacement);
         EnemySpawn();
-        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
-        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
     }
 
     public bool IsEnemySpawn()
@@ -161,7 +158,7 @@ public class EnemyHandler : MonoBehaviour
         enemyObject.transform.localRotation = enemyList[0].transform.rotation;
 
         enemies[eCPId] = enemyObject.GetComponent<EnemyController>();
-        enemies[eCPId].Initialize((CombatPlacement)eCPId);
+        enemies[eCPId].Initialize((CombatPlacement)eCPId, this);
         enemySpawnObj.GetComponentInChildren<Animation>().Play();
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
@@ -185,6 +182,13 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
+    public void DeductArmyCount()
+    {
+        armyCount--;
+        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
+        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
+    }
+
     public void UnSetEnemy(int enemyPlacement)
     {
         enemies[enemyPlacement]?.Death();
@@ -198,6 +202,7 @@ public class EnemyHandler : MonoBehaviour
             enemies[i]?.DestroyEnemy();
             enemies[i] = null;
         }
+        enemies = new List<EnemyController>();
         hasPresentMonster = false;
     }
 
@@ -222,7 +227,12 @@ public class EnemyHandler : MonoBehaviour
     {
         enemySoldierController.ShowUnits(false);
         enemySoldierController.End();
-        ShowOrHideEnemy(true);
+        if (armyCount <= 0)
+        {
+            UnSetAllEnemy();
+        }
+        else
+            ShowOrHideEnemy(true);
     }
 
     public void MoveUnits(float speed)
