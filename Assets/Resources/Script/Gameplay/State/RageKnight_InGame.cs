@@ -11,7 +11,24 @@ namespace RageKnight.GameState
 
         private Dictionary<GameplayState, GameplayState_Base<GameplayState>> states = new Dictionary<GameplayState, GameplayState_Base<GameplayState>>();
         private GameplayState_Base<GameplayState> currentState = null;
-        private List<GameplayState> prevGameState;
+        private GameplayState currentStateName;
+        private GameplayState previousStateName;
+
+        public GameplayState GetCurrentState
+        {
+            get
+            {
+                return currentStateName;
+            }
+        }
+
+        public GameplayState GetPreviousState
+        {
+            get
+            {
+                return previousStateName;
+            }
+        }
 
         public RageKnight_InGame (GameManager manager) : base (RageKnightState.INGAME, manager)
 		{
@@ -30,9 +47,8 @@ namespace RageKnight.GameState
             states.Add(exit.State, (GameplayState_Base<GameplayState>)exit);
 
             currentState = adventure;
-
-            prevGameState = new List<GameplayState>();
-            prevGameState.Add(currentState.State);
+            currentStateName = GameplayState.ADVENTURE;
+            previousStateName = GameplayState.EXIT;
         }
 
 		public override void GoToNextState()
@@ -73,7 +89,6 @@ namespace RageKnight.GameState
             }
             states = null;
             currentState = null;
-            prevGameState = null;
             OnStatePreSwitchEvent = null;
         }
 
@@ -85,12 +100,15 @@ namespace RageKnight.GameState
             {
                 if (currentState == null)
                 {
+                    currentStateName = newState;
                     currentState = states[newState];
                     currentState.GameStart();
                     switchSuccess = true;
                 }
                 else if (currentState.GameAllowTransition(newState))
                 {
+                    previousStateName = currentState.State;
+                    currentStateName = newState;
                     currentState.GameEnd();
                     currentState = states[newState];
                     currentState.GameStart();

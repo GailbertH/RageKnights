@@ -37,7 +37,10 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         Manager.PlayerHandler.PlayerResetAnimation();
 
         Controls.UpdateControlMode(State);
-        Controls.UpdateMiddleUIModle(State);
+        if (handler.GetPreviousState == GameplayState.ADVENTURE)
+        {
+            Controls.UpdateMiddleUIModle(State);
+        }
     }
 
     public override void GameEnd()

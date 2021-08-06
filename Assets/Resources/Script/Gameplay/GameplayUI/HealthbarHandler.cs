@@ -8,7 +8,6 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private Transform enemyHealthBar;
     //Action Gauge
     [SerializeField] private Transform playerActionGauge;
-    [SerializeField] private Transform enemyActionGauge;
 
     [SerializeField] private GameObject playerBarHolder;
     [SerializeField] private GameObject enemyBarHolder;
