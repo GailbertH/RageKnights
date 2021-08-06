@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     public const float HEAL_PERCENTAGE = 0.30f;
 
-    [SerializeField] private Animation playerAnim;
     private PlayerModel currentPlayerData = null;
     private PlayerModel modifiedPlayerData = null;
     private PlayerModel basePlayerData = null;
@@ -112,9 +111,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ResetActionGauge()
+    public void ReduceActionPoints(int reduction)
     {
-        currentPlayerData.ActionGaugePoints = 0;
+        currentPlayerData.ActionGaugePoints -= reduction;
     }
 
     public void PlayerRagePoints(float incremnent)
@@ -142,7 +141,14 @@ public class PlayerController : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
-        PlayNormal("Attack");
+        //if (playerAnim == null)
+        //    return;
+
+        //if (IsAttackPlaying() == false)
+        //{
+        //    playerAnim["Attack"].speed = 5.0f;
+        //    playerAnim.Play("Attack");
+        //}
     }
 
     public void PlayDeathAnimation()
@@ -157,23 +163,29 @@ public class PlayerController : MonoBehaviour
 
     private void PlayNormal(string animationName)
     {
-        if (playerAnim == null)
-            return;
+        //if (playerAnim == null)
+        //    return;
 
-        if (playerAnim.isPlaying)
-            playerAnim.Stop();
+        //if (playerAnim.isPlaying)
+        //{
+        //    playerAnim?.Stop();
+        //}
+        //playerAnim?.Play(animationName);
+    }
 
-        playerAnim.Play(animationName);
+    public bool IsAttackPlaying()
+    {
+        return false; //playerAnim.IsPlaying("Attack");
     }
 
     private void PlayNoRepeat(string animationName)
     {
-        if (playerAnim == null)
-            return;
+        //if (playerAnim == null)
+        //    return;
 
-        if (playerAnim.IsPlaying(animationName))
-            return;
+        //if (playerAnim.IsPlaying(animationName))
+        //    return;
 
-        playerAnim.Play(animationName);
+        //playerAnim.Play(animationName);
     }
 }

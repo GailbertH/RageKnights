@@ -6,8 +6,9 @@ public enum GameplayState
 {
     ADVENTURE = 0,
     COMBAT = 1,
-    RESULT = 2,
-    EXIT = 3
+    RAGE = 2,
+    RESULT = 3,
+    EXIT = 4
 }
 
 public class GameplayState_Base<GameplayState>

@@ -1,55 +1,60 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class PlayerModel
 {
-    public float HealthPoints { get; set; }
-    public float RagePoints { get; set; }
-    public float ActionGaugePoints { get; set; }
+    public float HealthPoints;
+    public float RagePoints;
+    public float ActionGaugePoints;
 
-    public float RageIncrement { get; set; }
-    public float ActionGaugeIncrement { get; set; }
+    public float RageIncrement;
+    public float ActionGaugeIncrement;
 
-    public int AttackPower { get; set; }
-    public int DefensePower { get; set; }
-    public int HealthPower { get; set; }
-    public int RagePower { get; set; }
+    public int AttackPower;
+    public int DefensePower;
+    public int HealthPower;
+    public int RagePower;
 
-    public ConsumableModel currentItemInUse { get; set; }
-    public WeaponModel currentWeaponInUse { get; set; }
-    public HelmetModel currentHelmetInUse { get; set; }
-    public ArmorModel currentArmorInUse { get; set; }
-    public int ItemCount { get; set; }
+    public ConsumableModel currentItemInUse;
+    public WeaponModel currentWeaponInUse;
+    public HelmetModel currentHelmetInUse;
+    public ArmorModel currentArmorInUse;
+    public int ItemCount;
 
-    public int WeapomStatBonus { get; set; } //ATTACK
-    public int HealthStatBonus { get; set; } //DEFENSE
-    public int ArmorStatBonus { get; set; } //HEALTH
+    public int WeapomStatBonus; //ATTACK
+    public int HealthStatBonus; //DEFENSE
+    public int ArmorStatBonus; //HEALTH
 
-    public float AttackRageMultiplier { get; set; }
+    public float AttackRageMultiplier;
 
     //Must be moved somewhere
-    public float BaseHealthPoints { get; set; }
-    public float MaxRagePoints { get; set; }
-    public float MaxActionGaugePoints { get; set; }
-    public int MaxItemCount { get; set; }
+    public float BaseHealthPoints;
+    public float MaxRagePoints;
+    public float MaxActionGaugePoints;
+    public int MaxItemCount;
 }
 
+[Serializable]
 public class ItemModel
 {
-    public string id { get; set; } // REQUIRED
-    public string name { get; set; }
-    public string description { get; set; }
+    public string id; // REQUIRED
+    public string name;
+    public string description;
     public Sprite icon;
 }
 
+[Serializable]
 public class ConsumableModel : ItemModel
 {
-    public int quantity { get; set; } // REQUIRED
-    public int potency { get; set; }
-    public ItemEffectType effectType { get; set; }
+    public int quantity; // REQUIRED
+    public int potency;
+    public ItemEffectType effectType;
 }
 
+[Serializable]
 public class WeaponModel : ItemModel
 {
     public float damage;
@@ -59,6 +64,7 @@ public class WeaponModel : ItemModel
     public ElementType elementType;
 }
 
+[Serializable]
 public class HelmetModel : ItemModel
 {
     public float health;
@@ -68,6 +74,7 @@ public class HelmetModel : ItemModel
     public ElementType elementType;
 }
 
+[Serializable]
 public class ArmorModel : ItemModel
 {
     public float defense;

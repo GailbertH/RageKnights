@@ -119,16 +119,16 @@ namespace RageKnight
             }
         }
 
-        public void AccountDataInit(PlayerModel playerData, long goldAmount)
+        public void AccountDataInit(PlayerModel playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
-            UpdateGold(goldAmount);
+            AddGold(0);
         }
 
-        public void UpdateGold(long goldToAdd)
+        public void AddGold(long goldToAdd)
         {
-            stageGold += goldToAdd;
+            stageGold = AccountManager.Instance.AddGold(goldToAdd);
             this.GameUIManager?.UpdateGold(StageGold);
         }
 
@@ -142,19 +142,14 @@ namespace RageKnight
             playerHandler.PlayerAddItem(count);
         }
 
-        public void IncrementStage(bool isBossBattle)
+        public void IncrementStage()
         {
             //so it keeps looping at almost final stage that's why is 2
-            int stageOffSet = isBossBattle ? 1 : 2;
+            int stageOffSet = 2;
 
-            if (StageTracker == StageCount - 2 && !isBossBattle)
+            if (StageTracker == StageCount - 2)
             {
-                GameUIManager.BossButtonActive(true);
                 GameUIManager.ProgressbarHandler.ResetCurrentStageState();
-            }
-            else
-            {
-                GameUIManager.BossButtonActive(false);
             }
 
             if ((StageTracker + stageOffSet) < StageCount)
@@ -164,7 +159,12 @@ namespace RageKnight
                 GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
             }
             Debug.Log(stage + " | " + stageTracker);
-            AccountManager.Instance.UpdateStageProgress(stage, StageTracker);
+            AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
+        }
+
+        public void GameOverReset()
+        {
+            AccountManager.Instance.UpdateStageProgress(stage, 0, false);
         }
 
         public void ExitingGame()

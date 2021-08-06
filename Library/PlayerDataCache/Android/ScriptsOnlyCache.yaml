@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - DatabaseManager
     - EnemyController
     - EnemyHandler
+    - EnemySoldierController
     - GameUIManager
     - HealthbarHandler
     - LoadingManager
@@ -16,8 +17,6 @@ ScriptsOnlyBuild:
     - LobbyOptionHandler
     - MenuPopup
     - MiddleUIHandler
-    - PlanegroundController
-    - PlanegroundItem
     - PlayerController
     - PopupBase
     - PopupHandler
@@ -62,6 +61,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Outline
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Shadow
@@ -109,17 +109,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
     - Class: 48
-      Script: {instanceID: 0}
-    - Class: 64
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
@@ -128,28 +120,24 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9706}
-    - Class: 114
       Script: {instanceID: 9824}
     - Class: 114
-      Script: {instanceID: 10584}
-    - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11170}
     - Class: 114
       Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11278}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11876}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11880}
     - Class: 114
-      Script: {instanceID: 12002}
+      Script: {instanceID: 11966}
+    - Class: 114
+      Script: {instanceID: 12006}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 137
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -205,29 +193,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10962}
     - Class: 114
+      Script: {instanceID: 10984}
+    - Class: 114
       Script: {instanceID: 11042}
     - Class: 114
       Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 11190}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11234}
+      Script: {instanceID: 11236}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11614}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -270,9 +260,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10680}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -327,15 +317,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11042}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11970}
+      Script: {instanceID: 11974}
     - Class: 114
-      Script: {instanceID: 12006}
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -369,8 +359,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 64
-      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 74
@@ -390,15 +378,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9706}
-    - Class: 114
       Script: {instanceID: 9710}
     - Class: 114
       Script: {instanceID: 9758}
     - Class: 114
       Script: {instanceID: 9788}
-    - Class: 114
-      Script: {instanceID: 9824}
     - Class: 114
       Script: {instanceID: 9858}
     - Class: 114
@@ -422,8 +406,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10466}
     - Class: 114
-      Script: {instanceID: 10584}
-    - Class: 114
       Script: {instanceID: 10676}
     - Class: 114
       Script: {instanceID: 10716}
@@ -444,45 +426,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11070}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 11190}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11234}
-    - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11236}
     - Class: 114
       Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11350}
+      Script: {instanceID: 11278}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11352}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11538}
+      Script: {instanceID: 11534}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11584}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11614}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11618}
     - Class: 114
-      Script: {instanceID: 11876}
+      Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11924}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11966}
     - Class: 114
-      Script: {instanceID: 11970}
-    - Class: 114
-      Script: {instanceID: 12002}
+      Script: {instanceID: 11974}
     - Class: 114
       Script: {instanceID: 12006}
+    - Class: 114
+      Script: {instanceID: 12010}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -552,7 +532,7 @@ ScriptsOnlyBuild:
     className: StoreItems
   - hash:
       serializedVersion: 2
-      Hash: 77a40f0e0527720c92ec09471a9f42a0
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -588,7 +568,7 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 62976b367e735b83187c4608ed40f31b
+      Hash: 7536ba91f7f645a0700019ccaf51f842
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LoadingManager
@@ -768,19 +748,13 @@ ScriptsOnlyBuild:
     className: EventSystem
   - hash:
       serializedVersion: 2
-      Hash: cd0ecdca0166232906c6f2df9dddc3d3
-    assemblyName: Assembly-CSharp-Editor.dll
-    namespaceName: RageKnight.Tools
-    className: ToolLocalDatabaseManager
-  - hash:
-      serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 57b93cc6f46d551c0574ce7b535f814a
+      Hash: 58b03f5067a5c75ddd86766cc4f12491
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameUIManager
@@ -978,6 +952,12 @@ ScriptsOnlyBuild:
     className: NetworkStartPosition
   - hash:
       serializedVersion: 2
+      Hash: 5971c369d557fd508a60ae9bc7192392
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemySoldierController
+  - hash:
+      serializedVersion: 2
       Hash: 86fd032401d4f436e0a8db369409371b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1032,13 +1012,13 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 27ebaa633e4f4014a4763e0bff2ae3e8
+      Hash: 4833373e8f9dfdd869b5250c6af78b2b
     assemblyName: Assembly-CSharp.dll
     namespaceName: RageKnight.Player
     className: PlayerHandler
   - hash:
       serializedVersion: 2
-      Hash: 36d569017cf1067a50dcbde554fe1e7d
+      Hash: b30aeadcc5c33f3e318bece35b746866
     assemblyName: Assembly-CSharp.dll
     namespaceName: RageKnight.Environment
     className: EnvironmentHandler
@@ -1104,7 +1084,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: dc2e875dc43a287577fe718e728d84ee
+      Hash: fcc2098cacef2dd577b6dcd07dc71556
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyHandler
@@ -1116,7 +1096,7 @@ ScriptsOnlyBuild:
     className: SplashHandler
   - hash:
       serializedVersion: 2
-      Hash: 2482e9d27f7da61851766cc0ad5e3425
+      Hash: 3b7e094e7414bc96e1eabf21405e7a91
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthbarHandler
@@ -1182,7 +1162,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: bb6341664a81b7ff633721ed4a83b627
+      Hash: 3d8b7ff750d06357483278e23a472c5f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyController
@@ -1296,4 +1276,4 @@ ScriptsOnlyBuild:
   - Assets/Resources/Scene/LobbyScene.unity
   - Assets/Resources/Scene/GameScene.unity
   - Assets/Resources/Scene/GameUI.unity
-  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.2.1a.apk
+  playerPath: D:/Project/Software/Unity/Builds/RageKnight-PrototypeV0.3.2a.apk

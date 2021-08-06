@@ -4,9 +4,8 @@ using System;
 
 public class Gameplay_Combat : GameplayState_Base<GameplayState>
 {
-    private const int NEXT_STATE_COUNT_DOWN = 2;
+    private float WALK_SPEED = -0.1f;
     private bool startCountDown = false;
-    private int countDownTimer = NEXT_STATE_COUNT_DOWN;
     private Action onStateEndAction = null;
     GameUIManager Controls = null;
 
@@ -24,38 +23,43 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     public override bool GameAllowTransition(GameplayState nextState)
     {
         return (nextState == GameplayState.ADVENTURE || 
+            nextState == GameplayState.RAGE ||
             nextState == GameplayState.RESULT);
     }
 
     public override void GameStart()
     {
+        base.GameStart();
         Controls = Manager.GameUIManager;
-        Controls.UpdateControlMode(State);
-        Controls.UpdateMiddleUIModle(State);
-
         startCountDown = false;
-        countDownTimer = NEXT_STATE_COUNT_DOWN;
 
         Manager.PlayerHandler.UpdateItemCount();
         Manager.PlayerHandler.PlayerResetAnimation();
+
+        Controls.UpdateControlMode(State);
+        if (handler.GetPreviousState == GameplayState.ADVENTURE)
+        {
+            Controls.UpdateMiddleUIModle(State);
+        }
     }
 
     public override void GameEnd()
     {
-        if (Manager?.EnemyHandler?.IsAlive == false)
+        if (Manager?.EnemyHandler?.HasSoldiers == false)
         {
-            Manager.EnemyHandler.UnSetEnemy();
+            Manager.EnemyHandler.UnSetAllEnemy();
             Manager.PlayerHandler.ResetPassiveBenifits();
-            Manager.IncrementStage(false);
+            Manager.IncrementStage();
         }
     }
 
     public override void GameUpdate()
     {
+        //UnityEngine.Debug.Log(Manager.PlayerHandler.GetPlayerState);
         if (startCountDown == false && Manager != null)
         {
             CheckPlayerAction();
-            CheckEnemyAction();
+            //CheckEnemyAction();
         }
     }
 
@@ -64,18 +68,10 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         if (startCountDown == true)
         {
             UnityEngine.Debug.Log("Is countdown started? " + startCountDown);
-            if (countDownTimer <= 0)
-            {
-                countDownTimer = NEXT_STATE_COUNT_DOWN;
-                GameGoToNextState();
-            }
-            else
-            {
-                countDownTimer--;
-            }
+            Controls.buttonEvents = BasicMovements.None;
+            GameGoToNextState();
         }
-
-        else if (startCountDown == false && Manager != null)
+        else if (Manager != null)
         {
             CheckPlayerCooldown();
         }
@@ -87,13 +83,14 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         {
             if (Manager.PlayerHandler?.IsAlive == false)
             {
+                Manager.GameOverReset();
                 nextState = GameplayState.RESULT;
                 startCountDown = true;
                 return;
             }
 
             Manager.PlayerHandler?.UpdateActionGuage();
-            bool canAttack = (bool)Manager.PlayerHandler?.IsActionGuageFull;
+            bool canAttack = true; //Manager.PlayerHandler?.GetPlayerData.ActionGaugePoints >= 10;
 
             if (Controls.buttonEvents == BasicMovements.Attack && canAttack)
             {
@@ -108,7 +105,9 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
             if (Controls.skillEvents == SkillMovements.Rage)
             {
-                Manager.PlayerHandler?.PlayerRageActivate();
+                UnityEngine.Debug.Log("Switching to Rage Mode");
+                nextState = GameplayState.RAGE;
+                startCountDown = true;
             }
             else if (Controls.skillEvents == SkillMovements.Heal)
             {
@@ -118,12 +117,12 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             Controls.buttonEvents = BasicMovements.None;
             Controls.skillEvents = SkillMovements.None;
 
-            if (Manager.EnemyHandler.IsAlive == false)
+            if (Manager.EnemyHandler.HasSoldiers == false)
             {
-                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.IsAlive);
+                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.HasSoldiers);
                 //TODO Improve this someday
                 long goldEarned = 10;
-                Manager.UpdateGold(goldEarned);
+                Manager.AddGold(goldEarned);
                 nextState = GameplayState.ADVENTURE;
                 startCountDown = true;
             }
@@ -143,6 +142,14 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         if(Manager.PlayerHandler != null)
         {
             Manager.PlayerHandler.CheckRageModeDuration();
+        }
+    }
+
+    private void MoveEnvironment(float speed)
+    {
+        if (Manager.EnvironmentHandler != null)
+        {
+            Manager.EnvironmentHandler.MoveEnvironment(speed);
         }
     }
 }

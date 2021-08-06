@@ -11,7 +11,24 @@ namespace RageKnight.GameState
 
         private Dictionary<GameplayState, GameplayState_Base<GameplayState>> states = new Dictionary<GameplayState, GameplayState_Base<GameplayState>>();
         private GameplayState_Base<GameplayState> currentState = null;
-        private List<GameplayState> prevGameState;
+        private GameplayState currentStateName;
+        private GameplayState previousStateName;
+
+        public GameplayState GetCurrentState
+        {
+            get
+            {
+                return currentStateName;
+            }
+        }
+
+        public GameplayState GetPreviousState
+        {
+            get
+            {
+                return previousStateName;
+            }
+        }
 
         public RageKnight_InGame (GameManager manager) : base (RageKnightState.INGAME, manager)
 		{
@@ -19,18 +36,19 @@ namespace RageKnight.GameState
 
             Gameplay_Adventure adventure = new Gameplay_Adventure(Manager, this);
             Gameplay_Combat combat = new Gameplay_Combat(Manager, this);
+            Gameplay_Rage rage = new Gameplay_Rage(Manager, this);
             Gameplay_Resut result = new Gameplay_Resut(Manager, this);
             Gameplay_Exit exit = new Gameplay_Exit(Manager, this);
 
             states.Add(adventure.State, (GameplayState_Base<GameplayState>)adventure);
             states.Add(combat.State, (GameplayState_Base<GameplayState>)combat);
+            states.Add(rage.State, (GameplayState_Base<GameplayState>)rage);
             states.Add(result.State, (GameplayState_Base<GameplayState>)result);
             states.Add(exit.State, (GameplayState_Base<GameplayState>)exit);
 
             currentState = adventure;
-
-            prevGameState = new List<GameplayState>();
-            prevGameState.Add(currentState.State);
+            currentStateName = GameplayState.ADVENTURE;
+            previousStateName = GameplayState.EXIT;
         }
 
 		public override void GoToNextState()
@@ -71,7 +89,6 @@ namespace RageKnight.GameState
             }
             states = null;
             currentState = null;
-            prevGameState = null;
             OnStatePreSwitchEvent = null;
         }
 
@@ -79,17 +96,19 @@ namespace RageKnight.GameState
         public bool SwitchState(GameplayState newState)
         {
             bool switchSuccess = false;
-            Debug.Log(newState);
             if (states != null && states.ContainsKey(newState))
             {
                 if (currentState == null)
                 {
+                    currentStateName = newState;
                     currentState = states[newState];
                     currentState.GameStart();
                     switchSuccess = true;
                 }
                 else if (currentState.GameAllowTransition(newState))
                 {
+                    previousStateName = currentState.State;
+                    currentStateName = newState;
                     currentState.GameEnd();
                     currentState = states[newState];
                     currentState.GameStart();

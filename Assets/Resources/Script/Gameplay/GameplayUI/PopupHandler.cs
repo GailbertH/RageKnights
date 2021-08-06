@@ -7,8 +7,6 @@ using UnityEngine;
 public class PopupList
 {
     public const string MENU_UI = "MenuUI";
-    public const string UPGRADE_UI = "UpgradeUI";
-    public const string STORE_UI = "StoreUI";
     public const string RESULT_UI = "ResultUI";
     public const string DATA_DEBUG_UI = "DataDebuggerUI";
 }

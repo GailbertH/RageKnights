@@ -26,11 +26,12 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
 
     public override void GameStart()
     {
+        base.GameStart();
         GameUIManager Controls = Manager.GameUIManager;
         Controls?.UpdateControlMode(State);
         Controls?.UpdateMiddleUIModle(State);
-        Manager.UpdateGold(0);
-
+        Manager.EnemyHandler.Initialize();
+        Manager.AddGold(0);
         HasEnemySpawn = false;
     }
 

@@ -14,6 +14,10 @@ namespace RageKnight.Player
     public class PlayerHandler : MonoBehaviour
     {
         [SerializeField] private PlayerController player;
+
+        [SerializeField] private GameObject soldierHolder;
+        [SerializeField] private Animation soldierAnim;
+
         private PlayerState currentPlayerState = PlayerState.IDLE;
         private bool isInRageMode = false;
         private bool isItemOnCoolDown = false;
@@ -113,7 +117,7 @@ namespace RageKnight.Player
         public void UseActionGauge()
         {
             PlayerModel playerData = player?.GetPlayerData;
-            player?.ResetActionGauge();
+            player?.ReduceActionPoints(10);
             isActionGaugeFull = (bool)player?.isActionGaugeFull;
             float playerAGP = (float)playerData?.ActionGaugePoints;
             GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerActionGauge(playerAGP);
@@ -177,10 +181,24 @@ namespace RageKnight.Player
         public void PlayerAttack(GameManager manager)
         {
             currentPlayerState = PlayerState.ATTACKING;
-            player?.PlayAttackAnimation();
-            float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
-            manager?.EnemyHandler?.DamagedEnemy(attackDamage);
-            UpdateRageGauge();
+            if (player?.IsAttackPlaying() == false)
+            {
+                player?.PlayAttackAnimation();
+                float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
+                manager?.EnemyHandler?.DamagedEnemy(attackDamage);
+                UpdateRageGauge();
+            }
+        }
+
+        public void PlayerArmyAttack(GameManager manager)
+        {
+            currentPlayerState = PlayerState.ATTACKING;
+            if (player?.IsAttackPlaying() == false)
+            {
+                player?.PlayAttackAnimation();
+                float attackDamage = GetPlayerData != null ? player.TotalAttackDamage : 0;
+                manager?.EnemyHandler?.DamageEnemyArmy(attackDamage);
+            }
         }
 
         public void PlayerResetAnimation()
@@ -194,6 +212,7 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.IDLE;
             player.PlayMoveAnimation();
+            //Debug.Log("Player Forward");
         }
 
         public void CheckHitTiming()
@@ -239,6 +258,27 @@ namespace RageKnight.Player
         public void ResetPassiveBenifits()
         {
             player.ActionGagugeModifier = 0;
+        }
+
+        //RAGE TEMP
+
+
+        public void SetupRageMode()
+        {
+            soldierHolder.SetActive(true);
+            soldierAnim.Play("Temp_Charge");
+            player.GetComponent<Transform>().localPosition = new Vector3(0f, 1f, 1f);
+        }
+
+        public void EndRageMode()
+        {
+            player.GetComponent<Transform>().localPosition = new Vector3(-1.25f, 1f, 1f);
+            soldierAnim.Play("Temp_Fade_In_Battle");
+        }
+
+        public void HideRageSoldier()
+        {
+            soldierHolder.SetActive(false);
         }
     }
 }

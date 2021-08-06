@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,18 @@ public class AccountManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        if (PlayerPrefs.HasKey("TempAccountData"))
+        {
+            LoadData();
+        }
+        else
+        {
+            GenerateAccount();
+        }
+    }
+
+    public void GenerateAccount()
+    {
         PlayerModel currentCharacterData = new PlayerModel
         {
             AttackPower = 2,
@@ -25,11 +38,12 @@ public class AccountManager : MonoBehaviour
             HealthPower = 2,
             RagePower = 2,
             RageIncrement = 0.5f,
-            ActionGaugeIncrement = 1f,
+            ActionGaugeIncrement = 0.2f,
             HealthPoints = 10f,
             ActionGaugePoints = 10f,
             RagePoints = 0,
-            currentItemInUse = new ConsumableModel {
+            currentItemInUse = new ConsumableModel
+            {
                 id = "0000",
                 quantity = 5
             },
@@ -41,19 +55,21 @@ public class AccountManager : MonoBehaviour
             MaxActionGaugePoints = 100f,
             AttackRageMultiplier = 2
         };
+        string jsonAccountData = JsonUtility.ToJson(currentCharacterData);
+        Debug.Log("FAKE DATA : " + jsonAccountData);
 
         ProgressTrackerModel currentProgress = new ProgressTrackerModel
         {
-            CurrentRound = 0,
+            CurrentRound = 5,
             CurrentStage = 1,
         };
 
         ProgressTrackerModel TotalProgress = new ProgressTrackerModel
         {
-            CurrentRound = 0,
+            CurrentRound = 5,
             CurrentStage = 1
         };
-
+        
         AccountData = new AccountData
         {
             AccountId = "000042069",
@@ -63,9 +79,11 @@ public class AccountManager : MonoBehaviour
             CurrentProgress = currentProgress,
             ProgressTracker = TotalProgress
         };
+
+        SaveData();
     }
 
-    public void UpdateStageProgress(int stage, int round)
+    public void UpdateStageProgress(int stage, int round, bool hasActiveGame)
     {
         ProgressTrackerModel currProgress = AccountData.CurrentProgress;
         currProgress.CurrentStage = stage;
@@ -80,19 +98,68 @@ public class AccountManager : MonoBehaviour
 
         Debug.Log("Current " + currProgress.CurrentStage + " | " + currProgress.CurrentRound);
         Debug.Log("Overall " + overallProgress.CurrentStage + " | " + overallProgress.CurrentRound);
+
+        accountData.CurrentProgress = currProgress;
+        accountData.ProgressTracker = overallProgress;
+        AccountData.HasCurrentActiveGame = hasActiveGame;
+        SaveData();
     }
 
-    public void SaveData()
-    { }
+    public long AddGold(long goldToAdd, bool noSave = false)
+    {
+        accountData.Gold += goldToAdd;
+        if(noSave == false)
+            SaveData();
+        return accountData.Gold;
+    }
 
-    public void LoadData()
-    { }
+    //TODO at the end of each stage it saves twice, and we don't want that. D:
+    private void SaveData()
+    {
+        string jsonAccountData = JsonUtility.ToJson(AccountData);
+        Debug.Log("SAVE DATA : " + jsonAccountData);
+        PlayerPrefs.SetString("TempAccountData", jsonAccountData);
+    }
+
+    private void LoadData()
+    {
+        string jsonAccountData = PlayerPrefs.GetString("TempAccountData");
+        Debug.Log("LOAD DATA : " + jsonAccountData);
+        try
+        {
+            GenerateAccount();
+            //AccountData = JsonUtility.FromJson<AccountData>(jsonAccountData);
+            SaveData();
+        }
+        catch
+        {
+            Debug.LogError("Data corrupted, creating new data");
+            GenerateAccount(); 
+        }
+    }
+
+    public void SetActiveGame(bool hasActiveGame, bool noSave = false)
+    {
+        AccountData.HasCurrentActiveGame = hasActiveGame;
+        if (noSave == true)
+            SaveData();
+    }
+
+    public void ResetPlayerStatus()
+    {
+        AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.BaseHealthPoints;
+        AccountData.CurrentCharacterData.ActionGaugePoints = AccountData.CurrentCharacterData.ActionGaugePoints;
+        AccountData.CurrentCharacterData.RagePoints = 0;
+    }
 }
+
+[Serializable]
 public class AccountData
 {
     public string AccountId;
     public string AccountName;
     public long Gold;
+    public bool HasCurrentActiveGame;
     public PlayerModel CurrentCharacterData; //Selected Character
     public PlayerModel[] CharacterData;
     public ProgressTrackerModel CurrentProgress;
@@ -100,6 +167,7 @@ public class AccountData
     //Inventory Data
 }
 
+[Serializable]
 public class ProgressTrackerModel
 {
     public int CurrentRound;

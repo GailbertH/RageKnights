@@ -9,7 +9,6 @@ public class LoadingManager : MonoBehaviour
 	[SerializeField] GameObject canvas;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] Camera mainCamera;
-    [SerializeField] int gameSpeed = 60;
 
 	private AsyncOperation asyncLoading;
 	private AsyncOperation asyncUnloading;
@@ -25,9 +24,6 @@ public class LoadingManager : MonoBehaviour
 	{
 		instance = this;
 		mainCamera.gameObject.SetActive (true);
-
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
 
         CanvasVisible(false);
     }
