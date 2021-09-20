@@ -12,6 +12,8 @@ namespace RageKnight
 	{
         private static GameManager instance = null;
 		private RageKnightStateMachine stateMachine = null;
+        private CombatTracker combatTracker = null;
+
         private Coroutine updateRoutine = null;
         private Coroutine timeTrackerRoutine = null;
 
@@ -60,6 +62,11 @@ namespace RageKnight
 			get { return this.stateMachine; }
 		}
 
+        public CombatTracker CombatTracker
+        {
+            get { return this.combatTracker; }
+        }
+
         private long stageGold;
         public long StageGold
         {
@@ -74,7 +81,11 @@ namespace RageKnight
         public int StageTracker
         {
             get { return stageTracker; }
-            set { stageTracker = value; }
+        }
+
+        public bool IsFinalStage
+        {
+            get { return StageTracker == StageCount; }
         }
         #endregion
 
@@ -90,6 +101,7 @@ namespace RageKnight
             isStateActive = true;
             updateRoutine = StartCoroutine(ControlledUpdate());
             timeTrackerRoutine = StartCoroutine(TimeTracker());
+            combatTracker = new CombatTracker("Stage"); //TODO Add functionality
         }
         #endregion
 
@@ -129,7 +141,13 @@ namespace RageKnight
         public void AddGold(long goldToAdd)
         {
             stageGold = AccountManager.Instance.AddGold(goldToAdd);
+            combatTracker?.UpdateGoldEarned(goldToAdd);
             this.GameUIManager?.UpdateGold(StageGold);
+        }
+
+        public void EnemyKill()
+        {
+            combatTracker.UpdateKillCount();
         }
 
         public void PauseGame(bool isPause)
@@ -144,27 +162,21 @@ namespace RageKnight
 
         public void IncrementStage()
         {
-            //so it keeps looping at almost final stage that's why is 2
-            int stageOffSet = 2;
-
-            if (StageTracker == StageCount - 2)
-            {
-                GameUIManager.ProgressbarHandler.ResetCurrentStageState();
-            }
-
-            if ((StageTracker + stageOffSet) < StageCount)
-            {
-                stageTracker = stageTracker + 1;
-                StageTracker = stageTracker;
-                GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
-            }
-            Debug.Log(stage + " | " + stageTracker);
+            stageTracker = stageTracker + 1;
+            combatTracker.UpdateStageCompleteCount();
+            GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
+            Debug.Log("Stage: " + stage + " | " + stageTracker);
             AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
         }
 
         public void GameOverReset()
         {
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);
+        }
+
+        public void ExitGame()
+        {
+            StateMachine.Exit();
         }
 
         public void ExitingGame()

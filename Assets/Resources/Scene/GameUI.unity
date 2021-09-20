@@ -1805,6 +1805,16 @@ PrefabInstance:
       propertyPath: enemyHealthBar
       value: 
       objectReference: {fileID: 792664868}
+    - target: {fileID: 3721531004137455393, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721531004137455393, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 529859523756046896, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1934,16 +1944,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721531004137455393, guid: c1b86670a64eed148b59fd05e1da60df,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721531004137455393, guid: c1b86670a64eed148b59fd05e1da60df,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 529859522303165408, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}

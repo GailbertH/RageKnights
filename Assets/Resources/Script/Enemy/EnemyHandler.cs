@@ -185,6 +185,7 @@ public class EnemyHandler : MonoBehaviour
     public void DeductArmyCount()
     {
         armyCount--;
+        GameManager.Instance.EnemyKill();
         GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
         GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
     }
@@ -202,15 +203,14 @@ public class EnemyHandler : MonoBehaviour
             enemies[i]?.DestroyEnemy();
             enemies[i] = null;
         }
-        enemies = new List<EnemyController>();
         hasPresentMonster = false;
     }
 
-    public void ShowOrHideEnemy(bool isShow = true)
+    public void SetAllEnemy()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        if(armyCount > 0)
         {
-            enemies[i].ShowOrHide(isShow);
+            EnemySpawn();
         }
     }
 
@@ -220,19 +220,14 @@ public class EnemyHandler : MonoBehaviour
     {
         enemySoldierController.Init(armyCount, enemyList);
         enemySoldierController.ShowUnits();
-        ShowOrHideEnemy(false);
+        UnSetAllEnemy();
     }
 
     public void EndRageMode()
     {
         enemySoldierController.ShowUnits(false);
         enemySoldierController.End();
-        if (armyCount <= 0)
-        {
-            UnSetAllEnemy();
-        }
-        else
-            ShowOrHideEnemy(true);
+        SetAllEnemy();
     }
 
     public void MoveUnits(float speed)

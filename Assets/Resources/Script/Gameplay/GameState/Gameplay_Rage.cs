@@ -61,7 +61,13 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
         stateSwitch_TEst--;
         if (stateSwitch_TEst <= 0)
         {
-            nextState = Manager.EnemyHandler.GetArmyCount <= 0 ? nextState = GameplayState.ADVENTURE : nextState = GameplayState.COMBAT;
+            nextState = GameplayState.COMBAT;
+            if (Manager.EnemyHandler.HasSoldiers == false)
+            {
+                UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.HasSoldiers);
+                Manager.IncrementStage();
+                nextState = Manager.IsFinalStage ? GameplayState.RESULT : GameplayState.ADVENTURE;
+            }
             Handler.SwitchState(nextState);
         }
     }

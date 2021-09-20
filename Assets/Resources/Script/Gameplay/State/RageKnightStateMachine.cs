@@ -6,80 +6,84 @@ using UnityEngine;
 namespace RageKnight.GameState
 {
     public class RageKnightStateMachine
-	{
-		public delegate void OnStateSwitch(RageKnightState nextState);
-		public event OnStateSwitch OnStatePreSwitchEvent = null;
+    {
+        public delegate void OnStateSwitch(RageKnightState nextState);
+        public event OnStateSwitch OnStatePreSwitchEvent = null;
 
-		private Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>> states = new Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>>();
-		private RageKnightState_Base<RageKnightState> currentState = null;
-		private List<RageKnightState> prevGameState;
+        private Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>> states = new Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>>();
+        private RageKnightState_Base<RageKnightState> currentState = null;
+        private List<RageKnightState> prevGameState;
 
-		public RageKnightStateMachine (GameManager manager)
-		{
-			states = new Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>> ();
+        public RageKnightStateMachine(GameManager manager)
+        {
+            states = new Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>>();
 
-			RageKnight_Loading loading = new RageKnight_Loading (manager);
-			RageKnight_InGame inGame = new RageKnight_InGame (manager);
-			RageKnight_Exit exit = new RageKnight_Exit (manager);
+            RageKnight_Loading loading = new RageKnight_Loading(manager);
+            RageKnight_InGame inGame = new RageKnight_InGame(manager);
+            RageKnight_Exit exit = new RageKnight_Exit(manager);
 
-			states.Add (loading.State, (RageKnightState_Base<RageKnightState>)loading);
-			states.Add (inGame.State, (RageKnightState_Base<RageKnightState>)inGame);
-			states.Add (exit.State, (RageKnightState_Base<RageKnightState>)exit);
+            states.Add(loading.State, (RageKnightState_Base<RageKnightState>)loading);
+            states.Add(inGame.State, (RageKnightState_Base<RageKnightState>)inGame);
+            states.Add(exit.State, (RageKnightState_Base<RageKnightState>)exit);
 
-			currentState = loading;
-			currentState.Start ();
+            currentState = loading;
+            currentState.Start();
 
-			prevGameState = new List<RageKnightState> ();
-			prevGameState.Add (currentState.State);
-		}
+            prevGameState = new List<RageKnightState>();
+            prevGameState.Add(currentState.State);
+        }
 
-		public void Update ()
-		{
-			if (currentState != null)
-				currentState.Update ();				
-		}
+        public void Update()
+        {
+            if (currentState != null)
+                currentState.Update();
+        }
 
-        public void TimerUpdate ()
+        public void TimerUpdate()
         {
             if (currentState != null)
                 currentState.TimerUpdate();
         }
 
-        public void Destroy ()
-		{
-			if (states != null)
-			{
-				foreach (RageKnightState key in states.Keys)
-				{
-					states [key].Destroy ();
-				}
-				states.Clear ();
-				states = null;
-			}
-		}
+        public void Destroy()
+        {
+            if (states != null)
+            {
+                foreach (RageKnightState key in states.Keys)
+                {
+                    states[key].Destroy();
+                }
+                states.Clear();
+                states = null;
+            }
+        }
 
-		public RageKnightState_Base<RageKnightState> GetCurrentState
-		{
-			get { return currentState; }
-		}
+        public RageKnightState_Base<RageKnightState> GetCurrentState
+        {
+            get { return currentState; }
+        }
 
-		public string GetPreviousStateList ()
-		{
-			string prevStates = "PREVIOUS STATES: ";
+        public string GetPreviousStateList()
+        {
+            string prevStates = "PREVIOUS STATES: ";
 
-			#if UNITY_EDITOR
-			if(prevGameState != null)
-			{
-				for(int i = prevGameState.Count-1; i >= 0; i--)
-				{
-					prevStates += "\n-> " + prevGameState[i].ToString();
-				}
-			}
-			#endif
+#if UNITY_EDITOR
+            if (prevGameState != null)
+            {
+                for (int i = prevGameState.Count - 1; i >= 0; i--)
+                {
+                    prevStates += "\n-> " + prevGameState[i].ToString();
+                }
+            }
+#endif
 
-			return prevStates;
-		}
+            return prevStates;
+        }
 
+        public void Exit()
+        {
+            SwitchState(RageKnightState.EXIT);
+        }
 
 		public bool SwitchState (RageKnightState newState)
 		{

@@ -44,7 +44,7 @@ public class PopupHandler : MonoBehaviour
     }
 
 
-    public void OpenPopup(string PopupName, Action afterPopupCloseAction)
+    public void OpenPopup(string PopupName, object data, Action afterPopupCloseAction)
     {
         if (currentOpenPopups.Contains(PopupName))
             return;
@@ -57,7 +57,7 @@ public class PopupHandler : MonoBehaviour
             afterPopupCloseAction.Invoke();
         };
 
-        newPopup.GetComponent<PopupBase>().Initialize(popupCloseAction);
+        newPopup.GetComponent<PopupBase>().Initialize(popupCloseAction, data);
         OnPopupOpen(PopupName);
         newPopup.SetActive(true);
     }

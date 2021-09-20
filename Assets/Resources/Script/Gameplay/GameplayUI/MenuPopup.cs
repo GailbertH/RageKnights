@@ -12,7 +12,8 @@ public class MenuPopup : PopupBase
 
     public void Quit()
     {
-        GameManager.Instance.StateMachine.GetCurrentState.GoToNextState();
+        //Make sure this is exit state
+        GameManager.Instance.ExitGame();
         CloseButton();
     }
 }

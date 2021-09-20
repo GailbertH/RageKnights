@@ -37,7 +37,7 @@ namespace RageKnight.GameState
             Gameplay_Adventure adventure = new Gameplay_Adventure(Manager, this);
             Gameplay_Combat combat = new Gameplay_Combat(Manager, this);
             Gameplay_Rage rage = new Gameplay_Rage(Manager, this);
-            Gameplay_Resut result = new Gameplay_Resut(Manager, this);
+            Gameplay_Result result = new Gameplay_Result(Manager, this);
             Gameplay_Exit exit = new Gameplay_Exit(Manager, this);
 
             states.Add(adventure.State, (GameplayState_Base<GameplayState>)adventure);

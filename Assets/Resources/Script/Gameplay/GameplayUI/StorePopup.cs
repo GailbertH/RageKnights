@@ -12,7 +12,7 @@ public class StorePopup : PopupBase
 
     List<StoreItemData> storeItemData = new List<StoreItemData>();
 
-    public override void Initialize(Action OnCloseAction)
+    public override void Initialize(Action OnCloseAction, object data = null)
     {
         onCloseEvent = OnCloseAction;
         storeItemData = ConsumablesMapperToStoreItemDatas(DatabaseManager.Instance.GetAllConsumables());
