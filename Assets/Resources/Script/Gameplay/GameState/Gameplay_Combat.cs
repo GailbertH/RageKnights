@@ -49,7 +49,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         {
             Manager.EnemyHandler.UnSetAllEnemy();
             Manager.PlayerHandler.ResetPassiveBenifits();
-            Manager.IncrementStage();
         }
     }
 
@@ -121,9 +120,8 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             {
                 UnityEngine.Debug.Log("Is enemy Alive? " + Manager.EnemyHandler.HasSoldiers);
                 //TODO Improve this someday
-                long goldEarned = 10;
-                Manager.AddGold(goldEarned);
-                nextState = GameplayState.ADVENTURE;
+                Manager.IncrementStage();
+                nextState = Manager.IsFinalStage ? GameplayState.RESULT : GameplayState.ADVENTURE;
                 startCountDown = true;
             }
         }

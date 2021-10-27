@@ -7,7 +7,7 @@ public class PopupBase : MonoBehaviour
 {
     protected Action onCloseEvent = null;
 
-    public virtual void Initialize(Action OnCloseAction)
+    public virtual void Initialize(Action OnCloseAction, object data = null)
     {
         onCloseEvent = OnCloseAction;
     }

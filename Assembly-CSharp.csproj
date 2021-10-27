@@ -72,6 +72,7 @@
     <Compile Include="Assets\Resources\Script\Environment\EnvironmentHandler.cs" />
     <Compile Include="Assets\Resources\Script\Environment\PlanegroundController.cs" />
     <Compile Include="Assets\Resources\Script\Environment\PlanegroundItem.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\CombatTracker.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameManager.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\DataDebugPopup.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\GameJoyStick.cs" />

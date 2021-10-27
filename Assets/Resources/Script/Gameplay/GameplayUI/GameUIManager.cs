@@ -148,9 +148,9 @@ public class GameUIManager : MonoBehaviour
         popupHandler.OpenPopup(popupName);
     }
 
-    public void OpenPopup(string popupName, Action onClose)
+    public void OpenPopup(string popupName, object data, Action onClose)
     {
-        popupHandler.OpenPopup(popupName, onClose);
+        popupHandler.OpenPopup(popupName, data, onClose);
     }
 
     private IEnumerator Initializer()

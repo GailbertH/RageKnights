@@ -2,11 +2,11 @@
 using RageKnight.GameState;
 using UnityEngine;
 
-public class Gameplay_Resut : GameplayState_Base<GameplayState>
+public class Gameplay_Result : GameplayState_Base<GameplayState>
 {
     GameUIManager Controls = null;
 
-    public Gameplay_Resut(GameManager manager, RageKnight_InGame handler) : base(GameplayState.RESULT, manager, handler)
+    public Gameplay_Result(GameManager manager, RageKnight_InGame handler) : base(GameplayState.RESULT, manager, handler)
     {
     }
 
@@ -23,6 +23,7 @@ public class Gameplay_Resut : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         Controls = Manager.GameUIManager;
-        Controls.OpenPopup(PopupList.RESULT_UI, GameGoToNextState);
+        var data = Manager.CombatTracker;
+        Controls.OpenPopup(PopupList.RESULT_UI, data, GameGoToNextState);
     }
 }
