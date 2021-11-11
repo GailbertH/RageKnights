@@ -22,8 +22,6 @@ public class EnemyHandler : MonoBehaviour
     private int armyCount;
     private int enemyAttackDamage = 1;
     private float enemySpawnCD = 3f;
-    private float enemyActionGauge = 0f;
-    private float maxEnemyActionGauge = 170f;
     private bool hasPresentMonster = false;
     System.Random random = new System.Random();
 
@@ -174,11 +172,9 @@ public class EnemyHandler : MonoBehaviour
     public void EnemyActionChecker(GameManager manager)
     {
         int eCPId = 0;
-        enemyActionGauge += 1;
-        if(enemyActionGauge >= maxEnemyActionGauge)
+        foreach (EnemyController enemy in enemies.Where(x => x != null))
         {
-            manager.PlayerHandler.PlayerDamaged(enemies[eCPId].GetEnemyData.AttackPower);
-            enemyActionGauge = 0;
+            enemy.CheckAction(manager.PlayerHandler);
         }
     }
 

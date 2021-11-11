@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace RageKnight.Player
     public class PlayerHandler : MonoBehaviour
     {
         [SerializeField] private PlayerController player;
+        [SerializeField] private List<PlayerCompController> companions; // Max of 2
 
         [SerializeField] private GameObject soldierHolder;
         [SerializeField] private Animation soldierAnim;
@@ -262,7 +264,6 @@ namespace RageKnight.Player
 
         //RAGE TEMP
 
-
         public void SetupRageMode()
         {
             soldierHolder.SetActive(true);
@@ -279,6 +280,17 @@ namespace RageKnight.Player
         public void HideRageSoldier()
         {
             soldierHolder.SetActive(false);
+        }
+
+
+        //ALLY Methods
+
+        public void CheckCompanionAction(GameManager manager)
+        {
+            for (int i = 0; i < companions.Count; i++)
+            {
+                companions[i].CheckAction(manager.EnemyHandler);
+            }
         }
     }
 }

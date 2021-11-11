@@ -104,12 +104,15 @@
     <Compile Include="Assets\Resources\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerHandler.cs" />
     <Compile Include="Assets\Resources\Script\Player\PlayerModel.cs" />
+    <Compile Include="Assets\Resources\Script\PlayerComp\PlayerCompController.cs" />
     <Compile Include="Assets\Resources\Script\Splash\SplashHandler.cs" />
     <Compile Include="Assets\Resources\Script\Tools\Armor.cs" />
+    <Compile Include="Assets\Resources\Script\Tools\CompanionDataContainer.cs" />
     <Compile Include="Assets\Resources\Script\Tools\Consumable.cs" />
     <Compile Include="Assets\Resources\Script\Tools\DatabaseConsumable.cs" />
     <Compile Include="Assets\Resources\Script\Tools\DatabaseContainer.cs" />
     <Compile Include="Assets\Resources\Script\Tools\DatabaseItem.cs" />
+    <Compile Include="Assets\Resources\Script\Tools\EnemyDataContainer.cs" />
     <Compile Include="Assets\Resources\Script\Tools\Helmet.cs" />
     <Compile Include="Assets\Resources\Script\Tools\Weapon.cs" />
     <Compile Include="Assets\Resources\Script\Utility\DatabaseManager.cs" />

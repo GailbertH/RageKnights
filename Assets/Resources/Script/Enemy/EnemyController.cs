@@ -17,11 +17,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] string idleAnimName;
     [SerializeField] string damagedAnimName;
     [SerializeField] string deathAnimName;
+    [SerializeField] string attackAnimName;
 
     [SerializeField] public bool testMode = false;
 
     private EnemyHandler enemyHandler = null;
     private bool enemyIsDead = false;
+
+    private int enemyActionCounter = 0;
 
     public EnemyModel GetEnemyData
     {
@@ -58,9 +61,15 @@ public class EnemyController : MonoBehaviour
         Idle();
     }
 
-    public virtual void CheckAction()
+    public virtual void CheckAction(RageKnight.Player.PlayerHandler pHandler)
     {
-
+        enemyActionCounter += UnityEngine.Random.Range(1, 3);
+        if (enemyActionCounter >= GetEnemyData.AttackCoolDownLength)
+        {
+            Attack();
+            enemyActionCounter = 0;
+            pHandler.PlayerDamaged(GetEnemyData.AttackPower);
+        }
     }
 
     public virtual void Idle()
@@ -78,8 +87,8 @@ public class EnemyController : MonoBehaviour
         }
 
         enemyAnimation.Play(damagedAnimName);
-        enemyData.HealthPoints -= damageReceive;
-        if (enemyData.HealthPoints <= 0)
+        GetEnemyData.HealthPoints -= damageReceive;
+        if (GetEnemyData.HealthPoints <= 0)
         {
             Death();
             isAlive = false;
@@ -103,7 +112,7 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Attack()
     {
-
+        enemyAnimation.Play(attackAnimName);
     }
 
     public virtual void LoadEnemy()
