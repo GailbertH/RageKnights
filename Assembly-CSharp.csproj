@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Resources\Script\Account\AccountManager.cs" />
+    <Compile Include="Assets\Resources\Script\Enemy\EnemyAnimationController.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyHandler.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyModel.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RageKnight.Player
@@ -176,7 +177,15 @@ namespace RageKnight.Player
 
         public void PlayerDamaged(int damage)
         {
-            player?.PlayerDamaged(damage);
+            int targetIndex = UnityEngine.Random.Range(0, 1 + companions.Count());
+            if (targetIndex == 2)
+            {
+                player?.PlayerDamaged(damage);
+            }
+            else
+            {
+                companions[targetIndex].Damaged(damage);
+            }
             UpdateHealthGauge();
         }
 

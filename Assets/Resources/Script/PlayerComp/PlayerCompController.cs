@@ -11,6 +11,9 @@ public class PlayerCompController : MonoBehaviour
     private int companionActionCounter = 0;
     [SerializeField] private CompanionModel companionData;
 
+    [SerializeField] Animation playerExtraAnim;
+    [SerializeField] string damagedAnimName;
+
     public CompanionModel GetCompanionData
     {
         get { return companionData; }
@@ -36,7 +39,9 @@ public class PlayerCompController : MonoBehaviour
     { }
 
     public virtual void Damaged(float damageReceive)
-    { }
+    {
+        playerExtraAnim.Play(damagedAnimName);
+    }
 
     public virtual void Death()
     { }

@@ -38,7 +38,7 @@ public class EnemySoldierController : MonoBehaviour
         {
             if (enemyArmy[i] != null)
             {
-                enemyArmy[i].Idle();
+                enemyArmy[i].animationPlayer.Idle();
             }
         }
     }

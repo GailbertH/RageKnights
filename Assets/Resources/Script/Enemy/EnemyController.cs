@@ -9,15 +9,10 @@ public enum CombatPlacement
 }
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private Animation enemyAnimation;
     [SerializeField] private EnemyModel enemyData = null;
     [SerializeField] private CombatPlacement combatPlacement;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
-    [SerializeField] string idleAnimName;
-    [SerializeField] string damagedAnimName;
-    [SerializeField] string deathAnimName;
-    [SerializeField] string attackAnimName;
+    [SerializeField] public EnemyAnimationController animationPlayer;
 
     [SerializeField] public bool testMode = false;
 
@@ -58,7 +53,7 @@ public class EnemyController : MonoBehaviour
         enemyHandler = handler;
         this.combatPlacement = placementValue;
         spriteRenderer.sortingOrder = GetOrderInLayer;
-        Idle();
+        animationPlayer.Idle();
     }
 
     public virtual void CheckAction(RageKnight.Player.PlayerHandler pHandler)
@@ -66,15 +61,15 @@ public class EnemyController : MonoBehaviour
         enemyActionCounter += UnityEngine.Random.Range(1, 3);
         if (enemyActionCounter >= GetEnemyData.AttackCoolDownLength)
         {
-            Attack();
-            enemyActionCounter = 0;
-            pHandler.PlayerDamaged(GetEnemyData.AttackPower);
+            Attack(pHandler);
         }
     }
 
-    public virtual void Idle()
+    public virtual void Attack(RageKnight.Player.PlayerHandler pHandler)
     {
-        enemyAnimation.Play(idleAnimName);
+        animationPlayer.Attack();
+        enemyActionCounter = 0;
+        pHandler.PlayerDamaged(GetEnemyData.AttackPower);
     }
 
     public virtual bool Damaged(float damageReceive)
@@ -86,7 +81,7 @@ public class EnemyController : MonoBehaviour
             return isAlive;
         }
 
-        enemyAnimation.Play(damagedAnimName);
+        animationPlayer.Damage();
         GetEnemyData.HealthPoints -= damageReceive;
         if (GetEnemyData.HealthPoints <= 0)
         {
@@ -99,7 +94,7 @@ public class EnemyController : MonoBehaviour
     public virtual void Death()
     {
         enemyHandler.DeductArmyCount();
-        enemyAnimation.Play(deathAnimName);
+        animationPlayer.Death();
         enemyIsDead = true;
         //Change this tp something that checks when enemy is dead then remove
         Invoke("DestroyEnemy", 0.5f);
@@ -110,10 +105,7 @@ public class EnemyController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public virtual void Attack()
-    {
-        enemyAnimation.Play(attackAnimName);
-    }
+
 
     public virtual void LoadEnemy()
     {
@@ -124,6 +116,6 @@ public class EnemyController : MonoBehaviour
     {
         this.gameObject.SetActive(isShow);
         if(isShow)
-            Idle();
+            animationPlayer.Idle();
     }
 }
