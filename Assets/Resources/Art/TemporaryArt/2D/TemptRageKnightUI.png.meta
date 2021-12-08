@@ -105,7 +105,7 @@ TextureImporter:
       213: -3730400706357331975
     second: TemptRageKnightUI_41
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -125,6 +125,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -133,12 +135,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -156,9 +158,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -935,6 +941,41 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TemptRageKnightUI_40: -6182176221537837527
+      TemptRageKnightUI_37: -4164908995626284569
+      TemptRageKnightUI_4: -4963757957709128321
+      TemptRageKnightUI_5: -6448626244071464357
+      TemptRageKnightUI_22: 4599764569585579437
+      TemptRageKnightUI_34: 5829605675977304444
+      TemptRageKnightUI_23: -7944627243110838330
+      TemptRageKnightUI_27: 1494851665939174533
+      TemptRageKnightUI_0: -2051210348322766029
+      TemptRageKnightUI_7: 9209317662245558501
+      TemptRageKnightUI_21: -686522150947456840
+      TemptRageKnightUI_33: 7750172098569060007
+      TemptRageKnightUI_3: -5937568915400385921
+      TemptRageKnightUI_31: 7676800059252100625
+      TemptRageKnightUI_20: -2163572228672396145
+      TemptRageKnightUI_32: 1017998754272111393
+      TemptRageKnightUI_15: -7519701452858471602
+      TemptRageKnightUI_41: -3730400706357331975
+      TemptRageKnightUI_14: -8135460898169301270
+      TemptRageKnightUI_18: 3541302599449560637
+      TemptRageKnightUI_26: 5992221410510237237
+      TemptRageKnightUI_10: 421759606182732642
+      TemptRageKnightUI_2: -4701541887613283488
+      TemptRageKnightUI_28: -2435286438103346324
+      TemptRageKnightUI_35: 6703173151716735759
+      TemptRageKnightUI_38: 998348192920003215
+      TemptRageKnightUI_13: 5218888650282653964
+      TemptRageKnightUI_36: -7254580972493982819
+      TemptRageKnightUI_24: -8832610221686385030
+      TemptRageKnightUI_19: 8849259331005944387
+      TemptRageKnightUI_9: 1857587683530286558
+      TemptRageKnightUI_12: 6094285753235377364
+      TemptRageKnightUI_1: 1230238264860104163
+      TemptRageKnightUI_8: 4060627309249463132
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
