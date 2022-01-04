@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private float actionGaugeModifier = 0;
     private bool isRageMode = false;
 
+    [SerializeField] Animation playerExtraAnim;
+    [SerializeField] string damagedAnimName;
+
     public PlayerModel GetPlayerData
     {
         get { return currentPlayerData; }
@@ -69,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDamaged(int damage)
     {
+        playerExtraAnim.Play();
         currentPlayerData.HealthPoints -= damage;
         if (currentPlayerData.HealthPoints <= 0)
         {

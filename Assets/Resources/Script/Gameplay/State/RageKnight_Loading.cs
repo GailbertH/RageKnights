@@ -68,7 +68,7 @@ namespace RageKnight.GameState
                     RagePower = 2,
                     RageIncrement = 0.5f,
                     ActionGaugeIncrement = 0.2f,
-                    HealthPoints = 10f,
+                    HealthPoints = 30f,
                     ActionGaugePoints = 10f,
                     RagePoints = 0,
                     currentItemInUse = new ConsumableModel {
@@ -79,7 +79,7 @@ namespace RageKnight.GameState
                     WeapomStatBonus = 0,
                     HealthStatBonus = 0,
                     ArmorStatBonus = 0,
-                    BaseHealthPoints = 10f,
+                    BaseHealthPoints = 30f,
                     MaxRagePoints = 100f,
                     MaxActionGaugePoints = 100f,
                     MaxItemCount = 10,

@@ -58,7 +58,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         if (startCountDown == false && Manager != null)
         {
             CheckPlayerAction();
-            //CheckEnemyAction();
         }
     }
 
@@ -73,6 +72,8 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         else if (Manager != null)
         {
             CheckPlayerCooldown();
+            CheckCompanionAction();
+            CheckEnemyAction();
         }
     }
 
@@ -143,6 +144,13 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         }
     }
 
+    private void CheckCompanionAction()
+    {
+        if (Manager.PlayerHandler != null)
+        {
+            Manager.PlayerHandler.CheckCompanionAction(Manager);
+        }
+    }
     private void MoveEnvironment(float speed)
     {
         if (Manager.EnvironmentHandler != null)

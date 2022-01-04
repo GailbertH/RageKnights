@@ -9,19 +9,17 @@ public enum CombatPlacement
 }
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private Animation enemyAnimation;
     [SerializeField] private EnemyModel enemyData = null;
     [SerializeField] private CombatPlacement combatPlacement;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
-    [SerializeField] string idleAnimName;
-    [SerializeField] string damagedAnimName;
-    [SerializeField] string deathAnimName;
+    [SerializeField] public EnemyAnimationController animationPlayer;
 
     [SerializeField] public bool testMode = false;
 
     private EnemyHandler enemyHandler = null;
     private bool enemyIsDead = false;
+
+    private int enemyActionCounter = 0;
 
     public EnemyModel GetEnemyData
     {
@@ -55,17 +53,23 @@ public class EnemyController : MonoBehaviour
         enemyHandler = handler;
         this.combatPlacement = placementValue;
         spriteRenderer.sortingOrder = GetOrderInLayer;
-        Idle();
+        animationPlayer.Idle();
     }
 
-    public virtual void CheckAction()
+    public virtual void CheckAction(RageKnight.Player.PlayerHandler pHandler)
     {
-
+        enemyActionCounter += UnityEngine.Random.Range(1, 3);
+        if (enemyActionCounter >= GetEnemyData.AttackCoolDownLength)
+        {
+            Attack(pHandler);
+        }
     }
 
-    public virtual void Idle()
+    public virtual void Attack(RageKnight.Player.PlayerHandler pHandler)
     {
-        enemyAnimation.Play(idleAnimName);
+        animationPlayer.Attack();
+        enemyActionCounter = 0;
+        pHandler.PlayerDamaged(GetEnemyData.AttackPower);
     }
 
     public virtual bool Damaged(float damageReceive)
@@ -77,9 +81,9 @@ public class EnemyController : MonoBehaviour
             return isAlive;
         }
 
-        enemyAnimation.Play(damagedAnimName);
-        enemyData.HealthPoints -= damageReceive;
-        if (enemyData.HealthPoints <= 0)
+        animationPlayer.Damage();
+        GetEnemyData.HealthPoints -= damageReceive;
+        if (GetEnemyData.HealthPoints <= 0)
         {
             Death();
             isAlive = false;
@@ -90,7 +94,7 @@ public class EnemyController : MonoBehaviour
     public virtual void Death()
     {
         enemyHandler.DeductArmyCount();
-        enemyAnimation.Play(deathAnimName);
+        animationPlayer.Death();
         enemyIsDead = true;
         //Change this tp something that checks when enemy is dead then remove
         Invoke("DestroyEnemy", 0.5f);
@@ -101,10 +105,7 @@ public class EnemyController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public virtual void Attack()
-    {
 
-    }
 
     public virtual void LoadEnemy()
     {
@@ -115,6 +116,6 @@ public class EnemyController : MonoBehaviour
     {
         this.gameObject.SetActive(isShow);
         if(isShow)
-            Idle();
+            animationPlayer.Idle();
     }
 }
