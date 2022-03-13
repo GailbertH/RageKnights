@@ -151,6 +151,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
             Manager.PlayerHandler.CheckCompanionAction(Manager);
         }
     }
+
     private void MoveEnvironment(float speed)
     {
         if (Manager.EnvironmentHandler != null)
@@ -159,3 +160,19 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         }
     }
 }
+
+public enum CombatState
+{
+    WAITING,
+    THINKNG,
+    ACTION,
+    RAGE,
+    END
+}
+public class Combat_Base
+{
+
+}
+//public class Combat_Waiting : Combat_Base<CombatState>
+//{
+//}

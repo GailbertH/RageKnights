@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Gameplay_Adventure : GameplayState_Base<GameplayState>
 {
-    private float WALK_SPEED = -0.1f;
+    private float WALK_SPEED = -1f;
     private float ENEMY_WALK_SPEED = -0.1f;
     private bool HasEnemySpawn = false;
 
     public Gameplay_Adventure(GameManager manager, RageKnight_InGame handler) : base (GameplayState.ADVENTURE, manager, handler)
     {
-        WALK_SPEED = Application.targetFrameRate > 30 ? -0.05f : -0.1f;
+        WALK_SPEED = Application.targetFrameRate > 30 ? -0.02f : -0.1f;
         ENEMY_WALK_SPEED = Application.targetFrameRate > 30 ? -0.05f : -0.1f;
     }
 

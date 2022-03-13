@@ -102,14 +102,19 @@ namespace RageKnight
             updateRoutine = StartCoroutine(ControlledUpdate());
             timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
+
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
         }
         #endregion
 
         private IEnumerator ControlledUpdate()
         {
-            //yield return new WaitForEndOfFrame();
             while (isStateActive)
             {
+                if(Time.renderedFrameCount >= 60)
+                    yield return new WaitForEndOfFrame();
+
                 yield return new WaitForEndOfFrame();
                 if (isGamePaused == false)
                 {
