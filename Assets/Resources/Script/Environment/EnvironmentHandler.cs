@@ -18,7 +18,7 @@ namespace RageKnight.Environment
             foregroundController?.MoveBackground(speed - 0.02f);
             maingroundController?.MoveBackground(speed);
             backgroundController?.MoveBackground(speed + 0.02f);
-            deepgroundController?.MoveBackground(speed + 0.03f);
+            deepgroundController?.MoveBackground(speed + 0.04f);
         }
     }
 }

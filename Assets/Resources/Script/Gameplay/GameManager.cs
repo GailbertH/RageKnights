@@ -10,11 +10,14 @@ namespace RageKnight
 {
 	public class GameManager : MonoBehaviour 
 	{
+        public const float WALK_SPEED = -0.05f;
+        public const float ENEMY_WALK_SPEED = -0.05f;
+        public const float RUN_SPEED = -0.1f;
+
         private static GameManager instance = null;
 		private RageKnightStateMachine stateMachine = null;
         private CombatTracker combatTracker = null;
 
-        private Coroutine updateRoutine = null;
         private Coroutine timeTrackerRoutine = null;
 
         private bool isStateActive = false;
@@ -99,7 +102,6 @@ namespace RageKnight
 		{
             stateMachine = new RageKnightStateMachine(this);
             isStateActive = true;
-            updateRoutine = StartCoroutine(ControlledUpdate());
             timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
 
@@ -108,19 +110,10 @@ namespace RageKnight
         }
         #endregion
 
-        private IEnumerator ControlledUpdate()
+        private void Update()
         {
-            while (isStateActive)
-            {
-                if(Time.renderedFrameCount >= 60)
-                    yield return new WaitForEndOfFrame();
-
-                yield return new WaitForEndOfFrame();
-                if (isGamePaused == false)
-                {
-                    stateMachine.Update();
-                }
-            }
+            if(isStateActive && isGamePaused == false)
+                stateMachine?.Update();
         }
 
         private IEnumerator TimeTracker()
@@ -196,10 +189,6 @@ namespace RageKnight
             {
                 stateMachine.Destroy();
                 stateMachine = null;
-            }
-            if (updateRoutine != null)
-            {
-                StopCoroutine(updateRoutine);
             }
         }
     }

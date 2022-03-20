@@ -35,15 +35,13 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
         Manager.GameUIManager.UpdateControlMode(State);
     }
 
-    private float WALK_SPEED = -0.15f;
-    private float WALK_SPEED_ENEMY = -0.15f;
     public override void GameUpdate()
     {
         if (Manager != null)
         {
             Manager.PlayerHandler.PlayerMoveForward();
-            MoveEnvironment(WALK_SPEED);
-            Manager.EnemyHandler.MoveUnits(WALK_SPEED_ENEMY);
+            MoveEnvironment(GameManager.RUN_SPEED);
+            Manager.EnemyHandler.MoveUnits(GameManager.RUN_SPEED);
             Manager.PlayerHandler?.PlayerArmyAttack(Manager);
         }
     }
