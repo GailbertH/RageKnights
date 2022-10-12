@@ -9,7 +9,7 @@ public class EnemyHandler : MonoBehaviour
 {
     //TODO too many random variables gotta reduce these weird variables its making things complicated now.
     private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
-    public const float DEFAULT_SPAWN_TIMER = 5f;
+    public const float DEFAULT_SPAWN_TIMER = 20f;
 
     [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private Animation spawnAnition;

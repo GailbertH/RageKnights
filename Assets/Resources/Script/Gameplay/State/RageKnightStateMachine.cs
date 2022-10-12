@@ -26,11 +26,9 @@ namespace RageKnight.GameState
             states.Add(inGame.State, (RageKnightState_Base<RageKnightState>)inGame);
             states.Add(exit.State, (RageKnightState_Base<RageKnightState>)exit);
 
-            currentState = loading;
-            currentState.Start();
-
             prevGameState = new List<RageKnightState>();
-            prevGameState.Add(currentState.State);
+
+            SwitchState(RageKnightState.LOADING);
         }
 
         public void Update()

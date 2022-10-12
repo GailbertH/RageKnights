@@ -17,14 +17,14 @@ public class BackgroundController : MonoBehaviour
                 BackgroundItem background = backgroundItems[i];
                 background.MovePosition(speed);
 
-                if (Math.Round((background.ItemTransform.position.x * -1), 2) >= (background.ItemWidth * 1.5f))
+                if (Math.Round((background.ItemTransform.position.x * -1), 2) >= (background.ItemWidth * 3f))
                 {
                     background.MoveForwardToConnectingItem();
                 }
-                else if (Math.Round((background.ItemTransform.position.x), 2) >= (background.ItemWidth * 1.5f))
-                {
-                    background.MoveBackToConnectingItem();
-                }
+                //else if (Math.Round((background.ItemTransform.position.x), 2) >= (background.ItemWidth * 3f))
+                //{
+                //    background.MoveBackToConnectingItem();
+                //}
                 //Debug.Log(background.ItemSprite.bounds.size.x);
 
             }
