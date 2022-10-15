@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerModel
+public class PlayerUnitModel
 {
     public float HealthPoints;
-    public float RagePoints;
+    public float MaxHealthPoints = 100;
     public float ActionGaugePoints;
+    public float MaxActionGaugePoints = 100;
+    public float RagePoints;
+    public float MaxRagePoints = 100;
 
     public float RageIncrement;
     public float ActionGaugeIncrement;
@@ -16,27 +19,9 @@ public class PlayerModel
     public int AttackPower;
     public int DefensePower;
     public int HealthPower;
-    public int RagePower;
-
-    public ConsumableModel currentItemInUse;
-    public WeaponModel currentWeaponInUse;
-    public HelmetModel currentHelmetInUse;
-    public ArmorModel currentArmorInUse;
-    public int ItemCount;
-
-    public int WeapomStatBonus; //ATTACK
-    public int HealthStatBonus; //DEFENSE
-    public int ArmorStatBonus; //HEALTH
-
-    public float AttackRageMultiplier;
-
-    //Must be moved somewhere
-    public float BaseHealthPoints;
-    public float MaxRagePoints;
-    public float MaxActionGaugePoints;
-    public int MaxItemCount;
 }
 
+#region Unused
 [Serializable]
 public class ItemModel
 {
@@ -83,3 +68,4 @@ public class ArmorModel : ItemModel
     public float maxLevel;
     public ElementType elementType;
 }
+#endregion

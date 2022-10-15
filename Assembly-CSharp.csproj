@@ -71,12 +71,12 @@
     <Compile Include="Assets\Resources\Script\Tools\CompanionDataContainer.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\HealthbarHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\State\RageKnightStateMachine.cs" />
-    <Compile Include="Assets\Resources\Script\Player\PlayerHandler.cs" />
+    <Compile Include="Assets\Resources\Script\Player\PlayerUnitHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\PopupHandler.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\StorePopup.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyController.cs" />
     <Compile Include="Assets\Resources\Script\Environment\BackgroundController.cs" />
-    <Compile Include="Assets\Resources\Script\Player\PlayerController.cs" />
+    <Compile Include="Assets\Resources\Script\Player\PlayerUnitController.cs" />
     <Compile Include="Assets\Resources\Script\Tools\EnemyDataContainer.cs" />
     <Compile Include="Assets\Resources\Script\Tools\Helmet.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\DataDebugPopup.cs" />
@@ -90,7 +90,8 @@
     <Compile Include="Assets\Resources\Script\Gameplay\GameState\Gameplay_Combat.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemySoldierController.cs" />
     <Compile Include="Assets\Resources\Script\Gameplay\GameplayUI\GameUIManager.cs" />
-    <Compile Include="Assets\Resources\Script\Player\PlayerModel.cs" />
+    <Compile Include="Assets\Resources\Script\Player\PlayerUnitModel.cs" />
+    <Compile Include="Assets\Resources\Script\Gameplay\GameCombatState\CombatStateMachine.cs" />
     <Compile Include="Assets\Resources\Script\Enemy\EnemyHandler.cs" />
     <Compile Include="Assets\Resources\Script\Utility\LoadingManager.cs" />
     <Compile Include="Assets\Resources\Script\Utility\LoadingMeter.cs" />

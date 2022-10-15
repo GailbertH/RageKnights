@@ -13,9 +13,8 @@ namespace RageKnight.GameState
 		public override void Start ()
 		{
             //TODO IMPROVE THIS SHIT
-            PlayerModel currentPlayerData = GameManager.Instance.PlayerHandler.GetPlayerData;
-            PlayerModel newPlayerData = AccountManager.Instance.AccountData.CurrentCharacterData;
-            newPlayerData.ItemCount = currentPlayerData.ItemCount;
+            PlayerUnitModel currentPlayerData = GameManager.Instance.PlayerHandler.GetPlayerData;
+            PlayerUnitModel newPlayerData = AccountManager.Instance.AccountData.CurrentCharacterData;
 
             AccountManager.Instance.AccountData.Gold = Manager.StageGold;
             AccountManager.Instance.AccountData.CurrentCharacterData = newPlayerData;

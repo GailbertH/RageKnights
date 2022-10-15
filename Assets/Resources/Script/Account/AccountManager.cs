@@ -31,29 +31,16 @@ public class AccountManager : MonoBehaviour
 
     public void GenerateAccount()
     {
-        PlayerModel currentCharacterData = new PlayerModel
+        PlayerUnitModel currentCharacterData = new PlayerUnitModel
         {
             AttackPower = 2,
             DefensePower = 2,
             HealthPower = 2,
-            RagePower = 2,
             RageIncrement = 0.5f,
             ActionGaugeIncrement = 0.2f,
             HealthPoints = 30f,
             ActionGaugePoints = 10f,
             RagePoints = 0,
-            currentItemInUse = new ConsumableModel
-            {
-                id = "0000",
-                quantity = 5
-            },
-            WeapomStatBonus = 0,
-            HealthStatBonus = 0,
-            ArmorStatBonus = 0,
-            BaseHealthPoints = 30f,
-            MaxRagePoints = 100f,
-            MaxActionGaugePoints = 100f,
-            AttackRageMultiplier = 2
         };
         string jsonAccountData = JsonUtility.ToJson(currentCharacterData);
         Debug.Log("FAKE DATA : " + jsonAccountData);
@@ -147,8 +134,8 @@ public class AccountManager : MonoBehaviour
 
     public void ResetPlayerStatus()
     {
-        AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.BaseHealthPoints;
-        AccountData.CurrentCharacterData.ActionGaugePoints = AccountData.CurrentCharacterData.ActionGaugePoints;
+        AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.MaxHealthPoints;
+        AccountData.CurrentCharacterData.ActionGaugePoints = 0;
         AccountData.CurrentCharacterData.RagePoints = 0;
     }
 }
@@ -160,8 +147,8 @@ public class AccountData
     public string AccountName;
     public long Gold;
     public bool HasCurrentActiveGame;
-    public PlayerModel CurrentCharacterData; //Selected Character
-    public PlayerModel[] CharacterData;
+    public PlayerUnitModel CurrentCharacterData; //Selected Character
+    public PlayerUnitModel[] CharacterData;
     public ProgressTrackerModel CurrentProgress;
     public ProgressTrackerModel ProgressTracker;
     //Inventory Data

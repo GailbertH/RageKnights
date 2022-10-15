@@ -27,15 +27,13 @@ public class MiddleUIHandler : MonoBehaviour
     private void InitHealthBar()
     {
         GameManager inst = GameManager.Instance;
-        PlayerModel playerData = inst.PlayerHandler.GetPlayerData;
+        PlayerUnitModel playerData = inst.PlayerHandler.GetPlayerData;
 
-        float playerBaseHP = playerData.BaseHealthPoints;
+        float playerMaxHP = playerData.MaxHealthPoints;
         float playerCurrentHP = playerData.HealthPoints;
-        float playerMaxAG = playerData.MaxActionGaugePoints;
-        float playerMaxRage = playerData.MaxRagePoints;
         float enemyCurrentHP = inst.EnemyHandler.GetArmyCount;
 
-        healthbarHandler.Initialize(playerBaseHP, enemyCurrentHP, playerMaxAG, playerMaxRage, 150, enemyArmyCount: (int)enemyCurrentHP, isBoss: false);
+        healthbarHandler.Initialize(playerMaxHP, enemyCurrentHP, 150, enemyArmyCount: (int)enemyCurrentHP, isBoss: false);
         healthbarHandler.UpdatePlayerHealth(playerCurrentHP);
         healthbarHandler.UpdateEnemyHealth(enemyCurrentHP);
         healthbarHandler.UpdatePlayerActionGauge(0);

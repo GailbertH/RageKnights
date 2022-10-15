@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
         animationPlayer.Idle();
     }
 
-    public virtual void CheckAction(RageKnight.Player.PlayerHandler pHandler)
+    public virtual void CheckAction(RageKnight.Player.PlayerUnitHandler pHandler)
     {
         enemyActionCounter += UnityEngine.Random.Range(1, 3);
         if (enemyActionCounter >= GetEnemyData.AttackCoolDownLength)
@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public virtual void Attack(RageKnight.Player.PlayerHandler pHandler)
+    public virtual void Attack(RageKnight.Player.PlayerUnitHandler pHandler)
     {
         animationPlayer.Attack();
         enemyActionCounter = 0;

@@ -7,9 +7,6 @@ namespace RageKnight.GameState
 {
     public class RageKnightStateMachine
     {
-        public delegate void OnStateSwitch(RageKnightState nextState);
-        public event OnStateSwitch OnStatePreSwitchEvent = null;
-
         private Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>> states = new Dictionary<RageKnightState, RageKnightState_Base<RageKnightState>>();
         private RageKnightState_Base<RageKnightState> currentState = null;
         private List<RageKnightState> prevGameState;
@@ -86,7 +83,7 @@ namespace RageKnight.GameState
 		public bool SwitchState (RageKnightState newState)
 		{
 			bool switchSuccess = false;
-            Debug.Log(newState);
+            Debug.Log("RAGE KNIGHT STAE MACHINE "+ newState);
 			if (states != null && states.ContainsKey (newState))
 			{
 				if (currentState == null)
@@ -121,11 +118,6 @@ namespace RageKnight.GameState
 					}
 				}
 				#endif
-
-				if (this.OnStatePreSwitchEvent != null)
-				{
-					this.OnStatePreSwitchEvent (newState);
-				}
 			}
 			else
 			{

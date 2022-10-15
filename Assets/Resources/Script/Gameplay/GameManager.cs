@@ -26,7 +26,7 @@ namespace RageKnight
         public int stage = 1;
 
         [SerializeField] private EnemyHandler enemyHandler;
-        [SerializeField] private PlayerHandler playerHandler;
+        [SerializeField] private PlayerUnitHandler playerUnitHandler;
         [SerializeField] private EnvironmentHandler environmentHandler;
         [SerializeField] private int stageCount;
 
@@ -45,9 +45,9 @@ namespace RageKnight
             set { gameUIManager = value; }
         }
 
-        public PlayerHandler PlayerHandler
+        public PlayerUnitHandler PlayerHandler
         {
-            get { return playerHandler; }
+            get { return playerUnitHandler; }
         }
 
         public EnemyHandler EnemyHandler
@@ -129,7 +129,7 @@ namespace RageKnight
             }
         }
 
-        public void AccountDataInit(PlayerModel playerData)
+        public void AccountDataInit(PlayerUnitModel playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
@@ -151,11 +151,6 @@ namespace RageKnight
         public void PauseGame(bool isPause)
         {
             isGamePaused = isPause;
-        }
-
-        public void AddPotion(int count)
-        {
-            playerHandler.PlayerAddItem(count);
         }
 
         public void IncrementStage()
@@ -181,7 +176,7 @@ namespace RageKnight
         {
             isStateActive = false;
             GameUIManager = null;
-            playerHandler = null;
+            playerUnitHandler = null;
             enemyHandler = null;
             environmentHandler = null;
             instance = null;
