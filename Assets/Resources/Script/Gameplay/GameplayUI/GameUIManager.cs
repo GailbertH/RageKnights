@@ -4,19 +4,6 @@ using RageKnight;
 using UnityEngine.UI;
 using System;
 
-public enum BasicMovements {
-    None = 0,
-    Idle = 1,
-    Attack = 2,
-    Skill = 3,
-}
-
-public enum SkillMovements {
-    None = 0,
-    Rage = 1,
-    Heal = 2,
-}
-
 //TODO
 //Separate GameControlsUI/GameAction in a different handler for easy scalability and editing.
 
@@ -83,23 +70,22 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    public BasicMovements buttonEvents;
+    //-----Should be somewhere else
+    private CombatActionStates buttonEvent;
+    public CombatActionStates GetButtonEvent
+    {
+        get { return buttonEvent; }
+    }
+    public void ResetButtonEvent()
+    {
+        buttonEvent = CombatActionStates.NONE;
+    }
 
     public void AttackButton()
     {
-        buttonEvents = BasicMovements.Attack;
+        buttonEvent = CombatActionStates.ATTACK;
     }
-
-    public SkillMovements skillEvents;
-    public void SkillButton()
-    {
-        skillEvents = SkillMovements.Rage;
-    }
-
-    public void HealButtton()
-    {
-        skillEvents = SkillMovements.Heal;
-    }
+    //------
 
     public bool IsTimingPlaying()
     {

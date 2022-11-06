@@ -16,7 +16,7 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private Text enemyArmyCountLabel;
 
     private float playerMaxHealth;
-    private float playerMaxActionGagugePoints;
+    private float playerMaxActionGagugePoints = 1;
     private float enemyMaxActionGaugePoints;
     private float enemyBaseHealth;
     private float enemyArmyCount;
