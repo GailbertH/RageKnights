@@ -1,5 +1,17 @@
 sceneSetups:
-- path: Assets/Resources/Scene/SplashScene.unity
+- path: Assets/Resources/Scene/GameScene.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
+- path: Assets/Resources/Scene/GameUI.unity
+  isLoaded: 1
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Resources/Scene/DataManagerScene.unity
+  isLoaded: 1
+  isActive: 0
+  isSubScene: 0
+- path: Assets/Resources/Scene/DialogueUI.unity
+  isLoaded: 1
+  isActive: 0
   isSubScene: 0
