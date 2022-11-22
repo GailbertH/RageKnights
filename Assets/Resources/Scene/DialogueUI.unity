@@ -1625,12 +1625,16 @@ MonoBehaviour:
   dialoguePortraitLeft: {fileID: 1137987762}
   dialogueProtraitRight: {fileID: 1775989390}
   dialogueText: {fileID: 301124860}
-  dialogueTextFile: {fileID: 4900000, guid: 3dda9684b9efe59469bcf9591451e162, type: 3}
   eventSystem: {fileID: 619558411}
   ChoiceHolder: {fileID: 585605896}
   choices:
   - {fileID: 371532963}
   - {fileID: 1569084658}
+  assetRef:
+    m_AssetGUID: 3dda9684b9efe59469bcf9591451e162
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!4 &1224711299
 Transform:
   m_ObjectHideFlags: 0

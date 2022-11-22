@@ -5,6 +5,10 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using UnityEngine.AddressableAssets.ResourceLocators;
 //using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
@@ -17,7 +21,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialogueProtraitRight;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private TextAsset dialogueTextFile;
+    private TextAsset dialogueTextFile;
     [SerializeField] private EventSystem eventSystem;
 
     [SerializeField] private GameObject ChoiceHolder;
@@ -34,14 +38,81 @@ public class DialogueManager : MonoBehaviour
     private Coroutine dialogueCoroutine;
     private string currentDialogue;
 
+    public AssetReference assetRef;
+
     private static DialogueManager instance = null;
     public static DialogueManager Instance { get { return instance; } }
 
     void Awake()
     {
         instance = this;
-        StartDialogueMode(dialogueTextFile);
         //uiInput.actions["Click"].performed += Alert;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(DownloadOrLoadAddressable());
+    }
+
+    private IEnumerator DownloadOrLoadAddressable()
+    {
+        var allLocations = new List<IResourceLocation>();
+
+        Addressables.ClearDependencyCacheAsync("RemoteResourceTesting");
+        Addressables.ClearResourceLocators();
+
+        AsyncOperationHandle<long> getDownloadSize = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
+        Debug.Log(getDownloadSize.PercentComplete);
+        float downloadSize = getDownloadSize.Result / (1024f * 1024f * 1024f);
+        Debug.Log("Download size in KB: " + downloadSize);
+        Debug.Log("Download Size Status" + getDownloadSize.Status);
+        yield return new WaitUntil(() => getDownloadSize.IsDone);
+
+        if (getDownloadSize.Result > 0)
+        {
+            Debug.Log("Downloading");
+            AsyncOperationHandle downloadDependencies = Addressables.DownloadDependenciesAsync("RemoteResourceTesting");
+            AsyncOperationHandle<long> getDownloadSize3 = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
+            Debug.Log("Download Size Resulet" + getDownloadSize3.Result);
+            while (!downloadDependencies.IsDone)
+            {
+
+                var totalBytes = downloadDependencies.GetDownloadStatus().DownloadedBytes;
+                Debug.Log("Total Bytes " + totalBytes);
+                var _percent = downloadDependencies.GetDownloadStatus().Percent;
+                Debug.Log(_percent);
+                yield return null;
+            }
+            downloadDependencies.WaitForCompletion();
+            Debug.Log("Download finish");
+        }
+
+        var loadop = Addressables.LoadResourceLocationsAsync("RemoteResourceTesting");
+        Debug.Log("loadop 2 " + loadop.IsDone);
+        if (loadop.Status == AsyncOperationStatus.Succeeded)
+        {
+            AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
+            Debug.Log("loadText 1 " + loadText.Result);
+            dialogueTextFile = loadText.WaitForCompletion();
+            Debug.Log("loadText 2 " + loadText.Result);
+        }
+
+        //AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
+        //dialogueTextFile = loadText.WaitForCompletion();
+
+
+        //Addressables.LoadAssetsAsync<UnityEngine.Object>("RemoteResourceTesting", obj =>
+        //{
+        //    Debug.Log("Files Unity Object = " + obj.GetType());
+        //});
+        //Addressables.LoadAssetsAsync<object>("RemoteResourceTesting", obj =>
+        //{
+        //    Debug.Log("Files = " + obj.GetType());
+        //});
+
+        Addressables.Release(loadop);
+        StartDialogueMode(dialogueTextFile);
+        yield break;
     }
 
     //private void Alert(InputAction.CallbackContext context)
