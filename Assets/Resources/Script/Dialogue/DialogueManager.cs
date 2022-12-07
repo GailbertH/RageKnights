@@ -62,21 +62,14 @@ public class DialogueManager : MonoBehaviour
         Addressables.ClearResourceLocators();
 
         AsyncOperationHandle<long> getDownloadSize = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
-        Debug.Log(getDownloadSize.PercentComplete);
-        float downloadSize = getDownloadSize.Result / (1024f * 1024f * 1024f);
-        Debug.Log("Download size in KB: " + downloadSize);
-        Debug.Log("Download Size Status" + getDownloadSize.Status);
         yield return new WaitUntil(() => getDownloadSize.IsDone);
-
+        Debug.Log("Downloadsize result: " + getDownloadSize.Result + " kb");
         if (getDownloadSize.Result > 0)
         {
             Debug.Log("Downloading");
             AsyncOperationHandle downloadDependencies = Addressables.DownloadDependenciesAsync("RemoteResourceTesting");
-            AsyncOperationHandle<long> getDownloadSize3 = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
-            Debug.Log("Download Size Resulet" + getDownloadSize3.Result);
             while (!downloadDependencies.IsDone)
             {
-
                 var totalBytes = downloadDependencies.GetDownloadStatus().DownloadedBytes;
                 Debug.Log("Total Bytes " + totalBytes);
                 var _percent = downloadDependencies.GetDownloadStatus().Percent;
@@ -88,13 +81,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         var loadop = Addressables.LoadResourceLocationsAsync("RemoteResourceTesting");
-        Debug.Log("loadop 2 " + loadop.IsDone);
+        Debug.Log("loadop is done " + loadop.IsDone);
         if (loadop.Status == AsyncOperationStatus.Succeeded)
         {
             AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
-            Debug.Log("loadText 1 " + loadText.Result);
             dialogueTextFile = loadText.WaitForCompletion();
-            Debug.Log("loadText 2 " + loadText.Result);
         }
 
         //AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");

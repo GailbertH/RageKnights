@@ -1221,11 +1221,12 @@ Animation:
   m_GameObject: {fileID: 829731515}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0d2e588e26c501048acdd1f2f3e851ff, type: 2}
+  m_Animation: {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
   m_Animations:
+  - {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
   - {fileID: 7400000, guid: 0d2e588e26c501048acdd1f2f3e851ff, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &829731518
@@ -1240,16 +1241,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7082237e25e485d40a96f73cc9af860f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 2011531637}
+  spriteRenderer: {fileID: 2011531634}
+  combatPlacement: 0
   enemyData:
     HealthPoints: 50
     BaseHealth: 50
     AttackPower: 1
     DefensePower: 5
     AttackCoolDownLength: 4
-  combatPlacement: 0
-  spriteRenderer: {fileID: 2011531634}
-  animationPlayer: {fileID: 2011531635}
-  testMode: 0
 --- !u!1 &956421896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1343,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1066765441}
-  - component: {fileID: 1066765442}
   m_Layer: 0
   m_Name: EnemyTop
   m_TagString: Untagged
@@ -1367,22 +1366,6 @@ Transform:
   m_Father: {fileID: 621252194}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1066765442
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066765440}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1072745790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,7 +2467,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663488804}
-  - component: {fileID: 1663488805}
   m_Layer: 0
   m_Name: EnemyBot
   m_TagString: Untagged
@@ -2508,22 +2490,6 @@ Transform:
   m_Father: {fileID: 621252194}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1663488805
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1663488803}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1713007271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2901,7 +2867,7 @@ GameObject:
   - component: {fileID: 2011531633}
   - component: {fileID: 2011531634}
   - component: {fileID: 2011531636}
-  - component: {fileID: 2011531635}
+  - component: {fileID: 2011531637}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2976,24 +2942,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2011531635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011531632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810ca242618636e4a824b58f22645875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyAnimation: {fileID: 2011531636}
-  extraEnemyAnimation: {fileID: 829731517}
-  idleAnimName: Temp_Blompy_Idle
-  damagedAnimName: Temp_Blompy_Damaged
-  deathAnimName: Temp_Blompy_Death
-  attackAnimName: Temp_Blompy_Attack
 --- !u!111 &2011531636
 Animation:
   m_ObjectHideFlags: 0
@@ -3012,6 +2960,24 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &2011531637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011531632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810ca242618636e4a824b58f22645875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyAnimation: {fileID: 2011531636}
+  extraEnemyAnimation: {fileID: 829731517}
+  idleAnimName: Temp_Blompy_Idle
+  damagedAnimName: Temp_Blompy_Damaged
+  deathAnimName: Temp_Blompy_Death
+  attackAnimName: Temp_Blompy_Attack
 --- !u!4 &2050511522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6409872433871834978, guid: 82c75aa7694603b4a9cc821ebcd462f4,
@@ -3027,7 +2993,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2118924886}
-  - component: {fileID: 2118924887}
   m_Layer: 0
   m_Name: EnemyMid
   m_TagString: Untagged
@@ -3051,22 +3016,6 @@ Transform:
   m_Father: {fileID: 621252194}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &2118924887
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118924885}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &2122773207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,9 +3221,14 @@ PrefabInstance:
       objectReference: {fileID: 637440468}
     - target: {fileID: 3643522312229366974, guid: 8fe4e9e7aa53a0e478c48a411d44ff86,
         type: 3}
+      propertyPath: spawnLimit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3643522312229366974, guid: 8fe4e9e7aa53a0e478c48a411d44ff86,
+        type: 3}
       propertyPath: spawnAnition
       value: 
-      objectReference: {fileID: 2118924887}
+      objectReference: {fileID: 0}
     - target: {fileID: 3643522312229366974, guid: 8fe4e9e7aa53a0e478c48a411d44ff86,
         type: 3}
       propertyPath: spawnSpotBot

@@ -9,13 +9,13 @@ public class EnemyHandler : MonoBehaviour
 {
     //TODO too many random variables gotta reduce these weird variables its making things complicated now.
     private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
-    public const float DEFAULT_SPAWN_TIMER = 20f;
+    public const float DEFAULT_SPAWN_TIMER = 5f;
 
     [SerializeField] private List<GameObject> enemyList;
-    [SerializeField] private Animation spawnAnition;
     [SerializeField] private EnemySoldierController enemySoldierController;
 
     [SerializeField] private List<GameObject> spawnSpotHolders;
+    [SerializeField] private int spawnLimit = 0;
 
     private List<EnemyController> enemies = null;
 
@@ -53,14 +53,46 @@ public class EnemyHandler : MonoBehaviour
     {
         Debug.Log("init");
         //Not the best idea but it will do for now.
-        armyCount = UnityEngine.Random.Range(20 , 50);
+        armyCount = UnityEngine.Random.Range(20, 50);
+        spawnLimit = (spawnLimit == 0 || spawnLimit > 3) ? spawnSpotHolders.Count : spawnLimit;
         enemies = new List<EnemyController>();
-        enemies.Add(null);
-        enemies.Add(null);
-        enemies.Add(null);
+        for(int i = 0; i < spawnLimit; i++)
+        {
+            enemies.Add(null);
+        }
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
     }
 
+    /////////////////////////////////////////////////////
+    private bool enemyTurnIsDone = false;
+    public void SetTurnOrder()
+    {
+    }
+
+    public bool IsTurnsFinished()
+    {
+        //All units done doing their turn
+        return enemyTurnIsDone;
+    }
+
+    public void UpdateTurns()
+    {
+        //Temp
+        enemyTurnIsDone = true;
+    }
+
+    public void ResetTurns()
+    {
+        //All unit turnIsDone = false;
+        enemyTurnIsDone = false;
+    }
+
+    public void CheckUnitAction()
+    {
+
+    }
+
+    /////////////////////////////////////////////////////
     //Fix this to only get existing enemies
     public void DamagedEnemy(float damage)
     {
@@ -76,13 +108,14 @@ public class EnemyHandler : MonoBehaviour
         {
             listContent += x + " ";
         }
-        Debug.Log("Alive List : " + listContent);
-        Debug.Log("Targe Enemy : " + eCPId);
+        //Debug.Log("Alive List : " + listContent);
+        //Debug.Log("Targe Enemy : " + eCPId);
 
         if (enemies[eCPId] != null)
         {
-            bool isEnemyAlive = enemies[eCPId].Damaged(damage);
-            if (isEnemyAlive == false)
+            //enemies[eCPId].Damaged(damage);
+            bool isEnemyDead = enemies[eCPId].GetIsDead;
+            if (isEnemyDead == true)
             {
                 OnEnemySlain(eCPId);
             }
@@ -135,8 +168,8 @@ public class EnemyHandler : MonoBehaviour
     private void EnemySpawn()
     {
         var fieldSlots = enemies.Where(x => x != null).Count();
-        Debug.Log("Army " + armyCount + " <= " + fieldSlots + " == " + spawnSpotHolders.Count());
-        if (armyCount <= fieldSlots || fieldSlots == spawnSpotHolders.Count())
+        Debug.Log("Army " + armyCount + " <= " + fieldSlots + " == " + enemies.Count());
+        if (armyCount <= fieldSlots || fieldSlots == enemies.Count())
         {
             Debug.Log("Out of units");
             return;
@@ -156,25 +189,24 @@ public class EnemyHandler : MonoBehaviour
         enemyObject.transform.localRotation = enemyList[0].transform.rotation;
 
         enemies[eCPId] = enemyObject.GetComponent<EnemyController>();
-        enemies[eCPId].Initialize((CombatPlacement)eCPId, this);
-        enemySpawnObj.GetComponentInChildren<Animation>().Play();
+        //enemies[eCPId].Initialize((CombatPlacement)eCPId, this);
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
 
         GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(enemies[eCPId].GetEnemyData.HealthPoints);
 
-        if (fieldSlots < spawnSpotHolders.Count())
+        if (fieldSlots < enemies.Count())
         {
             EnemySpawn();
         }
     }
 
-    public void EnemyActionChecker(GameManager manager)
+    public void EnemyActionChecker()
     {
         int eCPId = 0;
         foreach (EnemyController enemy in enemies.Where(x => x != null))
         {
-            enemy.CheckAction(manager.PlayerHandler);
+            enemy.CheckAction();
         }
     }
 
@@ -196,7 +228,7 @@ public class EnemyHandler : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i]?.DestroyEnemy();
+            enemies[i]?.DestroyUnit();
             enemies[i] = null;
         }
         hasPresentMonster = false;

@@ -54,15 +54,39 @@ namespace RageKnight.Player
             Debug.Log("Player Initialize");
         }
 
+        public EnemyHandler GetEnemyHandler()
+        {
+            return GameManager.Instance.EnemyHandler;
+        }
 
+        ///////////////////////////////////////////////////// 
+        private bool playerTurnIsDone = false;
+        public void SetTurnOrder()
+        {
+        }
 
+        public string CurrentUnitAtTurn()
+        {
+            return "";
+        }
 
+        public bool IsTurnsFinished()
+        {
+            //All units done doing their turn
+            return playerTurnIsDone;
+        }
 
+        public void UpdateTurns()
+        {
+            //Temp
+            playerTurnIsDone = true;
+        }
 
-
-
-
-
+        public void ResetTurns()
+        {
+            //All unit turnIsDone = false;
+            playerTurnIsDone = false;
+        }
 
         /////////////////////////////////////////////////////
 
@@ -77,14 +101,14 @@ namespace RageKnight.Player
             UpdateHealthGauge();
         }
 
-        public void PlayerAttack(GameManager manager)
+        public void PlayerAttack()
         {
             currentPlayerState = PlayerState.ATTACKING;
             if (units?.IsAttackPlaying() == false)
             {
                 units?.PlayAttackAnimation();
                 float attackDamage = GetPlayerData != null ? units.GetUnitData.AttackPower : 0;
-                manager?.EnemyHandler?.DamagedEnemy(attackDamage);
+                GetEnemyHandler().DamagedEnemy(attackDamage);
             }
         }
 

@@ -1,121 +1,51 @@
 ﻿using System;
 using UnityEngine;
 
-public enum CombatPlacement
-{
-    MID = 0,
-    TOP = 1,
-    BOT = 2
-}
-public class EnemyController : MonoBehaviour
+public class EnemyController : UnitController
 {
     [SerializeField] private EnemyModel enemyData = null;
-    [SerializeField] private CombatPlacement combatPlacement;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] public EnemyAnimationController animationPlayer;
-
-    [SerializeField] public bool testMode = false;
-
-    private EnemyHandler enemyHandler = null;
-    private bool enemyIsDead = false;
-
-    private int enemyActionCounter = 0;
 
     public EnemyModel GetEnemyData
     {
         get { return enemyData; }
     }
 
-    //TODO fix this someday
-    public CombatPlacement GetCombatPlacement
+    public override void Initialize()
     {
-        get { return combatPlacement; }
+        base.Initialize();
     }
 
-    public int GetOrderInLayer
+    public void CheckAction()
     {
-        get {
-            if (combatPlacement == CombatPlacement.BOT)
-            {
-                return 20;
-            }
-            else if (combatPlacement == CombatPlacement.MID)
-            {
-                return 10;
-            }
-            //Top returns 0
-            return 0;
-        }
+        Attack();
     }
 
-    public virtual void Initialize(CombatPlacement placementValue, EnemyHandler handler)
+    public override void Attack()
     {
-        enemyHandler = handler;
-        this.combatPlacement = placementValue;
-        spriteRenderer.sortingOrder = GetOrderInLayer;
-        animationPlayer.Idle();
+        base.Attack();
     }
 
-    public virtual void CheckAction(RageKnight.Player.PlayerUnitHandler pHandler)
+    public override void Damaged()
     {
-        enemyActionCounter += UnityEngine.Random.Range(1, 3);
-        if (enemyActionCounter >= GetEnemyData.AttackCoolDownLength)
+        if (isDead == true)
         {
-            Attack(pHandler);
-        }
-    }
-
-    public virtual void Attack(RageKnight.Player.PlayerUnitHandler pHandler)
-    {
-        animationPlayer.Attack();
-        enemyActionCounter = 0;
-        pHandler.PlayerDamaged(GetEnemyData.AttackPower);
-    }
-
-    public virtual bool Damaged(float damageReceive)
-    {
-        bool isAlive = true;
-        if (enemyIsDead == true)
-        {
-            isAlive = false;
-            return isAlive;
+            return;
         }
 
-        animationPlayer.Damage();
-        GetEnemyData.HealthPoints -= damageReceive;
+        animationController.Damage();
+        GetEnemyData.HealthPoints -= 0;
         if (GetEnemyData.HealthPoints <= 0)
         {
-            Death();
-            isAlive = false;
+            //Death();
+            Debug.Log("=====DEAD!=====");
+            isDead = false;
         }
-        return isAlive;
     }
 
-    public virtual void Death()
+    public override void Death()
     {
-        enemyHandler.DeductArmyCount();
-        animationPlayer.Death();
-        enemyIsDead = true;
-        //Change this tp something that checks when enemy is dead then remove
-        Invoke("DestroyEnemy", 0.5f);
+        base.Death();
+        //enemyHandler.DeductArmyCount();
     }
 
-    public virtual void DestroyEnemy()
-    {
-        Destroy(this.gameObject);
-    }
-
-
-
-    public virtual void LoadEnemy()
-    {
-
-    }
-
-    public virtual void ShowOrHide(bool isShow = true)
-    {
-        this.gameObject.SetActive(isShow);
-        if(isShow)
-            animationPlayer.Idle();
-    }
 }

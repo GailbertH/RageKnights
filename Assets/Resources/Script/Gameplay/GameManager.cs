@@ -186,5 +186,44 @@ namespace RageKnight
                 stateMachine = null;
             }
         }
+
+
+        ////////// Game play related /////////////
+
+        private string currentUnitAtTurn = "";
+        public string GetCurrentUnitAtTurn
+        {
+            get { return currentUnitAtTurn; }
+        }
+        public bool IsPlayerTurn { get; private set; }
+
+        public void SetTurn()
+        {
+            Debug.Log("Turn Set");
+            playerUnitHandler.SetTurnOrder();
+            enemyHandler.SetTurnOrder();
+            IsPlayerTurn = true;
+            currentUnitAtTurn = playerUnitHandler.CurrentUnitAtTurn();
+        }
+
+
+        public void TurnCheck()
+        {
+            ////Temporary
+            if (playerUnitHandler.IsTurnsFinished() == false)
+            {
+                Debug.Log("PLAYER TURN CHECK");
+                playerUnitHandler.UpdateTurns();
+                enemyHandler.ResetTurns();
+                IsPlayerTurn = false;
+            }
+            else if (enemyHandler.IsTurnsFinished() == false)
+            {
+                Debug.Log("ENEMY TURN CHECK");
+                enemyHandler.UpdateTurns();
+                playerUnitHandler.ResetTurns();
+                IsPlayerTurn = true;
+            }
+        }
     }
 }

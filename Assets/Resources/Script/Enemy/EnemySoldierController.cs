@@ -38,7 +38,7 @@ public class EnemySoldierController : MonoBehaviour
         {
             if (enemyArmy[i] != null)
             {
-                enemyArmy[i].animationPlayer.Idle();
+                enemyArmy[i].animationController.Idle();
             }
         }
     }
@@ -58,8 +58,10 @@ public class EnemySoldierController : MonoBehaviour
         {
             if (enemyArmy[i] != null)
             {
-                if(enemyArmy[i].transform.position.x <= 1)
-                    enemyArmy[i].Damaged(damage);
+                if (enemyArmy[i].transform.position.x <= 1)
+                {
+                    //enemyArmy[i].Damaged(damage);
+                }
             }
         }
     }
@@ -100,7 +102,7 @@ public class EnemySoldierController : MonoBehaviour
             enemyObject.transform.localRotation = enemyList[0].transform.rotation;
             enemyObject.SetActive(true);
             var enemyController = enemyObject.GetComponent<EnemyController>();
-            enemyController.Initialize(currentPlacement, enemyHandler);
+            //enemyController.Initialize(currentPlacement, enemyHandler);
             enemyArmy.Add(enemyController);
             currentPlacement = IncrementPlacement(currentPlacement);
         }

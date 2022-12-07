@@ -75,7 +75,7 @@ public class CombatStateMachine
         combatStates.Add(turnCheck.State, turnCheck);
         combatStates.Add(passiveAction.State, passiveAction);
         combatStates.Add(statusAction.State, statusAction);
-        combatStates.Add(actionSelection.State, action);
+        combatStates.Add(actionSelection.State, actionSelection);
         combatStates.Add(action.State, action);
         combatStates.Add(statusCheck.State, statusCheck);
         combatStates.Add(spawnCheck.State, spawnCheck);
@@ -155,18 +155,18 @@ public class CombatStateMachine
             return CombatState.SETUP;
     }
 
-    public bool CombatFinish = true; //Temp
+    public bool CombatFinish = false; //Temp
     public void NextState()
     {
         currentState.End();
-        Debug.Log("CURRENT STATE " + currentState.State.ToString());
+        //Debug.Log("CURRENT STATE " + currentState.State.ToString());
         if (currentState?.State == CombatState.RESULT)
         {
             End();
             return;
         }
         var nextState = GetNextState();
-        Debug.Log("NEXT STATE " + nextState.ToString());
+        //Debug.Log("NEXT STATE " + nextState.ToString());
         currentState = combatStates[GetNextState()];
         currentState.Start();
     }
@@ -217,7 +217,7 @@ public class Combat_Setup : Combat_Base<CombatState>
 {
     public Combat_Setup(CombatStateMachine machine) : base(CombatState.SETUP, machine)
     {
-
+        GameManager.Instance.SetTurn();
     }
 
     public override void GoToNextState()
@@ -309,6 +309,8 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        //Check speed ?
+        GoToNextState();
     }
 
     public override void ProtoUpdate()
@@ -348,6 +350,7 @@ public class Combat_PassiveAction : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        GoToNextState();
     }
 
     public override void ProtoUpdate()
@@ -386,6 +389,7 @@ public class Combat_StatusAction : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        GoToNextState();
     }
 
     public override void ProtoUpdate()
@@ -412,6 +416,7 @@ public class Combat_StatusAction : Combat_Base<CombatState>
 //Wait for player to decide action
 public class Combat_ActionSelection : Combat_Base<CombatState>
 {
+    private bool actionSelected = false;
     public Combat_ActionSelection(CombatStateMachine machine) : base(CombatState.ACTION_SELECTION, machine)
     {
     }
@@ -423,15 +428,34 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void Start()
     {
+        actionSelected = false;
+        if (GameManager.Instance.IsPlayerTurn)
+        {
+            Debug.Log("PLAYER TURN");
+        }
+        else
+            Debug.Log("ENEMY TURN");
         base.Start();
     }
 
     public override void ProtoUpdate()
     {
         base.ProtoUpdate();
-        if (CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
-        {
+        if (actionSelected)
+            return;
 
+        if (GameManager.Instance.IsPlayerTurn && CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
+        {
+            actionSelected = true;
+            Debug.Log("ATTACK");
+            GoToNextState();
+        }
+        else if(GameManager.Instance.IsPlayerTurn == false)
+        {
+            GameManager.Instance.EnemyHandler.EnemyActionChecker();
+            actionSelected = true;
+            Debug.Log("ENEMY ATTACK");
+            GoToNextState();
         }
     }
 
@@ -442,6 +466,7 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void End()
     {
+        GameManager.Instance.TurnCheck();
         base.End();
     }
 
@@ -466,6 +491,16 @@ public class Combat_Action : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        ExecuteAction();
+        GoToNextState();
+    }
+
+    private void ExecuteAction()
+    {
+        if (CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
+        {
+            CSMachine.GetManager.PlayerHandler.PlayerAttack();
+        }
     }
 
     public override void ProtoUpdate()
@@ -480,6 +515,7 @@ public class Combat_Action : Combat_Base<CombatState>
 
     public override void End()
     {
+        CSMachine.GetManager.GameUIManager.ResetButtonEvent();
         base.End();
     }
 
@@ -504,6 +540,8 @@ public class Combat_StatusCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        CSMachine.CombatFinish = !CSMachine.GetManager.EnemyHandler.HasSoldiers;
+        GoToNextState();
     }
 
     public override void ProtoUpdate()
@@ -542,6 +580,7 @@ public class Combat_SpawnCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        GoToNextState();
     }
 
     public override void ProtoUpdate()
@@ -580,6 +619,7 @@ public class Combat_Result : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        GoToNextState();
     }
 
     public override void ProtoUpdate()

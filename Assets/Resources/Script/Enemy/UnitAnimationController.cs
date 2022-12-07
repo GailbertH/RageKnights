@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationController : MonoBehaviour
+public class UnitAnimationController : MonoBehaviour
 {
     [SerializeField] private Animation enemyAnimation;
     [SerializeField] private Animation extraEnemyAnimation;
