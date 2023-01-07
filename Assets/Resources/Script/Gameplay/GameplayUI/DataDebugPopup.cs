@@ -41,7 +41,7 @@ public class DataDebugPopup : PopupBase
     [SerializeField] private Text AttackRageMultiplierNewValue;
     #endregion
 
-    private PlayerModel playerData = null;
+    private PlayerUnitModel playerData = null;
 
     public override void Initialize(Action OnCloseAction, object data = null)
     {
@@ -56,19 +56,12 @@ public class DataDebugPopup : PopupBase
     public void SetupData()
     {
         HealthPoints.text = "Health Points - " + playerData.HealthPoints.ToString();
-        BaseHealthPoints.text = "Base Health Points - " + playerData.BaseHealthPoints.ToString();
         RagePoints.text = "Rage Points - " + playerData.RagePoints.ToString();
-        MaxRagePoints.text = "Max Rage Points - " + playerData.MaxRagePoints.ToString();
         AGPoints.text = "Action Points - " + playerData.ActionGaugePoints.ToString();
-        MaxAGPoints.text = "Max Action Points - " + playerData.MaxActionGaugePoints.ToString();
         RageInc.text = "Rage Increment - " + playerData.RageIncrement.ToString();
         AGInc.text = "Action Increment - " + playerData.ActionGaugeIncrement.ToString();
         AttackPower.text = "Attack Power - " + playerData.AttackPower.ToString();
         DefensePower.text = "Defense Power - " + playerData.DefensePower.ToString();
-        RagePower.text = "Rage Power - " + playerData.RagePower.ToString();
-        ItemCount.text = "Item Count - " + playerData.ItemCount.ToString();
-        MaxItemCount.text = "Max Item Count - " + playerData.MaxItemCount.ToString();
-        AttackRageMultiplier.text = "Rage Multiplier - " + playerData.AttackRageMultiplier.ToString();
     }
 
     public void SaveChanges()
@@ -76,27 +69,14 @@ public class DataDebugPopup : PopupBase
         float floatValue = 0;
 
         if (float.TryParse(BaseHealthPointsNewValue.text, out floatValue))
-            playerData.BaseHealthPoints = floatValue;
+            playerData.MaxHealthPoints = floatValue;
         if (float.TryParse(HealthPointsNewValue.text, out floatValue))
-            playerData.HealthPoints = playerData.BaseHealthPoints < floatValue ? playerData.BaseHealthPoints : floatValue;
-
-        if (float.TryParse(MaxRagePointsNewValue.text, out floatValue))
-            playerData.MaxRagePoints = floatValue;
-        if (float.TryParse(RagePointsNewValue.text, out floatValue))
-            playerData.RagePoints = playerData.MaxRagePoints < floatValue ? playerData.MaxRagePoints : floatValue;
-
-        if (float.TryParse(MaxAGPointsNewValue.text, out floatValue))
-            playerData.MaxActionGaugePoints = floatValue;
-        if (float.TryParse(AGPointsNewValue.text, out floatValue))
-            playerData.ActionGaugePoints = playerData.MaxActionGaugePoints < floatValue ? playerData.MaxActionGaugePoints : floatValue;
+            playerData.HealthPoints = playerData.MaxHealthPoints < floatValue ? playerData.MaxHealthPoints : floatValue;
 
         if (float.TryParse(RageIncNewValue.text, out floatValue))
             playerData.RageIncrement = floatValue;
         if (float.TryParse(AGIncNewValue.text, out floatValue))
             playerData.ActionGaugeIncrement = floatValue;
-
-        if (float.TryParse(AttackRageMultiplierNewValue.text, out floatValue))
-            playerData.AttackRageMultiplier = floatValue;
 
 
         int intValue = 0;
@@ -104,13 +84,6 @@ public class DataDebugPopup : PopupBase
             playerData.AttackPower = intValue;
         if (int.TryParse(DefensePowerNewValue.text, out intValue))
             playerData.DefensePower = intValue;
-        if (int.TryParse(RagePowerNewValue.text, out intValue))
-            playerData.RagePower = intValue;
-
-        if (int.TryParse(MaxItemCountNewValue.text, out intValue))
-            playerData.MaxItemCount = intValue;
-        if (int.TryParse(ItemCountNewValue.text, out intValue))
-            playerData.ItemCount = playerData.MaxItemCount < intValue ? playerData.MaxItemCount : intValue;
 
         SetupData();
     }

@@ -35,8 +35,6 @@ public class StorePopup : PopupBase
 
     private void OnPurchase(StoreItemData purchaseItemData)
     {
-        RageKnight.GameManager.Instance.AddPotion(1);
-        GameManager.Instance.AddGold(purchaseItemData.price * -1);
         Debug.Log("Buying item " + purchaseItemData.name);
     }
 

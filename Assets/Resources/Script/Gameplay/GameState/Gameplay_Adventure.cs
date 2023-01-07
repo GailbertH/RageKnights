@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class Gameplay_Adventure : GameplayState_Base<GameplayState>
 {
-    private float WALK_SPEED = -0.1f;
-    private float ENEMY_WALK_SPEED = -0.1f;
     private bool HasEnemySpawn = false;
 
     public Gameplay_Adventure(GameManager manager, RageKnight_InGame handler) : base (GameplayState.ADVENTURE, manager, handler)
     {
-        WALK_SPEED = Application.targetFrameRate > 30 ? -0.05f : -0.1f;
-        ENEMY_WALK_SPEED = Application.targetFrameRate > 30 ? -0.05f : -0.1f;
     }
 
     public override void GameGoToNextState()
@@ -40,10 +36,10 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
         if (Manager != null)
         {
             Manager.PlayerHandler.PlayerMoveForward();
-            MoveEnvironment(WALK_SPEED);
+            MoveEnvironment(GameManager.WALK_SPEED);
             if (HasEnemySpawn == true)
             {
-                if (Manager.EnemyHandler.IsEnemyInBattlePosition(ENEMY_WALK_SPEED, Manager))
+                if (Manager.EnemyHandler.IsEnemyInBattlePosition(GameManager.ENEMY_WALK_SPEED, Manager))
                 {
                     GameGoToNextState();
                 }

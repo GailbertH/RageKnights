@@ -55,35 +55,20 @@ namespace RageKnight.GameState
         //TODO use proper data
         private void LoadAccountData()
         {
-            PlayerModel playerData = null;
+            PlayerUnitModel playerData = null;
 #if UNITY_EDITOR
             if (Manager.isTestMode == true)
             {
-                var defaultItemCount = 5;
-                playerData = new PlayerModel
+                playerData = new PlayerUnitModel
                 {
                     AttackPower = 2,
                     DefensePower = 2,
                     HealthPower = 2,
-                    RagePower = 2,
                     RageIncrement = 0.5f,
                     ActionGaugeIncrement = 0.2f,
                     HealthPoints = 30f,
-                    ActionGaugePoints = 10f,
-                    RagePoints = 0,
-                    currentItemInUse = new ConsumableModel {
-                        id = "0000",
-                        quantity = defaultItemCount
-                    },
-                    ItemCount = 5,
-                    WeapomStatBonus = 0,
-                    HealthStatBonus = 0,
-                    ArmorStatBonus = 0,
-                    BaseHealthPoints = 30f,
-                    MaxRagePoints = 100f,
-                    MaxActionGaugePoints = 100f,
-                    MaxItemCount = 10,
-                    AttackRageMultiplier = 2
+                    ActionGaugePoints = 0f,
+                    RagePoints = 0
                 };
             }
 #endif
@@ -95,10 +80,6 @@ namespace RageKnight.GameState
                 }
                 AccountManager.Instance.SetActiveGame(true, true);
                 playerData = AccountManager.Instance.AccountData.CurrentCharacterData;
-                int maxItem = playerData.currentItemInUse.effectType == ItemEffectType.HEALING ? 10 : 5;
-                int itemCount = playerData.currentItemInUse.quantity;
-                playerData.MaxItemCount = maxItem;
-                playerData.ItemCount = itemCount > maxItem ? maxItem : itemCount;
             }
             Manager.AccountDataInit(playerData);
         }

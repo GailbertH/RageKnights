@@ -15,9 +15,8 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private Text enemyArmyNameLabel;
     [SerializeField] private Text enemyArmyCountLabel;
 
-    private float playerBaseHealth;
-    private float playerMaxActionGagugePoints;
-    private float playerMaxRagePoints;
+    private float playerMaxHealth;
+    private float playerMaxActionGagugePoints = 1;
     private float enemyMaxActionGaugePoints;
     private float enemyBaseHealth;
     private float enemyArmyCount;
@@ -27,13 +26,11 @@ public class HealthbarHandler : MonoBehaviour
         this.gameObject.SetActive(isActive);
     }
 
-    public void Initialize(float playerBaseHealth, float enemyBaseHealth, float playerMaxActionPoints, float playerMaxRagePoints, 
+    public void Initialize(float playerMaxHealth, float enemyBaseHealth,
         float enemyMaxActionPoints, string enemyArmyName = "Blompy Army", int enemyArmyCount = 50, bool isBoss = false)
     {
-        this.playerBaseHealth = playerBaseHealth;
+        this.playerMaxHealth = playerMaxHealth;
         this.enemyBaseHealth = enemyBaseHealth;
-        this.playerMaxActionGagugePoints = playerMaxActionPoints;
-        this.playerMaxRagePoints = playerMaxRagePoints;
         this.enemyMaxActionGaugePoints = enemyMaxActionPoints;
         this.enemyArmyCount = enemyArmyCount;
 
@@ -55,7 +52,7 @@ public class HealthbarHandler : MonoBehaviour
 
     public void UpdatePlayerHealth(float playerCurrentHealth)
     {
-        float healthPercent = playerCurrentHealth / playerBaseHealth;
+        float healthPercent = playerCurrentHealth / playerMaxHealth;
         if (healthPercent < 0 || healthPercent > 1)
         {
             healthPercent = healthPercent < 0 ? 0 : 1;

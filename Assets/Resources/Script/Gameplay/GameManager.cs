@@ -10,11 +10,14 @@ namespace RageKnight
 {
 	public class GameManager : MonoBehaviour 
 	{
+        public const float WALK_SPEED = -0.05f;
+        public const float ENEMY_WALK_SPEED = -0.05f;
+        public const float RUN_SPEED = -0.1f;
+
         private static GameManager instance = null;
 		private RageKnightStateMachine stateMachine = null;
         private CombatTracker combatTracker = null;
 
-        private Coroutine updateRoutine = null;
         private Coroutine timeTrackerRoutine = null;
 
         private bool isStateActive = false;
@@ -23,7 +26,7 @@ namespace RageKnight
         public int stage = 1;
 
         [SerializeField] private EnemyHandler enemyHandler;
-        [SerializeField] private PlayerHandler playerHandler;
+        [SerializeField] private PlayerUnitHandler playerUnitHandler;
         [SerializeField] private EnvironmentHandler environmentHandler;
         [SerializeField] private int stageCount;
 
@@ -42,9 +45,9 @@ namespace RageKnight
             set { gameUIManager = value; }
         }
 
-        public PlayerHandler PlayerHandler
+        public PlayerUnitHandler PlayerHandler
         {
-            get { return playerHandler; }
+            get { return playerUnitHandler; }
         }
 
         public EnemyHandler EnemyHandler
@@ -99,23 +102,18 @@ namespace RageKnight
 		{
             stateMachine = new RageKnightStateMachine(this);
             isStateActive = true;
-            updateRoutine = StartCoroutine(ControlledUpdate());
             timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
+
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
         }
         #endregion
 
-        private IEnumerator ControlledUpdate()
+        private void Update()
         {
-            //yield return new WaitForEndOfFrame();
-            while (isStateActive)
-            {
-                yield return new WaitForEndOfFrame();
-                if (isGamePaused == false)
-                {
-                    stateMachine.Update();
-                }
-            }
+            if(isStateActive && isGamePaused == false)
+                stateMachine?.Update();
         }
 
         private IEnumerator TimeTracker()
@@ -131,7 +129,12 @@ namespace RageKnight
             }
         }
 
-        public void AccountDataInit(PlayerModel playerData)
+        public void ExecuteRoutine(IEnumerator routine)
+        {
+            StartCoroutine(routine);
+        }
+
+        public void AccountDataInit(PlayerUnitModel playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
@@ -142,7 +145,7 @@ namespace RageKnight
         {
             stageGold = AccountManager.Instance.AddGold(goldToAdd);
             combatTracker?.UpdateGoldEarned(goldToAdd);
-            this.GameUIManager?.UpdateGold(StageGold);
+            //this.GameUIManager?.UpdateGold(StageGold);
         }
 
         public void EnemyKill()
@@ -153,11 +156,6 @@ namespace RageKnight
         public void PauseGame(bool isPause)
         {
             isGamePaused = isPause;
-        }
-
-        public void AddPotion(int count)
-        {
-            playerHandler.PlayerAddItem(count);
         }
 
         public void IncrementStage()
@@ -183,7 +181,7 @@ namespace RageKnight
         {
             isStateActive = false;
             GameUIManager = null;
-            playerHandler = null;
+            playerUnitHandler = null;
             enemyHandler = null;
             environmentHandler = null;
             instance = null;
@@ -192,9 +190,44 @@ namespace RageKnight
                 stateMachine.Destroy();
                 stateMachine = null;
             }
-            if (updateRoutine != null)
+        }
+
+
+        ////////// Game play related /////////////
+
+        private string currentUnitAtTurn = "";
+        public string GetCurrentUnitAtTurn
+        {
+            get { return currentUnitAtTurn; }
+        }
+        public bool IsPlayerTurn { get; private set; }
+
+        public void SetTurn()
+        {
+            Debug.Log("Turn Set");
+            playerUnitHandler.SetTurnOrder();
+            enemyHandler.SetTurnOrder();
+            IsPlayerTurn = true;
+            currentUnitAtTurn = playerUnitHandler.CurrentUnitAtTurn();
+        }
+
+
+        public void TurnCheck()
+        {
+            ////Temporary
+            if (playerUnitHandler.IsTurnsFinished() == false)
             {
-                StopCoroutine(updateRoutine);
+                //Debug.Log("PLAYER TURN CHECK");
+                playerUnitHandler.UpdateTurns();
+                enemyHandler.ResetTurns();
+                IsPlayerTurn = false;
+            }
+            else if (enemyHandler.IsTurnsFinished() == false)
+            {
+                //Debug.Log("ENEMY TURN CHECK");
+                enemyHandler.UpdateTurns();
+                playerUnitHandler.ResetTurns();
+                IsPlayerTurn = true;
             }
         }
     }

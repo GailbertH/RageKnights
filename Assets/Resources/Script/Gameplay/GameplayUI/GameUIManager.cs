@@ -4,19 +4,6 @@ using RageKnight;
 using UnityEngine.UI;
 using System;
 
-public enum BasicMovements {
-    None = 0,
-    Idle = 1,
-    Attack = 2,
-    Skill = 3,
-}
-
-public enum SkillMovements {
-    None = 0,
-    Rage = 1,
-    Heal = 2,
-}
-
 //TODO
 //Separate GameControlsUI/GameAction in a different handler for easy scalability and editing.
 
@@ -83,23 +70,32 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    public BasicMovements buttonEvents;
+    //-----Should be somewhere else
+    private CombatActionStates buttonEvent;
+    public CombatActionStates GetButtonEvent
+    {
+        get { return buttonEvent; }
+    }
+    public void ResetButtonEvent()
+    {
+        buttonEvent = CombatActionStates.NONE;
+    }
 
     public void AttackButton()
     {
-        buttonEvents = BasicMovements.Attack;
+        buttonEvent = CombatActionStates.ATTACK;
     }
 
-    public SkillMovements skillEvents;
-    public void SkillButton()
+    public void PreventPlayerCommands()
     {
-        skillEvents = SkillMovements.Rage;
+        attackButton.interactable = false;
     }
 
-    public void HealButtton()
+    public void AllowPlayerCommands()
     {
-        skillEvents = SkillMovements.Heal;
+        attackButton.interactable = true;
     }
+    //------
 
     public bool IsTimingPlaying()
     {
@@ -160,9 +156,14 @@ public class GameUIManager : MonoBehaviour
         MiddleUIHandler.Initialize();
     }
 
-    public void UpdateGold(long currentGold)
+    //public void UpdateGold(long currentGold)
+    //{
+    //    coinsHeld.text = currentGold.ToString();
+    //}
+
+    public void DebugUpdateGamePlayState(string state)
     {
-        coinsHeld.text = currentGold.ToString();
+        coinsHeld.text = state.ToString();
     }
 
     public void UpdateControlMode(GameplayState currentState)
