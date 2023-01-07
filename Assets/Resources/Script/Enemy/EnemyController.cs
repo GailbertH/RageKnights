@@ -32,14 +32,14 @@ public class EnemyController : UnitController
             return;
         }
 
-        animationController.Damage();
-        GetEnemyData.HealthPoints -= 0;
-        if (GetEnemyData.HealthPoints <= 0)
-        {
-            //Death();
-            Debug.Log("=====DEAD!=====");
-            isDead = false;
-        }
+        unitAnimationController.Damage();
+        //GetEnemyData.HealthPoints -= 0;
+        //if (GetEnemyData.HealthPoints <= 0)
+        //{
+        //    //Death();
+        //    Debug.Log("=====DEAD!=====");
+        //    isDead = false;
+        //}
     }
 
     public override void Death()

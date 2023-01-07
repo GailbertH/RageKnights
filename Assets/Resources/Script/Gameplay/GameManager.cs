@@ -129,6 +129,11 @@ namespace RageKnight
             }
         }
 
+        public void ExecuteRoutine(IEnumerator routine)
+        {
+            StartCoroutine(routine);
+        }
+
         public void AccountDataInit(PlayerUnitModel playerData)
         {
             //TODO improvement needed goes ahead of init of UI
@@ -140,7 +145,7 @@ namespace RageKnight
         {
             stageGold = AccountManager.Instance.AddGold(goldToAdd);
             combatTracker?.UpdateGoldEarned(goldToAdd);
-            this.GameUIManager?.UpdateGold(StageGold);
+            //this.GameUIManager?.UpdateGold(StageGold);
         }
 
         public void EnemyKill()
@@ -212,14 +217,14 @@ namespace RageKnight
             ////Temporary
             if (playerUnitHandler.IsTurnsFinished() == false)
             {
-                Debug.Log("PLAYER TURN CHECK");
+                //Debug.Log("PLAYER TURN CHECK");
                 playerUnitHandler.UpdateTurns();
                 enemyHandler.ResetTurns();
                 IsPlayerTurn = false;
             }
             else if (enemyHandler.IsTurnsFinished() == false)
             {
-                Debug.Log("ENEMY TURN CHECK");
+                //Debug.Log("ENEMY TURN CHECK");
                 enemyHandler.UpdateTurns();
                 playerUnitHandler.ResetTurns();
                 IsPlayerTurn = true;

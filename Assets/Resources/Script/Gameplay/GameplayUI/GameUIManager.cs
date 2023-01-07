@@ -85,6 +85,16 @@ public class GameUIManager : MonoBehaviour
     {
         buttonEvent = CombatActionStates.ATTACK;
     }
+
+    public void PreventPlayerCommands()
+    {
+        attackButton.interactable = false;
+    }
+
+    public void AllowPlayerCommands()
+    {
+        attackButton.interactable = true;
+    }
     //------
 
     public bool IsTimingPlaying()
@@ -146,9 +156,14 @@ public class GameUIManager : MonoBehaviour
         MiddleUIHandler.Initialize();
     }
 
-    public void UpdateGold(long currentGold)
+    //public void UpdateGold(long currentGold)
+    //{
+    //    coinsHeld.text = currentGold.ToString();
+    //}
+
+    public void DebugUpdateGamePlayState(string state)
     {
-        coinsHeld.text = currentGold.ToString();
+        coinsHeld.text = state.ToString();
     }
 
     public void UpdateControlMode(GameplayState currentState)

@@ -113,7 +113,7 @@ public class EnemyHandler : MonoBehaviour
 
         if (enemies[eCPId] != null)
         {
-            //enemies[eCPId].Damaged(damage);
+            enemies[eCPId].Damaged();
             bool isEnemyDead = enemies[eCPId].GetIsDead;
             if (isEnemyDead == true)
             {

@@ -10,7 +10,7 @@ public enum CombatPlacement
 }
 public class UnitController : MonoBehaviour
 {
-    [SerializeField] public UnitAnimationController animationController;
+    [SerializeField] public UnitAnimationController unitAnimationController;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
     protected List<string> targetIds;
@@ -54,7 +54,7 @@ public class UnitController : MonoBehaviour
     public virtual void Initialize()
     {
         spriteRenderer.sortingOrder = GetOrderInLayer;
-        animationController.Idle();
+        unitAnimationController.Idle();
         unitId = "E1";
     }
 
@@ -70,7 +70,7 @@ public class UnitController : MonoBehaviour
 
     public virtual void Attack()
     {
-        animationController.Attack();
+        unitAnimationController.Attack();
         //handler.Damage(targetIds)
     }
 
@@ -79,17 +79,17 @@ public class UnitController : MonoBehaviour
 
     }
 
-    public virtual void ResetAnimation()
-    {
-
-    }
-
     public virtual void Death()
     {
-        animationController.Death();
+        unitAnimationController.Death();
         isDead = true;
         //DeductArmyCount ?
         Invoke("DestroyUnit", 0.5f);
+    }
+
+    public virtual void ResetAnimation()
+    {
+        unitAnimationController.ResetAnimation();
     }
 
     public virtual void DestroyUnit()
@@ -101,11 +101,11 @@ public class UnitController : MonoBehaviour
     {
         this.gameObject.SetActive(isShow);
         if (isShow)
-            animationController.Idle();
+            unitAnimationController.Idle();
     }
 }
 
-public class PlayerUnitController : MonoBehaviour
+public class PlayerUnitController : UnitController
 {
     public const float HEAL_PERCENTAGE = 0.30f;
 
@@ -113,9 +113,10 @@ public class PlayerUnitController : MonoBehaviour
     private float actionGaugeModifier = 0;
     private bool isRageMode = false;
 
-    public PlayerUnitModel GetUnitData
+    public PlayerUnitModel UnitData
     {
         get { return unitData; }
+        set { unitData = value; }
     }
 
     public bool isActionGaugeFull
@@ -123,10 +124,9 @@ public class PlayerUnitController : MonoBehaviour
         get { return unitData.MaxActionGaugePoints <= unitData.ActionGaugePoints; }
     }
 
-    public void Init(PlayerUnitModel data)
+    public override void Initialize()
     {
-        unitData = data;
-        ResetAnimation();
+        base.Initialize();
     }
 
     public void PlayerActionGauge(float incremnent)
@@ -141,63 +141,8 @@ public class PlayerUnitController : MonoBehaviour
         }
     }
 
-
-
-    //Animation
-
-
     public void PlayMoveAnimation()
     {
-        PlayNormal("Forward");
-    }
-
-    public void PlayAttackAnimation()
-    {
-        //if (playerAnim == null)
-        //    return;
-
-        //if (IsAttackPlaying() == false)
-        //{
-        //    playerAnim["Attack"].speed = 5.0f;
-        //    playerAnim.Play("Attack");
-        //}
-    }
-
-    public void PlayDeathAnimation()
-    {
-        PlayNoRepeat("Death");
-    }
-
-    public void ResetAnimation()
-    {
-        PlayNormal("Idle");
-    }
-
-    private void PlayNormal(string animationName)
-    {
-        //if (playerAnim == null)
-        //    return;
-
-        //if (playerAnim.isPlaying)
-        //{
-        //    playerAnim?.Stop();
-        //}
-        //playerAnim?.Play(animationName);
-    }
-
-    public bool IsAttackPlaying()
-    {
-        return false; //playerAnim.IsPlaying("Attack");
-    }
-
-    private void PlayNoRepeat(string animationName)
-    {
-        //if (playerAnim == null)
-        //    return;
-
-        //if (playerAnim.IsPlaying(animationName))
-        //    return;
-
-        //playerAnim.Play(animationName);
+        unitAnimationController.Idle();
     }
 }

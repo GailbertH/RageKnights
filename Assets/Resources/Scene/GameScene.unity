@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14042284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: 0, z: 1.9}
+  m_LocalPosition: {x: 22, y: 0, z: 1.9}
   m_LocalScale: {x: 0.261, y: 0.263, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,7 +215,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 4486568434124395276, guid: 3407a771ef60bba4d88b71d0370072e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 28.8, y: 46.814285}
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7082237e25e485d40a96f73cc9af860f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 2011531637}
+  unitAnimationController: {fileID: 2011531637}
   spriteRenderer: {fileID: 2011531634}
   combatPlacement: 0
   enemyData:
@@ -1561,6 +1561,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1114891036}
   - component: {fileID: 1114891037}
+  - component: {fileID: 1114891039}
+  - component: {fileID: 1114891038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1635,6 +1637,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1114891038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114891035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810ca242618636e4a824b58f22645875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitAnimation: {fileID: 1114891039}
+  extraUnitAnimation: {fileID: 0}
+  idleAnimName: Temp_Player_Idle
+  damagedAnimName: Temp_Player_Damaged
+  deathAnimName: 
+  attackAnimName: Temp_Player_Attack
+--- !u!111 &1114891039
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114891035}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6fd1a90d68c7aee438509bb327bcdeb0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6fd1a90d68c7aee438509bb327bcdeb0, type: 2}
+  - {fileID: 7400000, guid: 8962610449c07a446b6ece291325c181, type: 2}
+  - {fileID: 7400000, guid: 417302a7fb5fc044088ea89b4ded5588, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1144724898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,7 +1783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153615042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: 0, z: 1.9}
+  m_LocalPosition: {x: 14.5, y: 0, z: 1.9}
   m_LocalScale: {x: 0.261, y: 0.263, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1808,10 +1846,10 @@ SpriteRenderer:
   m_SortingLayerID: 1773488951
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2699878754629977417, guid: 3407a771ef60bba4d88b71d0370072e4,
+  m_Sprite: {fileID: 1881425778192932140, guid: 3407a771ef60bba4d88b71d0370072e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 28.8, y: 46.814285}
@@ -1922,7 +1960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244409875}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27, y: 0, z: 1.9}
+  m_LocalPosition: {x: 29.5, y: 0, z: 1.9}
   m_LocalScale: {x: 0.261, y: 0.263, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1985,10 +2023,10 @@ SpriteRenderer:
   m_SortingLayerID: 1773488951
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1881425778192932140, guid: 3407a771ef60bba4d88b71d0370072e4,
+  m_Sprite: {fileID: -2699878754629977417, guid: 3407a771ef60bba4d88b71d0370072e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 28.8, y: 46.814285}
@@ -2729,7 +2767,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1967986224}
   - component: {fileID: 1967986226}
-  - component: {fileID: 1967986225}
   m_Layer: 0
   m_Name: PlayerMid
   m_TagString: Untagged
@@ -2753,22 +2790,6 @@ Transform:
   m_Father: {fileID: 564927604}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1967986225
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967986223}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6fd1a90d68c7aee438509bb327bcdeb0, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6fd1a90d68c7aee438509bb327bcdeb0, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1967986226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2781,6 +2802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fbeff0bad224e4a8d7bebdbc3d98a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitAnimationController: {fileID: 1114891038}
+  spriteRenderer: {fileID: 0}
+  combatPlacement: 0
 --- !u!1 &1978343166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,8 +2996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810ca242618636e4a824b58f22645875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAnimation: {fileID: 2011531636}
-  extraEnemyAnimation: {fileID: 829731517}
+  unitAnimation: {fileID: 2011531636}
+  extraUnitAnimation: {fileID: 829731517}
   idleAnimName: Temp_Blompy_Idle
   damagedAnimName: Temp_Blompy_Damaged
   deathAnimName: Temp_Blompy_Death
@@ -3770,7 +3794,7 @@ PrefabInstance:
       objectReference: {fileID: 30545347}
     - target: {fileID: 1839890456, guid: 82c75aa7694603b4a9cc821ebcd462f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 1839890457, guid: 82c75aa7694603b4a9cc821ebcd462f4, type: 3}
       propertyPath: backgroundItems.Array.size
@@ -3969,7 +3993,7 @@ PrefabInstance:
     - target: {fileID: 6409872433871834978, guid: 82c75aa7694603b4a9cc821ebcd462f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6409872434140350394, guid: 82c75aa7694603b4a9cc821ebcd462f4,
         type: 3}
@@ -3984,12 +4008,12 @@ PrefabInstance:
     - target: {fileID: 6409872434191031146, guid: 82c75aa7694603b4a9cc821ebcd462f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6409872434984046688, guid: 82c75aa7694603b4a9cc821ebcd462f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7230912147578443791, guid: 82c75aa7694603b4a9cc821ebcd462f4,
         type: 3}

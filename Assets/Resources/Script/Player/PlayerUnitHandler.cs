@@ -36,7 +36,7 @@ namespace RageKnight.Player
         {
             get
             {
-                return units?.GetUnitData?.HealthPoints > 0;
+                return units.UnitData.HealthPoints > 0;
             }
         }
 
@@ -44,13 +44,13 @@ namespace RageKnight.Player
         {
             get
             {
-                return units?.GetUnitData;
+                return units.UnitData;
             }
         }
 
         public void PlayerInitialize(PlayerUnitModel playerData)
         {
-            units?.Init(playerData);
+            units.UnitData = playerData;
             Debug.Log("Player Initialize");
         }
 
@@ -104,12 +104,10 @@ namespace RageKnight.Player
         public void PlayerAttack()
         {
             currentPlayerState = PlayerState.ATTACKING;
-            if (units?.IsAttackPlaying() == false)
-            {
-                units?.PlayAttackAnimation();
-                float attackDamage = GetPlayerData != null ? units.GetUnitData.AttackPower : 0;
-                GetEnemyHandler().DamagedEnemy(attackDamage);
-            }
+            units.Attack();
+            float attackDamage = GetPlayerData != null ? units.UnitData.AttackPower : 0;
+            GetEnemyHandler().DamagedEnemy(attackDamage);
+
         }
 
         public void PlayerResetAnimation()
@@ -125,6 +123,5 @@ namespace RageKnight.Player
             units.PlayMoveAnimation();
             //Debug.Log("Player Forward");
         }
-
     }
 }

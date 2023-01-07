@@ -158,17 +158,25 @@ public class CombatStateMachine
     public bool CombatFinish = false; //Temp
     public void NextState()
     {
+        GameManager.Instance.ExecuteRoutine(NextStateRoutine());
+    }
+
+    private System.Collections.IEnumerator NextStateRoutine()
+    {
+        yield return new WaitForEndOfFrame();
         currentState.End();
         //Debug.Log("CURRENT STATE " + currentState.State.ToString());
-        if (currentState?.State == CombatState.RESULT)
+        if (currentState?.State != CombatState.RESULT)
         {
-            End();
-            return;
+            var nextState = GetNextState();
+            //Debug.Log("NEXT STATE " + nextState.ToString());
+            currentState = combatStates[GetNextState()];
+            yield return new WaitForSeconds(0.1f);
+            currentState.Start();
+            GameManager.Instance.GameUIManager.DebugUpdateGamePlayState(currentState.State.ToString());
         }
-        var nextState = GetNextState();
-        //Debug.Log("NEXT STATE " + nextState.ToString());
-        currentState = combatStates[GetNextState()];
-        currentState.Start();
+        else
+            End();
     }
 }
 
@@ -431,10 +439,13 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
         actionSelected = false;
         if (GameManager.Instance.IsPlayerTurn)
         {
-            Debug.Log("PLAYER TURN");
+            //Debug.Log("PLAYER TURN");
+            CSMachine.GetManager.GameUIManager.ResetButtonEvent();
+            CSMachine.GetManager.GameUIManager.AllowPlayerCommands();
         }
         else
-            Debug.Log("ENEMY TURN");
+            //Debug.Log("ENEMY TURN");
+
         base.Start();
     }
 
@@ -447,14 +458,14 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
         if (GameManager.Instance.IsPlayerTurn && CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
         {
             actionSelected = true;
-            Debug.Log("ATTACK");
+            //Debug.Log("ATTACK");
             GoToNextState();
         }
         else if(GameManager.Instance.IsPlayerTurn == false)
         {
             GameManager.Instance.EnemyHandler.EnemyActionChecker();
             actionSelected = true;
-            Debug.Log("ENEMY ATTACK");
+            //Debug.Log("ENEMY ATTACK");
             GoToNextState();
         }
     }
@@ -466,6 +477,7 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void End()
     {
+        CSMachine.GetManager.GameUIManager.PreventPlayerCommands();
         GameManager.Instance.TurnCheck();
         base.End();
     }
@@ -500,6 +512,7 @@ public class Combat_Action : Combat_Base<CombatState>
         if (CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
         {
             CSMachine.GetManager.PlayerHandler.PlayerAttack();
+            CSMachine.GetManager.EnemyHandler.DamagedEnemy(0);
         }
     }
 

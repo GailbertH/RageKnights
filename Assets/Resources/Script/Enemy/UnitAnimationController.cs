@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UnitAnimationController : MonoBehaviour
 {
-    [SerializeField] private Animation enemyAnimation;
-    [SerializeField] private Animation extraEnemyAnimation;
+    [SerializeField] private Animation unitAnimation;
+    [SerializeField] private Animation extraUnitAnimation;
 
 
     [SerializeField] string idleAnimName;
@@ -25,21 +25,47 @@ public class UnitAnimationController : MonoBehaviour
 
     public virtual void Damage()
     {
-        PlayExtraAnimation(damagedAnimName);
+        if(extraUnitAnimation != null)
+            PlayExtraAnimation(damagedAnimName);
+        else
+            PlayAnimation(damagedAnimName);
     }
 
     public virtual void Death()
     {
-        PlayAnimation(deathAnimName);
+        PlayAnimationExclusive(deathAnimName);
+    }
+
+    public virtual void ResetAnimation()
+    {
+        Idle();
     }
 
     //==========================================================
     private void PlayAnimation(string animationName)
     {
-        enemyAnimation.Play(animationName);
+        if (unitAnimation.isPlaying)
+        {
+            unitAnimation?.Stop();
+        }
+        unitAnimation.Play(animationName);
     }
+
+    private void PlayAnimationExclusive(string animationName)
+    {
+        if (unitAnimation.IsPlaying(animationName))
+            return;
+
+        if (unitAnimation.isPlaying)
+        {
+            unitAnimation?.Stop();
+        }
+
+        unitAnimation.Play(animationName);
+    }
+
     private void PlayExtraAnimation(string animationName)
     {
-        extraEnemyAnimation.Play(animationName);
+        extraUnitAnimation.Play(animationName);
     }
 }
