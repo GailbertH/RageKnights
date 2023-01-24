@@ -32,7 +32,11 @@ public class UnitController : MonoBehaviour
         get { return combatPlacement; }
     }
 
-    public bool IsTurnDone { get; set; }
+    private bool isTurnDone = false;
+    public bool GetIsTurnDone
+    {
+        get { return isTurnDone; }
+    }
 
     public int GetOrderInLayer
     {
@@ -103,6 +107,15 @@ public class UnitController : MonoBehaviour
         if (isShow)
             unitAnimationController.Idle();
     }
+
+    public void ResetTurn()
+    {
+        isTurnDone = false;
+    }
+    public void TurnEnd()
+    {
+        isTurnDone = true;
+    }
 }
 
 public class PlayerUnitController : UnitController
@@ -128,6 +141,7 @@ public class PlayerUnitController : UnitController
     {
         base.Initialize();
     }
+
 
     public void PlayerActionGauge(float incremnent)
     {
