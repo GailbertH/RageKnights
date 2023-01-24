@@ -61,29 +61,51 @@ public class EnemyHandler : MonoBehaviour
             enemies.Add(null);
         }
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
+        currentActiveUnit = enemySoldierController;
     }
 
     /////////////////////////////////////////////////////
-    private bool enemyTurnIsDone = false;
-    public void SetTurnOrder()
+    EnemySoldierController currentActiveUnit = null;
+    public EnemySoldierController GetCurrentActiveUnit
     {
+        get { return currentActiveUnit; }
     }
 
-    public bool IsTurnsFinished()
+    private bool enemyTurnIsDone = false;
+    public void SetTurnOrder(bool isPlayerGoesFirst = false)
+    {
+        enemyTurnIsDone = isPlayerGoesFirst ? true : false;
+    }
+
+    public bool IsTurnsDone()
     {
         //All units done doing their turn
         return enemyTurnIsDone;
     }
 
+
+    public void TurnEnd()
+    {
+        currentActiveUnit.TurnEnd();
+    }
+
     public void UpdateTurns()
     {
         //Temp
-        enemyTurnIsDone = true;
+        if (currentActiveUnit.GetIsTurnDone == true)
+        {
+            enemyTurnIsDone = true;
+        }
+        else
+            enemyTurnIsDone = false;
+
+        Debug.Log("enemyTurnIsDone " + enemyTurnIsDone);
     }
 
     public void ResetTurns()
     {
         //All unit turnIsDone = false;
+        currentActiveUnit.ResetTurn();
         enemyTurnIsDone = false;
     }
 

@@ -194,41 +194,14 @@ namespace RageKnight
 
 
         ////////// Game play related /////////////
-
-        private string currentUnitAtTurn = "";
-        public string GetCurrentUnitAtTurn
+        public bool GetIsPlayerTurn
         {
-            get { return currentUnitAtTurn; }
-        }
-        public bool IsPlayerTurn { get; private set; }
-
-        public void SetTurn()
-        {
-            Debug.Log("Turn Set");
-            playerUnitHandler.SetTurnOrder();
-            enemyHandler.SetTurnOrder();
-            IsPlayerTurn = true;
-            currentUnitAtTurn = playerUnitHandler.CurrentUnitAtTurn();
+            get { return PlayerHandler.IsTurnsDone() == false; }
         }
 
-
-        public void TurnCheck()
+        public bool GetIsEnemyTurn
         {
-            ////Temporary
-            if (playerUnitHandler.IsTurnsFinished() == false)
-            {
-                //Debug.Log("PLAYER TURN CHECK");
-                playerUnitHandler.UpdateTurns();
-                enemyHandler.ResetTurns();
-                IsPlayerTurn = false;
-            }
-            else if (enemyHandler.IsTurnsFinished() == false)
-            {
-                //Debug.Log("ENEMY TURN CHECK");
-                enemyHandler.UpdateTurns();
-                playerUnitHandler.ResetTurns();
-                IsPlayerTurn = true;
-            }
+            get { return EnemyHandler.IsTurnsDone() == false; }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace RageKnight.Player
 
     public class PlayerUnitHandler : MonoBehaviour
     {
-        [SerializeField] private PlayerUnitController units;
+        [SerializeField] private List<PlayerUnitController> units;
 
         private PlayerState currentPlayerState = PlayerState.IDLE;
         private const float BASE_RAGE_DURATION = 10f;
@@ -36,7 +36,7 @@ namespace RageKnight.Player
         {
             get
             {
-                return units.UnitData.HealthPoints > 0;
+                return units.All(x => x.UnitData.HealthPoints > 0);
             }
         }
 
@@ -44,13 +44,16 @@ namespace RageKnight.Player
         {
             get
             {
-                return units.UnitData;
+                return units[0].UnitData;
             }
         }
 
         public void PlayerInitialize(PlayerUnitModel playerData)
         {
-            units.UnitData = playerData;
+            units[0].UnitData = playerData;
+            units[1].UnitData = playerData;
+            units[2].UnitData = playerData;
+            currentActiveUnit = units[0];
             Debug.Log("Player Initialize");
         }
 
@@ -60,9 +63,16 @@ namespace RageKnight.Player
         }
 
         ///////////////////////////////////////////////////// 
-        private bool playerTurnIsDone = false;
-        public void SetTurnOrder()
+        PlayerUnitController currentActiveUnit = null;
+        public PlayerUnitController GetCurrentActiveUnit
         {
+            get { return currentActiveUnit; }
+        }
+
+        private bool playerTurnIsDone = false;
+        public void SetTurnOrder(bool isPlayerGoesFirst = true)
+        {
+            playerTurnIsDone = isPlayerGoesFirst ? false : true;
         }
 
         public string CurrentUnitAtTurn()
@@ -70,24 +80,43 @@ namespace RageKnight.Player
             return "";
         }
 
-        public bool IsTurnsFinished()
+        public bool IsTurnsDone()
         {
             //All units done doing their turn
             return playerTurnIsDone;
         }
 
+        public void TurnEnd()
+        {
+            currentActiveUnit.TurnEnd();
+        }
+
         public void UpdateTurns()
         {
             //Temp
-            playerTurnIsDone = true;
+            bool isTurnsDone = true;
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].GetIsTurnDone == false)
+                {
+                    Debug.Log("Unit " + (i + 1) + " = " + units[i].GetIsTurnDone);
+                    currentActiveUnit = units[i];
+                    isTurnsDone = false;
+                }
+            }
+            playerTurnIsDone = isTurnsDone;
+            Debug.Log("playerTurnIsDone " + playerTurnIsDone);
         }
 
         public void ResetTurns()
         {
-            //All unit turnIsDone = false;
+            for (int i = 0; i < units.Count; i++)
+            {
+                units[i].ResetTurn();
+            }
+            currentActiveUnit = units[0];
             playerTurnIsDone = false;
         }
-
         /////////////////////////////////////////////////////
 
         public void UpdateHealthGauge()
@@ -104,15 +133,15 @@ namespace RageKnight.Player
         public void PlayerAttack()
         {
             currentPlayerState = PlayerState.ATTACKING;
-            units.Attack();
-            float attackDamage = GetPlayerData != null ? units.UnitData.AttackPower : 0;
+            currentActiveUnit.Attack();
+            float attackDamage = GetPlayerData != null ? currentActiveUnit.UnitData.AttackPower : 0;
             GetEnemyHandler().DamagedEnemy(attackDamage);
 
         }
 
         public void PlayerResetAnimation()
         {
-            units?.ResetAnimation();
+            currentActiveUnit?.ResetAnimation();
             currentPlayerState = PlayerState.IDLE;
             Debug.Log("Player IdleS");
         }
@@ -120,7 +149,7 @@ namespace RageKnight.Player
         public void PlayerMoveForward()
         {
             currentPlayerState = PlayerState.IDLE;
-            units.PlayMoveAnimation();
+            currentActiveUnit.PlayMoveAnimation();
             //Debug.Log("Player Forward");
         }
     }

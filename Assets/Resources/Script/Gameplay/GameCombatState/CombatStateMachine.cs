@@ -45,7 +45,7 @@ public class CombatStateMachine
     private bool isInit = false;
 
     private GameManager gameManager;
-    public GameManager GetManager
+    public GameManager GetGameManager
     {
         get
         {
@@ -225,7 +225,6 @@ public class Combat_Setup : Combat_Base<CombatState>
 {
     public Combat_Setup(CombatStateMachine machine) : base(CombatState.SETUP, machine)
     {
-        GameManager.Instance.SetTurn();
     }
 
     public override void GoToNextState()
@@ -307,6 +306,9 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
     public Combat_TurnCheck(CombatStateMachine machine) : base(CombatState.TURN_CHECK, machine)
     {
         isPlayerTurn = true;
+        CSMachine.GetGameManager.PlayerHandler.SetTurnOrder(isPlayerTurn);
+        CSMachine.GetGameManager.EnemyHandler.SetTurnOrder(isPlayerTurn);
+        CSMachine.GetGameManager.PlayerHandler.ResetTurns();
     }
 
     public override void GoToNextState()
@@ -317,7 +319,6 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
-        //Check speed ?
         GoToNextState();
     }
 
@@ -334,7 +335,6 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
     public override void End()
     {
         base.End();
-        isPlayerTurn = !isPlayerTurn;
     }
 
     public override void Destroy()
@@ -437,11 +437,11 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
     public override void Start()
     {
         actionSelected = false;
-        if (GameManager.Instance.IsPlayerTurn)
+        if (GameManager.Instance.GetIsPlayerTurn)
         {
             //Debug.Log("PLAYER TURN");
-            CSMachine.GetManager.GameUIManager.ResetButtonEvent();
-            CSMachine.GetManager.GameUIManager.AllowPlayerCommands();
+            CSMachine.GetGameManager.GameUIManager.ResetButtonEvent();
+            CSMachine.GetGameManager.GameUIManager.AllowPlayerCommands();
         }
         else
             //Debug.Log("ENEMY TURN");
@@ -455,13 +455,13 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
         if (actionSelected)
             return;
 
-        if (GameManager.Instance.IsPlayerTurn && CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
+        if (GameManager.Instance.GetIsPlayerTurn && CSMachine.GetGameManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
         {
             actionSelected = true;
             //Debug.Log("ATTACK");
             GoToNextState();
         }
-        else if(GameManager.Instance.IsPlayerTurn == false)
+        else if(GameManager.Instance.GetIsPlayerTurn == false)
         {
             GameManager.Instance.EnemyHandler.EnemyActionChecker();
             actionSelected = true;
@@ -477,8 +477,7 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void End()
     {
-        CSMachine.GetManager.GameUIManager.PreventPlayerCommands();
-        GameManager.Instance.TurnCheck();
+        CSMachine.GetGameManager.GameUIManager.PreventPlayerCommands();
         base.End();
     }
 
@@ -509,10 +508,10 @@ public class Combat_Action : Combat_Base<CombatState>
 
     private void ExecuteAction()
     {
-        if (CSMachine.GetManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
+        if (CSMachine.GetGameManager.GameUIManager.GetButtonEvent == CombatActionStates.ATTACK)
         {
-            CSMachine.GetManager.PlayerHandler.PlayerAttack();
-            CSMachine.GetManager.EnemyHandler.DamagedEnemy(0);
+            CSMachine.GetGameManager.PlayerHandler.PlayerAttack();
+            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(0);
         }
     }
 
@@ -528,7 +527,7 @@ public class Combat_Action : Combat_Base<CombatState>
 
     public override void End()
     {
-        CSMachine.GetManager.GameUIManager.ResetButtonEvent();
+        CSMachine.GetGameManager.GameUIManager.ResetButtonEvent();
         base.End();
     }
 
@@ -553,7 +552,7 @@ public class Combat_StatusCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
-        CSMachine.CombatFinish = !CSMachine.GetManager.EnemyHandler.HasSoldiers;
+        CSMachine.CombatFinish = !CSMachine.GetGameManager.EnemyHandler.HasSoldiers;
         GoToNextState();
     }
 
@@ -569,6 +568,28 @@ public class Combat_StatusCheck : Combat_Base<CombatState>
 
     public override void End()
     {
+        if (GameManager.Instance.GetIsPlayerTurn)
+        {
+            Debug.Log("PLAYER TURN END");
+            CSMachine.GetGameManager.PlayerHandler.TurnEnd();
+            CSMachine.GetGameManager.PlayerHandler.UpdateTurns();
+            if (GameManager.Instance.GetIsPlayerTurn == false)
+            {
+                Debug.Log("ALL PLAYER TURN END");
+                CSMachine.GetGameManager.EnemyHandler.ResetTurns();
+            }
+        }
+        else 
+        {
+            Debug.Log("ENEMY TURN END");
+            CSMachine.GetGameManager.EnemyHandler.TurnEnd();
+            CSMachine.GetGameManager.EnemyHandler.UpdateTurns();
+            if (GameManager.Instance.GetIsEnemyTurn == false)
+            {
+                Debug.Log("ALL ENEMY TURN END");
+                CSMachine.GetGameManager.PlayerHandler.ResetTurns();
+            }
+        }
         base.End();
     }
 
