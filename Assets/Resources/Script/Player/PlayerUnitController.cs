@@ -132,27 +132,9 @@ public class PlayerUnitController : UnitController
         set { unitData = value; }
     }
 
-    public bool isActionGaugeFull
-    {
-        get { return unitData.MaxActionGaugePoints <= unitData.ActionGaugePoints; }
-    }
-
     public override void Initialize()
     {
         base.Initialize();
-    }
-
-
-    public void PlayerActionGauge(float incremnent)
-    {
-        //Debug.Log(currentPlayerData.MaxActionGaugePoints  + " <= " + currentPlayerData.ActionGaugePoints + " inc " + incremnent);
-        if (unitData.ActionGaugePoints >= unitData.MaxActionGaugePoints)
-        {
-            if(isRageMode)
-                unitData.ActionGaugePoints += incremnent * 2;
-            else
-                unitData.ActionGaugePoints += incremnent;
-        }
     }
 
     public void PlayMoveAnimation()

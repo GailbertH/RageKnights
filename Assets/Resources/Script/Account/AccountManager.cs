@@ -35,11 +35,10 @@ public class AccountManager : MonoBehaviour
         {
             AttackPower = 2,
             DefensePower = 2,
-            HealthPower = 2,
-            RageIncrement = 0.5f,
-            ActionGaugeIncrement = 0.2f,
-            HealthPoints = 30f,
-            ActionGaugePoints = 10f,
+            VitalityPower = 2,
+            RageIncrement = 1,
+            HealthPoints = 100,
+            ManaPoints = 100,
             RagePoints = 0,
         };
         string jsonAccountData = JsonUtility.ToJson(currentCharacterData);
@@ -135,7 +134,6 @@ public class AccountManager : MonoBehaviour
     public void ResetPlayerStatus()
     {
         AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.MaxHealthPoints;
-        AccountData.CurrentCharacterData.ActionGaugePoints = 0;
         AccountData.CurrentCharacterData.RagePoints = 0;
     }
 }

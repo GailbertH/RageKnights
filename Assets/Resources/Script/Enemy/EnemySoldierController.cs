@@ -9,16 +9,10 @@ public class EnemySoldierController : MonoBehaviour
     private const int MAX_LAYERS = 3;
     private const float MIN_X_POS = 1f;
     private const float MAX_X_POS = 3.5f;
-    private bool isTurnDone = false;
 
     private Dictionary<CombatPlacement, Tuple<float, float>> placement = new Dictionary<CombatPlacement, Tuple<float, float>>();
     private List<EnemyController> enemyArmy;
     private Vector3 initialPosition;
-
-    public bool GetIsTurnDone
-    {
-        get { return isTurnDone; }
-    }
 
     void Start()
     {
@@ -125,14 +119,5 @@ public class EnemySoldierController : MonoBehaviour
             return CombatPlacement.TOP;
         }
         return CombatPlacement.MID;
-    }
-
-    public void ResetTurn()
-    {
-        isTurnDone = false;
-    }
-    public void TurnEnd()
-    {
-        isTurnDone = true;
     }
 }

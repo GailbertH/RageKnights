@@ -9,36 +9,36 @@ public class DataDebugPopup : PopupBase
 {
     #region labels
     [SerializeField] private Text HealthPoints;
-    [SerializeField] private Text BaseHealthPoints;
+    [SerializeField] private Text MaxHealthPoints;
+
+    [SerializeField] private Text ManaPoints;
+    [SerializeField] private Text MaxManaPoints;
+
     [SerializeField] private Text RagePoints;
     [SerializeField] private Text MaxRagePoints;
-    [SerializeField] private Text AGPoints;
-    [SerializeField] private Text MaxAGPoints;
+
     [SerializeField] private Text RageInc;
-    [SerializeField] private Text AGInc;
+
     [SerializeField] private Text AttackPower;
     [SerializeField] private Text DefensePower;
-    [SerializeField] private Text RagePower;
-    [SerializeField] private Text ItemCount;
-    [SerializeField] private Text MaxItemCount;
-    [SerializeField] private Text AttackRageMultiplier;
+    [SerializeField] private Text VitalityPower;
     #endregion
     //-----------------------------------------------------------------
     #region textboxinput
     [SerializeField] private Text HealthPointsNewValue;
-    [SerializeField] private Text BaseHealthPointsNewValue;
+    [SerializeField] private Text MaxHealthPointsNewValue;
+
+    [SerializeField] private Text ManaPointsNewValue;
+    [SerializeField] private Text MaxManaPointsNewValue;
+
     [SerializeField] private Text RagePointsNewValue;
     [SerializeField] private Text MaxRagePointsNewValue;
-    [SerializeField] private Text AGPointsNewValue;
-    [SerializeField] private Text MaxAGPointsNewValue;
+
     [SerializeField] private Text RageIncNewValue;
-    [SerializeField] private Text AGIncNewValue;
+
     [SerializeField] private Text AttackPowerNewValue;
     [SerializeField] private Text DefensePowerNewValue;
-    [SerializeField] private Text RagePowerNewValue;
-    [SerializeField] private Text ItemCountNewValue;
-    [SerializeField] private Text MaxItemCountNewValue;
-    [SerializeField] private Text AttackRageMultiplierNewValue;
+    [SerializeField] private Text VitalityPowerNewValue;
     #endregion
 
     private PlayerUnitModel playerData = null;
@@ -56,34 +56,38 @@ public class DataDebugPopup : PopupBase
     public void SetupData()
     {
         HealthPoints.text = "Health Points - " + playerData.HealthPoints.ToString();
+        ManaPoints.text = "Mana Points - " + playerData.ManaPoints.ToString();
         RagePoints.text = "Rage Points - " + playerData.RagePoints.ToString();
-        AGPoints.text = "Action Points - " + playerData.ActionGaugePoints.ToString();
         RageInc.text = "Rage Increment - " + playerData.RageIncrement.ToString();
-        AGInc.text = "Action Increment - " + playerData.ActionGaugeIncrement.ToString();
         AttackPower.text = "Attack Power - " + playerData.AttackPower.ToString();
         DefensePower.text = "Defense Power - " + playerData.DefensePower.ToString();
+        DefensePower.text = "Vitality Power - " + playerData.DefensePower.ToString();
     }
 
     public void SaveChanges()
     {
-        float floatValue = 0;
-
-        if (float.TryParse(BaseHealthPointsNewValue.text, out floatValue))
-            playerData.MaxHealthPoints = floatValue;
-        if (float.TryParse(HealthPointsNewValue.text, out floatValue))
-            playerData.HealthPoints = playerData.MaxHealthPoints < floatValue ? playerData.MaxHealthPoints : floatValue;
-
-        if (float.TryParse(RageIncNewValue.text, out floatValue))
-            playerData.RageIncrement = floatValue;
-        if (float.TryParse(AGIncNewValue.text, out floatValue))
-            playerData.ActionGaugeIncrement = floatValue;
-
-
         int intValue = 0;
+
+        if (int.TryParse(MaxHealthPointsNewValue.text, out intValue))
+            playerData.MaxHealthPoints = intValue;
+        if (int.TryParse(HealthPointsNewValue.text, out intValue))
+            playerData.HealthPoints = playerData.MaxHealthPoints < intValue ? playerData.MaxHealthPoints : intValue;
+
+        if (int.TryParse(MaxManaPointsNewValue.text, out intValue))
+            playerData.MaxManaPoints = intValue;
+        if (int.TryParse(ManaPointsNewValue.text, out intValue))
+            playerData.ManaPoints = playerData.MaxManaPoints < intValue ? playerData.MaxManaPoints : intValue;
+
+        if (int.TryParse(RageIncNewValue.text, out intValue))
+            playerData.RageIncrement = intValue;
+
+
         if (int.TryParse(AttackPowerNewValue.text, out intValue))
             playerData.AttackPower = intValue;
         if (int.TryParse(DefensePowerNewValue.text, out intValue))
             playerData.DefensePower = intValue;
+        if (int.TryParse(VitalityPowerNewValue.text, out intValue))
+            playerData.VitalityPower = intValue;
 
         SetupData();
     }

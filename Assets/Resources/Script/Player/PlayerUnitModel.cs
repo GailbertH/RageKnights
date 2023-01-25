@@ -6,19 +6,20 @@ using UnityEngine;
 [Serializable]
 public class PlayerUnitModel
 {
-    public float HealthPoints;
-    public float MaxHealthPoints = 100;
-    public float ActionGaugePoints;
-    public float MaxActionGaugePoints = 100;
-    public float RagePoints;
-    public float MaxRagePoints = 100;
+    public int HealthPoints;
+    public int MaxHealthPoints = 100;
 
-    public float RageIncrement;
-    public float ActionGaugeIncrement;
+    public int ManaPoints;
+    public int MaxManaPoints = 100;
+
+    public int RagePoints;
+    public int MaxRagePoints = 100;
+
+    public int RageIncrement;
 
     public int AttackPower;
     public int DefensePower;
-    public int HealthPower;
+    public int VitalityPower;
 }
 
 #region Unused

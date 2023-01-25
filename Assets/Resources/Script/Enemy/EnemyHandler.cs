@@ -61,12 +61,12 @@ public class EnemyHandler : MonoBehaviour
             enemies.Add(null);
         }
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
-        currentActiveUnit = enemySoldierController;
+        currentActiveUnit = enemies[0];
     }
 
     /////////////////////////////////////////////////////
-    EnemySoldierController currentActiveUnit = null;
-    public EnemySoldierController GetCurrentActiveUnit
+    EnemyController currentActiveUnit = null;
+    public EnemyController GetCurrentActiveUnit
     {
         get { return currentActiveUnit; }
     }
@@ -91,13 +91,17 @@ public class EnemyHandler : MonoBehaviour
 
     public void UpdateTurns()
     {
-        //Temp
-        if (currentActiveUnit.GetIsTurnDone == true)
+        bool isTurnsDone = true;
+        for (int i = 0; i < enemies.Count; i++)
         {
-            enemyTurnIsDone = true;
+            if (enemies[i].GetIsTurnDone == false)
+            {
+                Debug.Log("E Unit " + (i + 1) + " = " + enemies[i].GetIsTurnDone);
+                currentActiveUnit = enemies[i];
+                isTurnsDone = false;
+            }
         }
-        else
-            enemyTurnIsDone = false;
+        enemyTurnIsDone = isTurnsDone;
 
         Debug.Log("enemyTurnIsDone " + enemyTurnIsDone);
     }
@@ -105,7 +109,11 @@ public class EnemyHandler : MonoBehaviour
     public void ResetTurns()
     {
         //All unit turnIsDone = false;
-        currentActiveUnit.ResetTurn();
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].ResetTurn();
+        }
+        currentActiveUnit = enemies[0];
         enemyTurnIsDone = false;
     }
 
@@ -226,10 +234,7 @@ public class EnemyHandler : MonoBehaviour
     public void EnemyActionChecker()
     {
         int eCPId = 0;
-        foreach (EnemyController enemy in enemies.Where(x => x != null))
-        {
-            enemy.CheckAction();
-        }
+        currentActiveUnit.CheckAction();
     }
 
     public void DeductArmyCount()
