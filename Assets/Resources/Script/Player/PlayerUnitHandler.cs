@@ -122,7 +122,7 @@ namespace RageKnight.Player
         public void UpdateHealthGauge()
         {
             float playerHP = GetPlayerData != null ? GetPlayerData.HealthPoints : 0f;
-            GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
+            //GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
         }
 
         public void PlayerDamaged(int damage)

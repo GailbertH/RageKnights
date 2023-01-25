@@ -34,7 +34,7 @@ public class MiddleUIHandler : MonoBehaviour
         float enemyCurrentHP = inst.EnemyHandler.GetArmyCount;
 
         healthbarHandler.Initialize(playerMaxHP, enemyCurrentHP, 150, enemyArmyCount: (int)enemyCurrentHP, isBoss: false);
-        healthbarHandler.UpdatePlayerHealth(playerCurrentHP);
+        //healthbarHandler.UpdatePlayerHealth(playerCurrentHP);
         healthbarHandler.UpdateEnemyHealth(enemyCurrentHP);
         healthbarHandler.UpdatePlayerActionGauge(0);
         healthbarHandler.ShowHealthBar();

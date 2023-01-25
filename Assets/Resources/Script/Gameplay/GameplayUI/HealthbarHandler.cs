@@ -50,15 +50,6 @@ public class HealthbarHandler : MonoBehaviour
         enemyBarHolder.SetActive(false);
     }
 
-    public void UpdatePlayerHealth(float playerCurrentHealth)
-    {
-        float healthPercent = playerCurrentHealth / playerMaxHealth;
-        if (healthPercent < 0 || healthPercent > 1)
-        {
-            healthPercent = healthPercent < 0 ? 0 : 1;
-        }
-        playerHealth.localScale = new Vector3(healthPercent, 1, 1);
-    }
 
     public void UpdateEnemyHealth(float enemyCurrentHealth)
     {
