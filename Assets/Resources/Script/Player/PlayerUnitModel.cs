@@ -6,20 +6,48 @@ using UnityEngine;
 [Serializable]
 public class PlayerUnitModel
 {
-    public int HealthPoints;
-    public int MaxHealthPoints = 100;
+    public string name = "Unit";
 
-    public int ManaPoints;
-    public int MaxManaPoints = 100;
+    public int healthPoints;
+    public int maxHealthPoints = 100;
 
-    public int RagePoints;
-    public int MaxRagePoints = 100;
+    public int manaPoints;
+    public int maxManaPoints = 100;
 
-    public int RageIncrement;
+    public int ragePoints;
+    public int maxRagePoints = 100;
 
-    public int AttackPower;
-    public int DefensePower;
-    public int VitalityPower;
+    public int rageIncrement;
+
+    public int attackPower;
+    public int defensePower;
+    public int vitalityPower;
+
+    public StatusBarFields statusBarItems
+    {
+        get
+        {
+            return new StatusBarFields
+            {
+                name = name,
+                healthPoints = healthPoints,
+                maxHealthPoints = maxHealthPoints,
+                manaPoints = manaPoints,
+                maxManaPoints = maxManaPoints
+            };
+        }
+    }
+}
+
+[Serializable]
+public class StatusBarFields
+{
+    public string name;
+    public int healthPoints;
+    public int maxHealthPoints;
+
+    public int manaPoints;
+    public int maxManaPoints;
 }
 
 #region Unused

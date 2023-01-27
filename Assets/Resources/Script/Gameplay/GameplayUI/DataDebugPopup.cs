@@ -55,13 +55,13 @@ public class DataDebugPopup : PopupBase
 
     public void SetupData()
     {
-        HealthPoints.text = "Health Points - " + playerData.HealthPoints.ToString();
-        ManaPoints.text = "Mana Points - " + playerData.ManaPoints.ToString();
-        RagePoints.text = "Rage Points - " + playerData.RagePoints.ToString();
-        RageInc.text = "Rage Increment - " + playerData.RageIncrement.ToString();
-        AttackPower.text = "Attack Power - " + playerData.AttackPower.ToString();
-        DefensePower.text = "Defense Power - " + playerData.DefensePower.ToString();
-        DefensePower.text = "Vitality Power - " + playerData.DefensePower.ToString();
+        HealthPoints.text = "Health Points - " + playerData.healthPoints.ToString();
+        ManaPoints.text = "Mana Points - " + playerData.manaPoints.ToString();
+        RagePoints.text = "Rage Points - " + playerData.ragePoints.ToString();
+        RageInc.text = "Rage Increment - " + playerData.rageIncrement.ToString();
+        AttackPower.text = "Attack Power - " + playerData.attackPower.ToString();
+        DefensePower.text = "Defense Power - " + playerData.defensePower.ToString();
+        DefensePower.text = "Vitality Power - " + playerData.defensePower.ToString();
     }
 
     public void SaveChanges()
@@ -69,25 +69,25 @@ public class DataDebugPopup : PopupBase
         int intValue = 0;
 
         if (int.TryParse(MaxHealthPointsNewValue.text, out intValue))
-            playerData.MaxHealthPoints = intValue;
+            playerData.maxHealthPoints = intValue;
         if (int.TryParse(HealthPointsNewValue.text, out intValue))
-            playerData.HealthPoints = playerData.MaxHealthPoints < intValue ? playerData.MaxHealthPoints : intValue;
+            playerData.healthPoints = playerData.maxHealthPoints < intValue ? playerData.maxHealthPoints : intValue;
 
         if (int.TryParse(MaxManaPointsNewValue.text, out intValue))
-            playerData.MaxManaPoints = intValue;
+            playerData.maxManaPoints = intValue;
         if (int.TryParse(ManaPointsNewValue.text, out intValue))
-            playerData.ManaPoints = playerData.MaxManaPoints < intValue ? playerData.MaxManaPoints : intValue;
+            playerData.manaPoints = playerData.maxManaPoints < intValue ? playerData.maxManaPoints : intValue;
 
         if (int.TryParse(RageIncNewValue.text, out intValue))
-            playerData.RageIncrement = intValue;
+            playerData.rageIncrement = intValue;
 
 
         if (int.TryParse(AttackPowerNewValue.text, out intValue))
-            playerData.AttackPower = intValue;
+            playerData.attackPower = intValue;
         if (int.TryParse(DefensePowerNewValue.text, out intValue))
-            playerData.DefensePower = intValue;
+            playerData.defensePower = intValue;
         if (int.TryParse(VitalityPowerNewValue.text, out intValue))
-            playerData.VitalityPower = intValue;
+            playerData.vitalityPower = intValue;
 
         SetupData();
     }

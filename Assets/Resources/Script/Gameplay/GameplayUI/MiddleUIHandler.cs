@@ -1,4 +1,5 @@
 ﻿using RageKnight;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MiddleUIHandler : MonoBehaviour
@@ -28,15 +29,26 @@ public class MiddleUIHandler : MonoBehaviour
     {
         GameManager inst = GameManager.Instance;
         PlayerUnitModel playerData = inst.PlayerHandler.GetPlayerData;
+        List<StatusBarFields> stats = new List<StatusBarFields>();
 
-        float playerMaxHP = playerData.MaxHealthPoints;
-        float playerCurrentHP = playerData.HealthPoints;
+        StatusBarFields stat = playerData.statusBarItems;
+        stat.name = "Unit 1";
+        stats.Add(stat);
+
+        stat = playerData.statusBarItems;
+        stat.name = "Unit 2";
+        stats.Add(stat);
+
+        stat = playerData.statusBarItems;
+        stat.name = "Unit 3";
+        stats.Add(stat);
+
+        float playerMaxHP = playerData.maxHealthPoints;
+        float playerCurrentHP = playerData.healthPoints;
         float enemyCurrentHP = inst.EnemyHandler.GetArmyCount;
 
-        healthbarHandler.Initialize(playerMaxHP, enemyCurrentHP, 150, enemyArmyCount: (int)enemyCurrentHP, isBoss: false);
-        //healthbarHandler.UpdatePlayerHealth(playerCurrentHP);
-        healthbarHandler.UpdateEnemyHealth(enemyCurrentHP);
-        healthbarHandler.UpdatePlayerActionGauge(0);
+        healthbarHandler.SetupPlayerSide(stats);
+        healthbarHandler.SetupEnemySide(2);
         healthbarHandler.ShowHealthBar();
     }
 

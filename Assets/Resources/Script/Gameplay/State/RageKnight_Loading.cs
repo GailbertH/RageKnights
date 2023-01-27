@@ -61,13 +61,13 @@ namespace RageKnight.GameState
             {
                 playerData = new PlayerUnitModel
                 {
-                    AttackPower = 2,
-                    DefensePower = 2,
-                    VitalityPower = 2,
-                    RageIncrement = 1,
-                    HealthPoints = 100,
-                    ManaPoints = 100,
-                    RagePoints = 0
+                    attackPower = 2,
+                    defensePower = 2,
+                    vitalityPower = 2,
+                    rageIncrement = 1,
+                    healthPoints = 100,
+                    manaPoints = 100,
+                    ragePoints = 0
                 };
             }
 #endif
