@@ -36,7 +36,7 @@ namespace RageKnight.Player
         {
             get
             {
-                return units.All(x => x.UnitData.HealthPoints > 0);
+                return units.All(x => x.UnitData.healthPoints > 0);
             }
         }
 
@@ -121,7 +121,7 @@ namespace RageKnight.Player
 
         public void UpdateHealthGauge()
         {
-            float playerHP = GetPlayerData != null ? GetPlayerData.HealthPoints : 0f;
+            float playerHP = GetPlayerData != null ? GetPlayerData.healthPoints : 0f;
             //GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
         }
 
@@ -134,7 +134,7 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.ATTACKING;
             currentActiveUnit.Attack();
-            float attackDamage = GetPlayerData != null ? currentActiveUnit.UnitData.AttackPower : 0;
+            float attackDamage = GetPlayerData != null ? currentActiveUnit.UnitData.attackPower : 0;
             GetEnemyHandler().DamagedEnemy(attackDamage);
 
         }

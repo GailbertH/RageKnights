@@ -223,7 +223,7 @@ public class EnemyHandler : MonoBehaviour
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
 
-        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(enemies[eCPId].GetEnemyData.HealthPoints);
+        //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(enemies[eCPId].GetEnemyData.HealthPoints);
 
         if (fieldSlots < enemies.Count())
         {
@@ -241,8 +241,8 @@ public class EnemyHandler : MonoBehaviour
     {
         armyCount--;
         GameManager.Instance.EnemyKill();
-        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
-        GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
+        //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
+        //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
     }
 
     public void UnSetEnemy(int enemyPlacement)

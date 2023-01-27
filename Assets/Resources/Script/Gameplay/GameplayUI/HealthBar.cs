@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Transform Health;
-    [SerializeField] private Transform Mana;
+    [SerializeField] private TextMeshProUGUI name;
+    [SerializeField] private Transform health;
+    [SerializeField] private Transform mana;
 
     private bool isMonsterHealth;
     private int maxHP;
     private int maxMP;
 
-    public void Setup(int hp, int maxHp, int mp, int maxMp)
+    public void Setup(StatusBarFields stats)
     {
-        maxHP = maxHp;
-        maxMP = maxMp;
-        UpdateHealthPoints(hp);
-        UpdateManaPoints(mp);
+        name.text = stats.name;
+        maxHP = stats.maxHealthPoints;
+        maxMP = stats.maxManaPoints;
+
+        UpdateHealthPoints(stats.healthPoints);
+        UpdateManaPoints(stats.manaPoints);
     }
 
     public void UpdateHealthPoints(int hp)
@@ -26,7 +30,7 @@ public class HealthBar : MonoBehaviour
         {
             healthPercent = healthPercent < 0 ? 0 : 1;
         }
-        Health.localScale = new Vector3(healthPercent, 1, 1);
+        health.localScale = new Vector3(healthPercent, 1, 1);
     }
 
     public void UpdateManaPoints(int mp)
@@ -36,6 +40,6 @@ public class HealthBar : MonoBehaviour
         {
             manaPercent = manaPercent < 0 ? 0 : 1;
         }
-        Health.localScale = new Vector3(manaPercent, 1, 1);
+        mana.localScale = new Vector3(manaPercent, 1, 1);
     }
 }

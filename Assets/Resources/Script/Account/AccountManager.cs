@@ -33,13 +33,13 @@ public class AccountManager : MonoBehaviour
     {
         PlayerUnitModel currentCharacterData = new PlayerUnitModel
         {
-            AttackPower = 2,
-            DefensePower = 2,
-            VitalityPower = 2,
-            RageIncrement = 1,
-            HealthPoints = 100,
-            ManaPoints = 100,
-            RagePoints = 0,
+            attackPower = 2,
+            defensePower = 2,
+            vitalityPower = 2,
+            rageIncrement = 1,
+            healthPoints = 100,
+            manaPoints = 100,
+            ragePoints = 0,
         };
         string jsonAccountData = JsonUtility.ToJson(currentCharacterData);
         Debug.Log("FAKE DATA : " + jsonAccountData);
@@ -133,8 +133,8 @@ public class AccountManager : MonoBehaviour
 
     public void ResetPlayerStatus()
     {
-        AccountData.CurrentCharacterData.HealthPoints = AccountData.CurrentCharacterData.MaxHealthPoints;
-        AccountData.CurrentCharacterData.RagePoints = 0;
+        AccountData.CurrentCharacterData.healthPoints = AccountData.CurrentCharacterData.maxHealthPoints;
+        AccountData.CurrentCharacterData.ragePoints = 0;
     }
 }
 
