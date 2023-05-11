@@ -46,7 +46,7 @@ public class DataDebugPopup : PopupBase
     public override void Initialize(Action OnCloseAction, object data = null)
     {
         base.Initialize(OnCloseAction);
-        playerData = GameManager.Instance?.PlayerHandler?.GetPlayerData;
+        playerData = GameManager.Instance?.PlayerHandler?.GetPlayerData[0];
         if (playerData != null)
         {
             SetupData();

@@ -45,6 +45,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e14f990ae74bb354c9fda2a08bc0d22d, type: 2}
   - {fileID: 11400000, guid: 34d3146283e0ed849b313c66ad96d0ed, type: 2}
   - {fileID: 11400000, guid: 05fd0d5ba1f9b1c4eb9b6e9e408e14e9, type: 2}
+  - {fileID: 11400000, guid: dc9aaf9c9342c864da88fed4997ac5ce, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -87,6 +88,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - RemoteResourceTesting
+    - TestingImage
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 543e8f4c3c0771b40ad6e6081d6fe3df, type: 2}

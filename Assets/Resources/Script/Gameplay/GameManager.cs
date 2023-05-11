@@ -25,7 +25,7 @@ namespace RageKnight
         private int stageTracker = 0;
         public int stage = 1;
 
-        [SerializeField] private EnemyHandler enemyHandler;
+        [SerializeField] private EnemyUnitHandler enemyHandler;
         [SerializeField] private PlayerUnitHandler playerUnitHandler;
         [SerializeField] private EnvironmentHandler environmentHandler;
         [SerializeField] private int stageCount;
@@ -38,19 +38,12 @@ namespace RageKnight
         #region Properties
         public static GameManager Instance { get { return instance; } }
 
-        private GameUIManager gameUIManager; 
-        public GameUIManager GameUIManager
-        {
-            get { return gameUIManager; }
-            set { gameUIManager = value; }
-        }
-
         public PlayerUnitHandler PlayerHandler
         {
             get { return playerUnitHandler; }
         }
 
-        public EnemyHandler EnemyHandler
+        public EnemyUnitHandler EnemyHandler
         {
             get { return enemyHandler; }
         }
@@ -134,7 +127,7 @@ namespace RageKnight
             StartCoroutine(routine);
         }
 
-        public void AccountDataInit(PlayerUnitModel playerData)
+        public void AccountDataInit(List<PlayerUnitModel> playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
@@ -162,7 +155,7 @@ namespace RageKnight
         {
             stageTracker = stageTracker + 1;
             combatTracker.UpdateStageCompleteCount();
-            GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
+            GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
             Debug.Log("Stage: " + stage + " | " + stageTracker);
             AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
         }
@@ -180,7 +173,6 @@ namespace RageKnight
         public void ExitingGame()
         {
             isStateActive = false;
-            GameUIManager = null;
             playerUnitHandler = null;
             enemyHandler = null;
             environmentHandler = null;

@@ -7,6 +7,8 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private GameObject statusBarCopy;
     [SerializeField] private Transform playerSideParent;
     [SerializeField] private Transform enemySideParent;
+    private List<HealthBar> playerUnitHealthBar = new List<HealthBar>();
+    private List<HealthBar> enemyUnitHealthBar = new List<HealthBar>();
 
     public void SetUIActive(bool isActive)
     {
@@ -19,30 +21,23 @@ public class HealthbarHandler : MonoBehaviour
         {
             GameObject playerObject = Instantiate<GameObject>(statusBarCopy,
                 playerSideParent) as GameObject;
-            playerObject.GetComponent<HealthBar>().Setup(playerStatus[i]);
-            playerObject.SetActive(true);
+            var phealthBar = playerObject.GetComponent<HealthBar>();
+            phealthBar.Setup(playerStatus[i]);
+            phealthBar.gameObject.SetActive(true);
+            playerUnitHealthBar.Add(phealthBar);
         }
     }
 
-    public void SetupEnemySide(int unitCount)
+    public void SetupEnemySide(List<StatusBarFields> enemyStatus)
     {
-        for (int i = 0; i < unitCount; i++)
+        for (int i = 0; i < enemyStatus.Count; i++)
         {
             GameObject enemyObject = Instantiate<GameObject>(statusBarCopy,
                 enemySideParent) as GameObject;
-            //enemyObject.GetComponent<HealthBar>().Setup(playerStatus[i]);
-            enemyObject.SetActive(true);
+            var ehealthBar = enemyObject.GetComponent<HealthBar>();
+            ehealthBar.Setup(enemyStatus[i]);
+            ehealthBar.gameObject.SetActive(true);
+            enemyUnitHealthBar.Add(ehealthBar);
         }
     }
-
-    public void ShowHealthBar()
-    {
-
-    }
-
-    public void HideHealthBar()
-    {
-
-    }
-
 }

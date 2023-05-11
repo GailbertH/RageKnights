@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 176284473}
   - component: {fileID: 176284472}
   m_Layer: 0
-  m_Name: Player 2
+  m_Name: Player 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitAnimationController: {fileID: 214677433}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 214677435}
   combatPlacement: 2
 --- !u!4 &176284473
 Transform:
@@ -477,7 +477,7 @@ Transform:
   m_Children:
   - {fileID: 214677436}
   m_Father: {fileID: 564927604}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195773242
 GameObject:
@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: 947785273}
   - component: {fileID: 947785274}
   m_Layer: 0
-  m_Name: Player 3
+  m_Name: Player 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1451,7 +1451,7 @@ Transform:
   m_Children:
   - {fileID: 1837488614}
   m_Father: {fileID: 564927604}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &947785274
 MonoBehaviour:
@@ -1466,8 +1466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitAnimationController: {fileID: 1837488615}
-  spriteRenderer: {fileID: 0}
-  combatPlacement: 1
+  spriteRenderer: {fileID: 1837488617}
+  combatPlacement: 0
 --- !u!1 &956421896
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,8 +3143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitAnimationController: {fileID: 1114891038}
-  spriteRenderer: {fileID: 0}
-  combatPlacement: 0
+  spriteRenderer: {fileID: 1114891037}
+  combatPlacement: 1
 --- !u!1 &1978343166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,12 +4090,12 @@ PrefabInstance:
         type: 3}
       propertyPath: units.Array.data[1]
       value: 
-      objectReference: {fileID: 176284472}
+      objectReference: {fileID: 947785274}
     - target: {fileID: 4996401774858078026, guid: 2479aa3cddadb1145afe2f879641d890,
         type: 3}
       propertyPath: units.Array.data[2]
       value: 
-      objectReference: {fileID: 947785274}
+      objectReference: {fileID: 176284472}
     - target: {fileID: 4996401774858078026, guid: 2479aa3cddadb1145afe2f879641d890,
         type: 3}
       propertyPath: companions.Array.size

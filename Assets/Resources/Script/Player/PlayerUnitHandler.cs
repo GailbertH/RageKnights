@@ -20,6 +20,7 @@ namespace RageKnight.Player
         private PlayerState currentPlayerState = PlayerState.IDLE;
         private const float BASE_RAGE_DURATION = 10f;
         private const float BASE_ITEM_COOLDOWN = 5f;
+        private int combatIdCounter = 0;
 
         public PlayerState GetPlayerState
         {
@@ -40,24 +41,27 @@ namespace RageKnight.Player
             }
         }
 
-        public PlayerUnitModel GetPlayerData
+        public List<PlayerUnitModel> GetPlayerData
         {
             get
             {
-                return units[0].UnitData;
+                return units.Select(x => x.UnitData).ToList();
             }
         }
 
-        public void PlayerInitialize(PlayerUnitModel playerData)
+        public void PlayerInitialize(List<PlayerUnitModel> playerDataList)
         {
-            units[0].UnitData = playerData;
-            units[1].UnitData = playerData;
-            units[2].UnitData = playerData;
+            for (int i = 0; i < playerDataList.Count; i++)
+            {
+                units[i].UnitData = playerDataList[i];
+                units[i].Initialize(playerDataList[i].unitCombatID);
+            }
+
             currentActiveUnit = units[0];
             Debug.Log("Player Initialize");
         }
 
-        public EnemyHandler GetEnemyHandler()
+        public EnemyUnitHandler GetEnemyHandler()
         {
             return GameManager.Instance.EnemyHandler;
         }
@@ -121,7 +125,7 @@ namespace RageKnight.Player
 
         public void UpdateHealthGauge()
         {
-            float playerHP = GetPlayerData != null ? GetPlayerData.healthPoints : 0f;
+            //float playerHP = GetPlayerData != null ? GetPlayerData.healthPoints : 0f;
             //GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
         }
 
@@ -134,8 +138,8 @@ namespace RageKnight.Player
         {
             currentPlayerState = PlayerState.ATTACKING;
             currentActiveUnit.Attack();
-            float attackDamage = GetPlayerData != null ? currentActiveUnit.UnitData.attackPower : 0;
-            GetEnemyHandler().DamagedEnemy(attackDamage);
+            int attackDamage = 0;//GetPlayerData != null ? currentActiveUnit.UnitData.attackPower : 0;
+            GetEnemyHandler().DamagedEnemy(attackDamage, GameUIManager.Instance.GetTargets);
 
         }
 

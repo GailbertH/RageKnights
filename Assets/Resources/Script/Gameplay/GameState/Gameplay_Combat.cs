@@ -7,7 +7,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 {
     private bool startCountDown = false;
     private Action onStateEndAction = null;
-    GameUIManager Controls = null;
     CombatStateMachine combatStateMachine = null;
 
     public Gameplay_Combat(GameManager manager, RageKnight_InGame handler) : base(GameplayState.COMBAT, manager, handler)
@@ -32,15 +31,14 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         base.GameStart();
-        Controls = Manager.GameUIManager;
         startCountDown = false;
 
         Manager.PlayerHandler.PlayerResetAnimation();
 
-        Controls.UpdateControlMode(State);
+        GameUIManager.Instance.UpdateControlMode(State);
         if (handler.GetPreviousState == GameplayState.ADVENTURE)
         {
-            Controls.UpdateMiddleUIModle(State);
+            GameUIManager.Instance.UpdateMiddleUIModle(State);
         }
         combatStateMachine.Start();
     }

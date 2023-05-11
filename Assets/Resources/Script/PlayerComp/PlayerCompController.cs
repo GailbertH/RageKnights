@@ -24,13 +24,13 @@ public class PlayerCompController : MonoBehaviour
         //companionData = statData;
     }
 
-    public virtual void CheckAction(EnemyHandler eHandler)
+    public virtual void CheckAction(EnemyUnitHandler eHandler)
     {
         companionActionCounter += UnityEngine.Random.Range(1, 3);
         if (companionActionCounter >= GetCompanionData.AttackCoolDownLength)
         {
             Attack();
-            eHandler.DamagedEnemy(GetCompanionData.AttackPower);
+            eHandler.DamagedEnemy(GetCompanionData.AttackPower, GameUIManager.Instance.GetTargets);
             companionActionCounter = 0;
         }
     }

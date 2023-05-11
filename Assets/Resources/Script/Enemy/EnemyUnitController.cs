@@ -1,18 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-public class EnemyController : UnitController
+public class EnemyUnitController : UnitController
 {
-    [SerializeField] private EnemyModel enemyData = null;
+    private EnemyUnitModel unitData = null;
 
-    public EnemyModel GetEnemyData
+    public EnemyUnitModel UnitData
     {
-        get { return enemyData; }
+        get { return unitData; }
+        set { unitData = value; }
     }
 
-    public override void Initialize()
+    public override void Initialize(string unitCombatID)
     {
-        base.Initialize();
+        base.Initialize(unitCombatID);
     }
 
     public void CheckAction()

@@ -23,7 +23,7 @@ namespace RageKnight.Tools
         public static void OpenDataManager()
         {
             ToolLocalDatabaseEditor viewer = ToolLocalDatabaseEditor.Instance;
-            viewer.minSize = new Vector2(250f, 250f);
+            viewer.minSize = new Vector2(500f, 500f);
             viewer.maxSize = new Vector2(500f, 500f);
         }
 
@@ -83,6 +83,7 @@ namespace RageKnight.Tools
         private const string _conDBitemPath = "DatabaseData/Consumable/";
         private DatabaseType _currentViewType = DatabaseType.Consumable;
         List<Consumable> _consumableData = null;
+
         public static ToolLocalDatabaseEditor Instance
         {
             get { return GetWindow<ToolLocalDatabaseEditor>(); }
@@ -188,6 +189,7 @@ namespace RageKnight.Tools
             {
                 _consumableData.Remove(_consumableData.Find(x => x.id == badIds));
             }
+
             GUILayout.EndScrollView();
         }
 

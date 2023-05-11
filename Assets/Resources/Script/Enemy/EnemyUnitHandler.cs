@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyHandler : MonoBehaviour
+public class EnemyUnitHandler : MonoBehaviour
 {
     //TODO too many random variables gotta reduce these weird variables its making things complicated now.
     private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
@@ -17,13 +17,22 @@ public class EnemyHandler : MonoBehaviour
     [SerializeField] private List<GameObject> spawnSpotHolders;
     [SerializeField] private int spawnLimit = 0;
 
-    private List<EnemyController> enemies = null;
+    private List<EnemyUnitController> enemies = null;
+    private int combatIdCounter = 0;
 
     private int armyCount;
     private int enemyAttackDamage = 1;
     private float enemySpawnCD = 3f;
     private bool hasPresentMonster = false;
     System.Random random = new System.Random();
+
+    public int GetEnemyCount
+    {
+        get
+        {
+            return spawnLimit;
+        }
+    }
 
     public bool HasSoldiers
     {
@@ -49,13 +58,21 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
+    public List<EnemyUnitModel> GetEnemyData
+    {
+        get
+        {
+            return enemies.Select(x => x.UnitData).ToList();
+        }
+    }
+
     public void Initialize()
     {
         Debug.Log("init");
         //Not the best idea but it will do for now.
         armyCount = UnityEngine.Random.Range(20, 50);
         spawnLimit = (spawnLimit == 0 || spawnLimit > 3) ? spawnSpotHolders.Count : spawnLimit;
-        enemies = new List<EnemyController>();
+        enemies = new List<EnemyUnitController>();
         for(int i = 0; i < spawnLimit; i++)
         {
             enemies.Add(null);
@@ -65,8 +82,8 @@ public class EnemyHandler : MonoBehaviour
     }
 
     /////////////////////////////////////////////////////
-    EnemyController currentActiveUnit = null;
-    public EnemyController GetCurrentActiveUnit
+    EnemyUnitController currentActiveUnit = null;
+    public EnemyUnitController GetCurrentActiveUnit
     {
         get { return currentActiveUnit; }
     }
@@ -124,38 +141,39 @@ public class EnemyHandler : MonoBehaviour
 
     /////////////////////////////////////////////////////
     //Fix this to only get existing enemies
-    public void DamagedEnemy(float damage)
+    public void DamagedEnemy(int damage, List<string> targetCombatIDs)
     {
-        var values = enemies.Where(x => x != null).Select(x => (int)x.GetCombatPlacement).ToList();
-
-        if (values.Count <= 0)
+        if (targetCombatIDs.Count <= 0)
             return;
 
-        int eCPId = values[random.Next(values.Count)];
-
-        string listContent = "";
-        foreach (var x in values)
+        for (int i = 0; i < targetCombatIDs.Count; i++)
         {
-            listContent += x + " ";
+            DamagedEnemy(damage, targetCombatIDs[i]);
         }
-        //Debug.Log("Alive List : " + listContent);
-        //Debug.Log("Targe Enemy : " + eCPId);
+    }
 
-        if (enemies[eCPId] != null)
+    public void DamagedEnemy(int damage, string targetCombatID)
+    {
+        if (enemies.Count <= 0)
+            return;
+
+        var enemy = enemies.Find(x => x.GetUnitCombatId == targetCombatID);
+
+        if (enemy != null)
         {
-            enemies[eCPId].Damaged();
-            bool isEnemyDead = enemies[eCPId].GetIsDead;
+            enemy.Damaged();
+            bool isEnemyDead = enemy.GetIsDead;
             if (isEnemyDead == true)
             {
-                OnEnemySlain(eCPId);
+                OnEnemySlain(enemy);
             }
         }
     }
 
-    public void OnEnemySlain(int enemyPlacement)
+    public void OnEnemySlain(EnemyUnitController enemy)
     {
-        Debug.Log("Enemy slain : " + enemyPlacement);
-        UnSetEnemy(enemyPlacement);
+        Debug.Log("Enemy slain : " + enemy.GetUnitCombatId);
+        UnSetEnemy(enemy);
         EnemySpawn();
     }
 
@@ -169,7 +187,7 @@ public class EnemyHandler : MonoBehaviour
 
         enemySpawnCD -= 1;
         float progressValue = (DEFAULT_SPAWN_TIMER - EnemySpawnCD) / DEFAULT_SPAWN_TIMER;
-        GameManager.Instance.GameUIManager.ProgressbarHandler.UpdateStageProgress(progressValue);
+        GameUIManager.Instance.ProgressbarHandler.UpdateStageProgress(progressValue);
 
         Debug.Log("IsEnemySpawn " + enemySpawnCD);
         if (enemySpawnCD <= 0)
@@ -218,8 +236,22 @@ public class EnemyHandler : MonoBehaviour
         enemyObject.transform.localPosition = enemyList[0].transform.position;
         enemyObject.transform.localRotation = enemyList[0].transform.rotation;
 
-        enemies[eCPId] = enemyObject.GetComponent<EnemyController>();
-        //enemies[eCPId].Initialize((CombatPlacement)eCPId, this);
+        enemies[eCPId] = enemyObject.GetComponent<EnemyUnitController>();
+        EnemyUnitModel enemyData = new EnemyUnitModel
+        {
+            name = "blompy" + combatIdCounter,
+            unitCombatID = "e" + combatIdCounter,
+            healthPoints = 100,
+            maxHealthPoints = 100,
+
+            attackPower = 2,
+            defensePower = 2,
+            vitalityPower = 2
+        };
+
+        enemies[eCPId].UnitData = enemyData;
+        enemies[eCPId].Initialize("e" + combatIdCounter);
+        ++combatIdCounter;
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
 
@@ -233,7 +265,6 @@ public class EnemyHandler : MonoBehaviour
 
     public void EnemyActionChecker()
     {
-        int eCPId = 0;
         currentActiveUnit.CheckAction();
     }
 
@@ -245,10 +276,10 @@ public class EnemyHandler : MonoBehaviour
         //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
     }
 
-    public void UnSetEnemy(int enemyPlacement)
+    public void UnSetEnemy(EnemyUnitController enemy)
     {
-        enemies[enemyPlacement]?.Death();
-        enemies[enemyPlacement] = null;
+        enemy?.Death();
+        enemies.Remove(enemy);
     }
 
     public void UnSetAllEnemy()

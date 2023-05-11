@@ -13,12 +13,11 @@ public class UnitController : MonoBehaviour
     [SerializeField] public UnitAnimationController unitAnimationController;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
-    protected List<string> targetIds;
 
-    private string unitId;
-    public string GetUnitId
+    private string unitCombatId;
+    public string GetUnitCombatId
     {
-        get { return unitId; }
+        get { return unitCombatId; }
     }
 
     protected bool isDead = false;
@@ -55,11 +54,11 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    public virtual void Initialize()
+    public virtual void Initialize(string unitCombatID)
     {
         spriteRenderer.sortingOrder = GetOrderInLayer;
         unitAnimationController.Idle();
-        unitId = "E1";
+        unitCombatId = unitCombatID;
     }
 
     public virtual void LoadUnit()
@@ -132,9 +131,9 @@ public class PlayerUnitController : UnitController
         set { unitData = value; }
     }
 
-    public override void Initialize()
+    public override void Initialize(string unitCombatID)
     {
-        base.Initialize();
+        base.Initialize(unitCombatID);
     }
 
     public void PlayMoveAnimation()

@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 3407a771ef60bba4d88b71d0370072e4
     m_Address: Assets/Resources/Art/Gameplay/2D/Forest_01/Mainground.png
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
   m_SchemaSet:

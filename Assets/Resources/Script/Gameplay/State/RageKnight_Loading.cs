@@ -55,32 +55,38 @@ namespace RageKnight.GameState
         //TODO use proper data
         private void LoadAccountData()
         {
-            PlayerUnitModel playerData = null;
-#if UNITY_EDITOR
-            if (Manager.isTestMode == true)
+            List<PlayerUnitModel> playerDataList = new List<PlayerUnitModel>();
+            //if (Manager.isTestMode == true)
+            //{
+            string[] unitNames = { "Lancelot", "Vira", "Albert" };
+            for (int i = 0; i < unitNames.Length; i++)
             {
-                playerData = new PlayerUnitModel
+                PlayerUnitModel playerData = new PlayerUnitModel
                 {
-                    attackPower = 2,
-                    defensePower = 2,
-                    vitalityPower = 2,
-                    rageIncrement = 1,
+                    name = unitNames[i],
+                    unitCombatID = "p" + i,
                     healthPoints = 100,
                     manaPoints = 100,
-                    ragePoints = 0
+                    ragePoints = 0,
+                    rageIncrement = 1,
+                    attackPower = 2,
+                    defensePower = 2,
+                    vitalityPower = 2
                 };
+
+                playerDataList.Add(playerData);
             }
-#endif
-            if (playerData == null)
-            {
-                if (AccountManager.Instance.AccountData.HasCurrentActiveGame == false)
-                {
-                    AccountManager.Instance.ResetPlayerStatus();
-                }
-                AccountManager.Instance.SetActiveGame(true, true);
-                playerData = AccountManager.Instance.AccountData.CurrentCharacterData;
-            }
-            Manager.AccountDataInit(playerData);
+            //}
+            //if (playerData == null)
+            //{
+            //    if (AccountManager.Instance.AccountData.HasCurrentActiveGame == false)
+            //    {
+            //        AccountManager.Instance.ResetPlayerStatus();
+            //    }
+            //    AccountManager.Instance.SetActiveGame(true, true);
+            //    playerData = AccountManager.Instance.AccountData.CurrentCharacterData;
+            //}
+            Manager.AccountDataInit(playerDataList);
         }
     }
 }

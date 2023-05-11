@@ -98,7 +98,13 @@ public class DialogueManager : MonoBehaviour
         //});
         //Addressables.LoadAssetsAsync<object>("RemoteResourceTesting", obj =>
         //{
-        //    Debug.Log("Files = " + obj.GetType());
+        //    Debug.Log("Files = " + obj);
+        //});
+
+        //const string key = "TestingImage";
+        //Addressables.LoadAssetsAsync<Texture2D>(key, obj =>
+        //{
+        //    Debug.Log("Files = " + obj.name);
         //});
 
         Addressables.Release(loadop);

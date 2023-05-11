@@ -7,6 +7,8 @@ using UnityEngine;
 public class PlayerUnitModel
 {
     public string name = "Unit";
+    public string unitID = "TBA"; //Unit ID, unique to all units.
+    public string unitCombatID; //This is a units ID that changes every combat.
 
     public int healthPoints;
     public int maxHealthPoints = 100;
@@ -30,10 +32,13 @@ public class PlayerUnitModel
             return new StatusBarFields
             {
                 name = name,
+                unitCombatID = unitCombatID,
                 healthPoints = healthPoints,
                 maxHealthPoints = maxHealthPoints,
                 manaPoints = manaPoints,
-                maxManaPoints = maxManaPoints
+                maxManaPoints = maxManaPoints,
+
+                isEnemy = false
             };
         }
     }
@@ -43,11 +48,14 @@ public class PlayerUnitModel
 public class StatusBarFields
 {
     public string name;
+    public string unitCombatID;
     public int healthPoints;
     public int maxHealthPoints;
 
     public int manaPoints;
     public int maxManaPoints;
+
+    public bool isEnemy;
 }
 
 #region Unused
