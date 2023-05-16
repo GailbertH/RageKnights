@@ -100,6 +100,7 @@ namespace RageKnight
 
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
+            GameUIManager.Instance.Initialize();
         }
         #endregion
 

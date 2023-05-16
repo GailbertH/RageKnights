@@ -47,6 +47,10 @@ public class GameUIManager : MonoBehaviour
     {
         instance = this;
         mainCamera.gameObject.SetActive(false);
+    }
+
+    public void Initialize()
+    {
         MiddleUIHandler.Initialize();
     }
 
