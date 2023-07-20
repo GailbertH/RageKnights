@@ -38,7 +38,7 @@ public class StorePopup : PopupBase
         Debug.Log("Buying item " + purchaseItemData.name);
     }
 
-    private List<StoreItemData> ConsumablesMapperToStoreItemDatas(List<Consumable> consumables)
+    private List<StoreItemData> ConsumablesMapperToStoreItemDatas(List<DB_Consumable> consumables)
     {
         List<StoreItemData> mappedData = new List<StoreItemData>();
         if (consumables != null)
@@ -46,7 +46,7 @@ public class StorePopup : PopupBase
             Debug.Log(consumables.Count);
             for (int i = 0; i < consumables.Count; i++)
             {
-                Consumable con = consumables[i];
+                DB_Consumable con = consumables[i];
                 mappedData.Add(new StoreItemData {
                     id = con.id,
                     price = con.cost,

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private Transform health;
     [SerializeField] private Transform mana;
 
@@ -26,7 +25,6 @@ public class HealthBar : MonoBehaviour
 
     public void Setup(StatusBarFields stats)
     {
-        name.text = stats.name;
         unitCombatID = stats.unitCombatID;
         maxHP = stats.maxHealthPoints;
         maxMP = stats.maxManaPoints;
@@ -48,6 +46,9 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateManaPoints(int mp)
     {
+        if (mana == null)
+            return;
+
         float manaPercent = (float)mp / (float)maxMP;
         if (manaPercent < 0 || manaPercent > 1)
         {

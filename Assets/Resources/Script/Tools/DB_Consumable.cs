@@ -5,11 +5,11 @@ namespace RageKnight.Database
 {
     [Serializable]
     [CreateAssetMenu(fileName = "New Consumable Item", menuName = "Assets/Database_Item/Consumable")]
-    public class Consumable : DatabaseItem
+    public class DB_Consumable : DatabaseItem
     {
-        public Consumable()
+        public DB_Consumable()
         {
-            id = "0000";
+            id = "";
             name = "new item";
             description = "description";
             cost = 0;
@@ -19,7 +19,7 @@ namespace RageKnight.Database
             icon = null;
         }
 
-        public void PopulateData(Consumable newCons)
+        public void PopulateData(DB_Consumable newCons)
         {
             id = newCons.id;
             name = newCons.name;

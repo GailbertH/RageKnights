@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea434039b6f917641afac33a2969aab0, type: 3}
+  m_Name: PlayerUnit-Database
+  m_EditorClassIdentifier: Assembly-CSharp:RageKnight.Database:DatabaseCharacterUnit
+  id: 0
+  Units:
+  - {fileID: 11400000, guid: e9afe2b5792d1c547a362d2a6ac7f131, type: 2}
+  - {fileID: 11400000, guid: fd5a636697fd1914290ca4b6245d3552, type: 2}
+  - {fileID: 11400000, guid: 6580739d71078a548a2057d8820e3915, type: 2}

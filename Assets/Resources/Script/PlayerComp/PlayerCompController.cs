@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class PlayerCompController : MonoBehaviour
 {
+    //TODO Delete this
+    /*
     private bool companionIsDead = false;
 
     private int companionActionCounter = 0;
-    [SerializeField] private CompanionModel companionData;
+    //[SerializeField] private CompanionModel companionData;
 
     [SerializeField] Animation playerExtraAnim;
     [SerializeField] string damagedAnimName;
@@ -54,4 +56,5 @@ public class PlayerCompController : MonoBehaviour
         //Attack animation
         Debug.Log(GetCompanionData.Name + " ATTACKS!");
     }
+    */
 }
