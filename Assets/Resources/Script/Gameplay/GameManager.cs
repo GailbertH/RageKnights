@@ -145,15 +145,16 @@ namespace RageKnight
             isGamePaused = isPause;
         }
 
+        /*
         public void IncrementStage()
         {
             stageTracker = stageTracker + 1;
             combatTracker.UpdateStageCompleteCount();
-            GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
+            //GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
             Debug.Log("Stage: " + stage + " | " + stageTracker);
             AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
         }
-
+        */
         public void GameOverReset()
         {
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);

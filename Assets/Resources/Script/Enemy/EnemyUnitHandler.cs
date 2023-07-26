@@ -186,8 +186,8 @@ public class EnemyUnitHandler : MonoBehaviour
         }
 
         enemySpawnCD -= 1;
-        float progressValue = (DEFAULT_SPAWN_TIMER - EnemySpawnCD) / DEFAULT_SPAWN_TIMER;
-        GameUIManager.Instance.ProgressbarHandler.UpdateStageProgress(progressValue);
+        //float progressValue = (DEFAULT_SPAWN_TIMER - EnemySpawnCD) / DEFAULT_SPAWN_TIMER;
+        //GameUIManager.Instance.ProgressbarHandler.UpdateStageProgress(progressValue);
 
         Debug.Log("IsEnemySpawn " + enemySpawnCD);
         if (enemySpawnCD <= 0)

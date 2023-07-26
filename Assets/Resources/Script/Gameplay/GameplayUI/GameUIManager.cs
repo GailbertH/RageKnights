@@ -77,14 +77,6 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    public ProgressBarHandler ProgressbarHandler
-    {
-        get
-        {
-            return middleUIHandler.ProgressbarHandler;
-        }
-    }
-
     //-----Should be somewhere else
     private CombatAction buttonEvent;
     public CombatAction GetButtonEvent

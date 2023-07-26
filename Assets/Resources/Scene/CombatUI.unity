@@ -995,18 +995,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4352123966759285364}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1816381591 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4352123965354113763, guid: 265dab4c312bf5541b84e653f50539f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 4352123966759285364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1156d84a1655f09448d52f95bc20cb9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1891404024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbarHandler: {fileID: 426760520}
-  progressHandler: {fileID: 1816381591}
 --- !u!1 &1923874240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HPTracker
+      objectReference: {fileID: 0}
+    - target: {fileID: 531992976461747222, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4258451618151006904, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}

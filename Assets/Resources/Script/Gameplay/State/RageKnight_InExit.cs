@@ -22,7 +22,7 @@ namespace RageKnight.GameState
             //START UNLOADING
             if (LoadingManager.Instance != null)
             {
-                LoadingManager.Instance.SetSceneToUnload(SceneNames.GAME_UI + "," + SceneNames.GAME_SCENE);
+                LoadingManager.Instance.SetSceneToUnload(SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
                 LoadingManager.Instance.SetSceneToLoad(SceneNames.LOBBY_SCENE);
                 LoadingManager.Instance.LoadGameScene();
             }

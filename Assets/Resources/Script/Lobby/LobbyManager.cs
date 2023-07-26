@@ -36,7 +36,7 @@ public class LobbyManager : MonoBehaviour
         if(LoadingManager.Instance != null)
         {
             LoadingManager.Instance.SetSceneToUnload (SceneNames.LOBBY_SCENE);
-            LoadingManager.Instance.SetSceneToLoad (SceneNames.GAME_UI + "," + SceneNames.GAME_SCENE);
+            LoadingManager.Instance.SetSceneToLoad (SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
             LoadingManager.Instance.LoadGameScene ();
         }
         else
