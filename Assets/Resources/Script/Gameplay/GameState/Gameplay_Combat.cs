@@ -9,12 +9,12 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     private Action onStateEndAction = null;
     CombatStateMachine combatStateMachine = null;
 
-    public Gameplay_Combat(GameManager manager, RageKnight_InGame handler) : base(GameplayState.COMBAT, manager, handler)
+    public Gameplay_Combat() : base(GameplayState.COMBAT)
     {
         combatStateMachine = new CombatStateMachine(manager, this);
     }
 
-    private GameplayState nextState = GameplayState.ADVENTURE;
+    private GameplayState nextState = GameplayState.RESULT;
 
     public override void GameGoToNextState()
     {
@@ -23,9 +23,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
     public override bool GameAllowTransition(GameplayState nextState)
     {
-        return (nextState == GameplayState.ADVENTURE || 
-            nextState == GameplayState.RAGE ||
-            nextState == GameplayState.RESULT);
+        return (nextState == GameplayState.RESULT);
     }
 
     public override void GameStart()
@@ -36,10 +34,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
         Manager.PlayerHandler.PlayerResetAnimation();
 
         GameUIManager.Instance.UpdateControlMode(State);
-        if (handler.GetPreviousState == GameplayState.ADVENTURE)
-        {
-            GameUIManager.Instance.UpdateMiddleUIModle(State);
-        }
+        GameUIManager.Instance.UpdateMiddleUIModle(State);
         combatStateMachine.Start();
     }
 
@@ -55,7 +50,7 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
     public void NextState()
     {
-        Handler.SwitchState(GameplayState.ADVENTURE);
+        Handler.SwitchState(GameplayState.RESULT);
     }
 
     public override void GameEnd()

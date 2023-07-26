@@ -38,6 +38,7 @@ namespace RageKnight.Database
         public int skillId2;
         public Sprite icon;
         public Sprite splashArt;
+        public GameObject unitPrefab;
 
         [TextArea]
         public string description;

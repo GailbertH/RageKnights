@@ -237,10 +237,11 @@ public class EnemyUnitHandler : MonoBehaviour
         enemyObject.transform.localRotation = enemyList[0].transform.rotation;
 
         enemies[eCPId] = enemyObject.GetComponent<EnemyUnitController>();
+        string combatId = Guid.NewGuid().ToString();
         EnemyUnitModel enemyData = new EnemyUnitModel
         {
-            name = "blompy" + combatIdCounter,
-            unitCombatID = "e" + combatIdCounter,
+            name = "blompy " + combatId,
+            unitCombatID = combatId,
             healthPoints = 100,
             maxHealthPoints = 100,
 
@@ -250,8 +251,7 @@ public class EnemyUnitHandler : MonoBehaviour
         };
 
         enemies[eCPId].UnitData = enemyData;
-        enemies[eCPId].Initialize("e" + combatIdCounter);
-        ++combatIdCounter;
+        enemies[eCPId].Initialize(combatId);
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
 

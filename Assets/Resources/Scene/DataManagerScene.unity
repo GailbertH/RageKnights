@@ -185,41 +185,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
---- !u!1 &1262147662 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 36318469288809219, guid: 478017a8a53bd3e4aa94829821bef077,
-    type: 3}
-  m_PrefabInstance: {fileID: 36318469279675542}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1262147663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262147662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e61f4a0b8091147960b7aab77dd1d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CompanionDataList:
-  - Id: 0
-    Name: Comp1
-    role: Attacker
-    job: Warrior
-    HealthPoints: 50
-    AttackPower: 5
-    DefensePower: 5
-    AttackCoolDownLength: 4
-  - Id: 1
-    Name: Comp2
-    role: Attacker
-    job: Thief
-    HealthPoints: 30
-    AttackPower: 7
-    DefensePower: 3
-    AttackCoolDownLength: 2
 --- !u!1001 &36318469279675542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,6 +192,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36318469288809216, guid: 478017a8a53bd3e4aa94829821bef077,
+        type: 3}
+      propertyPath: dbCharacterUnit
+      value: 
+      objectReference: {fileID: 11400000, guid: 8322a018912d81e4d83dce69a5bebd49,
+        type: 2}
     - target: {fileID: 36318469288809217, guid: 478017a8a53bd3e4aa94829821bef077,
         type: 3}
       propertyPath: m_RootOrder

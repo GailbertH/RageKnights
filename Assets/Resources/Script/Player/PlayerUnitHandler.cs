@@ -139,7 +139,7 @@ namespace RageKnight.Player
             currentPlayerState = PlayerState.ATTACKING;
             currentActiveUnit.Attack();
             int attackDamage = 0;//GetPlayerData != null ? currentActiveUnit.UnitData.attackPower : 0;
-            GetEnemyHandler().DamagedEnemy(attackDamage, GameUIManager.Instance.GetTargets);
+            GetEnemyHandler().DamagedEnemy(attackDamage, GameTargetingManager.Instance.GetTargets);
 
         }
 

@@ -1,4 +1,5 @@
-﻿using RageKnight;
+﻿/*
+using RageKnight;
 using RageKnight.GameState;
 using UnityEngine;
 
@@ -74,3 +75,5 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
     }
     #endregion
 }
+
+*/

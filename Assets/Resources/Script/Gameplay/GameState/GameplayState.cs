@@ -4,28 +4,27 @@ using UnityEngine;
 
 public enum GameplayState
 {
-    ADVENTURE = 0,
+    LOADING = 0,
     COMBAT = 1,
-    RAGE = 2,
-    RESULT = 3,
-    EXIT = 4
+    RESULT = 2,
+    EXIT = 3
 }
 
 public class GameplayState_Base<GameplayState>
 {
     private GameplayState state;
-    private GameManager manager;
-    public RageKnight_InGame handler;
+    protected GameManager manager;
+    public GameplayStateMachine handler;
 
     public GameplayState State { get { return state; } }
     public GameManager Manager { get { return manager; } }
-    public RageKnight_InGame Handler { get { return handler; } }
+    public GameplayStateMachine Handler { get { return handler; } }
 
-    public GameplayState_Base(GameplayState state, GameManager manager, RageKnight_InGame handler)
+    public GameplayState_Base(GameplayState state)
     {
+        manager = GameManager.Instance;
+        handler = GameManager.Instance.StateMachine;
         this.state = state;
-        this.manager = manager;
-        this.handler = handler;
     }
 
     public virtual bool GameAllowTransition(GameplayState nextState)

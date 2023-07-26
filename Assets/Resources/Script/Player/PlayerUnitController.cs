@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using RageKnight;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum CombatPlacement
 {
@@ -8,11 +9,12 @@ public enum CombatPlacement
     TOP = 1,
     BOT = 2
 }
-public class UnitController : MonoBehaviour
+public class UnitController : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] public UnitAnimationController unitAnimationController;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
+    [SerializeField] private GameObject targetMarker = null;
 
     private string unitCombatId;
     public string GetUnitCombatId
@@ -54,11 +56,12 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(string unitCombatID)
+    public virtual void Initialize(string combatId)
     {
         spriteRenderer.sortingOrder = GetOrderInLayer;
         unitAnimationController.Idle();
-        unitCombatId = unitCombatID;
+        unitCombatId = combatId;
+        GameTargetingManager.Instance.OnUnitTargetChange(this.TargetAim);
     }
 
     public virtual void LoadUnit()
@@ -97,6 +100,7 @@ public class UnitController : MonoBehaviour
 
     public virtual void DestroyUnit()
     {
+        GameTargetingManager.Instance.RemoveOnUnitTargetChange(this.TargetAim);
         Destroy(this.gameObject);
     }
 
@@ -114,6 +118,20 @@ public class UnitController : MonoBehaviour
     public void TurnEnd()
     {
         isTurnDone = true;
+    }
+
+    private void TargetAim(string isTarget)
+    {
+        if(targetMarker != null)
+        targetMarker?.SetActive(GetUnitCombatId == isTarget);
+    }
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            GameTargetingManager.Instance.TargetChange(GetUnitCombatId);
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using RageKnight;
+﻿/*using RageKnight;
 using RageKnight.GameState;
 using System;
 
@@ -73,3 +73,4 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
         Manager.EnemyHandler.EndRageMode();
     }
 }
+*/

@@ -34,26 +34,21 @@ namespace RageKnight.GameState
 		{
             states = new Dictionary<GameplayState, GameplayState_Base<GameplayState>>();
 
-            Gameplay_Adventure adventure = new Gameplay_Adventure(Manager, this);
-            Gameplay_Combat combat = new Gameplay_Combat(Manager, this);
-            Gameplay_Rage rage = new Gameplay_Rage(Manager, this);
-            Gameplay_Result result = new Gameplay_Result(Manager, this);
-            Gameplay_Exit exit = new Gameplay_Exit(Manager, this);
+            Gameplay_Combat combat = new Gameplay_Combat();
+            Gameplay_Result result = new Gameplay_Result();
+            Gameplay_Exit exit = new Gameplay_Exit();
 
-            states.Add(adventure.State, (GameplayState_Base<GameplayState>)adventure);
             states.Add(combat.State, (GameplayState_Base<GameplayState>)combat);
-            states.Add(rage.State, (GameplayState_Base<GameplayState>)rage);
             states.Add(result.State, (GameplayState_Base<GameplayState>)result);
             states.Add(exit.State, (GameplayState_Base<GameplayState>)exit);
 
-            currentState = adventure;
-            currentStateName = GameplayState.ADVENTURE;
+            currentStateName = GameplayState.COMBAT;
             previousStateName = GameplayState.EXIT;
         }
 
 		public override void GoToNextState()
 		{
-			Manager.StateMachine.SwitchState (RageKnightState.EXIT);
+			//Manager.StateMachine.SwitchState (RageKnightState.EXIT);
 		}
 
 		public override bool AllowTransition (RageKnightState nextState)

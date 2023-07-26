@@ -59,7 +59,6 @@ public class HealthBar : MonoBehaviour
 
     public void buttonSelect()
     {
-        GameUIManager.Instance.AddTarget(unitCombatID);
-        GameUIManager.Instance.TargetSelectionDone();
+        GameTargetingManager.Instance.AddTarget(unitCombatID);
     }
 }

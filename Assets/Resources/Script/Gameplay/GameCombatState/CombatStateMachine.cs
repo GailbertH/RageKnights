@@ -446,18 +446,19 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
             return;
 
         if (GameManager.Instance.GetIsPlayerTurn &&
-            GameUIManager.Instance.GetIsActionSelectionDone
+            GameTargetingManager.Instance.GetIsTargetSelectionDone &&
+            GameUIManager.Instance.GetButtonEvent != CombatAction.NONE
             )
         {
             actionSelected = true;
-            //Debug.Log("ATTACK");
+            Debug.Log("ATTACK");
             GoToNextState();
         }
         else if(GameManager.Instance.GetIsPlayerTurn == false)
         {
             GameManager.Instance.EnemyHandler.EnemyActionChecker();
             actionSelected = true;
-            //Debug.Log("ENEMY ATTACK");
+            Debug.Log("ENEMY ATTACK");
             GoToNextState();
         }
     }
@@ -503,7 +504,7 @@ public class Combat_Action : Combat_Base<CombatState>
         if (GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
         {
             CSMachine.GetGameManager.PlayerHandler.PlayerAttack();
-            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(0, GameUIManager.Instance.GetTargets);
+            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(0, GameTargetingManager.Instance.GetTargets);
         }
     }
 
@@ -519,7 +520,9 @@ public class Combat_Action : Combat_Base<CombatState>
 
     public override void End()
     {
+        Debug.Log("End State");
         GameUIManager.Instance.ResetSelections();
+        GameTargetingManager.Instance.ResetSelections();
         base.End();
     }
 

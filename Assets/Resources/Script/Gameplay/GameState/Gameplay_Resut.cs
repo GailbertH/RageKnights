@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gameplay_Result : GameplayState_Base<GameplayState>
 {
-    public Gameplay_Result(GameManager manager, RageKnight_InGame handler) : base(GameplayState.RESULT, manager, handler)
+    public Gameplay_Result() : base(GameplayState.RESULT)
     {
     }
 

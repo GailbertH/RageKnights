@@ -92,23 +92,10 @@ public class GameUIManager : MonoBehaviour
         get { return buttonEvent; }
     }
 
-    private List<string> targets = new List<string>();
-    public List<string> GetTargets
-    {
-        get { return targets; }
-    }
-
-    private bool isActionSelectionDone = false;
-    public bool GetIsActionSelectionDone
-    {
-        get { return isActionSelectionDone; }
-    }
 
     public void ResetSelections()
     {
-        isActionSelectionDone = false;
         buttonEvent = CombatAction.NONE;
-        targets = new List<string>();
     }
 
     public void AttackButton()
@@ -207,21 +194,5 @@ public class GameUIManager : MonoBehaviour
     public void ShowRageImage()
     {
         sloppy.GetComponent<Animation>().Play();
-    }
-
-    public void AddTarget(string unitCombatID)
-    {
-        if (targets.Contains(unitCombatID))
-            return;
-
-        targets.Add(unitCombatID);
-    }
-
-    public void TargetSelectionDone()
-    {
-        if (targets.Count <= 0)
-            return;
-
-        isActionSelectionDone = true;
     }
 }

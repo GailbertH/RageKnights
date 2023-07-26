@@ -18,7 +18,7 @@ public class MiddleUIHandler : MonoBehaviour
     public void SetMiddleGround(GameplayState currentState)
     {
         healthbarHandler.SetUIActive(currentState == GameplayState.COMBAT);
-        progressHandler.SetUIActive(currentState == GameplayState.ADVENTURE);
+        progressHandler.SetUIActive(false);
 
         if (currentState == GameplayState.COMBAT)
         {

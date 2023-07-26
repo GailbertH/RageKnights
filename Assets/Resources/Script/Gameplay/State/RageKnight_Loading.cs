@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace RageKnight.GameState
 
         public override void GoToNextState()
         {
-            Manager.StateMachine.SwitchState(RageKnightState.INGAME);
+            //Manager.StateMachine.SwitchState(RageKnightState.INGAME);
         }
 
         public override bool AllowTransition(RageKnightState nextState)
@@ -55,6 +56,7 @@ namespace RageKnight.GameState
         //TODO use proper data
         private void LoadAccountData()
         {
+            string combatId = Guid.NewGuid().ToString();
             List<PlayerUnitModel> playerDataList = new List<PlayerUnitModel>();
             //if (Manager.isTestMode == true)
             //{
@@ -64,7 +66,7 @@ namespace RageKnight.GameState
                 PlayerUnitModel playerData = new PlayerUnitModel
                 {
                     name = unitNames[i],
-                    unitCombatID = "p" + i,
+                    unitCombatID = combatId,
                     healthPoints = 100,
                     manaPoints = 100,
                     ragePoints = 0,

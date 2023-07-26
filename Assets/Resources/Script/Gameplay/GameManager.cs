@@ -4,18 +4,16 @@ using RageKnight.Environment;
 using RageKnight.GameState;
 using RageKnight.Player;
 using UnityEngine;
-
-
 namespace RageKnight
 {
-	public class GameManager : MonoBehaviour 
-	{
+    public class GameManager : MonoBehaviour
+    {
         public const float WALK_SPEED = -0.05f;
         public const float ENEMY_WALK_SPEED = -0.05f;
         public const float RUN_SPEED = -0.1f;
 
         private static GameManager instance = null;
-		private RageKnightStateMachine stateMachine = null;
+        private GameplayStateMachine stateMachine = null;
         private CombatTracker combatTracker = null;
 
         private Coroutine timeTrackerRoutine = null;
@@ -27,9 +25,9 @@ namespace RageKnight
 
         [SerializeField] private EnemyUnitHandler enemyHandler;
         [SerializeField] private PlayerUnitHandler playerUnitHandler;
-        [SerializeField] private EnvironmentHandler environmentHandler;
         [SerializeField] private int stageCount;
 
+      
         /// <summary>
         /// Editor mode only.
         /// </summary>
@@ -48,12 +46,7 @@ namespace RageKnight
             get { return enemyHandler; }
         }
 
-        public EnvironmentHandler EnvironmentHandler
-        {
-            get { return environmentHandler; }
-        }
-
-        public RageKnightStateMachine StateMachine
+        public GameplayStateMachine StateMachine
 		{
 			get { return this.stateMachine; }
 		}
@@ -93,7 +86,7 @@ namespace RageKnight
 
 		void Start()
 		{
-            stateMachine = new RageKnightStateMachine(this);
+            stateMachine = new GameplayStateMachine();
             isStateActive = true;
             timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
@@ -176,7 +169,6 @@ namespace RageKnight
             isStateActive = false;
             playerUnitHandler = null;
             enemyHandler = null;
-            environmentHandler = null;
             instance = null;
             if (stateMachine != null)
             {
