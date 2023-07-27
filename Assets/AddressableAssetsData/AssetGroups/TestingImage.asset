@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TestingImage
+  m_EditorClassIdentifier: 
+  m_GroupName: TestingImage
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b121669dfac495e4aa88287ca98197f4
+  m_SerializeEntries:
+  - m_GUID: 8064bc7ba3e2fee428821317d88cdbc1
+    m_Address: Assets/RemoteResources/TestingImage/Akane_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: f107dcfe59cce6349b19886601013503
+    m_Address: Assets/RemoteResources/TestingImage/Anis_FB.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: 5249ca16e53107b49b03f4ca49465e8f
+    m_Address: Assets/RemoteResources/TestingImage/blompy2d.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: 5ea9a6b41cac2fe4e8ccb5ab86564aaa
+    m_Address: Assets/RemoteResources/TestingImage/Gail's BG porttrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: a2cc4f8778900ba4a8a9717f8e890b01
+    m_Address: Assets/RemoteResources/TestingImage/Gran (1).png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: d5be51ee2b995404ba750efbe0d59a03
+    m_Address: Assets/RemoteResources/TestingImage/Npc_sd_3040023000_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: 6bad0ea0297ce974da7a459deea85d1a
+    m_Address: Assets/RemoteResources/TestingImage/TemptRageKnightUI.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  - m_GUID: f40085c2863ccfb4298880aa580e6e53
+    m_Address: Assets/RemoteResources/TestingImage/tumblr_ojzwi62RXy1sp7o47o1_1280.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TestingImage
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 97f08e48141c7d44aa8f62ef16d54ee6, type: 2}
+    - {fileID: 11400000, guid: cc5cafe0c5156ce458d057887e74bec6, type: 2}

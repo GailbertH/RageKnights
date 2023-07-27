@@ -1,10 +1,6 @@
-﻿using RageKnight;
-using RageKnight.GameState;
-using UnityEngine;
-
-public class Gameplay_Exit : GameplayState_Base<GameplayState>
+﻿public class Gameplay_Exit : GameplayState_Base<GameplayState>
 {
-    public Gameplay_Exit(GameManager manager, RageKnight_InGame handler) : base(GameplayState.EXIT, manager, handler)
+    public Gameplay_Exit() : base(GameplayState.EXIT)
     {
     }
 
@@ -19,6 +15,6 @@ public class Gameplay_Exit : GameplayState_Base<GameplayState>
 
     public override void GameStart()
     {
-        Handler.GoToNextState();
+        Handler.End();
     }
 }

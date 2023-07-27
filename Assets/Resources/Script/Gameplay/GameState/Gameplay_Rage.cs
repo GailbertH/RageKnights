@@ -1,4 +1,4 @@
-﻿using RageKnight;
+﻿/*using RageKnight;
 using RageKnight.GameState;
 using System;
 
@@ -26,11 +26,11 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         base.GameStart();
-        Manager.GameUIManager.ShowRageImage();
+        GameUIManager.Instance.ShowRageImage();
         Manager.EnemyHandler.SetupRageMode();
         stateSwitch_TEst = 5;
 
-        Manager.GameUIManager.UpdateControlMode(State);
+        GameUIManager.Instance.UpdateControlMode(State);
     }
 
     public override void GameUpdate()
@@ -69,7 +69,8 @@ public class Gameplay_Rage : GameplayState_Base<GameplayState>
 
     public override void GameEnd()
     {
-        Manager.GameUIManager.ShowRageImage();
+        GameUIManager.Instance.ShowRageImage();
         Manager.EnemyHandler.EndRageMode();
     }
 }
+*/

@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using RageKnight;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum CombatPlacement
 {
@@ -8,17 +9,17 @@ public enum CombatPlacement
     TOP = 1,
     BOT = 2
 }
-public class UnitController : MonoBehaviour
+public class UnitController : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] public UnitAnimationController unitAnimationController;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
-    protected List<string> targetIds;
+    [SerializeField] private GameObject targetMarker = null;
 
-    private string unitId;
-    public string GetUnitId
+    private string unitCombatId;
+    public string GetUnitCombatId
     {
-        get { return unitId; }
+        get { return unitCombatId; }
     }
 
     protected bool isDead = false;
@@ -55,11 +56,12 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    public virtual void Initialize()
+    public virtual void Initialize(string combatId)
     {
         spriteRenderer.sortingOrder = GetOrderInLayer;
         unitAnimationController.Idle();
-        unitId = "E1";
+        unitCombatId = combatId;
+        GameTargetingManager.Instance.OnUnitTargetChange(this.TargetAim);
     }
 
     public virtual void LoadUnit()
@@ -98,6 +100,7 @@ public class UnitController : MonoBehaviour
 
     public virtual void DestroyUnit()
     {
+        GameTargetingManager.Instance.RemoveOnUnitTargetChange(this.TargetAim);
         Destroy(this.gameObject);
     }
 
@@ -116,6 +119,20 @@ public class UnitController : MonoBehaviour
     {
         isTurnDone = true;
     }
+
+    private void TargetAim(string isTarget)
+    {
+        if(targetMarker != null)
+        targetMarker?.SetActive(GetUnitCombatId == isTarget);
+    }
+
+    public virtual void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            GameTargetingManager.Instance.TargetChange(GetUnitCombatId);
+        }
+    }
 }
 
 public class PlayerUnitController : UnitController
@@ -132,9 +149,9 @@ public class PlayerUnitController : UnitController
         set { unitData = value; }
     }
 
-    public override void Initialize()
+    public override void Initialize(string unitCombatID)
     {
-        base.Initialize();
+        base.Initialize(unitCombatID);
     }
 
     public void PlayMoveAnimation()

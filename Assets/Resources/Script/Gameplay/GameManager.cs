@@ -1,21 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using RageKnight.Environment;
-using RageKnight.GameState;
 using RageKnight.Player;
 using UnityEngine;
-
-
 namespace RageKnight
 {
-	public class GameManager : MonoBehaviour 
-	{
+    public class GameManager : MonoBehaviour
+    {
         public const float WALK_SPEED = -0.05f;
         public const float ENEMY_WALK_SPEED = -0.05f;
         public const float RUN_SPEED = -0.1f;
 
         private static GameManager instance = null;
-		private RageKnightStateMachine stateMachine = null;
+        private GameplayStateMachine stateMachine = null;
         private CombatTracker combatTracker = null;
 
         private Coroutine timeTrackerRoutine = null;
@@ -25,11 +21,11 @@ namespace RageKnight
         private int stageTracker = 0;
         public int stage = 1;
 
-        [SerializeField] private EnemyHandler enemyHandler;
+        [SerializeField] private EnemyUnitHandler enemyHandler;
         [SerializeField] private PlayerUnitHandler playerUnitHandler;
-        [SerializeField] private EnvironmentHandler environmentHandler;
         [SerializeField] private int stageCount;
 
+      
         /// <summary>
         /// Editor mode only.
         /// </summary>
@@ -38,29 +34,17 @@ namespace RageKnight
         #region Properties
         public static GameManager Instance { get { return instance; } }
 
-        private GameUIManager gameUIManager; 
-        public GameUIManager GameUIManager
-        {
-            get { return gameUIManager; }
-            set { gameUIManager = value; }
-        }
-
         public PlayerUnitHandler PlayerHandler
         {
             get { return playerUnitHandler; }
         }
 
-        public EnemyHandler EnemyHandler
+        public EnemyUnitHandler EnemyHandler
         {
             get { return enemyHandler; }
         }
 
-        public EnvironmentHandler EnvironmentHandler
-        {
-            get { return environmentHandler; }
-        }
-
-        public RageKnightStateMachine StateMachine
+        public GameplayStateMachine StateMachine
 		{
 			get { return this.stateMachine; }
 		}
@@ -100,13 +84,14 @@ namespace RageKnight
 
 		void Start()
 		{
-            stateMachine = new RageKnightStateMachine(this);
+            stateMachine = new GameplayStateMachine();
             isStateActive = true;
             timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
 
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
+            GameUIManager.Instance.Initialize();
         }
         #endregion
 
@@ -134,7 +119,7 @@ namespace RageKnight
             StartCoroutine(routine);
         }
 
-        public void AccountDataInit(PlayerUnitModel playerData)
+        public void AccountDataInit(List<PlayerUnitModel> playerData)
         {
             //TODO improvement needed goes ahead of init of UI
             PlayerHandler.PlayerInitialize(playerData);
@@ -158,15 +143,16 @@ namespace RageKnight
             isGamePaused = isPause;
         }
 
+        /*
         public void IncrementStage()
         {
             stageTracker = stageTracker + 1;
             combatTracker.UpdateStageCompleteCount();
-            GameUIManager.ProgressbarHandler.UpdateStage(stageTracker);
+            //GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
             Debug.Log("Stage: " + stage + " | " + stageTracker);
             AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
         }
-
+        */
         public void GameOverReset()
         {
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);
@@ -180,10 +166,8 @@ namespace RageKnight
         public void ExitingGame()
         {
             isStateActive = false;
-            GameUIManager = null;
             playerUnitHandler = null;
             enemyHandler = null;
-            environmentHandler = null;
             instance = null;
             if (stateMachine != null)
             {

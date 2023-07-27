@@ -21,8 +21,11 @@ EditorBuildSettings:
     path: Assets/Resources/Scene/GameScene.unity
     guid: 008ff05ca31a1464d9dc1908cc497d39
   - enabled: 1
-    path: Assets/Resources/Scene/GameUI.unity
+    path: Assets/Resources/Scene/CombatUI.unity
     guid: 0f3d0803b399be04eb1bb334c8b317a0
+  - enabled: 1
+    path: Assets/Resources/Scene/AdventureScene.unity
+    guid: beca45bc28939a5488415eed915eded0
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b92fd41e8f0552449953d90d0ba69195,
       type: 2}

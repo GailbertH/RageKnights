@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class EnemySoldierController : MonoBehaviour
 {
-    [SerializeField] private EnemyHandler enemyHandler;
+    [SerializeField] private EnemyUnitHandler enemyHandler;
     private const int MAX_LAYERS = 3;
     private const float MIN_X_POS = 1f;
     private const float MAX_X_POS = 3.5f;
 
     private Dictionary<CombatPlacement, Tuple<float, float>> placement = new Dictionary<CombatPlacement, Tuple<float, float>>();
-    private List<EnemyController> enemyArmy;
+    private List<EnemyUnitController> enemyArmy;
     private Vector3 initialPosition;
 
     void Start()
@@ -25,7 +25,7 @@ public class EnemySoldierController : MonoBehaviour
 
     public void Init(int armySize, List<GameObject> enemyList)
     {
-        enemyArmy = new List<EnemyController>();
+        enemyArmy = new List<EnemyUnitController>();
         int playerLimit = 25;
         armySize = armySize > playerLimit ? playerLimit : armySize;
         SetupUnits(armySize, enemyList);
@@ -101,7 +101,7 @@ public class EnemySoldierController : MonoBehaviour
             enemyObject.transform.localPosition = enemyList[0].transform.position;
             enemyObject.transform.localRotation = enemyList[0].transform.rotation;
             enemyObject.SetActive(true);
-            var enemyController = enemyObject.GetComponent<EnemyController>();
+            var enemyController = enemyObject.GetComponent<EnemyUnitController>();
             //enemyController.Initialize(currentPlacement, enemyHandler);
             enemyArmy.Add(enemyController);
             currentPlacement = IncrementPlacement(currentPlacement);

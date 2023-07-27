@@ -23,7 +23,7 @@ namespace RageKnight.Tools
         public static void OpenDataManager()
         {
             ToolLocalDatabaseEditor viewer = ToolLocalDatabaseEditor.Instance;
-            viewer.minSize = new Vector2(250f, 250f);
+            viewer.minSize = new Vector2(500f, 500f);
             viewer.maxSize = new Vector2(500f, 500f);
         }
 
@@ -36,7 +36,7 @@ namespace RageKnight.Tools
             {
                 return;
             }
-            var databaseItem = Resources.LoadAll<Consumable>(_conDBitemPath).ToList();
+            var databaseItem = Resources.LoadAll<DB_Consumable>(_conDBitemPath).ToList();
             if (databaseItem == null || databaseItem.Count <= 0)
             {
                 Debug.LogError("No consumable data items found");
@@ -45,13 +45,13 @@ namespace RageKnight.Tools
             var database = Resources.Load<DatabaseConsumable>(_conDBPath);
             if (database != null)
             {
-                database.Consumables = new List<Consumable>(databaseItem);
+                database.Consumables = new List<DB_Consumable>(databaseItem);
                 Debug.Log("<color=green>Populate Database of Consumables at " + _conDBPath + "</color>");
             }
             else
             {
                 DatabaseConsumable asset = ScriptableObject.CreateInstance<DatabaseConsumable>();
-                asset.Consumables = new List<Consumable>(databaseItem);
+                asset.Consumables = new List<DB_Consumable>(databaseItem);
                 AssetDatabase.CreateAsset(asset, _path + _conDBPath + ".asset");
                 AssetDatabase.SaveAssets();
                 Debug.Log("<color=green>Created and populated Database of Consumable " + _conDBPath + "</color>");
@@ -82,7 +82,8 @@ namespace RageKnight.Tools
         private const string _path = "Assets/Resources/";
         private const string _conDBitemPath = "DatabaseData/Consumable/";
         private DatabaseType _currentViewType = DatabaseType.Consumable;
-        List<Consumable> _consumableData = null;
+        List<DB_Consumable> _consumableData = null;
+
         public static ToolLocalDatabaseEditor Instance
         {
             get { return GetWindow<ToolLocalDatabaseEditor>(); }
@@ -90,7 +91,7 @@ namespace RageKnight.Tools
 
         void Awake()
         {
-            _consumableData = new List<Consumable>(Resources.LoadAll<Consumable>(_conDBitemPath).ToList());
+            _consumableData = new List<DB_Consumable>(Resources.LoadAll<DB_Consumable>(_conDBitemPath).ToList());
         }
 
         void OnGUI()
@@ -142,7 +143,7 @@ namespace RageKnight.Tools
             float labelWidth = 250f;
             this.scroll = GUILayout.BeginScrollView(this.scroll);
             List<string> idsToRemove = new List<string>();
-            foreach (Consumable conDb in _consumableData)
+            foreach (DB_Consumable conDb in _consumableData)
             {
                 GUILayout.BeginHorizontal();
                 GUIStyle titleStyle = new GUIStyle();
@@ -188,6 +189,7 @@ namespace RageKnight.Tools
             {
                 _consumableData.Remove(_consumableData.Find(x => x.id == badIds));
             }
+
             GUILayout.EndScrollView();
         }
 
@@ -213,7 +215,7 @@ namespace RageKnight.Tools
             {
                 if (_consumableData == null)
                 {
-                    _consumableData = new List<Consumable>();
+                    _consumableData = new List<DB_Consumable>();
                 }
 
                 int newId = 0;
@@ -222,7 +224,7 @@ namespace RageKnight.Tools
                     int.TryParse(_consumableData[_consumableData.Count() - 1].id, out newId);
                     newId += 1;
                 }
-                Consumable newAdd = ScriptableObject.CreateInstance<Consumable>();
+                DB_Consumable newAdd = ScriptableObject.CreateInstance<DB_Consumable>();
                 newAdd.id = String.Format("{0:D4}", newId);
                 _consumableData.Add(newAdd);
             }
@@ -233,7 +235,7 @@ namespace RageKnight.Tools
             if (GUILayout.Button("Finalize Data", EditorStyles.toolbarButton))
             {
                 var files = Directory.GetFiles(_path + _conDBitemPath);
-                var newContainer = _consumableData.Select(x => new Consumable{
+                var newContainer = _consumableData.Select(x => new DB_Consumable{
                     id = x.id,
                     name = x.name,
                     description = x.description,
@@ -251,9 +253,9 @@ namespace RageKnight.Tools
                 }
                 AssetDatabase.SaveAssets();
 
-                foreach (Consumable conDb in newContainer)
+                foreach (DB_Consumable conDb in newContainer)
                 {
-                    Consumable asset = ScriptableObject.CreateInstance<Consumable>();
+                    DB_Consumable asset = ScriptableObject.CreateInstance<DB_Consumable>();
                     asset.PopulateData(conDb);
                     string fileName = asset.id + "-" + asset.name;
                     if (asset != null)

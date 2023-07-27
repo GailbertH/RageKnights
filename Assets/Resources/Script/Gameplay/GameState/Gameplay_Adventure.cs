@@ -1,4 +1,5 @@
-﻿using RageKnight;
+﻿/*
+using RageKnight;
 using RageKnight.GameState;
 using UnityEngine;
 
@@ -23,9 +24,8 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         base.GameStart();
-        GameUIManager Controls = Manager.GameUIManager;
-        Controls?.UpdateControlMode(State);
-        Controls?.UpdateMiddleUIModle(State);
+        GameUIManager.Instance.UpdateControlMode(State);
+        GameUIManager.Instance.UpdateMiddleUIModle(State);
         Manager.EnemyHandler.Initialize();
         Manager.AddGold(0);
         HasEnemySpawn = false;
@@ -75,3 +75,5 @@ public class Gameplay_Adventure : GameplayState_Base<GameplayState>
     }
     #endregion
 }
+
+*/

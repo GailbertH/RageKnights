@@ -3,10 +3,17 @@ using System.Collections;
 using RageKnight;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 //TODO
 //Separate GameControlsUI/GameAction in a different handler for easy scalability and editing.
-
+public enum CombatUIMode
+{
+    NOT_IN_COMBAT,
+    ACTION_SELECTION,
+    TARGET_SELECTION,
+    ACTION_EXECUTE
+}
 
 public class GameUIManager : MonoBehaviour
 {
@@ -28,15 +35,23 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Transform playerRageMeter;
 
     [SerializeField] private Animation animAttackButton;
+    private CombatUIMode combatMode = CombatUIMode.NOT_IN_COMBAT;
+
     private const string ANIM_TIMING_NOTIF = "LB-AttackBtn-TimingNotif";
     private const string ANIM_TIMING_HIT = "LB-AttackBtn-TimingHit";
 
-    private Coroutine initialize;
+    private static GameUIManager instance = null;
+    public static GameUIManager Instance { get { return instance; } }
 
     void Awake()
     {
+        instance = this;
         mainCamera.gameObject.SetActive(false);
-        initialize = StartCoroutine(Initializer());
+    }
+
+    public void Initialize()
+    {
+        MiddleUIHandler.Initialize();
     }
 
     private bool isDragging = false;
@@ -62,28 +77,23 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    public ProgressBarHandler ProgressbarHandler
-    {
-        get
-        {
-            return middleUIHandler.ProgressbarHandler;
-        }
-    }
-
     //-----Should be somewhere else
-    private CombatActionStates buttonEvent;
-    public CombatActionStates GetButtonEvent
+    private CombatAction buttonEvent;
+    public CombatAction GetButtonEvent
     {
         get { return buttonEvent; }
     }
-    public void ResetButtonEvent()
+
+
+    public void ResetSelections()
     {
-        buttonEvent = CombatActionStates.NONE;
+        buttonEvent = CombatAction.NONE;
     }
 
     public void AttackButton()
     {
-        buttonEvent = CombatActionStates.ATTACK;
+        buttonEvent = CombatAction.ATTACK;
+        combatMode = CombatUIMode.TARGET_SELECTION;
     }
 
     public void PreventPlayerCommands()
@@ -96,19 +106,6 @@ public class GameUIManager : MonoBehaviour
         attackButton.interactable = true;
     }
     //------
-
-    public bool IsTimingPlaying()
-    {
-        return animAttackButton.IsPlaying(ANIM_TIMING_NOTIF);
-    }
-    public void PlayTimingNotif()
-    {
-        animAttackButton.Play(ANIM_TIMING_NOTIF);
-    }
-    public void PlayTimingHit()
-    {
-        animAttackButton.Play(ANIM_TIMING_HIT);
-    }
 
     #region Button response
 
@@ -149,13 +146,6 @@ public class GameUIManager : MonoBehaviour
         popupHandler.OpenPopup(popupName, data, onClose);
     }
 
-    private IEnumerator Initializer()
-    {
-        yield return new WaitUntil(() => GameManager.Instance != null);
-        GameManager.Instance.GameUIManager = this;
-        MiddleUIHandler.Initialize();
-    }
-
     //public void UpdateGold(long currentGold)
     //{
     //    coinsHeld.text = currentGold.ToString();
@@ -169,16 +159,13 @@ public class GameUIManager : MonoBehaviour
     public void UpdateControlMode(GameplayState currentState)
     {
         battleControlOverlay.SetActive(currentState != GameplayState.COMBAT);
+        if (currentState != GameplayState.COMBAT)
+            combatMode = CombatUIMode.NOT_IN_COMBAT;
     }
 
     public void UpdateMiddleUIModle(GameplayState currentState)
     {
         MiddleUIHandler.SetMiddleGround(currentState);
-    }
-
-    public void UpdateItemButtonText(int itemCount)
-    {
-        itemButtonText.text = "x " + itemCount;
     }
 
     public void ItemButtonStatus(bool isActive)
