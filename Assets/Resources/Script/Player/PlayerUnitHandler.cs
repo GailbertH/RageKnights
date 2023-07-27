@@ -18,9 +18,6 @@ namespace RageKnight.Player
         [SerializeField] private List<PlayerUnitController> units;
 
         private PlayerState currentPlayerState = PlayerState.IDLE;
-        private const float BASE_RAGE_DURATION = 10f;
-        private const float BASE_ITEM_COOLDOWN = 5f;
-        private int combatIdCounter = 0;
 
         public PlayerState GetPlayerState
         {
@@ -41,7 +38,7 @@ namespace RageKnight.Player
             }
         }
 
-        public List<PlayerUnitModel> GetPlayerData
+        public List<UnitModel> GetPlayerData
         {
             get
             {
@@ -49,12 +46,12 @@ namespace RageKnight.Player
             }
         }
 
-        public void PlayerInitialize(List<PlayerUnitModel> playerDataList)
+        public void PlayerInitialize(List<UnitModel> playerDataList)
         {
-            for (int i = 0; i < playerDataList.Count; i++)
+            for (int i = 0; i < units.Count; i++)
             {
-                units[i].UnitData = playerDataList[i];
-                units[i].Initialize(playerDataList[i].unitCombatID);
+                UnityEngine.Debug.Log("Unit Data Loaded " + playerDataList[i].name);
+                units[i].Initialize(playerDataList[i]);
             }
 
             currentActiveUnit = units[0];

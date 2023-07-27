@@ -5,15 +5,8 @@ public class EnemyUnitController : UnitController
 {
     private EnemyUnitModel unitData = null;
 
-    public EnemyUnitModel UnitData
+    public EnemyUnitController(UnitModel unitData) : base(unitData)
     {
-        get { return unitData; }
-        set { unitData = value; }
-    }
-
-    public override void Initialize(string unitCombatID)
-    {
-        base.Initialize(unitCombatID);
     }
 
     public void CheckAction()

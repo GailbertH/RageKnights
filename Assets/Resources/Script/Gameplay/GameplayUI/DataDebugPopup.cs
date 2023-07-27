@@ -41,7 +41,7 @@ public class DataDebugPopup : PopupBase
     [SerializeField] private Text VitalityPowerNewValue;
     #endregion
 
-    private PlayerUnitModel playerData = null;
+    private UnitModel playerData = null;
 
     public override void Initialize(Action OnCloseAction, object data = null)
     {
@@ -57,8 +57,6 @@ public class DataDebugPopup : PopupBase
     {
         HealthPoints.text = "Health Points - " + playerData.healthPoints.ToString();
         ManaPoints.text = "Mana Points - " + playerData.manaPoints.ToString();
-        RagePoints.text = "Rage Points - " + playerData.ragePoints.ToString();
-        RageInc.text = "Rage Increment - " + playerData.rageIncrement.ToString();
         AttackPower.text = "Attack Power - " + playerData.attackPower.ToString();
         DefensePower.text = "Defense Power - " + playerData.defensePower.ToString();
         DefensePower.text = "Vitality Power - " + playerData.defensePower.ToString();
@@ -78,16 +76,10 @@ public class DataDebugPopup : PopupBase
         if (int.TryParse(ManaPointsNewValue.text, out intValue))
             playerData.manaPoints = playerData.maxManaPoints < intValue ? playerData.maxManaPoints : intValue;
 
-        if (int.TryParse(RageIncNewValue.text, out intValue))
-            playerData.rageIncrement = intValue;
-
-
         if (int.TryParse(AttackPowerNewValue.text, out intValue))
             playerData.attackPower = intValue;
         if (int.TryParse(DefensePowerNewValue.text, out intValue))
             playerData.defensePower = intValue;
-        if (int.TryParse(VitalityPowerNewValue.text, out intValue))
-            playerData.vitalityPower = intValue;
 
         SetupData();
     }

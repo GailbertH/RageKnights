@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField] private Image icon;
     [SerializeField] private Transform health;
     [SerializeField] private Transform mana;
 
@@ -26,6 +25,7 @@ public class HealthBar : MonoBehaviour
     public void Setup(StatusBarFields stats)
     {
         unitCombatID = stats.unitCombatID;
+        icon.sprite = stats.icon;
         maxHP = stats.maxHealthPoints;
         maxMP = stats.maxManaPoints;
         isEnemyHealth = stats.isEnemy;

@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking.Types;
 
 public enum CombatPlacement
 {
@@ -15,11 +16,15 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
     [SerializeField] private GameObject targetMarker = null;
+    public UnitController(UnitModel unitData)
+    {
+        UnitData = unitData;
+    }
+    public UnitModel UnitData{ get; private set;}
 
-    private string unitCombatId;
     public string GetUnitCombatId
     {
-        get { return unitCombatId; }
+        get { return UnitData.unitCombatID; }
     }
 
     protected bool isDead = false;
@@ -56,11 +61,18 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public virtual void Initialize(string combatId)
+    public virtual void Initialize(UnitModel unitData)
     {
-        spriteRenderer.sortingOrder = GetOrderInLayer;
-        unitAnimationController.Idle();
-        unitCombatId = combatId;
+        UnitData = unitData;
+        if (UnitData.unitPrefab != null)
+        {
+            GameObject unitObject = Instantiate<GameObject>(UnitData.unitPrefab,transform) as GameObject;
+            unitAnimationController = unitObject.GetComponent<UnitAnimationController>();
+            spriteRenderer = unitObject.GetComponent<SpriteRenderer>();
+
+            spriteRenderer.sortingOrder = GetOrderInLayer;
+            unitAnimationController.Idle();
+        }
         GameTargetingManager.Instance.OnUnitTargetChange(this.TargetAim);
     }
 
@@ -137,21 +149,8 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
 
 public class PlayerUnitController : UnitController
 {
-    public const float HEAL_PERCENTAGE = 0.30f;
-
-    private PlayerUnitModel unitData = null;
-    private float actionGaugeModifier = 0;
-    private bool isRageMode = false;
-
-    public PlayerUnitModel UnitData
+    public PlayerUnitController(UnitModel unitData) : base(unitData)
     {
-        get { return unitData; }
-        set { unitData = value; }
-    }
-
-    public override void Initialize(string unitCombatID)
-    {
-        base.Initialize(unitCombatID);
     }
 
     public void PlayMoveAnimation()

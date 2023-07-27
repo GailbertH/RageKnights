@@ -58,7 +58,7 @@ public class EnemyUnitHandler : MonoBehaviour
         }
     }
 
-    public List<EnemyUnitModel> GetEnemyData
+    public List<UnitModel> GetEnemyData
     {
         get
         {
@@ -238,7 +238,7 @@ public class EnemyUnitHandler : MonoBehaviour
 
         enemies[eCPId] = enemyObject.GetComponent<EnemyUnitController>();
         string combatId = Guid.NewGuid().ToString();
-        EnemyUnitModel enemyData = new EnemyUnitModel
+        UnitModel enemyData = new UnitModel
         {
             name = "blompy " + combatId,
             unitCombatID = combatId,
@@ -247,11 +247,9 @@ public class EnemyUnitHandler : MonoBehaviour
 
             attackPower = 2,
             defensePower = 2,
-            vitalityPower = 2
         };
 
-        enemies[eCPId].UnitData = enemyData;
-        enemies[eCPId].Initialize(combatId);
+        enemies[eCPId].Initialize(enemyData);
         enemyObject.SetActive(true);
         enemySpawnCD = DEFAULT_SPAWN_TIMER;
 

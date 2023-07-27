@@ -8,4 +8,6 @@ public class SceneNames
 	public const string COMBAT_UI = "CombatUI";
 	public const string LOBBY_SCENE = "LobbyScene";
     public const string DATA_SCENE = "DataManagerScene";
+	public const string ADVENTURE_UI = "AdventureUI";
+	public const string ADVENTURE_SCENE = "AdventureScene";
 }

@@ -77,12 +77,12 @@ GameObject:
   - component: {fileID: 8468958876290280642}
   - component: {fileID: 2138409871}
   m_Layer: 5
-  m_Name: UnitStatus
+  m_Name: PlayerUnitStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &529859522150054699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d923900a16157e499cf710aca8c4104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 7940733750537788573}
   health: {fileID: 529859522303165408}
   mana: {fileID: 4331335168306183435}
 --- !u!222 &7209873262404865513
@@ -343,7 +344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10509cdc1ceb4be488fd9bf81322a36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusBarCopy: {fileID: 529859522150054700}
+  playerUnitstatusBarCopy: {fileID: 529859522150054700}
+  enemyUnitstatusBarCopy: {fileID: 4258451618151006904}
   playerSideParent: {fileID: 8263236830707465695}
   enemySideParent: {fileID: 288623687}
 --- !u!1 &1323774815744303934
@@ -881,12 +883,12 @@ GameObject:
   - component: {fileID: 5403972529160102541}
   - component: {fileID: 5753595386153566749}
   m_Layer: 5
-  m_Name: EnemyUnit
+  m_Name: EnemyUnitStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2585665168584796005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -921,6 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d923900a16157e499cf710aca8c4104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 637148926895373033}
   health: {fileID: 9002406482480514031}
   mana: {fileID: 0}
 --- !u!222 &2433566171670821656

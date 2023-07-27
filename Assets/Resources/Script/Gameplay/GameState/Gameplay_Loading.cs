@@ -1,4 +1,5 @@
 using RageKnight;
+using RageKnight.Database;
 using System;
 using System.Collections.Generic;
 
@@ -21,7 +22,7 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
         GameUIManager.Instance.UpdateControlMode(State);
         GameUIManager.Instance.UpdateMiddleUIModle(State);
         GameManager.Instance.EnemyHandler.Initialize();
-        LoadAccountData();
+        LoadUnitData();
         HasEnemySpawn = false;
     }
 
@@ -55,29 +56,35 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
 
     #region private methods
     //TODO use proper data
-    private void LoadAccountData()
+    private void LoadUnitData()
     {
-        string combatId = Guid.NewGuid().ToString();
-        List<PlayerUnitModel> playerDataList = new List<PlayerUnitModel>();
-        string[] unitNames = { "Lancelot", "Vira", "Albert" };
-        for (int i = 0; i < unitNames.Length; i++)
+        List<string> strings = new List<string> {"0", "1", "2" };
+        List<UnitDataModel> dataModels = new List<UnitDataModel>();
+        dataModels = DatabaseManager.Instance.GetPlayerUnits(strings);
+
+        List<UnitModel> playerDataList = new List<UnitModel>();
+        foreach (UnitDataModel dataModel in dataModels)
         {
-            PlayerUnitModel playerData = new PlayerUnitModel
+            UnitModel playerData = new UnitModel
             {
-                name = unitNames[i],
-                unitCombatID = combatId,
+                name = dataModel.name,
+                unitID = dataModel.id,
+                unitCombatID = Guid.NewGuid().ToString(),
+                icon = dataModel.icon,
+                splashArt = dataModel.splashArt,
+                unitPrefab = dataModel.unitPrefab,
+
+                attackPower = dataModel.attackPower,
+                defensePower = dataModel.defensePower,
+                maxHealthPoints = dataModel.healthPoints,
+
                 healthPoints = 100,
                 manaPoints = 100,
-                ragePoints = 0,
-                rageIncrement = 1,
-                attackPower = 2,
-                defensePower = 2,
-                vitalityPower = 2
-            };
 
+            };
             playerDataList.Add(playerData);
         }
-        Manager.AccountDataInit(playerDataList);
+        GameManager.Instance.PlayerUnitsInit(playerDataList);
     }
 
 

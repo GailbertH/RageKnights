@@ -119,18 +119,13 @@ namespace RageKnight
             StartCoroutine(routine);
         }
 
-        public void AccountDataInit(List<PlayerUnitModel> playerData)
+        public void PlayerUnitsInit(List<UnitModel> playerUnitModels)
         {
-            //TODO improvement needed goes ahead of init of UI
-            PlayerHandler.PlayerInitialize(playerData);
-            AddGold(0);
+            //TODO improvement this needs to goes ahead of init of UI
+            PlayerHandler.PlayerInitialize(playerUnitModels);
         }
-
-        public void AddGold(long goldToAdd)
+        public void EnemyUnitsInit(List<UnitModel> playerUnitModels)
         {
-            stageGold = AccountManager.Instance.AddGold(goldToAdd);
-            combatTracker?.UpdateGoldEarned(goldToAdd);
-            //this.GameUIManager?.UpdateGold(StageGold);
         }
 
         public void EnemyKill()

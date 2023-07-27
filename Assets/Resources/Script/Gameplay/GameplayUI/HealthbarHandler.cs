@@ -36,6 +36,7 @@ public class HealthbarHandler : MonoBehaviour
             GameObject enemyObject = Instantiate<GameObject>(enemyUnitstatusBarCopy,
                 enemySideParent) as GameObject;
             var ehealthBar = enemyObject.GetComponent<HealthBar>();
+            enemyStatus[i].isEnemy = true;
             ehealthBar.Setup(enemyStatus[i]);
             ehealthBar.gameObject.SetActive(true);
             enemyUnitHealthBar.Add(ehealthBar);

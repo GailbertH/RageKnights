@@ -23,41 +23,47 @@ namespace RageKnight.Database
             return dbConsumable.Consumables;
         }
 
-        public PlayerUnitModel GetPlayerUnit(string id)
+        public List<UnitDataModel> GetPlayerUnits(List<string> ids)
+        {
+            List<UnitDataModel> unitModels = new List<UnitDataModel>();
+            foreach(string id in ids)
+            {
+                unitModels.Add(GetPlayerUnit(id));
+            }
+            return unitModels;
+        }
+        public UnitDataModel GetPlayerUnit(string id)
         {
             var data = dbCharacterUnit.Units.FirstOrDefault(x => x.id == id);
-            PlayerUnitModel unitModel = new PlayerUnitModel();
-            unitModel.Convert(data);
+            UnitDataModel unitModel = new UnitDataModel(data);
             return unitModel;
         }
 
     }
 
-    public class PlayerUnitModel
+    public class UnitDataModel
     {
         public string id;
         public string name;
-        public float healthPoints;
+        public int healthPoints;
         public int attackPower;
         public int defensePower;
-        public int skillId1;
-        public int skillId2;
-        public string role; //don't use this yet
-        public string job; // dont use this yet
+        public string role; //  don't use this yet
+        public string job; //   don't use this yet
         public Sprite icon;
         public Sprite splashArt;
+        public GameObject unitPrefab;
 
-        public void Convert(DB_PlayerUnit dataModel)
+        public UnitDataModel(DatabaseUnit dataModel)
         {
             id = dataModel.id;
             name = dataModel.unitName;
-            healthPoints = dataModel.healthPoints;
-            attackPower = dataModel.attackPower;
-            defensePower = dataModel.defensePower;
-            skillId1 = dataModel.skillId1;
-            skillId2 = dataModel.skillId2;
+            healthPoints = dataModel.baseHealthPoints;
+            attackPower = dataModel.baseAttackPower;
+            defensePower = dataModel.baseDefensePower;
             icon = dataModel.icon;
             splashArt = dataModel.splashArt;
+            unitPrefab = dataModel.unitPrefab;
         }
     }
 }
