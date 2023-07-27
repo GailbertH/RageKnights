@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using RageKnight.Environment;
-using RageKnight.GameState;
 using RageKnight.Player;
 using UnityEngine;
 namespace RageKnight

@@ -1,8 +1,4 @@
-﻿using RageKnight;
-using RageKnight.GameState;
-using UnityEngine;
-
-public class Gameplay_Exit : GameplayState_Base<GameplayState>
+﻿public class Gameplay_Exit : GameplayState_Base<GameplayState>
 {
     public Gameplay_Exit() : base(GameplayState.EXIT)
     {

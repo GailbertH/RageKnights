@@ -1,5 +1,4 @@
 ﻿using RageKnight;
-using RageKnight.GameState;
 using UnityEngine;
 
 public enum GameplayState

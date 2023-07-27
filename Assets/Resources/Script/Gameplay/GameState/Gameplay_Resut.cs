@@ -1,8 +1,4 @@
-﻿using RageKnight;
-using RageKnight.GameState;
-using UnityEngine;
-
-public class Gameplay_Result : GameplayState_Base<GameplayState>
+﻿public class Gameplay_Result : GameplayState_Base<GameplayState>
 {
     public Gameplay_Result() : base(GameplayState.RESULT)
     {

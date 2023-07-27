@@ -1,7 +1,4 @@
-﻿using RageKnight;
-using RageKnight.GameState;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 public class Gameplay_Combat : GameplayState_Base<GameplayState>
 {
