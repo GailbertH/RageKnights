@@ -18,7 +18,7 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
     [SerializeField] private GameObject targetMarker = null;
     public UnitController(UnitModel unitData)
     {
-        UnitData = unitData;
+        //UnitData = unitData;
     }
     public UnitModel UnitData{ get; private set;}
 
@@ -27,10 +27,9 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
         get { return UnitData.unitCombatID; }
     }
 
-    protected bool isDead = false;
     public bool GetIsDead
     {
-        get { return isDead; }
+        get { return UnitData.healthPoints <= 0; }
     }
 
     public CombatPlacement GetCombatPlacement
@@ -63,6 +62,7 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
 
     public virtual void Initialize(UnitModel unitData)
     {
+        Debug.Log(unitData.name);
         UnitData = unitData;
         if (UnitData.unitPrefab != null)
         {
@@ -89,20 +89,31 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
     public virtual void Attack()
     {
         unitAnimationController.Attack();
-        //handler.Damage(targetIds)
     }
 
-    public virtual void Damaged()
+    public virtual int DamageHealth(int damageAmount)
     {
+        UnitData.healthPoints -= damageAmount;
+        if (UnitData.healthPoints > 0)
+        {
+            Damage();
+        }
+        else
+        {
+            Death();
+        }
 
+        return UnitData.healthPoints;
+    }
+
+    public virtual void Damage()
+    {
+        unitAnimationController.Damage();
     }
 
     public virtual void Death()
     {
         unitAnimationController.Death();
-        isDead = true;
-        //DeductArmyCount ?
-        Invoke("DestroyUnit", 0.5f);
     }
 
     public virtual void ResetAnimation()

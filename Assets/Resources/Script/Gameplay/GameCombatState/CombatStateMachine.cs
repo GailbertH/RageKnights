@@ -13,9 +13,9 @@ public enum CombatState
     STATUS_ACTION, //buff debuff and such
     ACTION_SELECTION, //Select action
     ACTION, //execute selecterd action -> Normal Attack, Magic, Item Use, Heal, Rage, Target Select, 
-    STATUS_CHECK, //Check if still alive
+    END_TURN_CHECK, //Check if still alive and buffs that ends at this turn
     SPAWN_CHECK, //spawn more enemies
-    RESULT //fight result
+    RESULT //fight outcome
 }
 
 public enum CombatSelectionState
@@ -55,7 +55,7 @@ public class CombatStateMachine
         Combat_StatusAction statusAction = new Combat_StatusAction(this);
         Combat_ActionSelection actionSelection = new Combat_ActionSelection(this);
         Combat_Action action = new Combat_Action(this);
-        Combat_StatusCheck statusCheck = new Combat_StatusCheck(this);
+        Combat_EndTurnCheck endturnCheck = new Combat_EndTurnCheck(this);
         Combat_SpawnCheck spawnCheck = new Combat_SpawnCheck(this);
         Combat_Result result = new Combat_Result(this);
 
@@ -66,7 +66,7 @@ public class CombatStateMachine
         combatStates.Add(statusAction.State, statusAction);
         combatStates.Add(actionSelection.State, actionSelection);
         combatStates.Add(action.State, action);
-        combatStates.Add(statusCheck.State, statusCheck);
+        combatStates.Add(endturnCheck.State, endturnCheck);
         combatStates.Add(spawnCheck.State, spawnCheck);
         combatStates.Add(result.State, result);
 
@@ -104,6 +104,7 @@ public class CombatStateMachine
         {
             foreach (CombatState key in combatStates.Keys)
             {
+                Debug.Log("Destroyed Combat State" + key);
                 combatStates[key].Destroy();
             }
             combatStates.Clear();
@@ -135,9 +136,9 @@ public class CombatStateMachine
             return CombatState.ACTION;
 
         else if (CombatState.ACTION == currentState.State)
-            return CombatState.STATUS_CHECK;
+            return CombatState.END_TURN_CHECK;
 
-        else if (CombatState.STATUS_CHECK == currentState.State)
+        else if (CombatState.END_TURN_CHECK == currentState.State)
             return CombatFinish ? CombatState.RESULT : CombatState.SPAWN_CHECK;
 
         else //CombatState.SPAWN_CHECK
@@ -154,7 +155,7 @@ public class CombatStateMachine
     {
         yield return new WaitForEndOfFrame();
         currentState.End();
-        //Debug.Log("CURRENT STATE " + currentState.State.ToString());
+        Debug.Log("CURRENT STATE " + currentState.State.ToString());
         if (currentState?.State != CombatState.RESULT)
         {
             var nextState = GetNextState();
@@ -164,8 +165,15 @@ public class CombatStateMachine
             currentState.Start();
             GameUIManager.Instance.DebugUpdateGamePlayState(currentState.State.ToString());
         }
-        else
+        else if (currentState?.State == CombatState.RESULT)
+        {
             End();
+            GameManager.Instance.StateMachine.SwitchState(GameplayState.RESULT);
+        }
+        else
+        {
+            Debug.LogError("Something went wrong");
+        }
     }
 }
 
@@ -308,6 +316,8 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        string currentAtTurnCombatId = GameManager.Instance.GetCurrentAtTurnUnitCombatId;
+        GameUIManager.Instance.HealthbarHandler.UpdateActiveStatus(currentAtTurnCombatId);
         GoToNextState();
     }
 
@@ -504,7 +514,7 @@ public class Combat_Action : Combat_Base<CombatState>
         if (GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
         {
             CSMachine.GetGameManager.PlayerHandler.PlayerAttack();
-            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(0, GameTargetingManager.Instance.GetTargets);
+            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(10, GameTargetingManager.Instance.GetTargets);
         }
     }
 
@@ -532,10 +542,10 @@ public class Combat_Action : Combat_Base<CombatState>
     }
 }
 
-//Check if status are gone and stuff
-public class Combat_StatusCheck : Combat_Base<CombatState>
+//Check if combat status if both side are still alive and end turn stuff
+public class Combat_EndTurnCheck : Combat_Base<CombatState>
 {
-    public Combat_StatusCheck(CombatStateMachine machine) : base(CombatState.STATUS_CHECK, machine)
+    public Combat_EndTurnCheck(CombatStateMachine machine) : base(CombatState.END_TURN_CHECK, machine)
     {
     }
 
@@ -547,7 +557,7 @@ public class Combat_StatusCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
-        CSMachine.CombatFinish = !CSMachine.GetGameManager.EnemyHandler.HasSoldiers;
+        CSMachine.CombatFinish = CSMachine.GetGameManager.EnemyHandler.IsAlive == false;
         GoToNextState();
     }
 
@@ -609,6 +619,8 @@ public class Combat_SpawnCheck : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        CSMachine.CombatFinish = GameManager.Instance.EnemyHandler.IsAlive == false 
+            || GameManager.Instance.PlayerHandler.IsAlive == false;
         GoToNextState();
     }
 
@@ -648,6 +660,7 @@ public class Combat_Result : Combat_Base<CombatState>
     public override void Start()
     {
         base.Start();
+        //Calculate result
         GoToNextState();
     }
 

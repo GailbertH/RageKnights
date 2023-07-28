@@ -13,7 +13,7 @@ public class MenuPopup : PopupBase
     public void Quit()
     {
         //Make sure this is exit state
-        GameManager.Instance.ExitGame();
+        GameManager.Instance.ReturnToTitleScreen();
         CloseButton();
     }
 }

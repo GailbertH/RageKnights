@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &175015902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5280044488824970250, guid: c1b86670a64eed148b59fd05e1da60df,
+    type: 3}
+  m_PrefabInstance: {fileID: 529859522459581583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &338905230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5154105083598261475, guid: 765637d316c051c4fbd3fbaca386770d,
@@ -415,6 +421,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875160190}
   m_CullTransparentMesh: 0
+--- !u!1 &939880426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5036253078459546419, guid: c1b86670a64eed148b59fd05e1da60df,
+    type: 3}
+  m_PrefabInstance: {fileID: 529859522459581583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1370981745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1539,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1921081913}
     m_Modifications:
+    - target: {fileID: 529859522150054700, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529859522459581587, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: activateHiglight
+      value: 
+      objectReference: {fileID: 175015902}
     - target: {fileID: 529859522582308296, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1636,6 +1658,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HPTracker
+      objectReference: {fileID: 0}
+    - target: {fileID: 723952601046134069, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: activateHiglight
+      value: 
+      objectReference: {fileID: 939880426}
+    - target: {fileID: 4258451618151006904, guid: c1b86670a64eed148b59fd05e1da60df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b86670a64eed148b59fd05e1da60df, type: 3}

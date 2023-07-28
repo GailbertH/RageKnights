@@ -198,6 +198,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8322a018912d81e4d83dce69a5bebd49,
         type: 2}
+    - target: {fileID: 36318469288809216, guid: 478017a8a53bd3e4aa94829821bef077,
+        type: 3}
+      propertyPath: dbEnemyCharacterUnit
+      value: 
+      objectReference: {fileID: 11400000, guid: eb89b31c006a5464780703e9945a26e2,
+        type: 2}
+    - target: {fileID: 36318469288809216, guid: 478017a8a53bd3e4aa94829821bef077,
+        type: 3}
+      propertyPath: dbPlayerCharacterUnit
+      value: 
+      objectReference: {fileID: 11400000, guid: 8322a018912d81e4d83dce69a5bebd49,
+        type: 2}
     - target: {fileID: 36318469288809217, guid: 478017a8a53bd3e4aa94829821bef077,
         type: 3}
       propertyPath: m_RootOrder

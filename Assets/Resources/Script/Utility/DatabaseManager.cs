@@ -9,7 +9,8 @@ namespace RageKnight.Database
     public class DatabaseManager : MonoBehaviour
     {
         public DatabaseConsumable dbConsumable;
-        public DatabasePlayerUnit dbCharacterUnit;
+        public DatabaseContainerUnit dbPlayerCharacterUnit;
+        public DatabaseContainerUnit dbEnemyCharacterUnit;
         private static DatabaseManager instance;
         public static DatabaseManager Instance { get { return instance; } }
 
@@ -34,11 +35,26 @@ namespace RageKnight.Database
         }
         public UnitDataModel GetPlayerUnit(string id)
         {
-            var data = dbCharacterUnit.Units.FirstOrDefault(x => x.id == id);
+            var data = dbPlayerCharacterUnit.Units.FirstOrDefault(x => x.id == id);
             UnitDataModel unitModel = new UnitDataModel(data);
             return unitModel;
         }
 
+        public List<UnitDataModel> GetEnemyUnits(List<string> ids)
+        {
+            List<UnitDataModel> unitModels = new List<UnitDataModel>();
+            foreach (string id in ids)
+            {
+                unitModels.Add(GetEnemyUnit(id));
+            }
+            return unitModels;
+        }
+        public UnitDataModel GetEnemyUnit(string id)
+        {
+            var data = dbEnemyCharacterUnit.Units.FirstOrDefault(x => x.id == id);
+            UnitDataModel unitModel = new UnitDataModel(data);
+            return unitModel;
+        }
     }
 
     public class UnitDataModel

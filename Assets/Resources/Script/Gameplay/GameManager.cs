@@ -128,11 +128,6 @@ namespace RageKnight
         {
         }
 
-        public void EnemyKill()
-        {
-            combatTracker.UpdateKillCount();
-        }
-
         public void PauseGame(bool isPause)
         {
             isGamePaused = isPause;
@@ -153,26 +148,38 @@ namespace RageKnight
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);
         }
 
-        public void ExitGame()
+        public void ReturnBackToAdventure()
         {
-            StateMachine.Exit();
+            Debug.Log("ReturnBackToAdventure");
+            ExitGame();
+            LoadingManager.Instance.SetSceneToUnload(SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
+            LoadingManager.Instance.SetSceneToLoad(SceneNames.ADVENTURE_UI + "," + SceneNames.ADVENTURE_SCENE);
+            LoadingManager.Instance.LoadGameScene();
         }
 
-        public void ExitingGame()
+        public void ReturnToTitleScreen()
+        {
+            Debug.Log("ReturnToTitleScreen");
+            ExitGame();
+            LoadingManager.Instance.SetSceneToUnload(SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
+            LoadingManager.Instance.SetSceneToLoad(SceneNames.LOBBY_SCENE);
+            LoadingManager.Instance.LoadGameScene();
+        }
+
+        public void ExitGame()
         {
             isStateActive = false;
-            playerUnitHandler = null;
-            enemyHandler = null;
             instance = null;
             if (stateMachine != null)
             {
-                stateMachine.Destroy();
+                StateMachine.Exit();
                 stateMachine = null;
             }
         }
 
 
         ////////// Game play related /////////////
+        ///Need to improve this
         public bool GetIsPlayerTurn
         {
             get { return PlayerHandler.IsTurnsDone() == false; }
@@ -181,6 +188,23 @@ namespace RageKnight
         public bool GetIsEnemyTurn
         {
             get { return EnemyHandler.IsTurnsDone() == false; }
+        }
+
+        public string GetCurrentAtTurnUnitCombatId
+        {
+            get 
+            {
+                if (PlayerHandler.IsTurnsDone() == false)
+                {
+                    return PlayerHandler.GetCurrentActiveUnitCombatId;
+                }
+                else if (EnemyHandler.IsTurnsDone() == false)
+                {
+                    return enemyHandler.GetCurrentActiveUnitCombatId;
+                }
+
+                return "";
+            }
         }
     }
 }

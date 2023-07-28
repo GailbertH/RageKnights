@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace RageKnight.Database
 {
-    [CreateAssetMenu(fileName = "New Player Unit Container", menuName = "Assets/Database_Container/Player_Unit")]
-    public class DatabasePlayerUnit : DatabaseContainer
+    [CreateAssetMenu(fileName = "New Player Unit Container", menuName = "Assets/Database_Container/Unit")]
+    public class DatabaseContainerUnit : DatabaseContainer
     {
         public List<DatabaseUnit> Units;
     }

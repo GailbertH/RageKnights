@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26b2c0266177a834c80729ca249ef587, type: 3}
-  m_Name: PlayerUnit-Database
-  m_EditorClassIdentifier: Assembly-CSharp:RageKnight.Database:DatabaseCharacterUnit
+  m_Name: EnemyUnit-Database
+  m_EditorClassIdentifier: 
   id: 0
   Units:
-  - {fileID: 11400000, guid: e9afe2b5792d1c547a362d2a6ac7f131, type: 2}
-  - {fileID: 11400000, guid: fd5a636697fd1914290ca4b6245d3552, type: 2}
-  - {fileID: 11400000, guid: 6580739d71078a548a2057d8820e3915, type: 2}
+  - {fileID: 11400000, guid: d4a2df1ed0f51ca47830d31f388e9caf, type: 2}

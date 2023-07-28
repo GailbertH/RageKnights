@@ -2,8 +2,6 @@
 
 public class Gameplay_Combat : GameplayState_Base<GameplayState>
 {
-    private bool startCountDown = false;
-    private Action onStateEndAction = null;
     CombatStateMachine combatStateMachine = null;
 
     public Gameplay_Combat() : base(GameplayState.COMBAT)
@@ -26,8 +24,6 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         base.GameStart();
-        startCountDown = false;
-
         Manager.PlayerHandler.PlayerResetAnimation();
 
         GameUIManager.Instance.UpdateControlMode(State);
@@ -52,5 +48,11 @@ public class Gameplay_Combat : GameplayState_Base<GameplayState>
 
     public override void GameEnd()
     {
+    }
+
+    public override void GameDestroy()
+    {
+        base.GameDestroy();
+        combatStateMachine.Destroy();
     }
 }

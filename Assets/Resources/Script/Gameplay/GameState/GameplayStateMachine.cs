@@ -52,6 +52,7 @@ public class GameplayStateMachine
         {
             foreach (GameplayState key in states.Keys)
             {
+                Debug.Log("Destroyed Gameplay State" + key);
                 states[key].GameDestroy();
             }
             states.Clear();
@@ -61,7 +62,6 @@ public class GameplayStateMachine
     public void Exit()
     {
         Destroy();
-        SwitchState(GameplayState.EXIT);
     }
 
     public void SwitchState(GameplayState newState)
@@ -84,6 +84,14 @@ public class GameplayStateMachine
             {
                 Debug.Log(string.Format("{0} does not allow transition to {1}", currentState.State, newState));
             }
+        }
+    }
+
+    public void FinishState()
+    {
+        if (currentState.State == GameplayState.EXIT)
+        {
+            End();
         }
     }
 }
