@@ -76,7 +76,6 @@ namespace RageKnight
         }
         #endregion
 
-        #region Monobehavior Function
 		void Awake()
 		{
 			instance = this;
@@ -84,20 +83,23 @@ namespace RageKnight
 
 		void Start()
 		{
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60; 
+        }
+
+        public void Initialized()
+        {
             stateMachine = new GameplayStateMachine();
-            isStateActive = true;
-            timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
 
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 60;
-            GameUIManager.Instance.Initialize();
+            stateMachine.Initilize();
+            isStateActive = true;
+            timeTrackerRoutine = StartCoroutine(TimeTracker());
         }
-        #endregion
 
         private void Update()
         {
-            if(isStateActive && isGamePaused == false)
+            if (isStateActive && isGamePaused == false)
                 stateMachine?.Update();
         }
 
@@ -133,16 +135,6 @@ namespace RageKnight
             isGamePaused = isPause;
         }
 
-        /*
-        public void IncrementStage()
-        {
-            stageTracker = stageTracker + 1;
-            combatTracker.UpdateStageCompleteCount();
-            //GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
-            Debug.Log("Stage: " + stage + " | " + stageTracker);
-            AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
-        }
-        */
         public void GameOverReset()
         {
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);
@@ -152,18 +144,28 @@ namespace RageKnight
         {
             Debug.Log("ReturnBackToAdventure");
             ExitGame();
-            LoadingManager.Instance.SetSceneToUnload(SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
-            LoadingManager.Instance.SetSceneToLoad(SceneNames.ADVENTURE_UI + "," + SceneNames.ADVENTURE_SCENE);
-            LoadingManager.Instance.LoadGameScene();
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.StartTransition(TransitionKey.COMBAT_TO_ADVENTURE);
+            }
+            else
+            {
+                Debug.LogError("Scene Transition Manager is missing");
+            }
         }
 
         public void ReturnToTitleScreen()
         {
             Debug.Log("ReturnToTitleScreen");
             ExitGame();
-            LoadingManager.Instance.SetSceneToUnload(SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
-            LoadingManager.Instance.SetSceneToLoad(SceneNames.LOBBY_SCENE);
-            LoadingManager.Instance.LoadGameScene();
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.StartTransition(TransitionKey.COMBAT_TO_LOBBY);
+            }
+            else
+            {
+                Debug.LogError("Scene Transition Manager is missing");
+            }
         }
 
         public void ExitGame()

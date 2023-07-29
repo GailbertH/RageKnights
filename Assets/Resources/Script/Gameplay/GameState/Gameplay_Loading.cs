@@ -1,7 +1,13 @@
 using RageKnight;
 using RageKnight.Database;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEditorInternal;
+using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Gameplay_Loading : GameplayState_Base<GameplayState>
 {
@@ -20,13 +26,34 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
     {
         base.GameStart();
 
+        GameManager.Instance.ExecuteRoutine(InitilizeSetupAsync());
+    }
+
+    private IEnumerator InitilizeSetupAsync()
+    {
+        UnityEngine.Debug.Log("Waiting");
+        yield return new WaitUntil(() => GameUIManager.Instance == null);
+
+        UnityEngine.Debug.Log("Everything is Ready");
         LoadPlayerUnitData();
+        yield return new WaitForEndOfFrame();
+
+        UnityEngine.Debug.Log("Loading player unit");
         LoadEnemyUnitData();
+        yield return new WaitForEndOfFrame();
+
+        UnityEngine.Debug.Log("Load Enemy");
+        GameUIManager.Instance.Initialize();
+        UnityEngine.Debug.Log("Game UI Init");
 
         GameUIManager.Instance.UpdateControlMode(State);
+        UnityEngine.Debug.Log("Update control mode");
         GameUIManager.Instance.UpdateMiddleUIModle(State);
 
+        UnityEngine.Debug.Log("Init done");
         allTaskDone = true; //Better as a callback
+
+        yield return null;
     }
 
     public override void GameUpdate()
