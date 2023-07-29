@@ -32,4 +32,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(moveInput.x, 0, moveInput.y);
         characterController.velocity = movement * speed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SceneTransitionManager.Instance.StartTransition(TransitionKey.ADVENTURE_TO_COMBAT);
+    }
 }
