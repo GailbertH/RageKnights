@@ -76,7 +76,6 @@ namespace RageKnight
         }
         #endregion
 
-        #region Monobehavior Function
 		void Awake()
 		{
 			instance = this;
@@ -84,20 +83,23 @@ namespace RageKnight
 
 		void Start()
 		{
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60; 
+        }
+
+        public void Initialized()
+        {
             stateMachine = new GameplayStateMachine();
-            isStateActive = true;
-            timeTrackerRoutine = StartCoroutine(TimeTracker());
             combatTracker = new CombatTracker("Stage"); //TODO Add functionality
 
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 60;
-            GameUIManager.Instance.Initialize();
+            stateMachine.Initilize();
+            isStateActive = true;
+            timeTrackerRoutine = StartCoroutine(TimeTracker());
         }
-        #endregion
 
         private void Update()
         {
-            if(isStateActive && isGamePaused == false)
+            if (isStateActive && isGamePaused == false)
                 stateMachine?.Update();
         }
 
@@ -119,23 +121,13 @@ namespace RageKnight
             StartCoroutine(routine);
         }
 
-        public void AccountDataInit(List<PlayerUnitModel> playerData)
+        public void PlayerUnitsInit(List<UnitModel> playerUnitModels)
         {
-            //TODO improvement needed goes ahead of init of UI
-            PlayerHandler.PlayerInitialize(playerData);
-            AddGold(0);
+            //TODO improvement this needs to goes ahead of init of UI
+            PlayerHandler.PlayerInitialize(playerUnitModels);
         }
-
-        public void AddGold(long goldToAdd)
+        public void EnemyUnitsInit(List<UnitModel> playerUnitModels)
         {
-            stageGold = AccountManager.Instance.AddGold(goldToAdd);
-            combatTracker?.UpdateGoldEarned(goldToAdd);
-            //this.GameUIManager?.UpdateGold(StageGold);
-        }
-
-        public void EnemyKill()
-        {
-            combatTracker.UpdateKillCount();
         }
 
         public void PauseGame(bool isPause)
@@ -143,41 +135,54 @@ namespace RageKnight
             isGamePaused = isPause;
         }
 
-        /*
-        public void IncrementStage()
-        {
-            stageTracker = stageTracker + 1;
-            combatTracker.UpdateStageCompleteCount();
-            //GameUIManager.Instance.ProgressbarHandler.UpdateStage(stageTracker);
-            Debug.Log("Stage: " + stage + " | " + stageTracker);
-            AccountManager.Instance.UpdateStageProgress(stage, StageTracker, true);
-        }
-        */
         public void GameOverReset()
         {
             AccountManager.Instance.UpdateStageProgress(stage, 0, false);
         }
 
-        public void ExitGame()
+        public void ReturnBackToAdventure()
         {
-            StateMachine.Exit();
+            Debug.Log("ReturnBackToAdventure");
+            ExitGame();
+            if (SceneTransitionManager.Instance != null && RecordKeeperManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.StartTransition(TransitionKey.COMBAT_TO_ADVENTURE);
+                RecordKeeperManager.Instance.EnemyDefeated();
+            }
+            else
+            {
+                Debug.LogError("Scene Transition Manager is missing");
+            }
         }
 
-        public void ExitingGame()
+        public void ReturnToTitleScreen()
+        {
+            Debug.Log("ReturnToTitleScreen");
+            ExitGame();
+            if (SceneTransitionManager.Instance != null)
+            {
+                SceneTransitionManager.Instance.StartTransition(TransitionKey.COMBAT_TO_LOBBY);
+            }
+            else
+            {
+                Debug.LogError("Scene Transition Manager is missing");
+            }
+        }
+
+        public void ExitGame()
         {
             isStateActive = false;
-            playerUnitHandler = null;
-            enemyHandler = null;
             instance = null;
             if (stateMachine != null)
             {
-                stateMachine.Destroy();
+                StateMachine.Exit();
                 stateMachine = null;
             }
         }
 
 
         ////////// Game play related /////////////
+        ///Need to improve this
         public bool GetIsPlayerTurn
         {
             get { return PlayerHandler.IsTurnsDone() == false; }
@@ -186,6 +191,23 @@ namespace RageKnight
         public bool GetIsEnemyTurn
         {
             get { return EnemyHandler.IsTurnsDone() == false; }
+        }
+
+        public string GetCurrentAtTurnUnitCombatId
+        {
+            get 
+            {
+                if (PlayerHandler.IsTurnsDone() == false)
+                {
+                    return PlayerHandler.GetCurrentActiveUnitCombatId;
+                }
+                else if (EnemyHandler.IsTurnsDone() == false)
+                {
+                    return enemyHandler.GetCurrentActiveUnitCombatId;
+                }
+
+                return "";
+            }
         }
     }
 }

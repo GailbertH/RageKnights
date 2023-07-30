@@ -1,4 +1,6 @@
-﻿public class Gameplay_Result : GameplayState_Base<GameplayState>
+﻿using RageKnight;
+
+public class Gameplay_Result : GameplayState_Base<GameplayState>
 {
     public Gameplay_Result() : base(GameplayState.RESULT)
     {
@@ -6,7 +8,7 @@
 
     public override void GameGoToNextState()
     {
-        Handler.SwitchState(GameplayState.EXIT);
+        GameManager.Instance.StateMachine.SwitchState(GameplayState.EXIT);
     }
 
     public override bool GameAllowTransition(GameplayState nextState)

@@ -33,9 +33,7 @@ public class MiddleUIHandler : MonoBehaviour
         List<StatusBarFields> enemyStats = new List<StatusBarFields>();
 
         stats = inst.PlayerHandler.GetPlayerData.Select(x => x.statusBarItems).ToList();
-        enemyStats = inst.EnemyHandler.GetEnemyData.Select(x => x.statusBarItems).ToList();
-
-        float enemyCurrentHP = inst.EnemyHandler.GetArmyCount;
+        enemyStats = inst.EnemyHandler.GetCurrentEnemyData.Select(x => x.statusBarItems).ToList();
 
         healthbarHandler.SetupPlayerSide(stats);
         healthbarHandler.SetupEnemySide(enemyStats);

@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [SerializeField] private Image icon;
     [SerializeField] private Transform health;
     [SerializeField] private Transform mana;
+    [SerializeField] private GameObject activateHiglight;
 
     private string unitCombatID;
     private bool isEnemyHealth;
@@ -26,6 +27,7 @@ public class HealthBar : MonoBehaviour
     public void Setup(StatusBarFields stats)
     {
         unitCombatID = stats.unitCombatID;
+        icon.sprite = stats.icon;
         maxHP = stats.maxHealthPoints;
         maxMP = stats.maxManaPoints;
         isEnemyHealth = stats.isEnemy;
@@ -34,9 +36,19 @@ public class HealthBar : MonoBehaviour
         UpdateManaPoints(stats.manaPoints);
     }
 
-    public void UpdateHealthPoints(int hp)
+    public void UpdateActiveStatus(string activeUnitCombatIt)
     {
-        float healthPercent = (float)hp / (float)maxHP;
+        activateHiglight.SetActive(unitCombatID == activeUnitCombatIt);
+    }
+
+    public void UpdateTargetState(string activeUnitCombatIt)
+    {
+        Debug.Log("Current Target " + activeUnitCombatIt);
+    }
+
+    public void UpdateHealthPoints(int curHP)
+    {
+        float healthPercent = (float)curHP / (float)maxHP;
         if (healthPercent < 0 || healthPercent > 1)
         {
             healthPercent = healthPercent < 0 ? 0 : 1;

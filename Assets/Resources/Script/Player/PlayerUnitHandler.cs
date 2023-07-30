@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace RageKnight.Player
 {
@@ -15,18 +16,16 @@ namespace RageKnight.Player
 
     public class PlayerUnitHandler : MonoBehaviour
     {
-        [SerializeField] private List<PlayerUnitController> units;
+        [SerializeField] private List<PlayerUnitController> playerUnits;
+        private PlayerUnitController currentActiveUnit = null;
 
         private PlayerState currentPlayerState = PlayerState.IDLE;
-        private const float BASE_RAGE_DURATION = 10f;
-        private const float BASE_ITEM_COOLDOWN = 5f;
-        private int combatIdCounter = 0;
 
         public PlayerState GetPlayerState
         {
             get
             {
-                if (units == null)
+                if (playerUnits == null)
                     return PlayerState.IDLE;
                 else
                     return currentPlayerState;
@@ -37,28 +36,27 @@ namespace RageKnight.Player
         {
             get
             {
-                return units.All(x => x.UnitData.healthPoints > 0);
+                return playerUnits.All(x => x.GetIsDead) == false;
             }
         }
 
-        public List<PlayerUnitModel> GetPlayerData
+        public List<UnitModel> GetPlayerData
         {
             get
             {
-                return units.Select(x => x.UnitData).ToList();
+                return playerUnits.Select(x => x.UnitData).ToList();
             }
         }
 
-        public void PlayerInitialize(List<PlayerUnitModel> playerDataList)
+        public void PlayerInitialize(List<UnitModel> playerDataList)
         {
-            for (int i = 0; i < playerDataList.Count; i++)
+            //need to adjust with 1 - 3 units
+            for (int i = 0; i < playerUnits.Count; i++)
             {
-                units[i].UnitData = playerDataList[i];
-                units[i].Initialize(playerDataList[i].unitCombatID);
+                playerUnits[i].Initialize(playerDataList[i]);
             }
 
-            currentActiveUnit = units[0];
-            Debug.Log("Player Initialize");
+            currentActiveUnit = playerUnits[0];
         }
 
         public EnemyUnitHandler GetEnemyHandler()
@@ -67,10 +65,17 @@ namespace RageKnight.Player
         }
 
         ///////////////////////////////////////////////////// 
-        PlayerUnitController currentActiveUnit = null;
-        public PlayerUnitController GetCurrentActiveUnit
+        public string GetCurrentActiveUnitCombatId
         {
-            get { return currentActiveUnit; }
+            get 
+            {   
+                if (currentActiveUnit == null)
+                {
+                    Debug.LogWarning("GGG - Inappropriate access");
+                    return String.Empty;
+                }
+                return currentActiveUnit.GetUnitCombatId; 
+            }
         }
 
         private bool playerTurnIsDone = false;
@@ -97,41 +102,37 @@ namespace RageKnight.Player
 
         public void UpdateTurns()
         {
-            //Temp
             bool isTurnsDone = true;
-            for (int i = 0; i < units.Count; i++)
+            currentActiveUnit = playerUnits.FirstOrDefault
+                (x => x.GetIsTurnDone == false && x.GetIsDead == false);
+            if (currentActiveUnit != null)
             {
-                if (units[i].GetIsTurnDone == false)
-                {
-                    Debug.Log("Unit " + (i + 1) + " = " + units[i].GetIsTurnDone);
-                    currentActiveUnit = units[i];
-                    isTurnsDone = false;
-                }
+                isTurnsDone = false;
             }
             playerTurnIsDone = isTurnsDone;
-            Debug.Log("playerTurnIsDone " + playerTurnIsDone);
         }
 
         public void ResetTurns()
         {
-            for (int i = 0; i < units.Count; i++)
+            for (int i = 0; i < playerUnits.Count; i++)
             {
-                units[i].ResetTurn();
+                playerUnits[i].ResetTurn();
             }
-            currentActiveUnit = units[0];
+            currentActiveUnit = playerUnits[0];
             playerTurnIsDone = false;
         }
         /////////////////////////////////////////////////////
 
-        public void UpdateHealthGauge()
+        public void DamagePlayerUnit(string targetCombatID, int damageAmount)
         {
-            //float playerHP = GetPlayerData != null ? GetPlayerData.healthPoints : 0f;
-            //GameManager.Instance.GameUIManager.HealthbarHandler.UpdatePlayerHealth(playerHP);
-        }
 
-        public void PlayerDamaged(int damage)
-        {
-            UpdateHealthGauge();
+            var playerUnit = playerUnits.Find(x => x.GetUnitCombatId == targetCombatID);
+
+            if (playerUnit != null)
+            {
+                var currentHP = playerUnit.DamageHealth(damageAmount);
+                GameUIManager.Instance.HealthbarHandler.UpdateHealthPoints(targetCombatID, currentHP);
+            }
         }
 
         public void PlayerAttack()

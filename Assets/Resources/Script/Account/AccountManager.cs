@@ -18,6 +18,7 @@ public class AccountManager : MonoBehaviour
 
     void Awake()
     {
+        /*
         instance = this;
         if (PlayerPrefs.HasKey("TempAccountData"))
         {
@@ -27,19 +28,17 @@ public class AccountManager : MonoBehaviour
         {
             GenerateAccount();
         }
+        */
     }
 
     public void GenerateAccount()
     {
-        PlayerUnitModel currentCharacterData = new PlayerUnitModel
+        UnitModel currentCharacterData = new UnitModel
         {
             attackPower = 2,
             defensePower = 2,
-            vitalityPower = 2,
-            rageIncrement = 1,
             healthPoints = 100,
             manaPoints = 100,
-            ragePoints = 0,
         };
         string jsonAccountData = JsonUtility.ToJson(currentCharacterData);
         Debug.Log("FAKE DATA : " + jsonAccountData);
@@ -134,7 +133,6 @@ public class AccountManager : MonoBehaviour
     public void ResetPlayerStatus()
     {
         AccountData.CurrentCharacterData.healthPoints = AccountData.CurrentCharacterData.maxHealthPoints;
-        AccountData.CurrentCharacterData.ragePoints = 0;
     }
 }
 
@@ -145,8 +143,8 @@ public class AccountData
     public string AccountName;
     public long Gold;
     public bool HasCurrentActiveGame;
-    public PlayerUnitModel CurrentCharacterData; //Selected Character
-    public PlayerUnitModel[] CharacterData;
+    public UnitModel CurrentCharacterData; //Selected Character
+    public UnitModel[] CharacterData;
     public ProgressTrackerModel CurrentProgress;
     public ProgressTrackerModel ProgressTracker;
     //Inventory Data

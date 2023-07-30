@@ -4,26 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerUnitModel
+public class UnitModel
 {
-    public string name = "Unit";
-    public string unitID = "TBA"; //Unit ID, unique to all units.
+    public string name;
+    public string unitID; //Unit ID, unique to all units.
     public string unitCombatID; //This is a units ID that changes every combat.
-
-    public int healthPoints;
-    public int maxHealthPoints = 100;
-
-    public int manaPoints;
-    public int maxManaPoints = 100;
-
-    public int ragePoints;
-    public int maxRagePoints = 100;
-
-    public int rageIncrement;
+    public Sprite icon;
+    public Sprite splashArt;
+    public GameObject unitPrefab;
 
     public int attackPower;
     public int defensePower;
-    public int vitalityPower;
+
+    public int healthPoints;
+    public int maxHealthPoints = 100;
+    public int manaPoints;
+    public int maxManaPoints = 100;
 
     public StatusBarFields statusBarItems
     {
@@ -37,6 +33,7 @@ public class PlayerUnitModel
                 maxHealthPoints = maxHealthPoints,
                 manaPoints = manaPoints,
                 maxManaPoints = maxManaPoints,
+                icon = icon,
 
                 isEnemy = false
             };
@@ -54,6 +51,8 @@ public class StatusBarFields
 
     public int manaPoints;
     public int maxManaPoints;
+
+    public Sprite icon;
 
     public bool isEnemy;
 }

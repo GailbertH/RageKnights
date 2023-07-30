@@ -5,6 +5,7 @@ public class GameplayStateMachine
 {
     private Dictionary<GameplayState, GameplayState_Base<GameplayState>> states = null;
     private GameplayState_Base<GameplayState> currentState = null;
+    private bool isInit = false;
 
     public GameplayStateMachine()
     {
@@ -19,32 +20,55 @@ public class GameplayStateMachine
         states.Add(combat.State, (GameplayState_Base<GameplayState>)combat);
         states.Add(result.State, (GameplayState_Base<GameplayState>)result);
         states.Add(exit.State, (GameplayState_Base<GameplayState>)exit);
+    }
 
+    public void Initilize()
+    {
+        isInit = true;
         SwitchState(GameplayState.LOADING);
     }
 
     public void Start()
     {
-        currentState.GameStart();
+        if (isInit == true)
+            currentState.GameStart();
     }
     public void Update()
     {
-        if (currentState != null)
+        if (isInit == true && currentState != null)
             currentState.GameUpdate();
     }
 
     public void TimerUpdate()
     {
-        if (currentState != null)
+        if (isInit == true && currentState != null)
             currentState.GameTimerUpdate();
     }
     public void End()
     {
+        if (isInit == false)
+            return;
+
         currentState.GameEnd();
         if (currentState.State == GameplayState.EXIT)
         {
             Exit();
         }
+    }
+
+    public void FinishState()
+    {
+        if (isInit == false)
+            return;
+
+        if (currentState.State == GameplayState.EXIT)
+        {
+            End();
+        }
+    }
+    public void Exit()
+    {
+        Destroy();
     }
     public void Destroy()
     {
@@ -52,20 +76,19 @@ public class GameplayStateMachine
         {
             foreach (GameplayState key in states.Keys)
             {
+                Debug.Log("Destroyed Gameplay State" + key);
                 states[key].GameDestroy();
             }
             states.Clear();
             states = null;
         }
     }
-    public void Exit()
-    {
-        Destroy();
-        SwitchState(GameplayState.EXIT);
-    }
 
     public void SwitchState(GameplayState newState)
     {
+        if (isInit == false)
+            return;
+
         Debug.Log("GAME STATE MACHINE " + newState);
         if (states != null && states.ContainsKey(newState))
         {

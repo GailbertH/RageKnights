@@ -1,4 +1,5 @@
 ﻿using RageKnight;
+using RageKnight.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,85 +8,52 @@ using UnityEngine;
 
 public class EnemyUnitHandler : MonoBehaviour
 {
-    //TODO too many random variables gotta reduce these weird variables its making things complicated now.
-    private const float DEFAULT_ENEMY_ACTION_TIMER = 2f;
-    public const float DEFAULT_SPAWN_TIMER = 5f;
-
-    [SerializeField] private List<GameObject> enemyList;
     [SerializeField] private EnemySoldierController enemySoldierController;
-
     [SerializeField] private List<GameObject> spawnSpotHolders;
-    [SerializeField] private int spawnLimit = 0;
+    [SerializeField] private List<EnemyUnitController> enemyUnits = null;
+    private List<UnitModel> enemyUnitList = new List<UnitModel>(); //should be a queue
 
-    private List<EnemyUnitController> enemies = null;
-    private int combatIdCounter = 0;
-
-    private int armyCount;
-    private int enemyAttackDamage = 1;
-    private float enemySpawnCD = 3f;
-    private bool hasPresentMonster = false;
-    System.Random random = new System.Random();
-
-    public int GetEnemyCount
+    public bool IsAlive
     {
         get
         {
-            return spawnLimit;
+            return enemyUnits.All(x => x.GetIsDead) == false;
         }
     }
 
-    public bool HasSoldiers
+    public List<UnitModel> GetCurrentEnemyData
     {
         get
         {
-            return armyCount > 0;
+            return enemyUnits.Select(x => x.UnitData).ToList();
         }
     }
 
-    public float EnemySpawnCD
+    public void EnemyInitialize(List<UnitModel> enemyDataList, int armyCount)
     {
-        get
+        enemyUnitList = enemyDataList;
+        //need to adjust with 1 - 3 units
+        for (int i = 0; i < enemyUnitList.Count; i++)
         {
-            return enemySpawnCD;
+            Debug.Log("??? " + enemyUnitList[i].name);
+            enemyUnits[i].Initialize(enemyUnitList[i]);
         }
-    }
-
-    public int GetArmyCount
-    {
-        get
-        {
-            return armyCount;
-        }
-    }
-
-    public List<EnemyUnitModel> GetEnemyData
-    {
-        get
-        {
-            return enemies.Select(x => x.UnitData).ToList();
-        }
-    }
-
-    public void Initialize()
-    {
-        Debug.Log("init");
-        //Not the best idea but it will do for now.
-        armyCount = UnityEngine.Random.Range(20, 50);
-        spawnLimit = (spawnLimit == 0 || spawnLimit > 3) ? spawnSpotHolders.Count : spawnLimit;
-        enemies = new List<EnemyUnitController>();
-        for(int i = 0; i < spawnLimit; i++)
-        {
-            enemies.Add(null);
-        }
-        enemySpawnCD = DEFAULT_SPAWN_TIMER;
-        currentActiveUnit = enemies[0];
+        currentActiveUnit = enemyUnits[0];
     }
 
     /////////////////////////////////////////////////////
     EnemyUnitController currentActiveUnit = null;
-    public EnemyUnitController GetCurrentActiveUnit
+    public string GetCurrentActiveUnitCombatId
     {
-        get { return currentActiveUnit; }
+        get 
+        {
+            if (currentActiveUnit == null)
+            {
+                Debug.LogWarning("GGG - Inappropriate access");
+                return String.Empty;
+            }
+            return currentActiveUnit.GetUnitCombatId;
+        }
     }
 
     private bool enemyTurnIsDone = false;
@@ -109,28 +77,23 @@ public class EnemyUnitHandler : MonoBehaviour
     public void UpdateTurns()
     {
         bool isTurnsDone = true;
-        for (int i = 0; i < enemies.Count; i++)
+        currentActiveUnit = enemyUnits.FirstOrDefault
+            (x => x.GetIsTurnDone == false && x.GetIsDead == false);
+        if (currentActiveUnit != null)
         {
-            if (enemies[i].GetIsTurnDone == false)
-            {
-                Debug.Log("E Unit " + (i + 1) + " = " + enemies[i].GetIsTurnDone);
-                currentActiveUnit = enemies[i];
-                isTurnsDone = false;
-            }
+            isTurnsDone = false;
         }
         enemyTurnIsDone = isTurnsDone;
-
-        Debug.Log("enemyTurnIsDone " + enemyTurnIsDone);
     }
 
     public void ResetTurns()
     {
         //All unit turnIsDone = false;
-        for (int i = 0; i < enemies.Count; i++)
+        for (int i = 0; i < enemyUnits.Count; i++)
         {
-            enemies[i].ResetTurn();
+            enemyUnits[i].ResetTurn();
         }
-        currentActiveUnit = enemies[0];
+        currentActiveUnit = enemyUnits[0];
         enemyTurnIsDone = false;
     }
 
@@ -146,26 +109,28 @@ public class EnemyUnitHandler : MonoBehaviour
         if (targetCombatIDs.Count <= 0)
             return;
 
-        for (int i = 0; i < targetCombatIDs.Count; i++)
+        foreach (string targetCombatID in targetCombatIDs)
         {
-            DamagedEnemy(damage, targetCombatIDs[i]);
+            DamageEnemyUnit(targetCombatID, damage);
         }
     }
 
-    public void DamagedEnemy(int damage, string targetCombatID)
+    public void DamageEnemyUnit(string targetCombatID, int damageAmount)
     {
-        if (enemies.Count <= 0)
+        if (enemyUnits.Count <= 0)
             return;
 
-        var enemy = enemies.Find(x => x.GetUnitCombatId == targetCombatID);
+        var enemyUnit = enemyUnits.Find(x => x.GetUnitCombatId == targetCombatID);
 
-        if (enemy != null)
+        if (enemyUnit != null)
         {
-            enemy.Damaged();
-            bool isEnemyDead = enemy.GetIsDead;
+            var currentHP = enemyUnit.DamageHealth(damageAmount);
+            GameUIManager.Instance.HealthbarHandler.UpdateHealthPoints(targetCombatID, currentHP);
+
+            bool isEnemyDead = enemyUnit.GetIsDead;
             if (isEnemyDead == true)
             {
-                OnEnemySlain(enemy);
+                OnEnemySlain(enemyUnit);
             }
         }
     }
@@ -173,46 +138,11 @@ public class EnemyUnitHandler : MonoBehaviour
     public void OnEnemySlain(EnemyUnitController enemy)
     {
         Debug.Log("Enemy slain : " + enemy.GetUnitCombatId);
-        UnSetEnemy(enemy);
-        EnemySpawn();
+        //UnSetEnemy(enemy);
+        //EnemySpawn();
     }
 
-    public bool IsEnemySpawn()
-    {
-        Debug.Log("IsEnemySpawn");
-        if (hasPresentMonster == true)
-        {
-            return true;
-        }
-
-        enemySpawnCD -= 1;
-        //float progressValue = (DEFAULT_SPAWN_TIMER - EnemySpawnCD) / DEFAULT_SPAWN_TIMER;
-        //GameUIManager.Instance.ProgressbarHandler.UpdateStageProgress(progressValue);
-
-        Debug.Log("IsEnemySpawn " + enemySpawnCD);
-        if (enemySpawnCD <= 0)
-        {
-            Debug.Log(armyCount);
-            EnemySpawn();
-            return true;
-        }
-        return false;
-    }
-
-    public bool IsEnemyInBattlePosition(float enemyMovement, GameManager manager)
-    {
-        if (hasPresentMonster == false)
-        {
-            return false;
-        }
-        else
-        {
-            enemySpawnCD = DEFAULT_SPAWN_TIMER;
-            hasPresentMonster = false;
-            return true;
-        }
-    }
-
+    /*
     private void EnemySpawn()
     {
         var fieldSlots = enemies.Where(x => x != null).Count();
@@ -224,36 +154,22 @@ public class EnemyUnitHandler : MonoBehaviour
         }
 
         Debug.Log("SPAWN");
-        hasPresentMonster = true;
         int eCPId = enemies.FindIndex(x => x == null);
 
         var enemySpawnObj = spawnSpotHolders[eCPId];
         //need to reset everything for safety cause of animation
         GameObject enemyObject = Instantiate<GameObject>(enemyList[0],
-            spawnSpotHolders[eCPId].transform.GetChild(0)
+            spawnSpotHolders[eCPId].transform
             ) as GameObject;
 
         enemyObject.transform.localPosition = enemyList[0].transform.position;
         enemyObject.transform.localRotation = enemyList[0].transform.rotation;
 
         enemies[eCPId] = enemyObject.GetComponent<EnemyUnitController>();
-        string combatId = Guid.NewGuid().ToString();
-        EnemyUnitModel enemyData = new EnemyUnitModel
-        {
-            name = "blompy " + combatId,
-            unitCombatID = combatId,
-            healthPoints = 100,
-            maxHealthPoints = 100,
 
-            attackPower = 2,
-            defensePower = 2,
-            vitalityPower = 2
-        };
 
-        enemies[eCPId].UnitData = enemyData;
-        enemies[eCPId].Initialize(combatId);
+        enemies[eCPId].Initialize(enemyData);
         enemyObject.SetActive(true);
-        enemySpawnCD = DEFAULT_SPAWN_TIMER;
 
         //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(enemies[eCPId].GetEnemyData.HealthPoints);
 
@@ -262,67 +178,10 @@ public class EnemyUnitHandler : MonoBehaviour
             EnemySpawn();
         }
     }
+    */
 
     public void EnemyActionChecker()
     {
         currentActiveUnit.CheckAction();
-    }
-
-    public void DeductArmyCount()
-    {
-        armyCount--;
-        GameManager.Instance.EnemyKill();
-        //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyArmyCount(armyCount);
-        //GameManager.Instance.GameUIManager.HealthbarHandler.UpdateEnemyHealth(armyCount);
-    }
-
-    public void UnSetEnemy(EnemyUnitController enemy)
-    {
-        enemy?.Death();
-        enemies.Remove(enemy);
-    }
-
-    public void UnSetAllEnemy()
-    {
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i]?.DestroyUnit();
-            enemies[i] = null;
-        }
-        hasPresentMonster = false;
-    }
-
-    public void SetAllEnemy()
-    {
-        if(armyCount > 0)
-        {
-            EnemySpawn();
-        }
-    }
-
-
-    //Rage Mode
-    public void SetupRageMode()
-    {
-        enemySoldierController.Init(armyCount, enemyList);
-        enemySoldierController.ShowUnits();
-        UnSetAllEnemy();
-    }
-
-    public void EndRageMode()
-    {
-        enemySoldierController.ShowUnits(false);
-        enemySoldierController.End();
-        SetAllEnemy();
-    }
-
-    public void MoveUnits(float speed)
-    {
-        enemySoldierController.MoveUnits(speed);
-    }
-
-    public void DamageEnemyArmy(float damage)
-    {
-        enemySoldierController.DamageArmy(damage);
     }
 }

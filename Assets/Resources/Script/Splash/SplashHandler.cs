@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class SplashHandler : MonoBehaviour
 {
     [SerializeField] private CanvasGroup splashCanvas;
-    [SerializeField] private Button StartButton;
     [SerializeField] private Text SetupText;
     [SerializeField] private Animation SetupTextAnimation;
     private bool isMenuReady = false;
@@ -14,7 +13,6 @@ public class SplashHandler : MonoBehaviour
     void Start()
     {
         SetupText.text = "Loading...";
-        StartButton.gameObject.SetActive(false);
         SetupData();
     }
 
@@ -22,7 +20,6 @@ public class SplashHandler : MonoBehaviour
     {
         SetupText.text = "Tap Screen To Start";
         SetupTextAnimation.Play();
-        StartButton.gameObject.SetActive(true);
     }
 
     private void SetupData()
@@ -36,37 +33,21 @@ public class SplashHandler : MonoBehaviour
         var loadSceneAsync = SceneManager.LoadSceneAsync(SceneNames.LOADING_SCREEN, LoadSceneMode.Additive);
         StartCoroutine(LoadStartupScenes(loadSceneAsync));
     }
-
-    public void OnStartButtonPress()
-    {
-        SetupText.gameObject.SetActive(false);
-        StartButton.interactable = false;
-        StartCoroutine(FadeOutCoroutine());
-        LoadingManager.Instance.ActivateSilentLoadedScene();
-    }
-
-    private void UnloadScene()
-    {
-        SetupTextAnimation.Stop();
-        splashCanvas = null;
-        StartButton = null;
-        SetupText = null;
-        SetupTextAnimation = null;
-        LoadingManager.Instance.SetSceneToUnload(SceneNames.SPLASH_SCREEN);
-        LoadingManager.Instance.UnloadScene();
-    }
-
     IEnumerator LoadStartupScenes(AsyncOperation loadScene)
     {
-        yield return new WaitUntil(() => loadScene.isDone == true && LoadingManager.Instance != null);
+        yield return new WaitUntil(() => loadScene.isDone == true
+        && LoadingManager.Instance != null
+        && SceneTransitionManager.Instance != null);
 
-        LoadingManager.Instance.SetSceneToLoad(SceneNames.DATA_SCENE);
-        LoadingManager.Instance.LoadScene();
-        LoadingManager.Instance.SetSceneToLoad(SceneNames.LOBBY_SCENE);
-        LoadingManager.Instance.SilentLoadScene();
-        isMenuReady = true;
+        SceneTransitionManager.Instance.StartTransition(TransitionKey.SPLASH_TO_LOBBY, ShowMenu);
     }
 
+    public void ShowMenu()
+    {
+        isMenuReady = true;
+        SetupText.gameObject.SetActive(false);
+        StartCoroutine(FadeOutCoroutine());
+    }
     IEnumerator FadeOutCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -78,7 +59,14 @@ public class SplashHandler : MonoBehaviour
         }
         UnloadScene();
     }
-
+    private void UnloadScene()
+    {
+        SetupTextAnimation.Stop();
+        splashCanvas = null;
+        SetupText = null;
+        SetupTextAnimation = null;
+        SceneTransitionManager.Instance.UnloadScene(SceneNames.SPLASH_SCREEN);
+    }
     IEnumerator FakeLoadBalancer()
     {
 

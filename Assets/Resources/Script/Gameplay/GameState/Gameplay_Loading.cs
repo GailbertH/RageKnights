@@ -1,10 +1,17 @@
 using RageKnight;
+using RageKnight.Database;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEditorInternal;
+using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Gameplay_Loading : GameplayState_Base<GameplayState>
 {
-    private bool HasEnemySpawn = false;
+    private bool allTaskDone = false;
     public Gameplay_Loading() : base(GameplayState.LOADING)
     {
         //Load units data
@@ -18,29 +25,49 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
     public override void GameStart()
     {
         base.GameStart();
+
+        GameManager.Instance.ExecuteRoutine(InitilizeSetupAsync());
+    }
+
+    private IEnumerator InitilizeSetupAsync()
+    {
+        UnityEngine.Debug.Log("Waiting");
+        yield return new WaitUntil(() => GameUIManager.Instance != null);
+
+        UnityEngine.Debug.Log("Everything is Ready");
+        LoadPlayerUnitData();
+        yield return new WaitForEndOfFrame();
+
+        UnityEngine.Debug.Log("Loading player unit");
+        LoadEnemyUnitData();
+        yield return new WaitForEndOfFrame();
+
+        UnityEngine.Debug.Log("Load Enemy");
+        GameUIManager.Instance.Initialize();
+        UnityEngine.Debug.Log("Game UI Init");
+
         GameUIManager.Instance.UpdateControlMode(State);
+        UnityEngine.Debug.Log("Update control mode");
         GameUIManager.Instance.UpdateMiddleUIModle(State);
-        GameManager.Instance.EnemyHandler.Initialize();
-        LoadAccountData();
-        HasEnemySpawn = false;
+
+        UnityEngine.Debug.Log("Init done");
+        allTaskDone = true; //Better as a callback
+
+        yield return null;
     }
 
     public override void GameUpdate()
     {
         base.GameUpdate();
-        if (HasEnemySpawn == true)
+        if (allTaskDone == true)
         {
-            if (GameManager.Instance.EnemyHandler.IsEnemyInBattlePosition(GameManager.ENEMY_WALK_SPEED, Manager))
-            {
-                GameGoToNextState();
-            }
+            GameGoToNextState();
         }
     }
 
     public override void GameTimerUpdate()
     {
         base.GameTimerUpdate();
-        CheckIfEnemySpawned();
     }
     public override void GameGoToNextState()
     {
@@ -55,43 +82,67 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
 
     #region private methods
     //TODO use proper data
-    private void LoadAccountData()
+    private void LoadPlayerUnitData()
     {
-        string combatId = Guid.NewGuid().ToString();
-        List<PlayerUnitModel> playerDataList = new List<PlayerUnitModel>();
-        string[] unitNames = { "Lancelot", "Vira", "Albert" };
-        for (int i = 0; i < unitNames.Length; i++)
+        List<string> strings = new List<string> {"0", "1", "2" };
+        List<UnitDataModel> dataModels = new List<UnitDataModel>();
+        dataModels = DatabaseManager.Instance.GetPlayerUnits(strings);
+
+        List<UnitModel> playerDataList = new List<UnitModel>();
+        foreach (UnitDataModel dataModel in dataModels)
         {
-            PlayerUnitModel playerData = new PlayerUnitModel
+            UnitModel playerData = new UnitModel
             {
-                name = unitNames[i],
-                unitCombatID = combatId,
+                name = dataModel.name,
+                unitID = dataModel.id,
+                unitCombatID = Guid.NewGuid().ToString(),
+                icon = dataModel.icon,
+                splashArt = dataModel.splashArt,
+                unitPrefab = dataModel.unitPrefab,
+
+                attackPower = dataModel.attackPower,
+                defensePower = dataModel.defensePower,
+                maxHealthPoints = dataModel.healthPoints,
+
                 healthPoints = 100,
                 manaPoints = 100,
-                ragePoints = 0,
-                rageIncrement = 1,
-                attackPower = 2,
-                defensePower = 2,
-                vitalityPower = 2
-            };
 
+            };
             playerDataList.Add(playerData);
         }
-        Manager.AccountDataInit(playerDataList);
+        GameManager.Instance.PlayerUnitsInit(playerDataList);
     }
 
-
-    private void CheckIfEnemySpawned()
+    private void LoadEnemyUnitData()
     {
-        if (HasEnemySpawn == true)
-        {
-            return;
-        }
+        List<string> strings = new List<string> { "0", "0", "0" };
+        List<UnitDataModel> dataModels = new List<UnitDataModel>();
+        dataModels = DatabaseManager.Instance.GetEnemyUnits(strings);
 
-        if (Manager.EnemyHandler != null)
+        List<UnitModel> enemyDataList = new List<UnitModel>();
+        foreach (UnitDataModel dataModel in dataModels)
         {
-            HasEnemySpawn = Manager.EnemyHandler.IsEnemySpawn();
+            UnitModel enemyData = new UnitModel
+            {
+                name = dataModel.name,
+                unitID = dataModel.id,
+                unitCombatID = Guid.NewGuid().ToString(),
+                icon = dataModel.icon,
+                splashArt = dataModel.splashArt,
+                unitPrefab = dataModel.unitPrefab,
+
+                attackPower = dataModel.attackPower,
+                defensePower = dataModel.defensePower,
+                maxHealthPoints = dataModel.healthPoints,
+
+                healthPoints = dataModel.healthPoints,
+                manaPoints = 100,
+
+            };
+            enemyDataList.Add(enemyData);
         }
+        GameManager.Instance.EnemyHandler.EnemyInitialize(enemyDataList, strings.Count);
     }
+
     #endregion
 }

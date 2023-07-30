@@ -10,7 +10,6 @@ public class LobbyManager : MonoBehaviour
     [SerializeField] private GameObject TeamContent;
     [SerializeField] private GameObject ShopContent;
     [SerializeField] private GameObject SettingContent; //Not official just place holder
-    [SerializeField] private LobbyOptionHandler OptionHandler;
     [SerializeField] private PopupHandler popupHandler;
 
     [SerializeField] GameObject genericPopup;
@@ -22,7 +21,6 @@ public class LobbyManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        OptionHandler.Initialize();
     }
 
     public void PressPlayButton()
@@ -33,15 +31,13 @@ public class LobbyManager : MonoBehaviour
 
     public void SetupGameScene(int Stage, string characterID)
 	{
-        if(LoadingManager.Instance != null)
+        if(SceneTransitionManager.Instance != null)
         {
-            LoadingManager.Instance.SetSceneToUnload (SceneNames.LOBBY_SCENE);
-            LoadingManager.Instance.SetSceneToLoad (SceneNames.COMBAT_UI + "," + SceneNames.GAME_SCENE);
-            LoadingManager.Instance.LoadGameScene ();
+            SceneTransitionManager.Instance.StartTransition(TransitionKey.LOBBY_TO_ADVENTURE);
         }
         else
         {
-            Debug.LogError("Loading Manager is missing");
+            Debug.LogError("Scene Transition Manager is missing");
         }
 	}
 

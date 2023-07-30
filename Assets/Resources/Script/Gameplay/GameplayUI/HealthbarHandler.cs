@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,32 @@ public class HealthbarHandler : MonoBehaviour
     [SerializeField] private GameObject enemyUnitstatusBarCopy;
     [SerializeField] private Transform playerSideParent;
     [SerializeField] private Transform enemySideParent;
-    private List<HealthBar> playerUnitHealthBar = new List<HealthBar>();
-    private List<HealthBar> enemyUnitHealthBar = new List<HealthBar>();
+    private List<HealthBar> healthBars = new List<HealthBar>();
 
     public void SetUIActive(bool isActive)
     {
         this.gameObject.SetActive(isActive);
+    }
+
+    private HealthBar GetTargetHealthBar(string combatId)
+    {
+        return healthBars.Find(x => x.GetUnitCombatID == combatId);
+    }
+    public void UpdateActiveStatus(string combatId)
+    {
+        foreach (HealthBar healthBar in healthBars)
+        {
+            healthBar.UpdateActiveStatus(combatId);
+        }
+    }
+
+    public void UpdateHealthPoints(string combatId, int curHP)
+    {
+        var targetHealthBar = GetTargetHealthBar(combatId);
+        if (targetHealthBar != null)
+        { 
+            targetHealthBar.UpdateHealthPoints(curHP);
+        }
     }
 
     public void SetupPlayerSide(List<StatusBarFields> playerStatus)
@@ -25,7 +46,7 @@ public class HealthbarHandler : MonoBehaviour
             var phealthBar = playerObject.GetComponent<HealthBar>();
             phealthBar.Setup(playerStatus[i]);
             phealthBar.gameObject.SetActive(true);
-            playerUnitHealthBar.Add(phealthBar);
+            healthBars.Add(phealthBar);
         }
     }
 
@@ -36,9 +57,10 @@ public class HealthbarHandler : MonoBehaviour
             GameObject enemyObject = Instantiate<GameObject>(enemyUnitstatusBarCopy,
                 enemySideParent) as GameObject;
             var ehealthBar = enemyObject.GetComponent<HealthBar>();
+            enemyStatus[i].isEnemy = true;
             ehealthBar.Setup(enemyStatus[i]);
             ehealthBar.gameObject.SetActive(true);
-            enemyUnitHealthBar.Add(ehealthBar);
+            healthBars.Add(ehealthBar);
         }
     }
 }
