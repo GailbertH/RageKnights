@@ -32,7 +32,7 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
     private IEnumerator InitilizeSetupAsync()
     {
         UnityEngine.Debug.Log("Waiting");
-        yield return new WaitUntil(() => GameUIManager.Instance == null);
+        yield return new WaitUntil(() => GameUIManager.Instance != null);
 
         UnityEngine.Debug.Log("Everything is Ready");
         LoadPlayerUnitData();

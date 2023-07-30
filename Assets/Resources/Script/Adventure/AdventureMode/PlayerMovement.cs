@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,10 +14,32 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions = new PlayerAdventureActions();
     }
+    private void Start()
+    {
+        if (RecordKeeperManager.Instance == null)
+        {
+            StartCoroutine(tempWaiter());
+        }
+        else
+        {
+            Initialize();
+        }
+    }
+    private IEnumerator tempWaiter()
+    {
+        yield return new WaitUntil(() => RecordKeeperManager.Instance != null);
+        Initialize();
+        yield return new WaitForEndOfFrame();
+    }
 
-    private void OnEnable()
+    private void Initialize()
     {
         inputActions.Adventure_Map.Enable();
+        if (RecordKeeperManager.Instance.playerPosition != Vector3.zero)
+        {
+            transform.position = RecordKeeperManager.Instance.playerPosition;
+            RecordKeeperManager.Instance.playerPosition = Vector3.zero;
+        }
     }
 
     private void OnDisable()
@@ -35,6 +56,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneTransitionManager.Instance.StartTransition(TransitionKey.ADVENTURE_TO_COMBAT);
+        EnemyAdvController enemyAdvControllers = null;
+        other.TryGetComponent<EnemyAdvController>(out enemyAdvControllers);
+        if (enemyAdvControllers != null)
+        { 
+            RecordKeeperManager.Instance.collideEnemyId = enemyAdvControllers.adventureId;
+            RecordKeeperManager.Instance.playerPosition = transform.position;
+            SceneTransitionManager.Instance.StartTransition(TransitionKey.ADVENTURE_TO_COMBAT);
+        }
     }
 }

@@ -144,9 +144,10 @@ namespace RageKnight
         {
             Debug.Log("ReturnBackToAdventure");
             ExitGame();
-            if (SceneTransitionManager.Instance != null)
+            if (SceneTransitionManager.Instance != null && RecordKeeperManager.Instance != null)
             {
                 SceneTransitionManager.Instance.StartTransition(TransitionKey.COMBAT_TO_ADVENTURE);
+                RecordKeeperManager.Instance.EnemyDefeated();
             }
             else
             {
