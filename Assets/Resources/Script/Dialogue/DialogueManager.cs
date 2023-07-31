@@ -16,12 +16,29 @@ public enum AddressableMode
 {
     LOCAL, REMOTE
 }
+public class DA_GenericAnim
+{
+    public const string FADE_IN = "DA_FadeIn";
+    public const string FLINCH = "DA_Flinch";
+    public const string HOP = "DA_Hop";
+    public const string ATTACKS_LEFT = "DA_AttacksLeft";
+    public const string ATTACKS_RIGHT = "DA_AttacksRight";
+}
+
+public class DialogueTags
+{
+    public string speaker = string.Empty;
+    public string layout = string.Empty;
+    public string genericAnim = string.Empty;
+    public string otherAnim = string.Empty;
+}
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private AddressableMode addressableMode = AddressableMode.LOCAL;
 
     [SerializeField] private TextMeshProUGUI dialogueNameLeft;
     [SerializeField] private TextMeshProUGUI dialogueNameRight;
+    [SerializeField] private GameObject dialogueBox;
     [SerializeField] private GameObject dialogueNameObjLeft;
     [SerializeField] private GameObject dialogueNameObjRight;
     [SerializeField] private GameObject dialoguePortraitLeftHolder;
@@ -37,16 +54,21 @@ public class DialogueManager : MonoBehaviour
     //Temporary
     [SerializeField] private AssetReference assetRef;
     [SerializeField] private List<string> resourceToLoad;
+    [SerializeField] private List<AnimationClip> genericAnimations;
     //Make a scriptable object to know the resource included to be loaded in it.
 
     private const string SPEAKER_TAG = "speaker";
     private const string LAYOUT_TAG = "layout";
+    private const string GENERIC_ANIM_TAG = "genericAnim";
+    private const string OTHER_ANIM_TAG = "otherGenAnim";
 
     private const string LAYOUT_DIRECT_LEFT = "left";
     private const string LAYOUT_DIRECT_RIGHT = "right";
 
     private string leftSpeakerKey = string.Empty;
     private string rightSpeakerKey = string.Empty;
+    private PortraitController leftPortrait;
+    private PortraitController rightPortrait;
 
     private Dictionary<string, GameObject> speakerPortrait = new Dictionary<string, GameObject>();
     //[SerializeField] private PlayerInput uiInput;
@@ -62,11 +84,16 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        dialogueBox.SetActive(false);
         //uiInput.actions["Click"].performed += Alert;
     }
 
     private void Start()
     {
+        foreach (var clips in genericAnimations)
+        {
+            Debug.Log(clips.name);
+        }
         Addressables.ClearResourceLocators();
 
         if (addressableMode == AddressableMode.LOCAL)
@@ -93,6 +120,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogueMode(TextAsset textJson)
     {
+        dialogueBox.SetActive(true);
         currentStory = new Story(textJson.text);
         ContinueStory();
     }
@@ -121,8 +149,7 @@ public class DialogueManager : MonoBehaviour
 
     public void SetupTag(List<string> tagList)
     {
-        string speaker = "";
-        string layout = "";
+        DialogueTags dialogueTags = new DialogueTags();
         for (int i = 0; i < tagList.Count; i++)
         {
             string[] splitTag = tagList[i].Split(':');
@@ -136,69 +163,101 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey)
             {
                 case SPEAKER_TAG:
-                    speaker = tagValue;
+                    dialogueTags.speaker = tagValue;
                     break;
                 case LAYOUT_TAG:
-                    layout = tagValue;
+                    dialogueTags.layout = tagValue;
+                    break;
+                case GENERIC_ANIM_TAG:
+                    dialogueTags.genericAnim = tagValue;
+                    break;
+                case OTHER_ANIM_TAG:
+                    dialogueTags.otherAnim = tagValue;
                     break;
                 default:
-                    Debug.LogError("Unregistered Tag " + tagKey);
+                    Debug.LogWarning("Unregistered Tag " + tagKey);
                     break;
             }
         }
 
-        if(speaker != "" && layout != "")
-            ApplyTagChanges(speaker, layout);
+        ApplyTagChanges(dialogueTags);
     }
 
-    private void ApplyTagChanges(string speaker, string layout)
+    private void ApplyTagChanges(DialogueTags dialogueTags)
     {
-        if (layout == LAYOUT_DIRECT_LEFT)
+        if (dialogueTags.layout == LAYOUT_DIRECT_LEFT)
         {
-            ShowNewLeftSpeaker(speaker);
+            ShowNewLeftSpeaker(dialogueTags);
         }
-        else if (layout == LAYOUT_DIRECT_RIGHT)
+        else if (dialogueTags.layout == LAYOUT_DIRECT_RIGHT)
         {
-            ShowNewRightSpeaker(speaker);
+            ShowNewRightSpeaker(dialogueTags);
         }
     }
 
-    private void ShowNewLeftSpeaker(string speakerKey)
+    private void ShowNewLeftSpeaker(DialogueTags dialogueTags)
     {
-        if (leftSpeakerKey != speakerKey && speakerPortrait.ContainsKey(speakerKey))
+        if (leftSpeakerKey != dialogueTags.speaker && speakerPortrait.ContainsKey(dialogueTags.speaker))
         {
             if (dialoguePortraitLeftHolder.transform.childCount > 0)
             {
                 //DestroySelf
+                leftPortrait = null;
                 Destroy(dialoguePortraitLeftHolder.transform.GetChild(0).gameObject);
             }
-            leftSpeakerKey = speakerKey;
-            Instantiate<GameObject>(speakerPortrait[speakerKey], dialoguePortraitLeftHolder.transform);
+            leftSpeakerKey = dialogueTags.speaker;
+            var leftObj = Instantiate<GameObject>(speakerPortrait[dialogueTags.speaker], dialoguePortraitLeftHolder.transform);
+            leftPortrait = leftObj.GetComponent<PortraitController>();
         }
-        dialogueNameLeft.text = speakerKey;
+
+        dialogueNameLeft.text = dialogueTags.speaker;
+        PlayLeftGenAnimation(dialogueTags.genericAnim);
+        PlayRightAnimation(dialogueTags.otherAnim);
         dialogueNameObjLeft.SetActive(true);
         dialogueNameObjRight.SetActive(false);
         dialogueNameRight.text = "";
         dialoguePortraitLeftHolder.SetActive(true);
     }
 
-    public void ShowNewRightSpeaker(string speakerKey)
+    private void ShowNewRightSpeaker(DialogueTags dialogueTags)
     {
-        if (rightSpeakerKey != speakerKey && speakerPortrait.ContainsKey(speakerKey))
+        if (rightSpeakerKey != dialogueTags.speaker && speakerPortrait.ContainsKey(dialogueTags.speaker))
         {
             if (dialogueProtraitRightHolder.transform.childCount > 0)
             {
                 //DestroySelf
+                rightPortrait = null;
                 Destroy(dialogueProtraitRightHolder.transform.GetChild(0).gameObject);
             }
-            rightSpeakerKey = speakerKey;
-            Instantiate<GameObject>(speakerPortrait[speakerKey], dialogueProtraitRightHolder.transform);
+            rightSpeakerKey = dialogueTags.speaker;
+            var rightObj = Instantiate<GameObject>(speakerPortrait[dialogueTags.speaker], dialogueProtraitRightHolder.transform);
+            rightPortrait = rightObj.GetComponent<PortraitController>();
         }
-        dialogueNameRight.text = speakerKey;
+        dialogueNameRight.text = dialogueTags.speaker;
+        PlayLeftGenAnimation(dialogueTags.otherAnim);
+        PlayRightAnimation(dialogueTags.genericAnim);
         dialogueNameObjRight.SetActive(true);
         dialogueNameObjLeft.SetActive(false);
         dialogueNameLeft.text = "";
         dialogueProtraitRightHolder.SetActive(true);
+    }
+
+    private void PlayLeftGenAnimation(string genericAnimation)
+    {
+        if (genericAnimation != string.Empty)
+        {
+            var clip = genericAnimations.FirstOrDefault(x => x.name == genericAnimation);
+            leftPortrait.PlayGenericAnimation(clip, genericAnimation);
+        }
+    }
+
+    private void PlayRightAnimation(string genericAnimation)
+    {
+        if (genericAnimation != string.Empty)
+        {
+            var clip = genericAnimations.FirstOrDefault(x => x.name == genericAnimation);
+            rightPortrait.PlayGenericAnimation(clip, genericAnimation);
+        }
     }
 
     public bool ShowChoices()
@@ -294,6 +353,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         yield return new WaitUntil(() => textReady && portraitsReady);
+        yield return new WaitForSeconds(1);
         StartDialogueMode(dialogueTextFile);
     }
 
@@ -352,6 +412,7 @@ public class DialogueManager : MonoBehaviour
         //});
 
         Addressables.Release(loadop);
+        yield return new WaitForSeconds(1);
         StartDialogueMode(dialogueTextFile);
     }
 

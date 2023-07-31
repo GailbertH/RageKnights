@@ -62,7 +62,6 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
 
     public virtual void Initialize(UnitModel unitData)
     {
-        Debug.Log(unitData.name);
         UnitData = unitData;
         if (UnitData.unitPrefab != null)
         {

@@ -456,8 +456,6 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
         if (actionSelected)
             return;
 
-        Debug.Log(GameTargetingManager.Instance.GetIsTargetSelectionDone);
-        Debug.Log(GameUIManager.Instance.GetButtonEvent);
         if (GameManager.Instance.GetIsPlayerTurn &&
             GameTargetingManager.Instance.GetIsTargetSelectionDone &&
             GameUIManager.Instance.GetButtonEvent != CombatAction.NONE

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LoadingManager : MonoBehaviour
 	[SerializeField] GameObject canvas;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] Camera mainCamera;
+    [SerializeField] Image loadingScreenCombat;
 
     private static LoadingManager instance;
 	public static LoadingManager Instance { get { return instance; } }
@@ -38,20 +40,40 @@ public class LoadingManager : MonoBehaviour
 	public void OnLoadBarFull()
 	{
 		Debug.Log("Load Bar Full ");
+        loadingScreenCombat.sprite = null;
+        loadingScreenCombat.gameObject.SetActive(false);
         StartCoroutine(FadeOutCoroutine());
     }
 
     public void ShowLoading()
     {
+
         CanvasVisible(true);
+
+        StartCoroutine(CaptureScreen());
+
         this.SetUpLoadingMeter();
         loadingMeter.Reset();
     }
 
     private void CanvasVisible(bool toShow)
     {
-        canvasGroup.alpha = toShow ? 1 : 0;
+        //canvasGroup.alpha = toShow ? 1 : 0;
         canvas.SetActive(toShow);
+    }
+
+
+    private IEnumerator CaptureScreen()
+    {
+        int width = Screen.width;
+        int height = Screen.height;
+        yield return new WaitForEndOfFrame();
+        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        tex.Apply();
+
+        loadingScreenCombat.sprite = Sprite.Create(tex, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f));
+        loadingScreenCombat.gameObject.SetActive(true);
     }
 
     private IEnumerator FadeOutCoroutine()
@@ -61,6 +83,7 @@ public class LoadingManager : MonoBehaviour
         while (canvasGroup.alpha > 0)
         {
             canvasGroup.alpha -= Time.deltaTime / time;
+
             yield return null;
         }
 

@@ -73,7 +73,6 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
     public override void GameEnd()
     {
         base.GameEnd();
-        LoadingManager.Instance?.OnLoadBarFull();
     }
 
     #region private methods

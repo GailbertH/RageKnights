@@ -187,7 +187,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator AdventureToCombat(Action callback)
     {
-        Debug.Log("TTTT - LobbyToAdventure");
+        Debug.Log("TTTT - AdventureToCombat");
         LoadingManager.Instance.ShowLoading();
         yield return new WaitForEndOfFrame();
 
@@ -217,13 +217,13 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        LoadingManager.Instance.OnLoadBarFull();
+        //LoadingManager.Instance.OnLoadBarFull();
         GameManager.Instance.Initialized();
     }
 
     private IEnumerator CombatToAdventure(Action callback)
     {
-        Debug.Log("TTTT - LobbyToAdventure");
+        Debug.Log("TTTT - CombatToAdventure");
         LoadingManager.Instance.ShowLoading();
         yield return new WaitForEndOfFrame();
 
@@ -254,7 +254,6 @@ public class SceneTransitionManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         LoadingManager.Instance.OnLoadBarFull();
-        GameManager.Instance.Initialized();
     }
 
     public void LoadScene(string sceneName)

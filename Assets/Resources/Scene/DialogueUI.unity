@@ -314,9 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud non proident, sunt in culpa qui officia deserunt mollit.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -815,10 +813,10 @@ RectTransform:
   m_Father: {fileID: 1716902264}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -565, y: -200}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 480, y: 540}
+  m_SizeDelta: {x: 960, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &585605896
 GameObject:
@@ -1557,8 +1555,9 @@ GameObject:
   - component: {fileID: 1159619664}
   - component: {fileID: 1159619666}
   - component: {fileID: 1159619665}
+  - component: {fileID: 1159619667}
   m_Layer: 5
-  m_Name: DialogueBG
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1626,6 +1625,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159619663}
   m_CullTransparentMesh: 1
+--- !u!111 &1159619667
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159619663}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 945430a82c2b7254393f41f3779aba30, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 945430a82c2b7254393f41f3779aba30, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1224711297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1673,7 @@ MonoBehaviour:
   addressableMode: 0
   dialogueNameLeft: {fileID: 635552696}
   dialogueNameRight: {fileID: 1669412948}
+  dialogueBox: {fileID: 1159619663}
   dialogueNameObjLeft: {fileID: 1772007671}
   dialogueNameObjRight: {fileID: 664719815}
   dialoguePortraitLeftHolder: {fileID: 545580399}
@@ -1677,6 +1693,12 @@ MonoBehaviour:
   - Albert
   - Vira
   - Lancelot
+  genericAnimations:
+  - {fileID: 7400000, guid: b11c2df4f2225034d919a70b1ee35f57, type: 2}
+  - {fileID: 7400000, guid: dfd723da2949c594fb97d2a6324f1965, type: 2}
+  - {fileID: 7400000, guid: 6a524397d579bb947be03d51aad77a04, type: 2}
+  - {fileID: 7400000, guid: 1cf5bdf06d941144b87375a209c41065, type: 2}
+  - {fileID: 7400000, guid: e2d1e6a6b70dbfa46b0be4ec0f6fdea2, type: 2}
 --- !u!4 &1224711299
 Transform:
   m_ObjectHideFlags: 0
@@ -2268,7 +2290,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775989390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2276,8 +2298,8 @@ RectTransform:
   m_Father: {fileID: 1716902264}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 565, y: -280}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -480.00003, y: 540.0001}
+  m_SizeDelta: {x: 960, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -145,7 +145,10 @@ public class GameUIManager : MonoBehaviour
     public void UpdateMiddleUIModle(GameplayState currentState)
     {
         MiddleUIHandler.SetMiddleGround(currentState);
-        SetupSpriteCommandArt();
+        if (splashArtsDict == null)
+        {
+            SetupSpriteCommandArt();
+        }
     }
     public void ShowRageImage()
     {
@@ -161,15 +164,13 @@ public class GameUIManager : MonoBehaviour
         attackButton.interactable = true;
     }
 
-    private Dictionary<string, Sprite> splashArtsDict;
+    private Dictionary<string, Sprite> splashArtsDict = null;
     public void SetupSpriteCommandArt()
     {
-        Debug.Log("setup");
         splashArtsDict = new Dictionary<string, Sprite>();
         var commands = GameManager.Instance.PlayerHandler.GetPlayerData.Select(x => x.commandField).ToList();
         foreach (var command in commands)
         {
-            Debug.Log(command.unitCombatID + "    " + command.name);
             splashArtsDict.Add(command.unitCombatID, command.splashArt);
         }
     }
