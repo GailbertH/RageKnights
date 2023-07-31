@@ -10,4 +10,5 @@ public class SceneNames
     public const string DATA_SCENE = "DataManagerScene";
 	public const string ADVENTURE_UI = "AdventureUI";
 	public const string ADVENTURE_SCENE = "AdventureScene";
+	public const string DIALOGUE_UI = "DialogueUI";
 }

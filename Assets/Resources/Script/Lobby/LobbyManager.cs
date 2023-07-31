@@ -33,7 +33,7 @@ public class LobbyManager : MonoBehaviour
 	{
         if(SceneTransitionManager.Instance != null)
         {
-            SceneTransitionManager.Instance.StartTransition(TransitionKey.LOBBY_TO_ADVENTURE);
+            SceneTransitionManager.Instance.StartTransition(TransitionKey.LOBBY_TO_DIALOGUE_CUTSCENE);
         }
         else
         {

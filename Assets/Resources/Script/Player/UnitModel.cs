@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,19 @@ public class UnitModel
             };
         }
     }
+
+    public CommandField commandField
+    {
+        get
+        {
+            return new CommandField
+            {
+                name = name,
+                unitCombatID = unitCombatID,
+                splashArt = splashArt
+            };
+        }
+    }
 }
 
 [Serializable]
@@ -55,6 +69,14 @@ public class StatusBarFields
     public Sprite icon;
 
     public bool isEnemy;
+}
+
+[Serializable]
+public class CommandField
+{
+    public string name;
+    public string unitCombatID;
+    public Sprite splashArt;
 }
 
 #region Unused

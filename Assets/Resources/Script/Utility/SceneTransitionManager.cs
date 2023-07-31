@@ -13,6 +13,8 @@ public enum TransitionKey
     COMBAT_TO_ADVENTURE,
     ADVENTURE_TO_LOBBY,
     COMBAT_TO_LOBBY,
+    LOBBY_TO_DIALOGUE_CUTSCENE,
+    DIALOGUE_TO_ADVENTURE
 }
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -38,6 +40,14 @@ public class SceneTransitionManager : MonoBehaviour
         {
             case TransitionKey.SPLASH_TO_LOBBY:
                 transitionRoutine = StartCoroutine(SplashToLobby(callback));
+                break;
+
+            case TransitionKey.LOBBY_TO_DIALOGUE_CUTSCENE:
+                transitionRoutine = StartCoroutine(LobbyToDialogue(callback));
+                break;
+
+            case TransitionKey.DIALOGUE_TO_ADVENTURE:
+                transitionRoutine = StartCoroutine(DialogueToAdventure(callback));
                 break;
 
             case TransitionKey.LOBBY_TO_ADVENTURE:
@@ -83,10 +93,64 @@ public class SceneTransitionManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneNames.LOBBY_SCENE));
-
+        LoadingManager.Instance.OnLoadBarFull();
 
         callback();
     }
+
+    private IEnumerator LobbyToDialogue(Action callback)
+    {
+        Debug.Log("TTTT - LobbyToDialogue");
+        LoadingManager.Instance.ShowLoading();
+        yield return new WaitForEndOfFrame();
+
+        UnloadScene(SceneNames.LOBBY_SCENE);
+        yield return new WaitForEndOfFrame();
+
+        LoadScene(SceneNames.DIALOGUE_UI);
+        AsyncOperation asyncOp = GetSceneAsyncOperation(SceneNames.DIALOGUE_UI);
+        yield return new WaitForEndOfFrame();
+        while (asyncOp == null || asyncOp.isDone == false)
+        {
+            Debug.Log(asyncOp.progress);
+            yield return new WaitForEndOfFrame();
+        }
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneNames.DIALOGUE_UI));
+        LoadingManager.Instance.OnLoadBarFull();
+    }
+
+    private IEnumerator DialogueToAdventure(Action callback)
+    {
+        Debug.Log("TTTT - DialogueToAdventure");
+        LoadingManager.Instance.ShowLoading();
+        yield return new WaitForEndOfFrame();
+
+        UnloadScene(SceneNames.DIALOGUE_UI);
+        yield return new WaitForEndOfFrame();
+
+        LoadScene(SceneNames.ADVENTURE_SCENE);
+        AsyncOperation asyncOp = GetSceneAsyncOperation(SceneNames.ADVENTURE_SCENE);
+        yield return new WaitForEndOfFrame();
+        while (asyncOp == null || asyncOp.isDone == false)
+        {
+            Debug.Log(asyncOp.progress);
+            yield return new WaitForEndOfFrame();
+        }
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneNames.ADVENTURE_SCENE));
+
+        LoadScene(SceneNames.ADVENTURE_UI);
+        yield return new WaitForEndOfFrame();
+        while (asyncOp == null || asyncOp.isDone == false)
+        {
+            Debug.Log(asyncOp.progress);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForEndOfFrame();
+        LoadingManager.Instance.OnLoadBarFull();
+
+    }
+
     private IEnumerator LobbyToAdventure(Action callback)
     {
         Debug.Log("TTTT - LobbyToAdventure");
@@ -123,7 +187,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator AdventureToCombat(Action callback)
     {
-        Debug.Log("TTTT - LobbyToAdventure");
+        Debug.Log("TTTT - AdventureToCombat");
         LoadingManager.Instance.ShowLoading();
         yield return new WaitForEndOfFrame();
 
@@ -153,13 +217,13 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        LoadingManager.Instance.OnLoadBarFull();
+        //LoadingManager.Instance.OnLoadBarFull();
         GameManager.Instance.Initialized();
     }
 
     private IEnumerator CombatToAdventure(Action callback)
     {
-        Debug.Log("TTTT - LobbyToAdventure");
+        Debug.Log("TTTT - CombatToAdventure");
         LoadingManager.Instance.ShowLoading();
         yield return new WaitForEndOfFrame();
 
@@ -190,7 +254,6 @@ public class SceneTransitionManager : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
         LoadingManager.Instance.OnLoadBarFull();
-        GameManager.Instance.Initialized();
     }
 
     public void LoadScene(string sceneName)

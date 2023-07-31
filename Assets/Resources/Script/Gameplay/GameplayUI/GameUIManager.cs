@@ -4,6 +4,8 @@ using RageKnight;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using Ink;
+using System.Linq;
 
 //TODO
 //Separate GameControlsUI/GameAction in a different handler for easy scalability and editing.
@@ -24,17 +26,10 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private MiddleUIHandler middleUIHandler;
 
     [SerializeField] private GameObject sloppy;
-    //------  Game Action Button --------
+
+    [SerializeField] private Image characterInAction;
     [SerializeField] private Button attackButton;
-    [SerializeField] private Button itemButton;
-    [SerializeField] private Button rageButton;
 
-    [SerializeField] private Image itemButtonIcon;
-    [SerializeField] private Text itemButtonText;
-
-    [SerializeField] private Transform playerRageMeter;
-
-    [SerializeField] private Animation animAttackButton;
     private CombatUIMode combatMode = CombatUIMode.NOT_IN_COMBAT;
 
     private const string ANIM_TIMING_NOTIF = "LB-AttackBtn-TimingNotif";
@@ -52,13 +47,6 @@ public class GameUIManager : MonoBehaviour
     public void Initialize()
     {
         MiddleUIHandler.Initialize();
-    }
-
-    private bool isDragging = false;
-    public bool OnJoyStickDrag
-    {
-        set { isDragging = value; }
-        get { return isDragging; }
     }
 
     public MiddleUIHandler MiddleUIHandler
@@ -92,18 +80,9 @@ public class GameUIManager : MonoBehaviour
 
     public void AttackButton()
     {
+        Debug.Log("Attack");
         buttonEvent = CombatAction.ATTACK;
         combatMode = CombatUIMode.TARGET_SELECTION;
-    }
-
-    public void PreventPlayerCommands()
-    {
-        attackButton.interactable = false;
-    }
-
-    public void AllowPlayerCommands()
-    {
-        attackButton.interactable = true;
     }
     //------
 
@@ -166,25 +145,44 @@ public class GameUIManager : MonoBehaviour
     public void UpdateMiddleUIModle(GameplayState currentState)
     {
         MiddleUIHandler.SetMiddleGround(currentState);
-    }
-
-    public void ItemButtonStatus(bool isActive)
-    {
-        itemButton.interactable = isActive;
-    }
-
-    public void UpdateRageMeter(float currentValue, float maxValue)
-    {
-        float actionGaugePercent = currentValue / maxValue;
-        if (actionGaugePercent < 0 || actionGaugePercent > 1)
+        if (splashArtsDict == null)
         {
-            actionGaugePercent = actionGaugePercent < 0 ? 0 : 1;
+            SetupSpriteCommandArt();
         }
-        playerRageMeter.localScale = new Vector3(actionGaugePercent, 1, 1);
     }
-
     public void ShowRageImage()
     {
         sloppy.GetComponent<Animation>().Play();
+    }
+    public void PreventPlayerCommands()
+    {
+        attackButton.interactable = false;
+    }
+
+    public void AllowPlayerCommands()
+    {
+        attackButton.interactable = true;
+    }
+
+    private Dictionary<string, Sprite> splashArtsDict = null;
+    public void SetupSpriteCommandArt()
+    {
+        splashArtsDict = new Dictionary<string, Sprite>();
+        var commands = GameManager.Instance.PlayerHandler.GetPlayerData.Select(x => x.commandField).ToList();
+        foreach (var command in commands)
+        {
+            splashArtsDict.Add(command.unitCombatID, command.splashArt);
+        }
+    }
+    public void UpdateChracterInAction(string combatId)
+    {
+        if (splashArtsDict.ContainsKey(combatId))
+        {
+            characterInAction.sprite = splashArtsDict[combatId];
+        }   
+        else 
+        {
+            characterInAction.sprite = null;
+        }
     }
 }

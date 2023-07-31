@@ -347,7 +347,7 @@ TextureImporter:
         width: 119
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,6 +355,111 @@ TextureImporter:
       bones: []
       spriteID: ad2a29d81d20a764f9872e667ae268ff
       internalID: -1898069441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valvatorez-Sprite_11
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 8583
+        width: 120
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e2587643a66434598bb2b811a52ebf
+      internalID: 58731317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valvatorez-Sprite_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 7899
+        width: 120
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c34be170c5990444b9c70fc61a656b0
+      internalID: -2035493690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valvatorez-Sprite_13
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 7907
+        width: 128
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47795e5043145ea4e9c3ae269cf03956
+      internalID: 389506431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valvatorez-Sprite_14
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 7907
+        width: 128
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98894e8500a9a1e44867662d95b4bb49
+      internalID: -1747970136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Valvatorez-Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 7014
+        width: 112
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2605a0442b05d042963f7d7b46b21a1
+      internalID: 2080321684
       vertices: []
       indices: 
       edges: []
@@ -373,6 +478,11 @@ TextureImporter:
       Valvatorez-Sprite_0: 313383673
       Valvatorez-Sprite_1: -524232753
       Valvatorez-Sprite_10: -1898069441
+      Valvatorez-Sprite_11: 58731317
+      Valvatorez-Sprite_12: -2035493690
+      Valvatorez-Sprite_13: 389506431
+      Valvatorez-Sprite_14: -1747970136
+      Valvatorez-Sprite_15: 2080321684
       Valvatorez-Sprite_2: 1112382389
       Valvatorez-Sprite_3: 1091829306
       Valvatorez-Sprite_4: 1952216524

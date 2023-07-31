@@ -318,6 +318,7 @@ public class Combat_TurnCheck : Combat_Base<CombatState>
         base.Start();
         string currentAtTurnCombatId = GameManager.Instance.GetCurrentAtTurnUnitCombatId;
         GameUIManager.Instance.HealthbarHandler.UpdateActiveStatus(currentAtTurnCombatId);
+        GameUIManager.Instance.UpdateChracterInAction(currentAtTurnCombatId);
         GoToNextState();
     }
 

@@ -7,12 +7,12 @@ public class GameJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoi
 {
     [SerializeField] private Image bgImg;
     [SerializeField] private Image joyStickImage;
-    private GameUIManager gameController = null;
+    private AdventureUIManager gameController = null;
     private Vector3 inputVector;
 
-    public void Initialize(GameUIManager controller)
+    public void Initialize()
     {
-        gameController = controller;
+        gameController = AdventureUIManager.Instance;
     }
 
     public virtual void OnDrag(PointerEventData ped)
@@ -26,11 +26,11 @@ public class GameJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoi
             pos.x = (pos.x / bgImg.rectTransform.sizeDelta.x);
             pos.y = (pos.y / bgImg.rectTransform.sizeDelta.y);
 
-            inputVector = new Vector3(pos.x * 1f, 0f, pos.y * 1f);
+            inputVector = new Vector3(pos.x * 2f, 0f, pos.y * 2f);
             inputVector = (inputVector.magnitude > 1f) ? inputVector.normalized : inputVector;
 
-            joyStickImage.rectTransform.anchoredPosition = new Vector3(inputVector.x * (bgImg.rectTransform.sizeDelta.x / 2)
-                , inputVector.z * (bgImg.rectTransform.sizeDelta.y / 2));
+            joyStickImage.rectTransform.anchoredPosition = new Vector3(inputVector.x * (bgImg.rectTransform.sizeDelta.x / 3)
+                , inputVector.z * (bgImg.rectTransform.sizeDelta.y / 3));
         }
     }
     public virtual void OnPointerDown(PointerEventData ped)
@@ -53,18 +53,12 @@ public class GameJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoi
 
     public float Horizontal()
     {
-        if (inputVector.x != 0)
-            return inputVector.x;
-        else
-            return Input.GetAxis("Horizontal");
+        return inputVector.x;
     }
 
     public float Vertical()
     {
-        if (inputVector.z != 0)
-            return inputVector.z;
-        else
-            return Input.GetAxis("Vertical");
+        return inputVector.z;
     }
 
 #if UNITY_EDITOR
