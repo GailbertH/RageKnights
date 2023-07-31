@@ -9,23 +9,35 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.AddressableAssets.ResourceLocators;
+using System.Linq;
 //using UnityEngine.InputSystem;
 
+public enum AddressableMode
+{
+    LOCAL, REMOTE
+}
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private AddressableMode addressableMode = AddressableMode.LOCAL;
+
     [SerializeField] private TextMeshProUGUI dialogueNameLeft;
     [SerializeField] private TextMeshProUGUI dialogueNameRight;
     [SerializeField] private GameObject dialogueNameObjLeft;
     [SerializeField] private GameObject dialogueNameObjRight;
-    [SerializeField] private GameObject dialoguePortraitLeft;
-    [SerializeField] private GameObject dialogueProtraitRight;
+    [SerializeField] private GameObject dialoguePortraitLeftHolder;
+    [SerializeField] private GameObject dialogueProtraitRightHolder;
 
     [SerializeField] private TextMeshProUGUI dialogueText;
-    private TextAsset dialogueTextFile;
+
     [SerializeField] private EventSystem eventSystem;
 
     [SerializeField] private GameObject ChoiceHolder;
     [SerializeField] private List<DialogueChoice> choices;
+
+    //Temporary
+    [SerializeField] private AssetReference assetRef;
+    [SerializeField] private List<string> resourceToLoad;
+    //Make a scriptable object to know the resource included to be loaded in it.
 
     private const string SPEAKER_TAG = "speaker";
     private const string LAYOUT_TAG = "layout";
@@ -33,12 +45,16 @@ public class DialogueManager : MonoBehaviour
     private const string LAYOUT_DIRECT_LEFT = "left";
     private const string LAYOUT_DIRECT_RIGHT = "right";
 
+    private string leftSpeakerKey = string.Empty;
+    private string rightSpeakerKey = string.Empty;
+
+    private Dictionary<string, GameObject> speakerPortrait = new Dictionary<string, GameObject>();
     //[SerializeField] private PlayerInput uiInput;
     private Story currentStory;
     private Coroutine dialogueCoroutine;
     private string currentDialogue;
+    private TextAsset dialogueTextFile;
 
-    public AssetReference assetRef;
 
     private static DialogueManager instance = null;
     public static DialogueManager Instance { get { return instance; } }
@@ -51,71 +67,17 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DownloadOrLoadAddressable());
-    }
-
-    private IEnumerator DownloadOrLoadAddressable()
-    {
-        var allLocations = new List<IResourceLocation>();
-
-        Addressables.ClearDependencyCacheAsync("RemoteResourceTesting");
         Addressables.ClearResourceLocators();
 
-        AsyncOperationHandle<long> getDownloadSize = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
-        yield return new WaitUntil(() => getDownloadSize.IsDone);
-        Debug.Log("Downloadsize result: " + getDownloadSize.Result + " kb");
-        if (getDownloadSize.Result > 0)
+        if (addressableMode == AddressableMode.LOCAL)
         {
-            Debug.Log("Downloading");
-            AsyncOperationHandle downloadDependencies = Addressables.DownloadDependenciesAsync("RemoteResourceTesting");
-            while (!downloadDependencies.IsDone)
-            {
-                var totalBytes = downloadDependencies.GetDownloadStatus().DownloadedBytes;
-                Debug.Log("Total Bytes " + totalBytes);
-                var _percent = downloadDependencies.GetDownloadStatus().Percent;
-                Debug.Log(_percent);
-                yield return null;
-            }
-            downloadDependencies.WaitForCompletion();
-            Debug.Log("Download finish");
+            StartCoroutine(LoadAddressables());
         }
-
-        var loadop = Addressables.LoadResourceLocationsAsync("RemoteResourceTesting");
-        Debug.Log("loadop is done " + loadop.IsDone);
-        if (loadop.Status == AsyncOperationStatus.Succeeded)
+        else
         {
-            AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
-            dialogueTextFile = loadText.WaitForCompletion();
+            StartCoroutine(DownloadOrLoadAddressables());
         }
-
-        //AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
-        //dialogueTextFile = loadText.WaitForCompletion();
-
-
-        //Addressables.LoadAssetsAsync<UnityEngine.Object>("RemoteResourceTesting", obj =>
-        //{
-        //    Debug.Log("Files Unity Object = " + obj.GetType());
-        //});
-        //Addressables.LoadAssetsAsync<object>("RemoteResourceTesting", obj =>
-        //{
-        //    Debug.Log("Files = " + obj);
-        //});
-
-        //const string key = "TestingImage";
-        //Addressables.LoadAssetsAsync<Texture2D>(key, obj =>
-        //{
-        //    Debug.Log("Files = " + obj.name);
-        //});
-
-        Addressables.Release(loadop);
-        StartDialogueMode(dialogueTextFile);
-        yield break;
     }
-
-    //private void Alert(InputAction.CallbackContext context)
-    //{
-    //    Debug.Log("ALERT");
-    //}
 
     public void OnClick()
     {
@@ -193,20 +155,50 @@ public class DialogueManager : MonoBehaviour
     {
         if (layout == LAYOUT_DIRECT_LEFT)
         {
-            dialogueNameLeft.text = speaker;
-            dialogueNameObjLeft.SetActive(true);
-            dialogueNameObjRight.SetActive(false);
-            dialogueNameRight.text = "";
-            dialoguePortraitLeft.SetActive(true);
+            ShowNewLeftSpeaker(speaker);
         }
         else if (layout == LAYOUT_DIRECT_RIGHT)
         {
-            dialogueNameRight.text = speaker;
-            dialogueNameObjRight.SetActive(true);
-            dialogueNameObjLeft.SetActive(false);
-            dialogueNameLeft.text = "";
-            dialogueProtraitRight.SetActive(true);
+            ShowNewRightSpeaker(speaker);
         }
+    }
+
+    private void ShowNewLeftSpeaker(string speakerKey)
+    {
+        if (leftSpeakerKey != speakerKey && speakerPortrait.ContainsKey(speakerKey))
+        {
+            if (dialoguePortraitLeftHolder.transform.childCount > 0)
+            {
+                //DestroySelf
+                Destroy(dialoguePortraitLeftHolder.transform.GetChild(0).gameObject);
+            }
+            leftSpeakerKey = speakerKey;
+            Instantiate<GameObject>(speakerPortrait[speakerKey], dialoguePortraitLeftHolder.transform);
+        }
+        dialogueNameLeft.text = speakerKey;
+        dialogueNameObjLeft.SetActive(true);
+        dialogueNameObjRight.SetActive(false);
+        dialogueNameRight.text = "";
+        dialoguePortraitLeftHolder.SetActive(true);
+    }
+
+    public void ShowNewRightSpeaker(string speakerKey)
+    {
+        if (rightSpeakerKey != speakerKey && speakerPortrait.ContainsKey(speakerKey))
+        {
+            if (dialogueProtraitRightHolder.transform.childCount > 0)
+            {
+                //DestroySelf
+                Destroy(dialogueProtraitRightHolder.transform.GetChild(0).gameObject);
+            }
+            rightSpeakerKey = speakerKey;
+            Instantiate<GameObject>(speakerPortrait[speakerKey], dialogueProtraitRightHolder.transform);
+        }
+        dialogueNameRight.text = speakerKey;
+        dialogueNameObjRight.SetActive(true);
+        dialogueNameObjLeft.SetActive(false);
+        dialogueNameLeft.text = "";
+        dialogueProtraitRightHolder.SetActive(true);
     }
 
     public bool ShowChoices()
@@ -238,6 +230,7 @@ public class DialogueManager : MonoBehaviour
         dialogueNameRight.text = "";
         dialogueText.text = "";
         currentDialogue = "";
+        SceneTransitionManager.Instance.StartTransition(TransitionKey.DIALOGUE_TO_ADVENTURE);
         //End Dialogue Mode
     }
 
@@ -258,4 +251,112 @@ public class DialogueManager : MonoBehaviour
         }
         dialogueCoroutine = null;
     }
+
+
+    private IEnumerator LoadAddressables()
+    {
+        bool textReady = false;
+        bool portraitsReady = false;
+        assetRef.LoadAssetAsync<TextAsset>().Completed +=
+        (asyncOp) =>
+        {
+            if (asyncOp.Status == AsyncOperationStatus.Succeeded)
+            {
+                dialogueTextFile = asyncOp.Result;
+            }
+            else
+            {
+                Debug.Log("Asset Loading Failed");
+            }
+            textReady = true;
+        };
+
+        yield return new WaitForEndOfFrame();
+
+        foreach (var resource in resourceToLoad)
+        {
+            Addressables.LoadAssetsAsync<UnityEngine.Object>(resource, obj =>
+            {
+                if (obj.GetType() == typeof(GameObject))
+                {
+                    var speakerObj = (GameObject)obj;
+
+                    speakerPortrait.Add(resource, speakerObj);
+                }
+            }).Completed += (asynOp) =>
+            {
+                Debug.Log(resource);
+                if (resource == resourceToLoad.Last())
+                {
+                    portraitsReady = true;
+                }
+            };
+        }
+
+        yield return new WaitUntil(() => textReady && portraitsReady);
+        StartDialogueMode(dialogueTextFile);
+    }
+
+    private IEnumerator DownloadOrLoadAddressables()
+    {
+        var allLocations = new List<IResourceLocation>();
+
+        var loadop = Addressables.LoadResourceLocationsAsync("RemoteResourceTesting");
+        Debug.Log(loadop.Status == AsyncOperationStatus.None);
+        AsyncOperationHandle<long> getDownloadSize = Addressables.GetDownloadSizeAsync("RemoteResourceTesting");
+        yield return new WaitUntil(() => getDownloadSize.IsDone);
+        Debug.Log("Downloadsize result: " + getDownloadSize.Result + " kb");
+        if (getDownloadSize.Result > 0)
+        {
+            //Debug.Log("Downloading");
+            AsyncOperationHandle downloadDependencies = Addressables.DownloadDependenciesAsync("RemoteResourceTesting");
+            while (!downloadDependencies.IsDone)
+            {
+                var totalBytes = downloadDependencies.GetDownloadStatus().DownloadedBytes;
+                //Debug.Log("Total Bytes " + totalBytes);
+                var _percent = downloadDependencies.GetDownloadStatus().Percent;
+                //Debug.Log(_percent);
+                yield return null;
+            }
+            downloadDependencies.WaitForCompletion();
+            Debug.Log("Download finish");
+        }
+
+        loadop = Addressables.LoadResourceLocationsAsync("RemoteResourceTesting");
+        Debug.Log("loadop is done " + loadop.IsDone);
+
+        Debug.Log(loadop.Result == null);
+        if (loadop.Status == AsyncOperationStatus.Succeeded)
+        {
+            AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
+            dialogueTextFile = loadText.WaitForCompletion();
+        }
+
+        //AsyncOperationHandle<TextAsset> loadText = Addressables.LoadAssetAsync<TextAsset>("RemoteResourceTesting");
+        //dialogueTextFile = loadText.WaitForCompletion();
+
+
+        //Addressables.LoadAssetsAsync<UnityEngine.Object>("RemoteResourceTesting", obj =>
+        //{
+        //    Debug.Log("Files Unity Object = " + obj.GetType());
+        //});
+        //Addressables.LoadAssetsAsync<object>("RemoteResourceTesting", obj =>
+        //{
+        //    Debug.Log("Files = " + obj);
+        //});
+
+        //const string key = "TestingImage";
+        //Addressables.LoadAssetsAsync<Texture2D>(key, obj =>
+        //{
+        //    Debug.Log("Files = " + obj.name);
+        //});
+
+        Addressables.Release(loadop);
+        StartDialogueMode(dialogueTextFile);
+    }
+
+    //private void Alert(InputAction.CallbackContext context)
+    //{
+    //    Debug.Log("ALERT");
+    //}
 }

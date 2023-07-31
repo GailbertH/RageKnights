@@ -3,11 +3,7 @@ using RageKnight.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 public class Gameplay_Loading : GameplayState_Base<GameplayState>
 {

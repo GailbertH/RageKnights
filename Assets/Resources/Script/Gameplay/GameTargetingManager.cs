@@ -58,6 +58,7 @@ public class GameTargetingManager : MonoBehaviour
 
     public void AddTarget(string unitCombatID)
     {
+        Debug.Log("Target select " +unitCombatID);
         TargetChange(unitCombatID);
     }
 

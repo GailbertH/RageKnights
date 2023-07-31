@@ -1,7 +1,8 @@
+
 using System.Collections;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerAdventureMovement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody characterController;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputActions = new PlayerAdventureActions();
     }
+
     private void Start()
     {
         if (RecordKeeperManager.Instance == null)
@@ -49,9 +51,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 moveInput = inputActions.Adventure_Map.Movement.ReadValue<Vector2>();
-        Vector3 movement = new Vector3(moveInput.x, 0, moveInput.y);
-        characterController.velocity = movement * speed;
+        Vector2 moveInput = new Vector2();
+        Vector3 movement = new Vector3();
+
+#if UNITY_ANDROID
+        if (AdventureUIManager.Instance != null)
+        {
+            moveInput = AdventureUIManager.Instance.GetMovement;
+        }
+#endif
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+        moveInput = inputActions.Adventure_Map.Movement.ReadValue<Vector2>();
+        #endif
+        if (moveInput != Vector2.zero)
+        {
+            movement = new Vector3(moveInput.x, 0, moveInput.y);
+            characterController.velocity = movement * speed;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
