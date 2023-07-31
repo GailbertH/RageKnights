@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 684036274}
   - component: {fileID: 684036276}
   - component: {fileID: 684036275}
+  - component: {fileID: 684036277}
   m_Layer: 5
   m_Name: LoadingText
   m_TagString: Untagged
@@ -503,6 +504,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684036273}
   m_CullTransparentMesh: 0
+--- !u!111 &684036277
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684036273}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: acc1ee8b9818a3142a1712524fda953b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: acc1ee8b9818a3142a1712524fda953b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1329688210
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,13 +747,14 @@ GameObject:
   - component: {fileID: 1666795700}
   - component: {fileID: 1666795702}
   - component: {fileID: 1666795701}
+  - component: {fileID: 1666795703}
   m_Layer: 5
   m_Name: Loading2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1666795700
 RectTransform:
   m_ObjectHideFlags: 0
@@ -747,15 +765,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1936079935}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1666795701
 MonoBehaviour:
@@ -777,7 +795,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2005252950, guid: 1022d147b08c50343976eaac28d62130, type: 3}
+  m_Sprite: {fileID: -6144316347943403003, guid: 5ea9a6b41cac2fe4e8ccb5ab86564aaa,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -795,6 +814,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666795699}
   m_CullTransparentMesh: 1
+--- !u!111 &1666795703
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666795699}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 3c2a30dce18672a478b38c2f60ac572e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 3c2a30dce18672a478b38c2f60ac572e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1936079931
 GameObject:
   m_ObjectHideFlags: 0

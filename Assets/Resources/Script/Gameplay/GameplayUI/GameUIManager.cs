@@ -184,5 +184,6 @@ public class GameUIManager : MonoBehaviour
         {
             characterInAction.sprite = null;
         }
+        characterInAction.gameObject.SetActive(characterInAction.sprite != null);
     }
 }

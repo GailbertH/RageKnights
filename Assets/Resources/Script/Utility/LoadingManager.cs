@@ -18,8 +18,6 @@ public class LoadingManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		mainCamera.gameObject.SetActive (true);
-        CanvasVisible(false);
     }
 
     private void SetUpLoadingMeter(bool autoLoadDone = true)
@@ -40,28 +38,25 @@ public class LoadingManager : MonoBehaviour
 	public void OnLoadBarFull()
 	{
 		Debug.Log("Load Bar Full ");
-        loadingScreenCombat.sprite = null;
-        loadingScreenCombat.gameObject.SetActive(false);
         StartCoroutine(FadeOutCoroutine());
     }
 
-    public void ShowLoading()
+    public void ShowNormalLoading()
     {
-
-        CanvasVisible(true);
-
-        StartCoroutine(CaptureScreen());
-
+        canvas.SetActive (true);
+        mainCamera.gameObject.SetActive(true);
+        canvasGroup.alpha = 1;
+        canvasGroup.gameObject.SetActive(true);
         this.SetUpLoadingMeter();
         loadingMeter.Reset();
     }
 
-    private void CanvasVisible(bool toShow)
+    public void ShowCombatLoading()
     {
-        //canvasGroup.alpha = toShow ? 1 : 0;
-        canvas.SetActive(toShow);
+        canvas.SetActive(true);
+        mainCamera.gameObject.SetActive(true);
+        StartCoroutine(CaptureScreen());
     }
-
 
     private IEnumerator CaptureScreen()
     {
@@ -87,7 +82,10 @@ public class LoadingManager : MonoBehaviour
             yield return null;
         }
 
-        CanvasVisible(false);
+        canvasGroup.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
+        canvas.SetActive(false);
+        loadingScreenCombat.sprite = null;
+        loadingScreenCombat.gameObject.SetActive(false);
     }
 }
