@@ -101,7 +101,7 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator LobbyToDialogue(Action callback)
     {
         Debug.Log("TTTT - LobbyToDialogue");
-        LoadingManager.Instance.ShowLoading();
+        LoadingManager.Instance.ShowNormalLoading();
         yield return new WaitForEndOfFrame();
 
         UnloadScene(SceneNames.LOBBY_SCENE);
@@ -122,7 +122,7 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator DialogueToAdventure(Action callback)
     {
         Debug.Log("TTTT - DialogueToAdventure");
-        LoadingManager.Instance.ShowLoading();
+        LoadingManager.Instance.ShowNormalLoading();
         yield return new WaitForEndOfFrame();
 
         UnloadScene(SceneNames.DIALOGUE_UI);
@@ -154,7 +154,7 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator LobbyToAdventure(Action callback)
     {
         Debug.Log("TTTT - LobbyToAdventure");
-        LoadingManager.Instance.ShowLoading();
+        LoadingManager.Instance.ShowNormalLoading();
         yield return new WaitForEndOfFrame();
 
         UnloadScene(SceneNames.LOBBY_SCENE);
@@ -188,7 +188,7 @@ public class SceneTransitionManager : MonoBehaviour
     private IEnumerator AdventureToCombat(Action callback)
     {
         Debug.Log("TTTT - AdventureToCombat");
-        LoadingManager.Instance.ShowLoading();
+        LoadingManager.Instance.ShowCombatLoading();
         yield return new WaitForEndOfFrame();
 
         UnloadScene(SceneNames.ADVENTURE_SCENE);
@@ -217,14 +217,14 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
-        //LoadingManager.Instance.OnLoadBarFull();
+        LoadingManager.Instance.OnLoadBarFull();
         GameManager.Instance.Initialized();
     }
 
     private IEnumerator CombatToAdventure(Action callback)
     {
         Debug.Log("TTTT - CombatToAdventure");
-        LoadingManager.Instance.ShowLoading();
+        LoadingManager.Instance.ShowNormalLoading();
         yield return new WaitForEndOfFrame();
 
         UnloadScene(SceneNames.GAME_SCENE);
