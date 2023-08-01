@@ -62,7 +62,7 @@ public class EnvironmentManager : MonoBehaviour
         {
             GameObject obj = Instantiate<GameObject>(enemyCopy, enemyHandler);
             obj.transform.localPosition = enemy.Value.location;
-            obj.GetComponent<EnemyAdvController>().adventureId = enemy.Value.adventureId;
+            obj.GetComponent<EnemyAdventureController>().adventureId = enemy.Value.adventureId;
             obj.SetActive(true);
         }
     }

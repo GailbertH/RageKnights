@@ -8,6 +8,10 @@ public class PlayerAdventureMovement : MonoBehaviour
     private Rigidbody characterController;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float groundDist;
+    [SerializeField]
+    private LayerMask floor;
 
     private PlayerAdventureActions inputActions;
 
@@ -51,9 +55,23 @@ public class PlayerAdventureMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        RaycastHit hit;
+        Vector3 castPos = transform.position;
+        Vector3 direction = -transform.up;
+        direction.y += -1.5f;
+        //Debug.DrawRay(castPos, direction, Color.yellow);
+        if (Physics.Raycast(castPos, direction, out hit, Mathf.Infinity, floor))
+        {
+            if (hit.collider != null)
+            {
+                Debug.Log("Did Hit");
+                Vector3 movePos = transform.position;
+                movePos.y = hit.point.y + groundDist;
+                transform.position = movePos;
+            }
+        }
         Vector2 moveInput = new Vector2();
         Vector3 movement = new Vector3();
-
 #if UNITY_ANDROID
         if (AdventureUIManager.Instance != null)
         {
@@ -63,17 +81,15 @@ public class PlayerAdventureMovement : MonoBehaviour
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
         moveInput = inputActions.Adventure_Map.Movement.ReadValue<Vector2>();
         #endif
-        if (moveInput != Vector2.zero)
-        {
-            movement = new Vector3(moveInput.x, 0, moveInput.y);
-            characterController.velocity = movement * speed;
-        }
+
+        movement = new Vector3(moveInput.x, 0, moveInput.y);
+        characterController.velocity = movement * speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyAdvController enemyAdvControllers = null;
-        other.TryGetComponent<EnemyAdvController>(out enemyAdvControllers);
+        EnemyAdventureController enemyAdvControllers = null;
+        other.TryGetComponent<EnemyAdventureController>(out enemyAdvControllers);
         if (enemyAdvControllers != null)
         { 
             RecordKeeperManager.Instance.collideEnemyId = enemyAdvControllers.adventureId;
