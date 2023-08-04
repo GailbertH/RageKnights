@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Albert
+  m_EditorClassIdentifier: 
+  m_GroupName: Albert
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3ffbb070c925502409e062c8e14f1cef
+  m_SerializeEntries:
+  - m_GUID: c5f755c34b74b454fb49627355d7fa7a
+    m_Address: Assets/RemoteResources/AlbertPortrait/Portrait.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Albert
+  - m_GUID: 2a7c6ed016ca7304bb849803aae0cd0b
+    m_Address: Assets/RemoteResources/AlbertPortrait/AlbertSplash.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Albert
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6072df2a2c9611244973734227201b09, type: 2}
+    - {fileID: 11400000, guid: 7834d2169904cc04bafed8b82e394e9c, type: 2}
