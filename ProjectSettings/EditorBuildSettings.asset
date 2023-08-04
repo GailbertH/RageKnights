@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scene/AdventureScene.unity
     guid: beca45bc28939a5488415eed915eded0
+  - enabled: 1
+    path: Assets/Resources/Scene/AdventureUI.unity
+    guid: 59f944b8aee24a34f8e588c785a1d06a
+  - enabled: 1
+    path: Assets/Resources/Scene/DialogueUI.unity
+    guid: 8677380a1441a9c4eb67c2de25d26dd3
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b92fd41e8f0552449953d90d0ba69195,
       type: 2}
