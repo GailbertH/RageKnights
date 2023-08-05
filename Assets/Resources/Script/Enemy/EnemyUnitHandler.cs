@@ -184,4 +184,14 @@ public class EnemyUnitHandler : MonoBehaviour
     {
         currentActiveUnit.CheckAction();
     }
+
+    public CombatAction GetActionToExecute()
+    {
+        return currentActiveUnit.combatAction;
+    }
+
+    public void ExecuteAction()
+    {
+        currentActiveUnit.ExecuteAction();
+    }
 }

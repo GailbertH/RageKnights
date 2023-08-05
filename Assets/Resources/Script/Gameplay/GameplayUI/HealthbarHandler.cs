@@ -28,6 +28,14 @@ public class HealthbarHandler : MonoBehaviour
         }
     }
 
+    public void UpdateTagetStatus(string combatId)
+    {
+        foreach (HealthBar healthBar in healthBars)
+        {
+            healthBar.UpdateTargetState(combatId);
+        }
+    }
+
     public void UpdateHealthPoints(string combatId, int curHP)
     {
         var targetHealthBar = GetTargetHealthBar(combatId);

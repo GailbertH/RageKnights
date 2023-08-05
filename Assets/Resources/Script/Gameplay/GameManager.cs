@@ -84,7 +84,12 @@ namespace RageKnight
 		void Start()
 		{
             QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 60; 
+            Application.targetFrameRate = 60;
+            
+            if (isTestMode)
+            {
+                Initialized();
+            }
         }
 
         public void Initialized()

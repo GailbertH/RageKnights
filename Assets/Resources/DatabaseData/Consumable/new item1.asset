@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 335081dadba9f7a46b012e347e0ab5f7, type: 3}
   m_Name: new item1
   m_EditorClassIdentifier: 
-  id: 0000
-  name: Potion
-  description: Heals
-  cost: 5
-  icon: {fileID: -8832610221686385030, guid: b50e3436187baaa4cbcce6ae150a6c2d, type: 3}
-  potency: 20
-  baseStockCount: 10
+  id: 
+  name: new item
+  description: description
+  cost: 0
+  icon: {fileID: 0}
+  potency: 0
+  baseStockCount: 0
   ItemEffectType: 0

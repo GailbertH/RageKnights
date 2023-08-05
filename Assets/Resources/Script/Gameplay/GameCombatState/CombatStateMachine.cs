@@ -512,10 +512,16 @@ public class Combat_Action : Combat_Base<CombatState>
 
     private void ExecuteAction()
     {
-        if (GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
+        if (GameManager.Instance.GetIsPlayerTurn && GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
         {
             CSMachine.GetGameManager.PlayerHandler.PlayerAttack();
             CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(10, GameTargetingManager.Instance.GetTargets);
+        }
+        else
+        {
+            string targetUnit = CSMachine.GetGameManager.PlayerHandler.GetPlayerUnitCombatList;
+            CSMachine.GetGameManager.EnemyHandler.ExecuteAction();
+            CSMachine.GetGameManager.PlayerHandler.DamagePlayerUnit(targetUnit, 10);
         }
     }
 

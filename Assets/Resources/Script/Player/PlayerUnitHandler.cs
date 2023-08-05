@@ -17,6 +17,7 @@ namespace RageKnight.Player
     public class PlayerUnitHandler : MonoBehaviour
     {
         [SerializeField] private List<PlayerUnitController> playerUnits;
+        private List<string> playerCombatIds = new List<string>();
         private PlayerUnitController currentActiveUnit = null;
 
         private PlayerState currentPlayerState = PlayerState.IDLE;
@@ -48,12 +49,24 @@ namespace RageKnight.Player
             }
         }
 
+        public string GetPlayerUnitCombatList
+        {
+            get
+            {
+                System.Random rnd = new System.Random();
+                int r = rnd.Next(playerCombatIds.Count);
+                return playerCombatIds[r];
+            }
+        }
+
         public void PlayerInitialize(List<UnitModel> playerDataList)
         {
+            playerCombatIds = new List<string>();
             //need to adjust with 1 - 3 units
             for (int i = 0; i < playerUnits.Count; i++)
             {
                 playerUnits[i].Initialize(playerDataList[i]);
+                playerCombatIds.Add(playerUnits[i].GetUnitCombatId);
             }
 
             currentActiveUnit = playerUnits[0];
@@ -132,6 +145,10 @@ namespace RageKnight.Player
             {
                 var currentHP = playerUnit.DamageHealth(damageAmount);
                 GameUIManager.Instance.HealthbarHandler.UpdateHealthPoints(targetCombatID, currentHP);
+                if (playerUnit.GetIsDead)
+                {
+                    playerCombatIds.Remove(targetCombatID);
+                }
             }
         }
 

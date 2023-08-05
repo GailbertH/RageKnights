@@ -88,7 +88,6 @@ public class PlayerAdventureMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        return;
         EnemyAdventureController enemyAdvControllers = null;
         other.TryGetComponent<EnemyAdventureController>(out enemyAdvControllers);
         if (enemyAdvControllers != null)

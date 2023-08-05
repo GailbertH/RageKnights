@@ -54,6 +54,7 @@ public class GameTargetingManager : MonoBehaviour
         OnUnitTargetChangeEvent.Invoke(unitCombatID);
         targets.RemoveAll(t => t != unitCombatID);
         targets.Add(unitCombatID);
+        GameUIManager.Instance.HealthbarHandler.UpdateTagetStatus(unitCombatID);
     }
 
     public void AddTarget(string unitCombatID)
@@ -67,5 +68,6 @@ public class GameTargetingManager : MonoBehaviour
         isTargetSelectionDone = false;
         OnUnitTargetChangeEvent.Invoke(string.Empty);
         targets = new List<string>();
+        GameUIManager.Instance.HealthbarHandler.UpdateTagetStatus("");
     }
 }

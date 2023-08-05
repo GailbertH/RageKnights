@@ -18,6 +18,12 @@ public class LoadingManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
+
+        canvasGroup.gameObject.SetActive(false);
+        mainCamera.gameObject.SetActive(false);
+        canvas.SetActive(false);
+        loadingScreenCombat.sprite = null;
+        loadingScreenCombat.gameObject.SetActive(false);
     }
 
     private void SetUpLoadingMeter(bool autoLoadDone = true)
@@ -60,13 +66,14 @@ public class LoadingManager : MonoBehaviour
 
     private IEnumerator CaptureScreen()
     {
+        yield return new WaitForEndOfFrame();
         int width = Screen.width;
         int height = Screen.height;
         yield return new WaitForEndOfFrame();
         Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply();
-
+        yield return new WaitForEndOfFrame();
         loadingScreenCombat.sprite = Sprite.Create(tex, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f));
         loadingScreenCombat.gameObject.SetActive(true);
     }
@@ -82,7 +89,7 @@ public class LoadingManager : MonoBehaviour
             yield return null;
         }
 
-        canvasGroup.gameObject.SetActive(true);
+        canvasGroup.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(false);
         canvas.SetActive(false);
         loadingScreenCombat.sprite = null;

@@ -10,12 +10,16 @@ public enum CombatPlacement
     TOP = 1,
     BOT = 2
 }
+
 public class UnitController : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] public UnitAnimationController unitAnimationController;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] private CombatPlacement combatPlacement;
     [SerializeField] private GameObject targetMarker = null;
+    public CombatAction combatAction = CombatAction.NONE;
+    public string targetCombatId = "";
+
     public UnitController(UnitModel unitData)
     {
         //UnitData = unitData;
@@ -83,6 +87,14 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
     public virtual void SetTarget()
     {
 
+    }
+
+    public virtual void ExecuteAction()
+    {
+        if (combatAction == CombatAction.ATTACK)
+        {
+            Attack();
+        }
     }
 
     public virtual void Attack()

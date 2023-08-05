@@ -346,6 +346,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 2
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!4 &176284473
 Transform:
   m_ObjectHideFlags: 0
@@ -1039,7 +1041,6 @@ Animation:
   m_Animation: {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: dc3d591fe3a12ac49b3d2eb872f59145, type: 2}
-  - {fileID: 7400000, guid: 0d2e588e26c501048acdd1f2f3e851ff, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1060,6 +1061,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2011531634}
   combatPlacement: 0
   targetMarker: {fileID: 603965204}
+  combatAction: 0
+  targetCombatId: 
 --- !u!61 &829731519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1135,6 +1138,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 0
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!1 &956421896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,6 +1357,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 1
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!1 &1072745790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,6 +2185,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 2
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!1 &1713007271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2446,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 1
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!1 &1978343166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,6 +2686,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   combatPlacement: 0
   targetMarker: {fileID: 0}
+  combatAction: 0
+  targetCombatId: 
 --- !u!1 &2122773207
 GameObject:
   m_ObjectHideFlags: 0
@@ -3190,7 +3203,7 @@ PrefabInstance:
     - target: {fileID: 3781030245155212847, guid: 4fc6445be2b96504ca279369465afa2e,
         type: 3}
       propertyPath: isTestMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3781030245155212847, guid: 4fc6445be2b96504ca279369465afa2e,
         type: 3}
