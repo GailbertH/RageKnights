@@ -1,0 +1,962 @@
+fileFormatVersion: 2
+guid: 3089f8b22ff4396478170a8adbef19db
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SharenaSprite_0
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 653
+        width: 27
+        height: 24
+      alignment: 9
+      pivot: {x: 0.7792607, y: 0.5174535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f5647118a73464aacd60c079ff0671
+      internalID: -1691033853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_1
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 609
+        width: 44
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5737145, y: 0.09675026}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c326b13717f3ba84c8ac76a67d22015b
+      internalID: 1381222406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 583
+        width: 67
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d1c35f68aac7d4a85e9066b1a78caf
+      internalID: 749013392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_3
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 583
+        width: 67
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6af1b8a36d8a1f45b194402390abe7c
+      internalID: -1045797640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 583
+        width: 67
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811e1ebb09af3914dae98723dcbfe078
+      internalID: 765368492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_5
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 615
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.23819351, y: 0.8665314}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c834176f9dbb44898ab68fbd554f50
+      internalID: -529656424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_6
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 590
+        width: 27
+        height: 21
+      alignment: 9
+      pivot: {x: 0.17419547, y: 0.360369}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4abcbe9ba7aa8e24b8a898959ccf139b
+      internalID: 1864024688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_7
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 560
+        width: 53
+        height: 39
+      alignment: 9
+      pivot: {x: 0.4920965, y: 0.747039}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf177a41caeaf2e44b4f25df5255c4a7
+      internalID: -257293727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_8
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 553
+        width: 12
+        height: 23
+      alignment: 9
+      pivot: {x: 0.36036935, y: 0.8824675}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48d1378f43ee404c95b200713ffdfc0
+      internalID: 2002063581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_9
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 482
+        width: 26
+        height: 42
+      alignment: 9
+      pivot: {x: 0.5483337, y: 0.9388384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e12c710a42918941b0bca4cfa4909a9
+      internalID: 2045889250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_10
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 491
+        width: 23
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.8956197}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b683a6fdbe692f409aaebda9d037263
+      internalID: 1589835940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_11
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 478
+        width: 39
+        height: 43
+      alignment: 9
+      pivot: {x: 0.14555359, y: 0.9383758}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44814e451454e7647bcdb093d242e47c
+      internalID: -2027166237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_12
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 490
+        width: 23
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5364254, y: 0.83264875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61506b3f0dd4c1e4d811a47eaa2e41be
+      internalID: 2111396757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_13
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 479
+        width: 32
+        height: 51
+      alignment: 9
+      pivot: {x: 0.4476385, y: 0.9353183}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec5fa0bd1e232f4e93c8a4ecfbb205e
+      internalID: 1929049121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_14
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 487
+        width: 23
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5546384, y: 0.9069231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c01807be5c73b9947b16e11827299ad8
+      internalID: 1647409528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_15
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 470
+        width: 31
+        height: 60
+      alignment: 9
+      pivot: {x: 0.44594944, y: 0.89096576}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f82d3963e60244f90908fac5110516
+      internalID: -285222047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_16
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 487
+        width: 28
+        height: 33
+      alignment: 9
+      pivot: {x: 0.4102369, y: 0.91889167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9b508c776afa648b075e2f375045c1
+      internalID: -360305190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_17
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 410
+        width: 22
+        height: 24
+      alignment: 9
+      pivot: {x: 0.74752676, y: 0.76180774}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2319a8c73f85ecd4eb0217389da1b841
+      internalID: -528216058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_18
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 410
+        width: 19
+        height: 22
+      alignment: 9
+      pivot: {x: 0.2354371, y: 0.82368886}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f44e69eaa9c0f48b44f9dc3c24c967
+      internalID: -1347241355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_19
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 410
+        width: 22
+        height: 24
+      alignment: 9
+      pivot: {x: 0.7665676, y: 0.7792613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 405f756947c48f5408aec06b14d7e01d
+      internalID: -693736319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_20
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 411
+        width: 25
+        height: 24
+      alignment: 9
+      pivot: {x: 0.19839783, y: 0.29055533}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2006bfe8152a73b4da2aa53246c3c346
+      internalID: 1813272862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300
+        width: 52
+        height: 75
+      alignment: 9
+      pivot: {x: 0.62083405, y: 0.6675566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ac4ad87400be0b41ad9aaf91d45e4b7
+      internalID: 841919916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_22
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 331
+        width: 59
+        height: 49
+      alignment: 9
+      pivot: {x: 0.9046918, y: 0.15804805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b337c46eeb41fae41b2d006684d08c65
+      internalID: 798021764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_23
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 298
+        width: 59
+        height: 79
+      alignment: 9
+      pivot: {x: 0.72009563, y: 0.8976819}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb38ba496dd4b749907875021a128eb
+      internalID: 1961672155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_24
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 335
+        width: 24
+        height: 44
+      alignment: 9
+      pivot: {x: 0.8192177, y: 0.88136154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37252519bfb6d7e4cb34955501529d25
+      internalID: 521452304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_26
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 299
+        width: 39
+        height: 23
+      alignment: 9
+      pivot: {x: 0.7362978, y: 0.26323667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770e4efc037520c4788b0d6dcef86ca5
+      internalID: 1752934900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_27
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 295
+        width: 45
+        height: 28
+      alignment: 9
+      pivot: {x: 0.39760438, y: 0.27559444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe903ff4066e0a641bb21173b6ab8e50
+      internalID: -331308619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_28
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 199
+        width: 67
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d480525076a81f4f93c872100843e9a
+      internalID: -1184702314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_29
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 199
+        width: 66
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45fc96ced12959e4b868723c4a710b5f
+      internalID: -1759353710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_30
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 199
+        width: 67
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12de43bc9621e5d4f94b75f2bc05155d
+      internalID: 69839780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_31
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 93
+        width: 120
+        height: 86
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de39d28eb4331845a69dbc43d8d6e6e
+      internalID: 1006090232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_32
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 96
+        width: 116
+        height: 82
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcaa2dea6544c8942a1f6a350a07a42e
+      internalID: 1652469373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_33
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 100
+        width: 124
+        height: 79
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0892567ca8ae9744b81cbaf97507df8e
+      internalID: 706283170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_34
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 117
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a378dc5ba047e3418335b77837d4032
+      internalID: -808548767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_35
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 4
+        width: 134
+        height: 79
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa44e83c394435b4ba256506736feea1
+      internalID: -1571834007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_36
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 0
+        width: 145
+        height: 82
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8c83caadda8225458096eb9bf79e7f8
+      internalID: 1117520476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SharenaSprite_37
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 4
+        width: 136
+        height: 79
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a14777a48ed46524c8bfb5fae8d90398
+      internalID: 413153896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SharenaSprite_0: -1691033853
+      SharenaSprite_1: 1381222406
+      SharenaSprite_10: 1589835940
+      SharenaSprite_11: -2027166237
+      SharenaSprite_12: 2111396757
+      SharenaSprite_13: 1929049121
+      SharenaSprite_14: 1647409528
+      SharenaSprite_15: -285222047
+      SharenaSprite_16: -360305190
+      SharenaSprite_17: -528216058
+      SharenaSprite_18: -1347241355
+      SharenaSprite_19: -693736319
+      SharenaSprite_2: 749013392
+      SharenaSprite_20: 1813272862
+      SharenaSprite_21: 841919916
+      SharenaSprite_22: 798021764
+      SharenaSprite_23: 1961672155
+      SharenaSprite_24: 521452304
+      SharenaSprite_25: -662551472
+      SharenaSprite_26: 1752934900
+      SharenaSprite_27: -331308619
+      SharenaSprite_28: -1184702314
+      SharenaSprite_29: -1759353710
+      SharenaSprite_3: -1045797640
+      SharenaSprite_30: 69839780
+      SharenaSprite_31: 1006090232
+      SharenaSprite_32: 1652469373
+      SharenaSprite_33: 706283170
+      SharenaSprite_34: -808548767
+      SharenaSprite_35: -1571834007
+      SharenaSprite_36: 1117520476
+      SharenaSprite_37: 413153896
+      SharenaSprite_4: 765368492
+      SharenaSprite_5: -529656424
+      SharenaSprite_6: 1864024688
+      SharenaSprite_7: -257293727
+      SharenaSprite_8: 2002063581
+      SharenaSprite_9: 2045889250
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

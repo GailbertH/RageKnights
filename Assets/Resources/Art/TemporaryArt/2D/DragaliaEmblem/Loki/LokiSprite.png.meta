@@ -1,0 +1,1116 @@
+fileFormatVersion: 2
+guid: af0d87f7e7c09b24eb9306ecbe48870a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LokiSprite_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 540
+        width: 97
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5170381, y: 0.1013264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d5fcca85fb4974f8d7e88d4447ee36
+      internalID: -1082622250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_1
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 540
+        width: 97
+        height: 76
+      alignment: 9
+      pivot: {x: 0.5170381, y: 0.1013264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5b18e3fc1721b4d8ef16460a9dda33
+      internalID: -1158787731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 540
+        width: 97
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5170381, y: 0.1013264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3587b20ee9e0c324d8d24d999d115fb2
+      internalID: 1502102753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_3
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 590
+        width: 39
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5881723, y: 0.07639479}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbac628d804dfcc4e86597839165c05a
+      internalID: -346723240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_4
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 528
+        width: 38
+        height: 36
+      alignment: 9
+      pivot: {x: 0.48491868, y: 0.9139167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63de152267a54ae40b738347d70597de
+      internalID: -943435067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_5
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 445
+        width: 29
+        height: 40
+      alignment: 9
+      pivot: {x: 0.6481414, y: 0.8557709}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbf9d2e322bad54e9f1ac6582d36490
+      internalID: -1626544485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_6
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 444
+        width: 32
+        height: 38
+      alignment: 9
+      pivot: {x: 0.6762073, y: 0.86743003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508d1669b8b6d8b4bab17d2c25b41adc
+      internalID: 16081031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_7
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 442
+        width: 28
+        height: 43
+      alignment: 9
+      pivot: {x: 0.37533623, y: 0.83094966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2514b59d3eda5c543a21e5d362a5fcb8
+      internalID: -1173636552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_8
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 444
+        width: 32
+        height: 37
+      alignment: 9
+      pivot: {x: 0.32379246, y: 0.85558915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b77bb6c61f5ff4396c878d62a21f17
+      internalID: 270906461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_9
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 440
+        width: 25
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5644409, y: 0.89759594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470647f92f8a01240ad6ecec768b0e62
+      internalID: 197343937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_10
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 448
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.49999854, y: 0.9580401}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5729b68b8dd7c3e4a97f892728133b33
+      internalID: -25568959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_11
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 447
+        width: 29
+        height: 47
+      alignment: 9
+      pivot: {x: 0.3055641, y: 0.9513193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be6131b357e9f44da8519f2f45d6d07
+      internalID: 781502756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_12
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 447
+        width: 29
+        height: 33
+      alignment: 9
+      pivot: {x: 0.32408196, y: 0.9393736}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968629a022a1bb94ca4054715d56e024
+      internalID: 1973703726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_13
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 373
+        width: 23
+        height: 24
+      alignment: 9
+      pivot: {x: 0.7801806, y: 0.6901919}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127cc80a07948224495f6d1066be9769
+      internalID: 1318811951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_14
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 373
+        width: 18
+        height: 22
+      alignment: 9
+      pivot: {x: 0.2016593, y: 0.62204814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0009bec785301464daf61f9fdc97fa13
+      internalID: -1744755812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_15
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 371
+        width: 27
+        height: 26
+      alignment: 9
+      pivot: {x: 0.77845085, y: 0.7271975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f9ba7340a87ec14dbd1b8d06cf419b4
+      internalID: -740588721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_16
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 371
+        width: 25
+        height: 25
+      alignment: 9
+      pivot: {x: 0.29593506, y: 0.72554564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05069e0a1bffbc4f959c663fc30c651
+      internalID: 89145639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_17
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 348
+        width: 32
+        height: 40
+      alignment: 9
+      pivot: {x: 0.8188515, y: 0.7416557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa656ba9a0325ef43a521875b20d80cb
+      internalID: 984096725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_18
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 352
+        width: 21
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5255708, y: 0.9296099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc1d2926a6eb9754096d95c4c238f420
+      internalID: 1591022567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_19
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 351
+        width: 29
+        height: 33
+      alignment: 9
+      pivot: {x: 0.29630464, y: 0.9475107}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f617cf890ba1140ab7b89d0246e079
+      internalID: 740867210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_20
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 336
+        width: 28
+        height: 43
+      alignment: 9
+      pivot: {x: 0.12600817, y: 0.72479606}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f06ba76a32557d41b34ae06ed17b347
+      internalID: -2083744687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_21
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 229
+        width: 40
+        height: 107
+      alignment: 9
+      pivot: {x: 0.8813914, y: 0.96931356}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf33c11e036a8f749863e101bdff9816
+      internalID: -1663336998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_22
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 219
+        width: 57
+        height: 131
+      alignment: 9
+      pivot: {x: 0.4776962, y: 0.98037857}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f8d8707cb2a1a47941fe7d9019e0bb
+      internalID: 1225464155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_23
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 227
+        width: 40
+        height: 109
+      alignment: 9
+      pivot: {x: 0.03915138, y: 0.9781973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f410905b558267b40814b7064248b06d
+      internalID: 534982882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_24
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 294
+        width: 16
+        height: 50
+      alignment: 9
+      pivot: {x: 0.44965458, y: 0.9296106}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bfea6b1c0f357f49a9208ee7a4d5725
+      internalID: 359631516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_25
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 316
+        width: 10
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9475107}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b71de7dba8c57549877e32c3faff708
+      internalID: 16035608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_26
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 295
+        width: 36
+        height: 24
+      alignment: 9
+      pivot: {x: 0.11215719, y: 0.25386938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3563fb9120c6b048a619c3190b12fe3
+      internalID: -332873062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_27
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 299
+        width: 46
+        height: 18
+      alignment: 9
+      pivot: {x: 0.5175111, y: 0.3806644}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6048ec57c536845b8ba4d9b22306ed
+      internalID: -726100417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_28
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 280
+        width: 46
+        height: 37
+      alignment: 9
+      pivot: {x: 0.1614486, y: 0.9063886}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcdd12070b41c594fb6197a5f7cede33
+      internalID: -1650530803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_29
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 285
+        width: 37
+        height: 24
+      alignment: 9
+      pivot: {x: 0.87736017, y: 0.24268086}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cf726013f79dcd4bbbc459aed158b99
+      internalID: -857879966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_31
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 280
+        width: 14
+        height: 33
+      alignment: 9
+      pivot: {x: 0.80686295, y: 0.8905547}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994d56f247000cf4782a0f8125efda36
+      internalID: 171237728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_32
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 275
+        width: 25
+        height: 33
+      alignment: 9
+      pivot: {x: 0.69332397, y: 0.906828}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b1c43ec37ae37945a2b28d380d25433
+      internalID: -317741067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_33
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 236
+        width: 15
+        height: 48
+      alignment: 9
+      pivot: {x: 0.32208863, y: 0.9588159}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03540f64cebbeba4fb203f69af117e46
+      internalID: 2037438029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_34
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 251
+        width: 38
+        height: 17
+      alignment: 9
+      pivot: {x: 0.8815613, y: 0.83168477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3de0ccdf4089fd49a45874570522a36
+      internalID: 974813943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_35
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 254
+        width: 32
+        height: 16
+      alignment: 9
+      pivot: {x: 0.114022255, y: 0.8356323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d38540afcc879f14e8ead8574a6fdb4a
+      internalID: -73111305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_36
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 263
+        width: 46
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5116736, y: 0.42168555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e438689d471e9f04f9e30622c3a3edad
+      internalID: -1093640451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_37
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 226
+        width: 41
+        height: 41
+      alignment: 9
+      pivot: {x: 0.8536429, y: 0.89948475}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bae5298cd936440b832fe2f18c39fa
+      internalID: 568254198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_38
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 250
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fdddf94d296144438e287fdb8633acb
+      internalID: -315315594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_39
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 147
+        width: 28
+        height: 74
+      alignment: 9
+      pivot: {x: 0.72701865, y: 0.9466749}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b04f787f9a0d8aa4aa60413b167b3eb6
+      internalID: 1856533653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_40
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 181
+        width: 64
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: accda743681c2dc49860a3c57edd0387
+      internalID: -674308290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_41
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 211
+        width: 35
+        height: 39
+      alignment: 9
+      pivot: {x: 0.59973055, y: 0.7753914}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b6d77117f8cd8548b8c8cb8f9c049b1
+      internalID: 350873889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_42
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 219
+        width: 38
+        height: 41
+      alignment: 9
+      pivot: {x: 0.26682243, y: 0.9191321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547f0bc06721a7e46b806f14bec1280f
+      internalID: -473936270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_43
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 28
+        width: 97
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5170381, y: 0.1013264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca6890ddcaf48940ace7b1e8116a1f3
+      internalID: 1146955010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LokiSprite_44
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 28
+        width: 97
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5170381, y: 0.1013264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55fb08b99d0823446b63e854bbc17fc5
+      internalID: -1707067139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      LokiSprite_0: -1082622250
+      LokiSprite_1: -1158787731
+      LokiSprite_10: -25568959
+      LokiSprite_11: 781502756
+      LokiSprite_12: 1973703726
+      LokiSprite_13: 1318811951
+      LokiSprite_14: -1744755812
+      LokiSprite_15: -740588721
+      LokiSprite_16: 89145639
+      LokiSprite_17: 984096725
+      LokiSprite_18: 1591022567
+      LokiSprite_19: 740867210
+      LokiSprite_2: 1502102753
+      LokiSprite_20: -2083744687
+      LokiSprite_21: -1663336998
+      LokiSprite_22: 1225464155
+      LokiSprite_23: 534982882
+      LokiSprite_24: 359631516
+      LokiSprite_25: 16035608
+      LokiSprite_26: -332873062
+      LokiSprite_27: -726100417
+      LokiSprite_28: -1650530803
+      LokiSprite_29: -857879966
+      LokiSprite_3: -346723240
+      LokiSprite_30: 1694592783
+      LokiSprite_31: 171237728
+      LokiSprite_32: -317741067
+      LokiSprite_33: 2037438029
+      LokiSprite_34: 974813943
+      LokiSprite_35: -73111305
+      LokiSprite_36: -1093640451
+      LokiSprite_37: 568254198
+      LokiSprite_38: -315315594
+      LokiSprite_39: 1856533653
+      LokiSprite_4: -943435067
+      LokiSprite_40: -674308290
+      LokiSprite_41: 350873889
+      LokiSprite_42: -473936270
+      LokiSprite_43: 1146955010
+      LokiSprite_44: -1707067139
+      LokiSprite_5: -1626544485
+      LokiSprite_6: 16081031
+      LokiSprite_7: -1173636552
+      LokiSprite_8: 270906461
+      LokiSprite_9: 197343937
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

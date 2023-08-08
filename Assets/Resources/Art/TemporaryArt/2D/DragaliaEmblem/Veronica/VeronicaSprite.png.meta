@@ -1,0 +1,1292 @@
+fileFormatVersion: 2
+guid: 6dcaa66c32ead8d40b0665cdf9b9d4bf
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VeronicaSprite_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 415
+        width: 65
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775c8adebc7e2db47bd5fdba37c969eb
+      internalID: 284721016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_1
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 415
+        width: 65
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d625fedad1a8f9d4d9a4ef5158fb8f4d
+      internalID: 1327250624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_2
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 415
+        width: 65
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94170403953e07d4e86629bffd77ba4b
+      internalID: -1890188651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_3
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 466
+        width: 35
+        height: 39
+      alignment: 9
+      pivot: {x: 0.58980364, y: 0.023150321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df13396e45e93343a02e3bd4f6f5477
+      internalID: -77828604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_4
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 407
+        width: 119
+        height: 100
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee8b3ba2e28557c4783bcd49e96eae76
+      internalID: -213191219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_5
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 411
+        width: 116
+        height: 96
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0b3a15865a90344a18e309834fe63c
+      internalID: -1270347759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_6
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 415
+        width: 126
+        height: 91
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee08377f027298141be027b8bd9167fe
+      internalID: -1235954792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_7
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 409
+        width: 39
+        height: 27
+      alignment: 9
+      pivot: {x: 0.55500597, y: 0.8972631}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83f007fc4db0e764f982f0c5179f345e
+      internalID: 1726591446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_8
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 420
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c264dfe7146022a46aff7e3ff459edd0
+      internalID: 1335518140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_9
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 322
+        width: 15
+        height: 34
+      alignment: 9
+      pivot: {x: 0.6603645, y: 0.92449594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 934f0320e1286524a854d56497e28d1d
+      internalID: -626077368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_10
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 313
+        width: 18
+        height: 38
+      alignment: 9
+      pivot: {x: 0.51909, y: 0.92502797}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a59cd0c01adad2742840e87ef310448e
+      internalID: -191688146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_11
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 326
+        width: 15
+        height: 32
+      alignment: 9
+      pivot: {x: 0.499999, y: 0.9510269}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c02b44a38571871488320956316d253d
+      internalID: 2122674015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_12
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 317
+        width: 16
+        height: 37
+      alignment: 9
+      pivot: {x: 0.5429535, y: 0.96437776}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74dc90c129c038e4f95b99c435d91715
+      internalID: 1232102833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_13
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 314
+        width: 35
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5294547, y: 0.97063744}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cf977cb48666a148b92149ce038e7f4
+      internalID: -185995743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_14
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 318
+        width: 20
+        height: 40
+      alignment: 9
+      pivot: {x: 0.49999848, y: 0.94673157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e564935761c75e479bf64f7e0d5bd94
+      internalID: -1617741065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_15
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 323
+        width: 27
+        height: 38
+      alignment: 9
+      pivot: {x: 0.3981798, y: 0.9340716}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77efdcf8a57bdf468a5dad48ab91103
+      internalID: 1405612268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_16
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 318
+        width: 25
+        height: 39
+      alignment: 9
+      pivot: {x: 0.36254272, y: 0.92294157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66a50ba35f68e5f4e91469e048fce94f
+      internalID: -2001248759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 303
+        width: 135
+        height: 90
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c55ff4e0e947af4aa8e176dc8e0ec92
+      internalID: -1496914915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_18
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 317
+        width: 143
+        height: 77
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c69985917490ab14abac962a84f12701
+      internalID: -1340313399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_19
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 303
+        width: 134
+        height: 91
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26995eb9145701419b4bf49d66dbcdd
+      internalID: -815048224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_20
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 312
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89cc7e9d79109964689f8204447bb1ba
+      internalID: 1235077349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_22
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 245
+        width: 23
+        height: 23
+      alignment: 9
+      pivot: {x: 0.7390535, y: 0.7838758}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a968201f3118b47429bb1313b3bf061b
+      internalID: -1036011544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_23
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 246
+        width: 19
+        height: 21
+      alignment: 9
+      pivot: {x: 0.2829634, y: 0.72909254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 052390f7ad5ae014990fa0827c6cc896
+      internalID: -1812839080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_24
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 245
+        width: 23
+        height: 23
+      alignment: 9
+      pivot: {x: 0.7390535, y: 0.7988175}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f96fde33d71c0e04888ec8cedf285b02
+      internalID: -133515781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_25
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 244
+        width: 25
+        height: 23
+      alignment: 9
+      pivot: {x: 0.1838507, y: 0.7091715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da413497c2df43e4d86d0f521706a85c
+      internalID: 1636727629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_26
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 228
+        width: 70
+        height: 56
+      alignment: 9
+      pivot: {x: 0.69743043, y: 0.7131353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f85a10f6460b8e04bbf5e96fa77f21ac
+      internalID: -974558918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_27
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 236
+        width: 15
+        height: 38
+      alignment: 9
+      pivot: {x: 0.29060465, y: 0.9298128}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcc287071ddf9a0429a97f78bbdf0483
+      internalID: -1610656669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_28
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 242
+        width: 11
+        height: 25
+      alignment: 9
+      pivot: {x: 0.49999723, y: 0.9261133}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfacec36d3b57414cbe4da4bb4ac7201
+      internalID: -1710880573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_29
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 235
+        width: 33
+        height: 41
+      alignment: 9
+      pivot: {x: 0.7603325, y: 0.92745453}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbaf2911108b33429f91d0f0b84f7c7
+      internalID: 1712319603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_30
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 233
+        width: 20
+        height: 50
+      alignment: 9
+      pivot: {x: 0.43127137, y: 0.9192407}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3ec22023cff57d438fbdc94bf197ce4
+      internalID: -1392688916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_31
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 143
+        width: 121
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5739153, y: 0.22131833}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1316b9198b4d6d445b376564f119b470
+      internalID: -1602942405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 143
+        width: 31
+        height: 70
+      alignment: 9
+      pivot: {x: 0.7885378, y: 0.90300184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3afe1cbc1a4792d46899f68e9469769e
+      internalID: -1538777407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_33
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 176
+        width: 29
+        height: 36
+      alignment: 9
+      pivot: {x: 0.20701599, y: 0.87265563}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c43e05319b1a8cb45acae8af6ccc3e48
+      internalID: -414390286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_34
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 172
+        width: 12
+        height: 45
+      alignment: 9
+      pivot: {x: 0.6863289, y: 0.88756174}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6936300adc302a34eb653ea906d5aa11
+      internalID: 1843065493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_35
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 161
+        width: 23
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5194437, y: 0.9255487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a264cb6dc4681c4c96d811d13dffe29
+      internalID: 848981175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_36
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 166
+        width: 13
+        height: 54
+      alignment: 9
+      pivot: {x: 0.6031987, y: 0.8560932}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a688e952cce24f48b76d7f83157ac3e
+      internalID: -1591375702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_37
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 174
+        width: 26
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5172002, y: 0.7942019}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc372e9ba118da4cb24d41a6ac01624
+      internalID: -984825443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_38
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 172
+        width: 40
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5782585, y: 0.9471865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3538ff7339ad28449a42d62a6f8d9625
+      internalID: 1240579375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_39
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 176
+        width: 32
+        height: 31
+      alignment: 9
+      pivot: {x: 0.50000095, y: 0.90391046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad1aebeacf611cd448ed155d58cccd80
+      internalID: -248981777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_40
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 170
+        width: 39
+        height: 42
+      alignment: 9
+      pivot: {x: 0.48853478, y: 0.9684812}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab370ff20e6d24a4dbab6587be34b4af
+      internalID: -10797696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_41
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 176
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.41615486, y: 0.9332118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1460fc7e797f8ec4da0450f53c262bfe
+      internalID: 1432149872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_42
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 170
+        width: 21
+        height: 39
+      alignment: 9
+      pivot: {x: 0.50000143, y: 0.958653}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b72e28d332c4ef04e9b80b6e0b170d19
+      internalID: 395642746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_43
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 158
+        width: 66
+        height: 67
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0807d9c7684f934c9d81c164be14397
+      internalID: -144989840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_44
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 158
+        width: 66
+        height: 67
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042a23070ebdc184a93deff0b74d5fc7
+      internalID: 915744009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_45
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 106
+        width: 40
+        height: 44
+      alignment: 9
+      pivot: {x: 0.29876631, y: 0.88620657}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fda428041bda1f4abdc80d3debf1210
+      internalID: -579352197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_46
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 105
+        width: 56
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5159716, y: 0.9374652}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e76686797611f24ea2dc636447b58ba
+      internalID: 639218330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_47
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 88
+        width: 71
+        height: 64
+      alignment: 9
+      pivot: {x: 0.51889557, y: 0.94718647}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f07c99edb5891841a1da2d6e06c11d2
+      internalID: 692029868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_48
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 31
+        width: 65
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34e80d260ef36df40a009276a0399082
+      internalID: -1378377291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_49
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 31
+        width: 65
+        height: 66
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b77835435002d7c4a8bffe9eadaa67e3
+      internalID: -744993726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_50
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 24
+        width: 40
+        height: 48
+      alignment: 9
+      pivot: {x: 0.7794922, y: 0.9192373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496189932b62bb640831ad4153a8b5ac
+      internalID: -533606125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_51
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 17
+        width: 52
+        height: 60
+      alignment: 9
+      pivot: {x: 0.8611896, y: 0.9248272}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48b0e2943e4d3640a73e9f98299841e
+      internalID: 1148766779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeronicaSprite_52
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 28
+        width: 25
+        height: 40
+      alignment: 9
+      pivot: {x: 0.21380249, y: 0.8801085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6cc0ebd7f66d24bbc83fd72c2057a3
+      internalID: -1393658129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      VeronicaSprite_0: 284721016
+      VeronicaSprite_1: 1327250624
+      VeronicaSprite_10: -191688146
+      VeronicaSprite_11: 2122674015
+      VeronicaSprite_12: 1232102833
+      VeronicaSprite_13: -185995743
+      VeronicaSprite_14: -1617741065
+      VeronicaSprite_15: 1405612268
+      VeronicaSprite_16: -2001248759
+      VeronicaSprite_17: -1496914915
+      VeronicaSprite_18: -1340313399
+      VeronicaSprite_19: -815048224
+      VeronicaSprite_2: -1890188651
+      VeronicaSprite_20: 1235077349
+      VeronicaSprite_21: 685104738
+      VeronicaSprite_22: -1036011544
+      VeronicaSprite_23: -1812839080
+      VeronicaSprite_24: -133515781
+      VeronicaSprite_25: 1636727629
+      VeronicaSprite_26: -974558918
+      VeronicaSprite_27: -1610656669
+      VeronicaSprite_28: -1710880573
+      VeronicaSprite_29: 1712319603
+      VeronicaSprite_3: -77828604
+      VeronicaSprite_30: -1392688916
+      VeronicaSprite_31: -1602942405
+      VeronicaSprite_32: -1538777407
+      VeronicaSprite_33: -414390286
+      VeronicaSprite_34: 1843065493
+      VeronicaSprite_35: 848981175
+      VeronicaSprite_36: -1591375702
+      VeronicaSprite_37: -984825443
+      VeronicaSprite_38: 1240579375
+      VeronicaSprite_39: -248981777
+      VeronicaSprite_4: -213191219
+      VeronicaSprite_40: -10797696
+      VeronicaSprite_41: 1432149872
+      VeronicaSprite_42: 395642746
+      VeronicaSprite_43: -144989840
+      VeronicaSprite_44: 915744009
+      VeronicaSprite_45: -579352197
+      VeronicaSprite_46: 639218330
+      VeronicaSprite_47: 692029868
+      VeronicaSprite_48: -1378377291
+      VeronicaSprite_49: -744993726
+      VeronicaSprite_5: -1270347759
+      VeronicaSprite_50: -533606125
+      VeronicaSprite_51: 1148766779
+      VeronicaSprite_52: -1393658129
+      VeronicaSprite_6: -1235954792
+      VeronicaSprite_7: 1726591446
+      VeronicaSprite_8: 1335518140
+      VeronicaSprite_9: -626077368
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
