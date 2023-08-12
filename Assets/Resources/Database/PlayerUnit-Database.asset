@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:RageKnight.Database:DatabaseCharacterUnit
   id: 0
   Units:
-  - {fileID: 11400000, guid: e9afe2b5792d1c547a362d2a6ac7f131, type: 2}
-  - {fileID: 11400000, guid: fd5a636697fd1914290ca4b6245d3552, type: 2}
-  - {fileID: 11400000, guid: 6580739d71078a548a2057d8820e3915, type: 2}
+  - {fileID: 11400000, guid: 6151f81a9d70fa641b9d81792ca1c019, type: 2}
+  - {fileID: 11400000, guid: e006d42d64b66a44db59c5f042163dec, type: 2}
+  - {fileID: 11400000, guid: f9084f6070e7e48469a18df57670305c, type: 2}

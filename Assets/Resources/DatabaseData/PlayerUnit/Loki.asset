@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e61f4a0b8091147960b7aab77dd1d9, type: 3}
+  m_Name: Loki
+  m_EditorClassIdentifier: 
+  id: 2
+  unitName: Loki
+  role: 
+  job: 
+  baseHealthPoints: 80
+  baseAttackPower: 16
+  baseDefensePower: 6
+  icon: {fileID: 21300000, guid: 6b48c792c6b6f834e905102ef364ebe1, type: 3}
+  splashArt: {fileID: 21300000, guid: b97e62998ff5ed74cad8c9f7a1f3e673, type: 3}
+  unitPrefab: {fileID: 4595856937361285771, guid: 3a29ad4adc5184d4e8d862c11eeba450,
+    type: 3}
+  description: 

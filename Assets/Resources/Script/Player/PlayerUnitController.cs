@@ -10,12 +10,15 @@ public enum CombatPlacement
     TOP = 1,
     BOT = 2
 }
+
 public class UnitController : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] public UnitAnimationController unitAnimationController;
-    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] public UnitAnimatorController unitAnimationController;
     [SerializeField] private CombatPlacement combatPlacement;
     [SerializeField] private GameObject targetMarker = null;
+    public CombatAction combatAction = CombatAction.NONE;
+    private Vector3 initialPosition;
+
     public UnitController(UnitModel unitData)
     {
         //UnitData = unitData;
@@ -62,14 +65,15 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
 
     public virtual void Initialize(UnitModel unitData)
     {
+        initialPosition = transform.gameObject.transform.position;
         UnitData = unitData;
         if (UnitData.unitPrefab != null)
         {
             GameObject unitObject = Instantiate<GameObject>(UnitData.unitPrefab,transform) as GameObject;
-            unitAnimationController = unitObject.GetComponent<UnitAnimationController>();
-            spriteRenderer = unitObject.GetComponent<SpriteRenderer>();
+            unitAnimationController = unitObject.GetComponent<UnitAnimatorController>();
+            //spriteRenderer = unitObject.GetComponent<SpriteRenderer>();
 
-            spriteRenderer.sortingOrder = GetOrderInLayer;
+            //spriteRenderer.sortingOrder = GetOrderInLayer;
             unitAnimationController.Idle();
         }
         GameTargetingManager.Instance.OnUnitTargetChange(this.TargetAim);
@@ -85,9 +89,50 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
 
     }
 
-    public virtual void Attack()
+    public virtual void ExecuteAction(Action onAnimationEnd = null)
     {
-        unitAnimationController.Attack();
+        if (combatAction == CombatAction.ATTACK)
+        {
+            Attack(onAnimationEnd);
+        }
+    }
+
+    public virtual void Attack(Action onAnimationEnd = null)
+    {
+        unitAnimationController.Attack(onAnimationEnd);
+    }
+    public virtual void RunTowards(Transform targetLocation, float speed, Action callback = null)
+    {
+        float reachDistance = 1f;
+        Vector3 frontPosition = targetLocation.transform.position + new Vector3(0, -0.25f, 0);
+        if (Vector3.Distance(this.transform.position, frontPosition) <= reachDistance)
+        {
+            unitAnimationController.Idle();
+            callback?.Invoke();
+            return;
+        }
+        if (Vector3.Distance(targetLocation.transform.position, this.transform.position) <= 0.4f)
+        {
+            speed = 1f;
+        }
+        this.transform.position += (frontPosition - this.transform.position) * speed;
+        unitAnimationController.Run();
+    }
+
+    public virtual void GoBackToInitialPosition(float speed, Action callback = null)
+    {
+        if (this.transform.position == initialPosition)
+        {
+            unitAnimationController.Idle();
+            callback?.Invoke();
+            return;
+        }
+        if (Vector3.Distance(initialPosition, this.transform.position) <= 0.4f)
+        {
+            speed = 1f;
+        }
+        this.transform.position += (initialPosition - this.transform.position) * speed;
+        unitAnimationController.Run();
     }
 
     public virtual int DamageHealth(int damageAmount)
@@ -152,6 +197,7 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            Debug.Log("Hello");
             GameTargetingManager.Instance.TargetChange(GetUnitCombatId);
         }
     }
@@ -161,10 +207,5 @@ public class PlayerUnitController : UnitController
 {
     public PlayerUnitController(UnitModel unitData) : base(unitData)
     {
-    }
-
-    public void PlayMoveAnimation()
-    {
-        unitAnimationController.Idle();
     }
 }

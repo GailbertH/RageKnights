@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Transform health;
     [SerializeField] private Transform mana;
     [SerializeField] private GameObject activateHiglight;
+    [SerializeField] private GameObject targetHiglight;
+    [SerializeField] private TextMeshProUGUI text;
 
     private string unitCombatID;
     private bool isEnemyHealth;
@@ -43,11 +46,12 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateTargetState(string activeUnitCombatIt)
     {
-        Debug.Log("Current Target " + activeUnitCombatIt);
+        targetHiglight.SetActive(unitCombatID == activeUnitCombatIt);
     }
 
     public void UpdateHealthPoints(int curHP)
     {
+        text.text = curHP.ToString();
         float healthPercent = (float)curHP / (float)maxHP;
         if (healthPercent < 0 || healthPercent > 1)
         {

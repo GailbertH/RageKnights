@@ -159,7 +159,7 @@ public class CombatStateMachine
         if (currentState?.State != CombatState.RESULT)
         {
             var nextState = GetNextState();
-            //Debug.Log("NEXT STATE " + nextState.ToString());
+            Debug.Log("NEXT STATE " + nextState.ToString());
             currentState = combatStates[GetNextState()];
             yield return new WaitForSeconds(0.1f);
             currentState.Start();
@@ -190,7 +190,7 @@ public class Combat_Base<CombatState>
     private CombatState state;
     private CombatState nextState;
     private CombatStateMachine csMachine;
-
+    
     public CombatState State { get { return state; } }
     public CombatState NextState { get { return nextState; } }
     public CombatStateMachine CSMachine { get { return csMachine; } }
@@ -206,11 +206,11 @@ public class Combat_Base<CombatState>
         CSMachine.NextState();
     }
 
-    public virtual void Start() {}
+    public virtual void Start() { }
 
     public virtual void ProtoUpdate() { }
 
-    public virtual void ProtoTimerUpdate() { }
+    public virtual void ProtoTimerUpdate() {}
 
     public virtual void End() { }
 
@@ -222,6 +222,11 @@ public class Combat_Setup : Combat_Base<CombatState>
 {
     public Combat_Setup(CombatStateMachine machine) : base(CombatState.SETUP, machine)
     {
+        bool isPlayerTurn = true;
+        CSMachine.GetGameManager.PlayerHandler.SetTurnOrder(isPlayerTurn);
+        CSMachine.GetGameManager.EnemyHandler.SetTurnOrder(isPlayerTurn);
+        CSMachine.GetGameManager.PlayerHandler.ResetTurns();
+        Debug.Log("Set Turn");
     }
 
     public override void GoToNextState()
@@ -299,13 +304,8 @@ public class Combat_SpecialEvent : Combat_Base<CombatState>
 //Check who tunr it is also
 public class Combat_TurnCheck : Combat_Base<CombatState>
 {
-    private bool isPlayerTurn = true;
     public Combat_TurnCheck(CombatStateMachine machine) : base(CombatState.TURN_CHECK, machine)
     {
-        isPlayerTurn = true;
-        CSMachine.GetGameManager.PlayerHandler.SetTurnOrder(isPlayerTurn);
-        CSMachine.GetGameManager.EnemyHandler.SetTurnOrder(isPlayerTurn);
-        CSMachine.GetGameManager.PlayerHandler.ResetTurns();
     }
 
     public override void GoToNextState()
@@ -425,7 +425,9 @@ public class Combat_StatusAction : Combat_Base<CombatState>
 public class Combat_ActionSelection : Combat_Base<CombatState>
 {
     private bool actionSelected = false;
+    private bool isInit = false;
     private bool targetSelected = false;
+    private bool isPlayerTurn;
     public Combat_ActionSelection(CombatStateMachine machine) : base(CombatState.ACTION_SELECTION, machine)
     {
     }
@@ -437,15 +439,17 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void Start()
     {
+        isPlayerTurn = GameManager.Instance.GetIsPlayerTurn;
         actionSelected = false;
-        if (GameManager.Instance.GetIsPlayerTurn)
+        isInit = true;
+        if (isPlayerTurn)
         {
-            //Debug.Log("PLAYER TURN");
+            Debug.Log("PLAYER TURN");
             GameUIManager.Instance.ResetSelections();
             GameUIManager.Instance.AllowPlayerCommands();
         }
         else
-            //Debug.Log("ENEMY TURN");
+            Debug.Log("ENEMY TURN");
 
         base.Start();
     }
@@ -453,20 +457,20 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
     public override void ProtoUpdate()
     {
         base.ProtoUpdate();
-        if (actionSelected)
+        if (actionSelected == true || isInit == false)
             return;
 
-        if (GameManager.Instance.GetIsPlayerTurn &&
+        if (isPlayerTurn &&
             GameTargetingManager.Instance.GetIsTargetSelectionDone &&
-            GameUIManager.Instance.GetButtonEvent != CombatAction.NONE
-            )
+            GameUIManager.Instance.GetButtonEvent != CombatAction.NONE)
         {
             actionSelected = true;
             Debug.Log("ATTACK");
             GoToNextState();
         }
-        else if(GameManager.Instance.GetIsPlayerTurn == false)
+        else if(isPlayerTurn == false)
         {
+            GameTargetingManager.Instance.SetRandomPlayerUnitTarget();
             GameManager.Instance.EnemyHandler.EnemyActionChecker();
             actionSelected = true;
             Debug.Log("ENEMY ATTACK");
@@ -481,6 +485,7 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 
     public override void End()
     {
+        isInit = false;
         GameUIManager.Instance.PreventPlayerCommands();
         base.End();
     }
@@ -492,36 +497,63 @@ public class Combat_ActionSelection : Combat_Base<CombatState>
 }
 
 //Attack, skill, item, run away
+public enum CombatActionExecutionState
+{
+    NONE,
+    RUN_TOWARDS,
+    RUN_BACK,
+    DONE
+}
 public class Combat_Action : Combat_Base<CombatState>
 {
+    private Transform targetPosition;
+    private float speed = 4f;
+    private bool isPlayerUnitsTurn;
+    CombatActionExecutionState caExecutionState = CombatActionExecutionState.NONE;
     public Combat_Action(CombatStateMachine machine) : base(CombatState.ACTION, machine)
     {
     }
-
+    private float GetSpeed
+    {
+        get
+        {
+            return (float)Math.Round(Time.deltaTime * speed, 2);
+        }
+    }
     public override void GoToNextState()
     {
+        Debug.Log("GoToNextState");
+        caExecutionState = CombatActionExecutionState.DONE;
         base.GoToNextState();
     }
 
     public override void Start()
     {
         base.Start();
-        ExecuteAction();
-        GoToNextState();
-    }
-
-    private void ExecuteAction()
-    {
-        if (GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
-        {
-            CSMachine.GetGameManager.PlayerHandler.PlayerAttack();
-            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(10, GameTargetingManager.Instance.GetTargets);
-        }
+        isPlayerUnitsTurn = GameManager.Instance.GetIsPlayerTurn;
+        List<string> targets = GameTargetingManager.Instance.GetTargets;
+        if(isPlayerUnitsTurn)
+            targetPosition = GameManager.Instance.EnemyHandler.GetUnitTransform(targets.FirstOrDefault());
+        else
+            targetPosition = GameManager.Instance.PlayerHandler.GetUnitTransform(targets.FirstOrDefault());
+        //check if Melee
+        caExecutionState = CombatActionExecutionState.RUN_TOWARDS;
     }
 
     public override void ProtoUpdate()
     {
         base.ProtoUpdate();
+        if (caExecutionState == CombatActionExecutionState.NONE || caExecutionState == CombatActionExecutionState.DONE)
+            return;
+
+        if (caExecutionState == CombatActionExecutionState.RUN_TOWARDS)
+        {
+            RunTowards();
+        }
+        else if (caExecutionState == CombatActionExecutionState.RUN_BACK)
+        {
+            RunBack();
+        }
     }
 
     public override void ProtoTimerUpdate()
@@ -540,6 +572,45 @@ public class Combat_Action : Combat_Base<CombatState>
     public override void Destroy()
     {
         base.Destroy();
+    }
+
+    private void RunTowards()
+    {
+        Action callback = () => {
+            caExecutionState = CombatActionExecutionState.NONE;
+            ExecuteAction();
+        };
+
+        if (isPlayerUnitsTurn)
+            GameManager.Instance.PlayerHandler.RunTowards(targetPosition, GetSpeed, callback);
+        else
+            GameManager.Instance.EnemyHandler.RunTowards(targetPosition, GetSpeed, callback);
+    }
+    private void ExecuteAction()
+    {
+        if (isPlayerUnitsTurn && GameUIManager.Instance.GetButtonEvent == CombatAction.ATTACK)
+        {
+            List<string> targets = GameTargetingManager.Instance.GetTargets;
+            CSMachine.GetGameManager.PlayerHandler.PlayerAttack(() => OnAttackEnd());
+            CSMachine.GetGameManager.EnemyHandler.DamagedEnemy(10, targets);
+        }
+        else
+        {
+            List<string> targets = GameTargetingManager.Instance.GetTargets;
+            CSMachine.GetGameManager.EnemyHandler.ExecuteAction(() => OnAttackEnd());
+            CSMachine.GetGameManager.PlayerHandler.DamagedPlayer(10, targets);
+        }
+    }
+    private void OnAttackEnd()
+    {
+        caExecutionState = CombatActionExecutionState.RUN_BACK;
+    }
+    private void RunBack()
+    {
+        if (isPlayerUnitsTurn)
+            GameManager.Instance.PlayerHandler.RunBackToSpot(GetSpeed, () => GoToNextState());
+        else
+            GameManager.Instance.EnemyHandler.RunBackToSpot(GetSpeed, () => GoToNextState());
     }
 }
 

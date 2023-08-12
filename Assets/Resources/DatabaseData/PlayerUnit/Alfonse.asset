@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e61f4a0b8091147960b7aab77dd1d9, type: 3}
+  m_Name: Alfonse
+  m_EditorClassIdentifier: 
+  id: 0
+  unitName: Alfonse
+  role: 
+  job: 
+  baseHealthPoints: 100
+  baseAttackPower: 10
+  baseDefensePower: 10
+  icon: {fileID: 21300000, guid: 6b266be66e2f70a429422e4c41c87715, type: 3}
+  splashArt: {fileID: 21300000, guid: 1c1fe5b5f6d96194481e3ee23867fd58, type: 3}
+  unitPrefab: {fileID: 8508065839315762030, guid: e9eaff2484d27594d8fa96f7e8d7f557,
+    type: 3}
+  description: 

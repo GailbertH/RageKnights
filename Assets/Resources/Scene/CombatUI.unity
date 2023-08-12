@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &175015902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5280044488824970250, guid: c1b86670a64eed148b59fd05e1da60df,
-    type: 3}
-  m_PrefabInstance: {fileID: 529859522459581583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &426760519 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 529859522582308296, guid: c1b86670a64eed148b59fd05e1da60df,
@@ -237,7 +231,7 @@ RectTransform:
   - {fileID: 815671685}
   - {fileID: 1036268241}
   m_Father: {fileID: 1370981749}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -287,8 +281,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -697, y: -142}
-  m_SizeDelta: {x: 960, y: 800}
+  m_AnchoredPosition: {x: -750, y: -8}
+  m_SizeDelta: {x: 730, y: 730}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815671686
 MonoBehaviour:
@@ -404,12 +398,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875160190}
   m_CullTransparentMesh: 0
---- !u!1 &939880426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5036253078459546419, guid: c1b86670a64eed148b59fd05e1da60df,
-    type: 3}
-  m_PrefabInstance: {fileID: 529859522459581583}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1036268240
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,8 +625,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1416785233}
-  - {fileID: 1921081913}
   - {fileID: 589294216}
+  - {fileID: 1921081913}
   - {fileID: 1891404025}
   - {fileID: 2035495226}
   m_Father: {fileID: 0}
@@ -1206,7 +1194,7 @@ RectTransform:
   m_Children:
   - {fileID: 426760519}
   m_Father: {fileID: 1370981749}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1684,16 +1672,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1921081913}
     m_Modifications:
+    - target: {fileID: 2138409871, guid: c1b86670a64eed148b59fd05e1da60df, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 0.003921569
+      objectReference: {fileID: 0}
     - target: {fileID: 529859522150054700, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 529859522459581587, guid: c1b86670a64eed148b59fd05e1da60df,
-        type: 3}
-      propertyPath: activateHiglight
-      value: 
-      objectReference: {fileID: 175015902}
     - target: {fileID: 529859522582308296, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1804,15 +1791,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPTracker
       objectReference: {fileID: 0}
-    - target: {fileID: 723952601046134069, guid: c1b86670a64eed148b59fd05e1da60df,
+    - target: {fileID: 5753595386153566749, guid: c1b86670a64eed148b59fd05e1da60df,
         type: 3}
-      propertyPath: activateHiglight
-      value: 
-      objectReference: {fileID: 939880426}
-    - target: {fileID: 4258451618151006904, guid: c1b86670a64eed148b59fd05e1da60df,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 0.003921569
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1b86670a64eed148b59fd05e1da60df, type: 3}

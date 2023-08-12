@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Lancelot
+  m_EditorClassIdentifier: 
+  m_GroupName: Lancelot
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 74d277040a6729d4ca2db93a4f6ce95b
+  m_SerializeEntries:
+  - m_GUID: fcf2e24c43b59a64ba8578e403f53d54
+    m_Address: Assets/RemoteResources/LancelotPortrait/Protrait.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Lancelot
+  - m_GUID: 53251e32638007d49ac8805c973f48f7
+    m_Address: Assets/RemoteResources/LancelotPortrait/LancelotSplash.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Lancelot
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2d1f87899d5cbbd4eb508a11b7de102a, type: 2}
+    - {fileID: 11400000, guid: b1d2d7f4c43cf9e45b6531a100c6828a, type: 2}

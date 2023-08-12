@@ -9,6 +9,6 @@ public class EnemyUnitController : UnitController
 
     public void CheckAction()
     {
-        Attack();
+        combatAction = CombatAction.ATTACK;
     }
 }

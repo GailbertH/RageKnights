@@ -29,14 +29,26 @@ public class EnemyUnitHandler : MonoBehaviour
         }
     }
 
+    public Transform GetUnitTransform(string unitCombatId)
+    {
+        var eUnit = enemyUnits.FirstOrDefault(x => x.GetUnitCombatId == unitCombatId);
+        if (eUnit != null)
+        {
+            return eUnit.gameObject.transform;
+        }
+        else
+            return null;
+    }
+
     public void EnemyInitialize(List<UnitModel> enemyDataList, int armyCount)
     {
         enemyUnitList = enemyDataList;
         //need to adjust with 1 - 3 units
         for (int i = 0; i < enemyUnitList.Count; i++)
         {
-            Debug.Log("??? " + enemyUnitList[i].name);
+            //Debug.Log("??? " + enemyUnitList[i].name);
             enemyUnits[i].Initialize(enemyUnitList[i]);
+            GameTargetingManager.Instance.AddTargetUnitToTheList(enemyUnits[i].GetUnitCombatId, UnitSide.ENEMY);
         }
         currentActiveUnit = enemyUnits[0];
     }
@@ -138,6 +150,7 @@ public class EnemyUnitHandler : MonoBehaviour
     public void OnEnemySlain(EnemyUnitController enemy)
     {
         Debug.Log("Enemy slain : " + enemy.GetUnitCombatId);
+        GameTargetingManager.Instance.RemoveTargetUnitToTheList(enemy.GetUnitCombatId, UnitSide.ENEMY);
         //UnSetEnemy(enemy);
         //EnemySpawn();
     }
@@ -183,5 +196,30 @@ public class EnemyUnitHandler : MonoBehaviour
     public void EnemyActionChecker()
     {
         currentActiveUnit.CheckAction();
+    }
+
+    public CombatAction GetActionToExecute()
+    {
+        return currentActiveUnit.combatAction;
+    }
+
+    public void ExecuteAction(Action onAnimationEnd = null)
+    {
+        currentActiveUnit.ExecuteAction(onAnimationEnd);
+    }
+    public void RunTowards(Transform targetPosition, float speed, Action callback = null)
+    {
+        if (targetPosition == null)
+        {
+            callback?.Invoke();
+            return;
+        }
+
+        currentActiveUnit.RunTowards(targetPosition, speed, callback);
+    }
+
+    public void RunBackToSpot(float speed, Action callback = null)
+    {
+        currentActiveUnit.GoBackToInitialPosition(speed, callback);
     }
 }

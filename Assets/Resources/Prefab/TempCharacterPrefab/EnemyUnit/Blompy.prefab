@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2863680701437218221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9028955866592120967}
+  m_Layer: 0
+  m_Name: MeleeTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9028955866592120967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863680701437218221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2955288726254415056}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2955288726254415057
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2955288726254415056}
   - component: {fileID: 2955288726254415059}
-  - component: {fileID: 2955288726254415061}
-  - component: {fileID: 2955288726254415060}
+  - component: {fileID: -4779601812151525528}
+  - component: {fileID: 5540274390781037077}
   m_Layer: 0
   m_Name: Blompy
   m_TagString: Untagged
@@ -30,7 +61,8 @@ Transform:
   m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9028955866592120967}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,25 +118,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!111 &2955288726254415061
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2955288726254415057}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: b489a374835462649b58f25ee99e8156, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: b489a374835462649b58f25ee99e8156, type: 2}
-  - {fileID: 7400000, guid: 1c4062f61410e3049bd891d935db4c4c, type: 2}
-  - {fileID: 7400000, guid: cdca017c8d1cfae4da505d50d76f0a32, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!114 &2955288726254415060
+--- !u!114 &-4779601812151525528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,12 +127,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 2955288726254415057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810ca242618636e4a824b58f22645875, type: 3}
+  m_Script: {fileID: 11500000, guid: cffe476460d97604ebec78b7d4b8f971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAnimation: {fileID: 2955288726254415061}
+  unitAnimator: {fileID: 5540274390781037077}
   extraUnitAnimation: {fileID: 0}
-  idleAnimName: Temp_Blompy_Idle
-  damagedAnimName: Temp_Blompy_Damaged
-  deathAnimName: Temp_Blompy_Death
-  attackAnimName: Temp_Blompy_Attack
+--- !u!95 &5540274390781037077
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955288726254415057}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 346f1bb7f9243934bbb9cebe37b47930, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
