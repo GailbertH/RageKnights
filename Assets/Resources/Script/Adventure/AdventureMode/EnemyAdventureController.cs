@@ -21,7 +21,11 @@ public class EnemyAdventureController : MonoBehaviour
     private LayerMask floor;
 
     [SerializeField]
-    private Transform targetPosition1;
+    private FieldOfView fieldOfView;
+
+    [SerializeField]
+    private Transform playerReference;
+
     private Transform targetPosition2;
     private NavMeshAgent navMeshAgent;
     private EnemyAdventureStateMode mode;
@@ -35,6 +39,15 @@ public class EnemyAdventureController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        GroundCheck();
+        if (fieldOfView.isSeeingPlayer)
+        {
+            navMeshAgent.destination = playerReference.position;
+        }
+    }
+
+    private void GroundCheck()
+    {
         RaycastHit hit;
         Vector3 castPos = transform.position;
         Vector3 direction = -transform.up;
@@ -44,21 +57,13 @@ public class EnemyAdventureController : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                Debug.Log("Did Hit");
+                //Debug.Log("Did Hit");
                 Vector3 movePos = transform.position;
                 movePos.y = hit.point.y + groundDist;
                 transform.position = movePos;
             }
         }
 
-        //navMeshAgent.destination = targetPosition1.position;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if ("Player" == other.tag)
-        {
-            Debug.Log("Hello");
-        }
     }
 
     public void PatrolMode()

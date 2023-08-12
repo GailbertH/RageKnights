@@ -2,37 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 namespace RageKnight.Player
 {
-    public enum PlayerState
-    {
-        IDLE = 0,
-        ATTACKING = 1,
-        DEAD = 2
-    }
-
     public class PlayerUnitHandler : MonoBehaviour
     {
         [SerializeField] private List<PlayerUnitController> playerUnits;
-        private List<string> playerCombatIds = new List<string>();
         private PlayerUnitController currentActiveUnit = null;
-
-        private PlayerState currentPlayerState = PlayerState.IDLE;
-
-        public PlayerState GetPlayerState
-        {
-            get
-            {
-                if (playerUnits == null)
-                    return PlayerState.IDLE;
-                else
-                    return currentPlayerState;
-            }
-        }
-
         public bool IsAlive
         {
             get
@@ -49,24 +28,24 @@ namespace RageKnight.Player
             }
         }
 
-        public string GetPlayerUnitCombatList
+        public Transform GetUnitTransform(string unitCombatId)
         {
-            get
+            var pUnit = playerUnits.FirstOrDefault(x => x.GetUnitCombatId == unitCombatId);
+            if (pUnit != null)
             {
-                System.Random rnd = new System.Random();
-                int r = rnd.Next(playerCombatIds.Count);
-                return playerCombatIds[r];
+                return pUnit.gameObject.transform;
             }
+            else
+                return null;
         }
 
         public void PlayerInitialize(List<UnitModel> playerDataList)
         {
-            playerCombatIds = new List<string>();
             //need to adjust with 1 - 3 units
             for (int i = 0; i < playerUnits.Count; i++)
             {
                 playerUnits[i].Initialize(playerDataList[i]);
-                playerCombatIds.Add(playerUnits[i].GetUnitCombatId);
+                GameTargetingManager.Instance.AddTargetUnitToTheList(playerUnits[i].GetUnitCombatId, UnitSide.PLAYER);
             }
 
             currentActiveUnit = playerUnits[0];
@@ -136,6 +115,17 @@ namespace RageKnight.Player
         }
         /////////////////////////////////////////////////////
 
+        public void DamagedPlayer(int damage, List<string> targetCombatIDs)
+        {
+            if (targetCombatIDs.Count <= 0)
+                return;
+
+            foreach (string targetCombatID in targetCombatIDs)
+            {
+                DamagePlayerUnit(targetCombatID, damage);
+            }
+        }
+
         public void DamagePlayerUnit(string targetCombatID, int damageAmount)
         {
 
@@ -147,32 +137,37 @@ namespace RageKnight.Player
                 GameUIManager.Instance.HealthbarHandler.UpdateHealthPoints(targetCombatID, currentHP);
                 if (playerUnit.GetIsDead)
                 {
-                    playerCombatIds.Remove(targetCombatID);
+                    GameTargetingManager.Instance.RemoveTargetUnitToTheList(playerUnit.GetUnitCombatId, UnitSide.PLAYER);
                 }
             }
         }
 
-        public void PlayerAttack()
+        public void PlayerAttack(Action onAnimationEnd = null)
         {
-            currentPlayerState = PlayerState.ATTACKING;
-            currentActiveUnit.Attack();
-            int attackDamage = 0;//GetPlayerData != null ? currentActiveUnit.UnitData.attackPower : 0;
-            GetEnemyHandler().DamagedEnemy(attackDamage, GameTargetingManager.Instance.GetTargets);
-
+            currentActiveUnit.Attack(onAnimationEnd);
         }
 
         public void PlayerResetAnimation()
         {
             currentActiveUnit?.ResetAnimation();
-            currentPlayerState = PlayerState.IDLE;
             Debug.Log("Player IdleS");
         }
 
-        public void PlayerMoveForward()
+        public void RunTowards(Transform targetPosition, float speed, Action callback = null)
         {
-            currentPlayerState = PlayerState.IDLE;
-            currentActiveUnit.PlayMoveAnimation();
-            //Debug.Log("Player Forward");
+            if (targetPosition == null)
+            {
+                Debug.Log("Run Towards no target");
+                callback?.Invoke();
+                return;
+            }
+
+            currentActiveUnit.RunTowards(targetPosition, speed, callback);
+        }
+
+        public void RunBackToSpot(float speed, Action callback = null)
+        {
+            currentActiveUnit.GoBackToInitialPosition(speed, callback);
         }
     }
 }

@@ -16,6 +16,9 @@ namespace RageKnight.Database
 
         void Awake()
         {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+
             instance = this;
         }
 

@@ -17,19 +17,30 @@ public class FieldOfView : MonoBehaviour
 
     public bool isSeeingPlayer;
     public GameObject playerReference;
+    private Coroutine fieldOfViewRoutine;
 
     public float GetAngle { get { return this.angle; } }
     public float GetRadius { get { return this.radius;} }
 
-    public void Start()
+    private void Start()
     {
-        //playerReference = playRef;
+        fieldOfViewRoutine = StartCoroutine(FOVRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        FieldOfViewCheck();
+        StopCoroutine(fieldOfViewRoutine);
+    }
+
+    private IEnumerator FOVRoutine()
+    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+
+        while (true)
+        {
+            yield return wait;
+            FieldOfViewCheck();
+        }
     }
 
     private void FieldOfViewCheck()
@@ -38,17 +49,13 @@ public class FieldOfView : MonoBehaviour
 
         if (rangeChecks.Length != 0)
         {
-            Debug.Log("RangeChecks");
             Transform target = rangeChecks[0].transform;
             Vector3 directionToTarget = (target.position - transform.position).normalized;
-            Debug.Log("Angle - " +Vector3.Angle(transform.right, directionToTarget));
             if (Vector3.Angle(transform.right, directionToTarget) < angle / 2)
             {
-                Debug.Log("AngleCheck");
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
                 {
-                    Debug.Log("SightCheck");
                     isSeeingPlayer = true;
                 }
                 else
