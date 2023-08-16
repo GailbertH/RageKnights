@@ -3,6 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum AttackType
+{
+    NONE,
+    MELEE,
+    RANGE
+}
 
 [Serializable]
 public class UnitModel
@@ -21,6 +27,8 @@ public class UnitModel
     public int maxHealthPoints = 100;
     public int manaPoints;
     public int maxManaPoints = 100;
+
+    public AttackType normalAttackType = AttackType.MELEE;
 
     public StatusBarFields statusBarItems
     {

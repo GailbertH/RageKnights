@@ -76,9 +76,9 @@ namespace RageKnight.Player
             playerTurnIsDone = isPlayerGoesFirst ? false : true;
         }
 
-        public string CurrentUnitAtTurn()
+        public UnitController CurrentUnitAtTurn()
         {
-            return "";
+            return currentActiveUnit;
         }
 
         public bool IsTurnsDone()

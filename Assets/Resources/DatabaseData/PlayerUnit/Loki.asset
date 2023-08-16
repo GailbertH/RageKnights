@@ -23,4 +23,5 @@ MonoBehaviour:
   splashArt: {fileID: 21300000, guid: b97e62998ff5ed74cad8c9f7a1f3e673, type: 3}
   unitPrefab: {fileID: 4595856937361285771, guid: 3a29ad4adc5184d4e8d862c11eeba450,
     type: 3}
+  normalAttackType: 2
   description: 

@@ -21,6 +21,7 @@ namespace RageKnight.Database
         public Sprite icon;
         public Sprite splashArt;
         public GameObject unitPrefab;
+        public AttackType normalAttackType = AttackType.MELEE;
 
         [TextArea]
         public string description;
