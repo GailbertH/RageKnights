@@ -72,6 +72,7 @@ namespace RageKnight.Database
         public Sprite icon;
         public Sprite splashArt;
         public GameObject unitPrefab;
+        public AttackType normalAttackType;
 
         public UnitDataModel(DatabaseUnit dataModel)
         {
@@ -83,6 +84,7 @@ namespace RageKnight.Database
             icon = dataModel.icon;
             splashArt = dataModel.splashArt;
             unitPrefab = dataModel.unitPrefab;
+            normalAttackType = dataModel.normalAttackType;
         }
     }
 }

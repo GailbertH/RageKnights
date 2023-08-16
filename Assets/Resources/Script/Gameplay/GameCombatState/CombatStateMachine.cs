@@ -532,12 +532,26 @@ public class Combat_Action : Combat_Base<CombatState>
         base.Start();
         isPlayerUnitsTurn = GameManager.Instance.GetIsPlayerTurn;
         List<string> targets = GameTargetingManager.Instance.GetTargets;
-        if(isPlayerUnitsTurn)
+        AttackType attackType = AttackType.NONE;
+        if (isPlayerUnitsTurn)
+        {
+            attackType = GameManager.Instance.PlayerHandler.CurrentUnitAtTurn().GetNormalAttackType;
             targetPosition = GameManager.Instance.EnemyHandler.GetUnitTransform(targets.FirstOrDefault());
+        }
         else
+        {
+            attackType = GameManager.Instance.EnemyHandler.CurrentUnitAtTurn().GetNormalAttackType;
             targetPosition = GameManager.Instance.PlayerHandler.GetUnitTransform(targets.FirstOrDefault());
+        }
         //check if Melee
-        caExecutionState = CombatActionExecutionState.RUN_TOWARDS;
+        if (attackType == AttackType.MELEE)
+        {
+            caExecutionState = CombatActionExecutionState.RUN_TOWARDS;
+        }
+        else
+        {
+            ExecuteAction();
+        }
     }
 
     public override void ProtoUpdate()

@@ -53,6 +53,11 @@ public class EnemyUnitHandler : MonoBehaviour
         currentActiveUnit = enemyUnits[0];
     }
 
+    public UnitController CurrentUnitAtTurn()
+    {
+        return currentActiveUnit;
+    }
+
     /////////////////////////////////////////////////////
     EnemyUnitController currentActiveUnit = null;
     public string GetCurrentActiveUnitCombatId

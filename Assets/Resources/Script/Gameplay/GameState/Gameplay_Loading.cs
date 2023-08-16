@@ -102,6 +102,7 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
                 healthPoints = 100,
                 manaPoints = 100,
 
+                normalAttackType = dataModel.normalAttackType
             };
             playerDataList.Add(playerData);
         }
@@ -132,6 +133,8 @@ public class Gameplay_Loading : GameplayState_Base<GameplayState>
 
                 healthPoints = dataModel.healthPoints,
                 manaPoints = 100,
+
+                normalAttackType = dataModel.normalAttackType
 
             };
             enemyDataList.Add(enemyData);

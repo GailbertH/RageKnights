@@ -40,6 +40,11 @@ public class UnitController : MonoBehaviour, IPointerDownHandler
         get { return combatPlacement; }
     }
 
+    public AttackType GetNormalAttackType
+    {
+        get { return UnitData.normalAttackType; }
+    }
+
     private bool isTurnDone = false;
     public bool GetIsTurnDone
     {
