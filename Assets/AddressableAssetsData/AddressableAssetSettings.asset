@@ -49,6 +49,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4bd656ba4ea9c854799f94f09bef0593, type: 2}
   - {fileID: 11400000, guid: c5b310aed3e2b464c9a61964d267f983, type: 2}
   - {fileID: 11400000, guid: 1df28f3ef64de444fbdcc3f4706f55dc, type: 2}
+  - {fileID: 11400000, guid: 094e181ecbe4b5841ab850f0f2d50463, type: 2}
+  - {fileID: 11400000, guid: 5985a50356eee7c49a2e111a7afac7f9, type: 2}
+  - {fileID: 11400000, guid: 454520176bf925e4ca29947f0354789e, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -95,6 +98,9 @@ MonoBehaviour:
     - Albert
     - Vira
     - Lancelot
+    - Loki
+    - Sharena
+    - Alfonse
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 543e8f4c3c0771b40ad6e6081d6fe3df, type: 2}

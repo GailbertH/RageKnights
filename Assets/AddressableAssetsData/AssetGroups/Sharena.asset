@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Sharena
+  m_EditorClassIdentifier: 
+  m_GroupName: Sharena
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b96e3ab20367b8c45916cc299822fc8d
+  m_SerializeEntries:
+  - m_GUID: 624c4eb6e834b9c4e8b1b2092070bb3f
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: a2175f934d6a1154f9004418d527593b
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaExpression_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 46e34f79b978d1947b7cbb3809f4274e
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaExpression_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 7699f7a9b2d2c7a44979414d9eea04a4
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaExpression_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 87f2a98b21761d147884b73a1f444eab
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaExpression_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: d8f26e2403d60c649884ecf371482fe8
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: c9b91fd69971c954dbc3f3b468f9d0c9
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 9d9848a34579e614b940a4fac0c9d53a
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 4ee400e6846c6a745b7deac78ef9f79c
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 2768987aba563ef428c3554531a38260
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/SharenaDialogue.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  - m_GUID: 5af2e099e5c58c248a4e4bc9caa01199
+    m_Address: Assets/RemoteResources/Dialogue_Sharena/Sharena.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sharena
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 6a6c6a393eef0dd4ab5b3e8adc479b7d, type: 2}
+    - {fileID: 11400000, guid: 2e93016993cda2743b9a8ce97d38ceb7, type: 2}

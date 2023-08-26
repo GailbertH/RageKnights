@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Alfonse
+  m_EditorClassIdentifier: 
+  m_GroupName: Alfonse
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9ae30e4dd5282f848af5f6b7e51adeb2
+  m_SerializeEntries:
+  - m_GUID: 720284985f5184f4e9157af060c59963
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 4b5ec7e5a8d364a4096461aad2d7bdb5
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/Alfonse.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: b00f3e13ce4dd5846a1537bc06fe9146
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 068bb9c6fd002ce47b85ff678894d4bd
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseExpression_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: b17fe29fdbc909a4ba078bdb585678e4
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseExpression_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 75b8582355c8b844a9228d153f5053ed
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseExpression_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 28e06ca20c78d4747b9f854b11d5d7d2
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseExpression_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 01953d7fc79e0b0459bc8d8af2e017b5
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: 5245dcd173723a2489fb0eeb0d79b7bb
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: fb764bcbfb5517a43a8044f738ce7411
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  - m_GUID: dee6cda60292d8e4ea968b8a59daa600
+    m_Address: Assets/RemoteResources/Dialogue_Alfonse/AlfonseDialogue_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Alfonse
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 996f5fce964603742a5976d8cf62f627, type: 2}
+    - {fileID: 11400000, guid: 367303ed725ea2646a172d9672c6c193, type: 2}

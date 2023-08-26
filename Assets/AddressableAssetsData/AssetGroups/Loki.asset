@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Loki
+  m_EditorClassIdentifier: 
+  m_GroupName: Loki
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 280f7743fd941ea49bb9736d84890119
+  m_SerializeEntries:
+  - m_GUID: a9bf22abbe50d0e4293bfccf5865e427
+    m_Address: Assets/RemoteResources/Dialogue_Loki/Loki.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 9b1c2fc58d218834ea975f8e316d2db0
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue.controller
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 55f2accd2398a3943883c982014e183e
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 195ad5681183cc34eb86f206fa8b4c19
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: ff6baee6c6da0574285d7216ab5227bb
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 2b43a3774e881374c9b545f42d012f61
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: cff61445b8ac46b4b80e7907b5a76597
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiDialogue_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 1300f162850d06f4c834b8f2ce7187ae
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiExpression_Angry.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 45c35b45674f2a84a9719b922892d65b
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiExpression_Anxious.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: 9d7bc566ae658334ca4913f38264b219
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiExpression_Hurt.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  - m_GUID: d00ba6a5baa536d47b7f831e2e6b5202
+    m_Address: Assets/RemoteResources/Dialogue_Loki/LokiExpression_Normal.anim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Loki
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 8f46a2f4638b4c740ae300f3f3a9e5b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 74fbee04f6099e243aa8d3a28c832e0a, type: 2}
+    - {fileID: 11400000, guid: c55354d47b5435e448f78913b6eabc0c, type: 2}
